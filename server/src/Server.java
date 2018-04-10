@@ -1,10 +1,26 @@
 import java.sql.*;
 import java.util.Scanner;
 
+
 public class Server {
     public static String utente = null;
     public static String password = null;
 
+
+    private static boolean loginAttempt(String name, String pwd, Statement st) {
+        ResultSet rs;
+        String sql = buildLoginQuery(utente, password);
+
+        System.out.println(sql);
+        try {
+            rs = st.executeQuery(sql);
+            return rs.next();
+        } catch(SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
     private static void Accesso() throws SQLException {
 
@@ -13,41 +29,22 @@ public class Server {
 
         Scanner in = new Scanner(System.in);
 
-
-        System.out.println("Inserire il nome utente:\n ");
-        utente = in.nextLine();
-
-        System.out.println("Inserisci la password:\n ");
-        password = in.nextLine();
-
-        String sql = buildLoginQuery(utente, password);
-
-        System.out.println(sql);
-        ResultSet rs = st.executeQuery(sql);
-
-        while (!rs.next()) {
-            System.out.println("riprova!");
-
+        while(true) {
             System.out.println("Inserire il nome utente:\n ");
             utente = in.nextLine();
 
             System.out.println("Inserisci la password:\n ");
             password = in.nextLine();
 
-            sql = buildLoginQuery(utente, password);
+            if (loginAttempt(utente, password, st)) {
+                System.out.println("mattia omosex");
+                break;
+            }
+            System.out.println("login errato, riprova");
 
-            System.out.println(sql);
-            rs = st.executeQuery(sql);
         }
 
-        while(rs.next()){
-
-            utente = rs.getString("UserName");
-            password = rs.getString("Password");
-
-            System.out.println("Accesso eseguito con successo");
-        }
-
+        conn.close();
 
     }
 
@@ -72,31 +69,48 @@ public class Server {
 
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        Connection conn = null;
+
+        Connection  conn = null;
         //Statement stmt = null;
 
-        Accesso();
-        //Registrazione();
+        try {
+
+            Class.forName("org.mariadb.jdbc.Driver");
+
+        }catch (ClassNotFoundException e)
+        {
+                System.err.println("fucking!!");
+                e.printStackTrace();
+        }
 
 
         try {
 
+            //"jdbc:mariadb://localhost:3306/progetto?user=root&password=root"
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto", "root", "root");
 
-            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
-            //stmt = conn.createStatement();
-            Database.creaTabelle(conn);
+
+
+           Database.creaTabelle(conn);
+
+
+            Accesso();
         }
         catch (SQLException e){
-            System.out.println("connessione al DB non riuscita");
+            System.err.println("connessione al DB non riuscita");
+            e.printStackTrace();
 
         }
+
+
         finally {
             if(conn != null) {
                 conn.close();
             }
         }
+
 
             /*catch(SQLException se){
                 //Handle errors for JDBC
@@ -126,7 +140,7 @@ public class Server {
 
         Statement stmt = null;
         String query ="select UserName, Password, "+
-                "from "+progetto +".Utente";
+                "from "+ utente +".Utente";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -574,8 +588,8 @@ public class Server {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                String targa= rs.getString("targa");
-                String codice_g= rs.getString("codice_g");
+                String targa = rs.getString("targa");
+                String codice_g = rs.getString("codice_g");
 
                 //System.out.println(nome_p+","+nome_i);
 
