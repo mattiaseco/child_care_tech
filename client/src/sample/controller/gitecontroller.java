@@ -1,4 +1,4 @@
 package sample.controller;
 
-public class login {
+public class gitecontroller {
 }
