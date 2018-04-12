@@ -44,10 +44,10 @@
                   <Image url="@../image/accessi.png" />
                </image>
             </ImageView>
-            <Button fx:id="anagraficabutton" mnemonicParsing="false" onAction="#gotoanagrafica" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="anagrafica" GridPane.halignment="CENTER" />
-            <Button fx:id="accessibutton" mnemonicParsing="false" onAction="#gotoaccessi" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="accessi" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button fx:id="gitebutton" mnemonicParsing="false" onAction="#gotogite" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="gite" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button fx:id="mensabutton" mnemonicParsing="false" onAction="#gotomensa" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="mensa" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button fx:id="anagraficabutton" mnemonicParsing="false" onAction="#gotoanagrafica" opacity="0.0" prefHeight="150.0" prefWidth="150.0" text="anagrafica" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+            <Button fx:id="accessibutton" mnemonicParsing="false" onAction="#gotoaccessi" opacity="0.0" prefHeight="150.0" prefWidth="150.0" text="accessi" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Button fx:id="gitebutton" mnemonicParsing="false" onAction="#gotogite" opacity="0.0" prefHeight="150.0" prefWidth="150.0" text="gite" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Button fx:id="mensabutton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#gotomensa" opacity="0.0" prefHeight="150.0" prefWidth="150.0" text="mensa" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
             <ImageView fitHeight="37.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <image>
                   <Image url="@../image/anagrafica2.png" />
