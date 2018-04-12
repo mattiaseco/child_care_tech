@@ -11,7 +11,6 @@ public class Server {
         ResultSet rs;
         String sql = buildLoginQuery(utente, password);
 
-        System.out.println(sql);
         try {
             rs = st.executeQuery(sql);
             return rs.next();
@@ -87,53 +86,23 @@ public class Server {
 
 
         try {
-
-            //"jdbc:mariadb://localhost:3306/progetto?user=root&password=root"
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto", "root", "root");
 
-
-
-           Database.creaTabelle(conn);
-
+            Database.creaTabelle(conn);
 
             Accesso();
         }
         catch (SQLException e){
+
             System.err.println("connessione al DB non riuscita");
             e.printStackTrace();
 
         }
-
-
         finally {
             if(conn != null) {
                 conn.close();
             }
         }
-
-
-            /*catch(SQLException se){
-                //Handle errors for JDBC
-                se.printStackTrace();
-            }catch(Exception e){
-                //Handle errors for Class.forName
-                e.printStackTrace();
-            }finally{
-                //finally block used to close resources
-                try{
-                    if(stmt!=null)
-                        conn.close();
-                }catch(SQLException se){
-                }// do nothing
-                try{
-                    if(conn!=null)
-                        conn.close();
-                }catch(SQLException se){
-                    se.printStackTrace();
-                }//end finally try
-            }//end try
-            System.out.println("Goodbye!");*/
-
     }
 
     public static void ViewTablesql(Connection conn, String Utente) throws SQLException{
@@ -147,7 +116,6 @@ public class Server {
             while (rs.next()){
                 String UserName = rs.getString("UserName");
                 String Password = rs.getString("Password");
-                //System.out.println(Password+","+UserName);
 
             }
         }catch(SQLException e ){

@@ -1,20 +1,20 @@
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    public static void creaTabelle(Connection conn)  throws SQLException {
+    public static void creaTabelle(Connection conn) throws SQLException, ClassNotFoundException {
 
-        Statement stmt = null;
+        Statement stmt;
         stmt = conn.createStatement();
 
-
-        String sql=" CREATE TABLE Utente" +
-                "(UserName VARCHAR(20) NOT NULL  " +
-                " Password VARCHAR(20) NOT NULL) ";
+        String sql=" CREATE TABLE IF NOT EXISTS Utente" +
+                "(UserName VARCHAR(20) NOT NULL," +
+                " Password VARCHAR(20) NOT NULL)";
         stmt.executeUpdate(sql);
 
-        String sql1 = "CREATE TABLE Bambino " +
+        /*String sql1 = "CREATE TABLE Bambino " +
                 "(cf VARCHAR(16) NOT NULL ," +
                 "cod_qr VARCHAR(10) NOT NULL," +
                 "nome VARCHAR(25) NOT NULL," +
@@ -77,44 +77,44 @@ public class Database {
 
         String sql7 = "CREATE TABLE Menu " +
                 "(numero INT NOT NULL PRIMARY KEY," +
-                "data DATE,)";
+                "data DATE)";
         stmt.executeUpdate(sql7);
 
         String sql8 = "CREATE TABLE Piatto " +
-                "(nome_p VARCHAR(15) NOT NULL PRIMARY KEY," +
-                "tipo VARCHAR(15) NOT NULL"+
-                "quantita INT NOT NULL ,)";
+                "(nome_p VARCHAR(15) NOT NULL PRIMARY KEY ," +
+                "tipo VARCHAR(15) NOT NULL ,"+
+                "quantita INT NOT NULL )";
         stmt.executeUpdate(sql8);
 
         String sql9 = "CREATE TABLE Ingrediente " +
-                "(nome_i VARCHAR(15) NOT NULL PRIMARY KEY," +
-                "quantita INT NOT NULL ,)";
+                "(nome_i VARCHAR(15) NOT NULL PRIMARY KEY ," +
+                "quantita INT NOT NULL )";
         stmt.executeUpdate(sql9);
 
         String sql10 = "CREATE TABLE Gita " +
-                "(codice_g VARCHAR(15) NOT NULL PRIMARY KEY," +
+                "(codice_g VARCHAR(15) NOT NULL PRIMARY KEY ," +
                 "num_pullman INT NOT NULL ," +
-                "destinazione VARCHAR(20) NOT NULL," +
-                "num_partecipanti INT NOT NULL,)";
+                "destinazione VARCHAR(20) NOT NULL ," +
+                "num_partecipanti INT NOT NULL)";
         stmt.executeUpdate(sql10);
 
         String sql11 = "CREATE TABLE Pullman " +
-                "(targa VARCHAR(15) NOT NULL PRIMARY KEY," +
-                "capienza INT ,)";
+                "(targa VARCHAR(15) NOT NULL PRIMARY KEY ," +
+                "capienza INT )";
         stmt.executeUpdate(sql11);
 
         String sql12 = "CREATE TABLE Tappa " +
-                "(codice_t VARCHAR(15) NOT NULL PRIMARY KEY," ;
+                "(codice_t VARCHAR(15) NOT NULL PRIMARY KEY" ;
         stmt.executeUpdate(sql12);
 
         String sql13 = "CREATE TABLE Gateway "+
-                "(data DATE NOT NULL"+
+                "(data DATE NOT NULL ,"+
                 "cod_porta VARCHAR(15) NOT NULL ," +
                 "PRIMARY KEY(cod_porta,data))";
         stmt.executeUpdate(sql13);
 
         String sql14 = "CREATE TABLE Attraversa "+ //PERSONA GATEWAY
-                "(data DATE REFERENCES Gateway ON DELETE CASCADE ,  "+
+                "(data DATE REFERENCES Gateway ON DELETE CASCADE ,"+
                 "cod_porta VARCHAR(15) REFERENCES Gateway ON DELETE CASCADE ," +
                 "(cf VARCHAR(16)  REFERENCES Bambino ON DELETE CASCADE ,"+
                 "PRIMARY KEY(cod_porta ,data, cf))";
@@ -155,8 +155,9 @@ public class Database {
                 "codice_t VARCHAR(15) REFERENCES Tappa ON DELETE CASCADE ,"+
                 "cf VARCHAR(16) REFERENCES Bambino ON DELETE CASCADE ,"+
                 "PRIMARY KEY(codice_t, targa ,cf))";
-        stmt.executeUpdate(sql20);
+        stmt.executeUpdate(sql20); */
 
+        conn.close();
 
     }
 }
