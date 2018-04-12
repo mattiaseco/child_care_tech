@@ -36,7 +36,7 @@ public class Server {
             password = in.nextLine();
 
             if (loginAttempt(utente, password, st)) {
-                System.out.println("mattia omosex");
+                System.out.println("login to PornHub succesful");
                 break;
             }
             System.out.println("login errato, riprova");
