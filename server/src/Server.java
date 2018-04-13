@@ -86,7 +86,7 @@ public class Server {
 
 
         try {
-            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?createDatabaseIfNotExist=true", "root", "root");
 
             Database.creaTabelle(conn);
 
