@@ -1,4 +1,4 @@
-package sample.controller;
+package client.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,15 +8,15 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class mensacontroller {
+public class controlloaccessicontroller {
 
     @FXML private Button backhome;
 
-    @FXML private AnchorPane mensapane;
+    @FXML private AnchorPane accessipane;
 
     @FXML
     private void backtohome(ActionEvent event)throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/home.fxml"));
-        mensapane.getChildren().setAll(pane);
+        accessipane.getChildren().setAll(pane);
     }
 }

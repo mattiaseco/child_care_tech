@@ -1,4 +1,4 @@
-package sample.controller;
+package client.controller;
 
 import javafx.fxml.FXML;
 
@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.Button;
 //import javafx.scene.control.RadioButton;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -21,7 +22,7 @@ public class logincontroller{
 
     @FXML private TextField usernamefield;
 
-    @FXML private TextField passwordfield;
+    @FXML private PasswordField passwordfield;
 
     @FXML private Button loginbutton;
 
