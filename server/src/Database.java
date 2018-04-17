@@ -22,6 +22,9 @@ public class Database {
                 "data DATE NOT NULL," +
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "telefono VARCHAR(10),"+
+                "contatto VARCHAR(10) NOT NULL,"+
+                "contatto1 VARCHAR(10) ,"+
+                "contatto2 VARCHAR(10) ,"+
                 "PRIMARY KEY(cf, cod_qr))";
         stmt.executeUpdate(sql1);
 
@@ -49,7 +52,7 @@ public class Database {
         String sql4 = "CREATE TABLE IF NOT EXISTS Pediatra" +
                 "(cf VARCHAR(16) NOT NULL," +
                 "codqr VARCHAR(10) NOT NULL," +
-                "nome VARCHAR(25) NOT NULL," +
+                "nome VARCHAR(20) NOT NULL,"+
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +

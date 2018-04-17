@@ -53,8 +53,10 @@ public class Server {
                 "Where UserName = '" + utente + "' and Password = '" + password + "';";
     }
 
-    private static void Registrazione(){
+    private static void Registrazione()throws SQLException{
 
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
         Scanner in = new Scanner(System.in);
 
         System.out.println("Inserire il nome utente:\n ");
@@ -63,7 +65,194 @@ public class Server {
         System.out.println("Inserisci la password:\n ");
         password = in.nextLine();
 
-        String sql = " UPDATE Utente";
+        String sql=" INSERT INTO Utente(UserName,Password)" +
+                "VALUES('"+utente+"','"+password+"')";
+        st.executeUpdate(sql);
+    }
+    private static void Inserire()throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        Scanner in = new Scanner(System.in);
+        String c,cf,cod_qr,nome,cognome,data,telefono,indirizzo,partita_iva,contatto,contatto1,contatto2;
+
+        System.out.println("Cosa vuoi inserire Bambino.....\n ");
+        c = in.nextLine();
+
+        switch (c) {
+            case "fornitore":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+                System.out.println("Inserisci il partita iva:\n ");
+                partita_iva = in.nextLine();
+
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+
+                String sql4=" INSERT INTO Fornitore(cf,nome,cognome,partita_iva,data,indirizzo,telefono)" +
+                        "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+partita_iva+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                st.executeUpdate(sql4);
+
+                break;
+            case "contatti":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+
+                String sql5=" INSERT INTO Contatti(cf,nome,cognome,data,indirizzo,telefono)" +
+                        "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                st.executeUpdate(sql5);
+
+
+                break;
+
+            case "bambino":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+                System.out.println("Inserisci il codice QR:\n ");
+                cod_qr = in.nextLine();
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono di un contatto:\n ");
+                contatto = in.nextLine();
+                System.out.println("Inserisci il numero di telefono di un'altro contatto(non indispensabile):\n ");
+                contatto1 = in.nextLine();
+                System.out.println("Inserisci il numero di telefono di un'altro contatto(non indispensabile):\n ");
+                contatto2 = in.nextLine();
+
+
+                String sql=" INSERT INTO Bambino(cf,cod_qr,nome,cognome,data,indirizzo,telefono,contatto,contatto1,contatto2)" +
+                        "VALUES('"+cf+"','"+cod_qr+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"','"+contatto+"','"+contatto1+"','"+contatto2+"')";
+                st.executeUpdate(sql);
+                break;
+
+            case "genitore":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+
+                String sql1=" INSERT INTO Genitore(cf,nome,cognome,data,indirizzo,telefono)" +
+                        "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                st.executeUpdate(sql1);
+
+                break;
+
+            case "personale":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+                System.out.println("Inserisci il codice QR:\n ");
+                cod_qr = in.nextLine();
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+
+                String sql2=" INSERT INTO Personale(cf,nome,codpqr,cognome,data,indirizzo,telefono)" +
+                        "VALUES('"+cf+"','"+nome+"','"+cod_qr+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                st.executeUpdate(sql2);
+                break;
+
+            case "pediatra":
+                System.out.println("Inserisci codice fiscale:\n ");
+                cf = in.nextLine();
+
+                System.out.println("Inserire il nome :\n ");
+                nome = in.nextLine();
+
+                System.out.println("Inserire il cod_qr :\n ");
+                cod_qr = in.nextLine();
+
+                System.out.println("Inserisci il cognome:\n ");
+                cognome = in.nextLine();
+
+                System.out.println("Inserisci la data di nascita:\n ");
+                data = in.nextLine();
+
+                System.out.println("Inserisci l' indirizzo:\n ");
+                indirizzo = in.nextLine();
+
+                System.out.println("Inserisci il numero di telefono:\n ");
+                telefono = in.nextLine();
+
+
+                String sql3=" INSERT INTO Pediatra(cf,codqr,nome,cognome,data,indirizzo,telefono)" +
+                        "VALUES('"+cf+"','"+cod_qr+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                st.executeUpdate(sql3);
+
+                break;
+
+
+            default:
+                System.out.println("PORCO DIO!!!!COGLIONE NON ESISTE QUELLO CHE HAI SCRITTO");
+        }
+
+
 
 
     }
@@ -72,7 +261,6 @@ public class Server {
 
 
         Connection  conn = null;
-        //Statement stmt = null;
 
         try {
 
@@ -89,6 +277,8 @@ public class Server {
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?createDatabaseIfNotExist=true", "root", "root");
 
             Database.creaTabelle(conn);
+            Inserire();
+            Registrazione();
 
             Accesso();
         }
