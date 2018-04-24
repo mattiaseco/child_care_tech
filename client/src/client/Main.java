@@ -1,5 +1,6 @@
 package client;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,15 +14,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage)throws Exception{
+    public void start(Stage stage)throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
-        primaryStage.setTitle("");
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.setMinHeight(400);
-        primaryStage.setMinWidth(600);
-        primaryStage.show();
+        stage.setTitle("");
+        stage.setScene(new Scene(root, 600, 400));
+        stage.setMinHeight(400);
+        stage.setMinWidth(600);
+        stage.show();
     }
-
-
 
 }

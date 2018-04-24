@@ -1,22 +1,27 @@
 package client.controller;
 
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class mensacontroller {
 
-    @FXML private Button backhome;
+    @FXML
+    private ImageView backhome;
 
-    @FXML private AnchorPane mensapane;
+    private Stage actual;
 
     @FXML
-    private void backtohome(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/home.fxml"));
-        mensapane.getChildren().setAll(pane);
+    private void backtohome()throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));
+        actual =(Stage)backhome.getScene().getWindow();
+        actual.setScene(new Scene(root,backhome.getScene().getWidth(),backhome.getScene().getHeight()));
+        actual.show();
     }
 }

@@ -1,49 +1,73 @@
 package client.controller;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class homecontroller {
 
-    @FXML private Button anagraficabutton;
+    @FXML
+    private ImageView anagraficabutton;
 
-    @FXML private Button mensabutton;
+    @FXML private ImageView mensabutton;
 
-    @FXML private Button gitebutton;
+    @FXML private ImageView gitebutton;
 
-    @FXML private Button accessibutton;
+    @FXML private ImageView accessibutton;
 
-    @FXML private AnchorPane homepane;
+
+    private Stage actual;
+
 
     @FXML
-    private void gotoanagrafica(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
-        homepane.getChildren().setAll(pane);
+    private void gotoanagrafica()throws IOException {
+
+        Parent root= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        actual =(Stage)anagraficabutton.getScene().getWindow();
+        actual.setScene(new Scene(root,anagraficabutton.getScene().getWidth(),anagraficabutton.getScene().getHeight()));
+        actual.show();
+
+
+
     }
 
     @FXML
-    private void gotomensa(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/mensa.fxml"));
-        homepane.getChildren().setAll(pane);
+    private void gotomensa()throws IOException {
+
+        Parent root=FXMLLoader.load(getClass().getResource("../view/mensa.fxml"));
+        actual =(Stage)mensabutton.getScene().getWindow();
+        actual.setScene(new Scene(root,mensabutton.getScene().getWidth(),mensabutton.getScene().getHeight()));
+        actual.show();
+
+
     }
 
     @FXML
-    private void gotogite(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/gite.fxml"));
-        homepane.getChildren().setAll(pane);
+    private void gotogite()throws IOException {
+
+        Parent root=FXMLLoader.load(getClass().getResource("../view/gite.fxml"));
+        actual =(Stage)gitebutton.getScene().getWindow();
+        actual.setScene(new Scene(root,gitebutton.getScene().getWidth(),gitebutton.getScene().getHeight()));
+        actual.show();
+
+
     }
 
     @FXML
-    private void gotoaccessi(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../view/controlloaccessi.fxml"));
-        homepane.getChildren().setAll(pane);
+    private void gotoaccessi()throws IOException {
+
+        Parent root=FXMLLoader.load(getClass().getResource("../view/controlloaccessi.fxml"));
+        actual =(Stage)accessibutton.getScene().getWindow();
+        actual.setScene(new Scene(root,accessibutton.getScene().getWidth(),accessibutton.getScene().getHeight()));
+        actual.show();
+
+
     }
 
 

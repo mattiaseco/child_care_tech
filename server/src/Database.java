@@ -172,4 +172,8 @@ public class Database {
         conn.close();
 
     }
+
+    public static void getPersone(Connection connection) throws SQLException {
+
+    }
 }
