@@ -22,8 +22,7 @@ public class Database {
                 "data DATE NOT NULL," +
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "telefono VARCHAR(10),"+
-                "contatto VARCHAR(10) NOT NULL,"+
-                "contatto1 VARCHAR(10) ,"+
+                "contatto1 VARCHAR(10) NOT NULL,"+
                 "contatto2 VARCHAR(10) ,"+
                 "PRIMARY KEY(cf, cod_qr))";
         stmt.executeUpdate(sql1);

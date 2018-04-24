@@ -1,10 +1,12 @@
 package client.controller;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -20,6 +22,8 @@ public class homecontroller {
     @FXML private ImageView gitebutton;
 
     @FXML private ImageView accessibutton;
+
+    @FXML private Button logoutbutton;
 
 
     private Stage actual;
@@ -65,6 +69,17 @@ public class homecontroller {
         Parent root=FXMLLoader.load(getClass().getResource("../view/controlloaccessi.fxml"));
         actual =(Stage)accessibutton.getScene().getWindow();
         actual.setScene(new Scene(root,accessibutton.getScene().getWidth(),accessibutton.getScene().getHeight()));
+        actual.show();
+
+
+    }
+
+    @FXML
+    private void gotologin(ActionEvent event)throws IOException {
+
+        Parent root=FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+        actual =(Stage)logoutbutton.getScene().getWindow();
+        actual.setScene(new Scene(root,logoutbutton.getScene().getWidth(),logoutbutton.getScene().getHeight()));
         actual.show();
 
 

@@ -17,8 +17,7 @@ import java.io.IOException;
 public class signupcontroller {
 
 
-    @FXML
-    private TextField usernamefield;
+    @FXML private TextField usernamefield;
 
     @FXML private PasswordField passwordfield;
 

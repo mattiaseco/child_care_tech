@@ -277,10 +277,13 @@ public class Server {
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?createDatabaseIfNotExist=true", "root", "root");
 
             Database.creaTabelle(conn);
-            Inserire();
-            Registrazione();
 
             Accesso();
+            Registrazione();
+            Inserire();
+
+
+
         }
         catch (SQLException e){
 
