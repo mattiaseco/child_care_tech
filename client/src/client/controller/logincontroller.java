@@ -43,7 +43,7 @@ public class logincontroller{
             alertbox.setText("Warning: Username or Password empty");
         }
         else{
-            if (passwordfield.getText().equals("default")) {
+            if (passwordfield.getText().equals("a")) {
                 alertbox.setText("Signed in as " + usernamefield.getText() + "!");
 
                 Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));

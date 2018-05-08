@@ -1,7 +1,6 @@
 package client.controller;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -75,7 +74,7 @@ public class homecontroller {
     }
 
     @FXML
-    private void gotologin(ActionEvent event)throws IOException {
+    private void gotologin()throws IOException {
 
         Parent root=FXMLLoader.load(getClass().getResource("../view/login.fxml"));
         actual =(Stage)logoutbutton.getScene().getWindow();
