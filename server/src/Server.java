@@ -1,3 +1,5 @@
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -260,7 +262,7 @@ public class Server {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
-        Connection  conn = null;
+        /*Connection  conn = null;
 
         try {
 
@@ -281,9 +283,6 @@ public class Server {
             Accesso();
             Registrazione();
             Inserire();
-
-
-
         }
         catch (SQLException e){
 
@@ -295,7 +294,7 @@ public class Server {
             if(conn != null) {
                 conn.close();
             }
-        }
+        }*/
     }
 
     public static void ViewTablesql(Connection conn, String Utente) throws SQLException{

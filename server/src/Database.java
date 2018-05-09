@@ -4,7 +4,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    public static void creaTabelle(Connection conn) throws SQLException, ClassNotFoundException {
+    public static void avviaDatabase() throws ClassNotFoundException, SQLException{
+        Connection conn = null;
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?createDatabaseIfNotExist=true", "root", "root");
+            Database.creaTabelle(conn);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if(conn != null)
+                conn.close();
+        }
+    }
+
+    private static void creaTabelle(Connection conn) throws SQLException, ClassNotFoundException {
 
         Statement stmt;
         stmt = conn.createStatement();
@@ -21,7 +36,6 @@ public class Database {
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE NOT NULL," +
                 "indirizzo VARCHAR(30) NOT NULL," +
-                "telefono VARCHAR(10),"+
                 "contatto1 VARCHAR(10) NOT NULL,"+
                 "contatto2 VARCHAR(10) ,"+
                 "PRIMARY KEY(cf, cod_qr))";
@@ -172,7 +186,4 @@ public class Database {
 
     }
 
-    public static void getPersone(Connection connection) throws SQLException {
-
-    }
 }
