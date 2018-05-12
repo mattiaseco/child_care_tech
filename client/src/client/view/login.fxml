@@ -53,6 +53,7 @@
                                 <Blend />
                             </effect>
                         </TextField>
+                        <PasswordField fx:id="passwordfield" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <image>
                                 <Image url="@../image/psw2.png" />
@@ -79,7 +80,6 @@
                                 <Font size="18.0" />
                             </font>
                         </Text>
-                        <PasswordField fx:id="passwordfield" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                               <Button fx:id="loginbutton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#loginaction" opacity="0.9" style="-fx-background-color: #f18e32;" text=" Log in " textAlignment="CENTER" textFill="#fcfcfc">

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 
@@ -15,13 +16,13 @@ public class modificapersonacontroller extends  AnchorPane{
 
     @FXML
     Button confermabutton;
-/*
+
     @FXML AnchorPane modificapane;
 
     @FXML
-    private void returntoanagrafica()throws IOException {
+    public void returntotabellepane()throws IOException {
 
         modificapane= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
     }
-*/
+
 }

@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="visualizzapane" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.visualizzapersonacontroller">
    <children>
-      <VBox fx:id="visualizzapane" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <GridPane alignment="CENTER">
               <columnConstraints>
@@ -73,7 +73,7 @@
                      </font>
                   </Label>
                   <Label prefHeight="0.0" prefWidth="34.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Button fx:id="backbutton" mnemonicParsing="false" text="back" GridPane.rowIndex="8" />
+                  <Button fx:id="annullabutton" mnemonicParsing="false" onAction="#returntotabellepane" text="annulla" GridPane.rowIndex="8" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

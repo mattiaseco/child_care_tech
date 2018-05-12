@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.tabellepanecontroller">
+   <children>
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="bambino">
+                  <content>
+                        <TableView fx:id="bambinotable" prefHeight="500.0" prefWidth="500.0">
+                          <columns>
+                            <TableColumn prefWidth="150.0" text="codice fiscale" />
+                            <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                          </columns>
+                        </TableView>
+                  </content>
+                </Tab>
+                <Tab text="genitore">
+                  <content>
+                        <TableView fx:id="genitoretable" prefHeight="500.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                           </columns>
+                        </TableView>
+                  </content>
+                </Tab>
+                  <Tab text="personale">
+                     <content>
+                        <TableView fx:id="personaletable" prefHeight="500.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab text="pediatra">
+                     <content>
+                        <TableView fx:id="pediatratable" prefHeight="500.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab text="fornitore">
+                     <content>
+                        <TableView fx:id="fornitoretable" prefHeight="500.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab text="contatti">
+                     <content>
+                        <TableView fx:id="contattitable" prefHeight="500.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn prefWidth="150.0" text="nome" />
+                              <TableColumn prefWidth="150.0" text="cognome" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

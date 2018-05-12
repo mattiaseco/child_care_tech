@@ -9,20 +9,17 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 
-public class aggiungipersonacontroller extends AnchorPane {
+public class tabellepanecontroller{
 
-    @FXML
-    Button annullabutton;
 
-    @FXML
-    Button confermabutton;
-
+/*
     @FXML
     AnchorPane aggiungipane;
 
     @FXML
-    private void returntotabellepane()throws IOException {
+    private void returntoanagrafica()throws IOException {
 
-        aggiungipane=FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        aggiungipane= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
     }
+*/
 }

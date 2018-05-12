@@ -17,7 +17,7 @@ import java.io.IOException;
 public class anagraficacontroller {
 
     @FXML
-    private BorderPane mainpane;
+    public BorderPane mainpane;
 
     @FXML private Button visualizzabutton;
     @FXML private Button modificabutton;
@@ -29,12 +29,20 @@ public class anagraficacontroller {
 
     private Stage actual;
 
+
     @FXML
     private void backtohome()throws IOException {
         Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));
         actual =(Stage)backhome.getScene().getWindow();
         actual.setScene(new Scene(root,backhome.getScene().getWidth(),backhome.getScene().getHeight()));
         actual.show();
+    }
+
+    @FXML
+    public void initialize() throws IOException{
+
+        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+
     }
 
     @FXML
