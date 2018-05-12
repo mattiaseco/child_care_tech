@@ -1,3 +1,5 @@
+package Controller;
+
 import common.Interface.iLoginController;
 
 import java.rmi.RemoteException;

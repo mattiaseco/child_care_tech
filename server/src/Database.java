@@ -30,8 +30,8 @@ public class Database {
         stmt.executeUpdate(sql);
 
         String sql1 = "CREATE TABLE IF NOT EXISTS Bambino " +
-                "(cf VARCHAR(16) NOT NULL ," +
-                "cod_qr VARCHAR(10) NOT NULL," +
+                "(cod_qr VARCHAR(10) NOT NULL," +
+                "cf VARCHAR(16) NOT NULL ," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE NOT NULL," +

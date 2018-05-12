@@ -1,5 +1,6 @@
 package client;
 
+import common.Interface.iBambinoDAO;
 import common.Interface.iLoginController;
 
 import java.net.MalformedURLException;
@@ -18,4 +19,17 @@ public class NamingContextManager {
             return null;
         }
     }
+
+    public static iBambinoDAO getCreateKidController() {
+        try {
+            String url = "rmi://127.0.0.1:1099/kid_controller";
+            return (iBambinoDAO) Naming.lookup(url);
+        } catch (NotBoundException | MalformedURLException | RemoteException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
