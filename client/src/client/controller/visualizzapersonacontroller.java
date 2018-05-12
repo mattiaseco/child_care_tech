@@ -2,11 +2,10 @@ package client.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
@@ -18,14 +17,13 @@ public class visualizzapersonacontroller extends AnchorPane {
 
     @FXML AnchorPane visualizzapane;
 
-    private Stage actual;
 
 
     @FXML
     private void returntotabellepane()throws IOException {
 
-        Parent root= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
-        actual =(Stage)annullabutton.getScene().getWindow();
-        actual.setScene(new Scene(root,annullabutton.getScene().getWidth(),annullabutton.getScene().getHeight()));
-        actual.show();    }
+        ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+
+    }
+
 }

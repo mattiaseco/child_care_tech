@@ -83,8 +83,8 @@
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Button fx:id="annullabutton" mnemonicParsing="false" onAction="#returntotabellepane" prefWidth="80.0" text=" annulla " />
-                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" text="conferma" />
+                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returntotabellepane" prefWidth="80.0" text=" annulla " />
+                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#modificapersona" text="conferma" />
                      </children>
                   </HBox>
                </children>

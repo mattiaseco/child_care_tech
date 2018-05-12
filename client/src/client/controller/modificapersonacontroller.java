@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 
@@ -20,9 +21,22 @@ public class modificapersonacontroller extends  AnchorPane{
     @FXML AnchorPane modificapane;
 
     @FXML
-    public void returntotabellepane()throws IOException {
+    private void returntotabellepane()throws IOException {
 
-        modificapane= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+
+    }
+    @FXML
+    private void modificapersona()throws IOException {
+
+        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+
+
+
+        //qui dovresti chiamare il metodo
+
+
+
     }
 
 }
