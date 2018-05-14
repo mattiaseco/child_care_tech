@@ -11,9 +11,9 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabellePane" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="bambino">
+                <Tab fx:id="kidTab" text="bambino">
                   <content>
                         <TableView fx:id="bambinotable" prefHeight="500.0" prefWidth="500.0">
                           <columns>
@@ -61,7 +61,7 @@
                      <content>
                         <TableView fx:id="fornitoretable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="fcColumn" prefWidth="150.0" text="codice fiscale" />
                               <TableColumn prefWidth="150.0" text="nome" />
                               <TableColumn prefWidth="150.0" text="cognome" />
                            </columns>

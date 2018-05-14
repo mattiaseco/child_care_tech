@@ -29,6 +29,11 @@ public class anagraficacontroller {
 
     private Stage actual;
 
+    private tabellepanecontroller tabelleinstance = new tabellepanecontroller();
+    private visualizzapersonacontroller visualizzainstance = new visualizzapersonacontroller();
+    private modificapersonacontroller modivicainstance = new modificapersonacontroller();
+    private aggiungipersonacontroller aggiungiinstance = new aggiungipersonacontroller();
+
 
     @FXML
     private void backtohome()throws IOException {
@@ -40,8 +45,11 @@ public class anagraficacontroller {
 
     @FXML
     public void initialize() throws IOException{
+        FXMLLoader loader = new FXMLLoader(anagraficacontroller.class.getResource("../view/tabellepane.fxml"));
+        tabelleinstance = loader.getController();
+        mainpane.setCenter((Pane)loader.load());
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        //mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
 
     }
 
