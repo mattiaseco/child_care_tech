@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Bambino implements Serializable{
 
-    private int cod_qr;
+    private String cod_qr;
     private Person persona;
     private String contatto1;
     private String contatto2;
 
-    public Bambino (int cod_qr, Person persona, String contatto1, String contatto2){
+    public Bambino (String cod_qr, Person persona, String contatto1, String contatto2){
 
         this.cod_qr = cod_qr;
         this.persona = persona;
@@ -17,11 +17,11 @@ public class Bambino implements Serializable{
         this.contatto2 = contatto2;
     }
 
-    public int getCod_qr() {
+    public String getCod_qr() {
         return cod_qr;
     }
 
-    public void setCod_qr(int cod_qr) {
+    public void setCod_qr(String cod_qr) {
         this.cod_qr = cod_qr;
     }
 

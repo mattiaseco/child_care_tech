@@ -6,5 +6,8 @@ public class Main {
 
         RMIServer rmiServer = new RMIServer();
         rmiServer.start();
+        /*try {
+            new BambinoDAO().getAllBambini();
+        } catch (RemoteException e) {}*/
     }
 }
