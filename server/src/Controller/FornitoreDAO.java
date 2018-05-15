@@ -16,20 +16,20 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
     public FornitoreDAO() throws RemoteException {}
 
     @Override
-    public boolean inserisciFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            return createFornitore (partita_iva, cf, nome, cognome, data, indirizzo, telefono);
+            createFornitore (partita_iva, cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean createFornitore (String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createFornitore (String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -39,13 +39,13 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
     }
 
@@ -56,18 +56,18 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
 
     }
 
-    public boolean modificaFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try{
-            return updateFornitore(partita_iva, cf, nome, cognome, data, indirizzo, telefono);
+            updateFornitore(partita_iva, cf, nome, cognome, data, indirizzo, telefono);
         }catch (SQLException e){
             System.err.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean updateFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updateFornitore(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -77,13 +77,13 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
 
     }

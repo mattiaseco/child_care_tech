@@ -47,14 +47,16 @@ public class signupcontroller {
         else{
             if (passwordfield.getText().equals(confirmpasswordfield.getText())) {
 
-                if( registerController != null)
-                registerController.register(username, password);
-                alertbox.setText("Signed in as " + usernamefield.getText() + "!");
+                if(registerController != null) {
+                    registerController.register(username, password);
+                    alertbox.setText("Signed in as " + usernamefield.getText() + "!");
 
-                Parent root= FXMLLoader.load(getClass().getResource("../view/login.fxml"));
-                actual =(Stage)signupbutton2.getScene().getWindow();
-                actual.setScene(new Scene(root,signupbutton2.getScene().getWidth(),signupbutton2.getScene().getHeight()));
-                actual.show();
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+                    actual = (Stage) signupbutton2.getScene().getWindow();
+                    actual.setScene(new Scene(root, signupbutton2.getScene().getWidth(), signupbutton2.getScene().getHeight()));
+                    actual.show();
+                }
+                else return;
 
             }
             else

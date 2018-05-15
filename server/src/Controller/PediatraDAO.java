@@ -15,20 +15,20 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
     public PediatraDAO() throws RemoteException {}
 
     @Override
-    public boolean inserisciPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            return createPediatra (cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            createPediatra (cod_qr, cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean createPediatra (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createPediatra (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -38,13 +38,13 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
     }
 
@@ -55,18 +55,18 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
     }
 
-    public boolean modificaPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try{
-            return updatePediatra(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            updatePediatra(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
         }catch (SQLException e){
             System.err.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean updatePediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updatePediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -76,13 +76,13 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
 
     }
@@ -108,7 +108,6 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
             String indirizzo = rs.getString("indirizzo");
             String telefono = rs.getString("telefono");
 
-            Person personaPediatra=new Person(cf,nome,cognome,data,indirizzo);
             Pediatra pediatra= new Pediatra(cod_qr,cf,nome,cognome,data,indirizzo,telefono);
 
             pediatraList.add(pediatra);

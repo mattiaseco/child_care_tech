@@ -17,20 +17,20 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
     }
 
     @Override
-    public boolean inserisciGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            return createGenitore(cf, nome, cognome, data, indirizzo, telefono);
+            createGenitore(cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean createGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -40,13 +40,13 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch (SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
     }
 
@@ -57,18 +57,18 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
 
     }
 
-    public boolean modificaGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try {
-            return updateGenitore(cf, nome, cognome, data, indirizzo, telefono);
+            updateGenitore(cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean updateGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updateGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -78,13 +78,13 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch (SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
 
     }

@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface iGenitoreDAO extends Remote {
 
-    boolean inserisciGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
-    boolean modificaGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void inserisciGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void modificaGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Genitore> getAllGenitori() throws RemoteException,SQLException;
 
 

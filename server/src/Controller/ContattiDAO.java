@@ -17,20 +17,20 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
     }
 
     @Override
-    public boolean inserisciContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            return createContatti(cf, nome, cognome, data, indirizzo, telefono);
+            createContatti(cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean createContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -40,13 +40,13 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch (SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
     }
 
@@ -57,18 +57,18 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
 
     }
 
-    public boolean modificaContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try {
-            return updateContatti(cf, nome, cognome, data, indirizzo, telefono);
+            updateContatti(cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean updateContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updateContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -78,13 +78,13 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch (SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
 
     }

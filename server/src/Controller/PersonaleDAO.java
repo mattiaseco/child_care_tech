@@ -15,20 +15,20 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
     public PersonaleDAO() throws RemoteException {}
 
     @Override
-    public boolean inserisciPersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciPersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            return createPersonale (cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            createPersonale (cod_qr, cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean createPersonale (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createPersonale (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -38,13 +38,13 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return;
         }
     }
 
@@ -55,18 +55,18 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
 
     }
 
-    public boolean modificaPersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaPersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try{
-            return updatePersonale(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            updatePersonale(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
         }catch (SQLException e){
             System.err.println(e.getMessage());
             e.printStackTrace();
-            return false;
+            return;
         }
 
     }
 
-    private static boolean updatePersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updatePersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -76,13 +76,13 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
         try {
             rs = st.executeQuery(sql);
             conn.close();
-            return rs.next();
+            rs.next();
 
         } catch(SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
             conn.close();
-            return false;
+            return ;
         }
 
     }
