@@ -1,5 +1,6 @@
+import Controller.BambinoDAO;
 import Controller.LoginController;
-import common.Classes.Bambino;
+import Controller.RegisterController;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,7 +14,8 @@ public class RMIServer {
             Registry registry= LocateRegistry.createRegistry(1099);
 
             registry.bind("login_controller", new LoginController());
-            registry.bind("bambino_dao", new BambinoDAO());
+            registry.bind("register_controller", new RegisterController());
+            registry.bind("kid_controller", new BambinoDAO());
         } catch (Exception e) {
             System.err.println("[RMI]Server exception");
             e.printStackTrace();

@@ -1,6 +1,8 @@
 package client.controller;
 
 
+import client.NamingContextManager;
+import common.Interface.iRegisterController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class signupcontroller {
 
@@ -32,14 +35,20 @@ public class signupcontroller {
 
 
     @FXML
-    private void signupaction2(ActionEvent event)throws IOException {
+    private void signupaction2(ActionEvent event) throws IOException, SQLException {
 
+        iRegisterController registerController = NamingContextManager.getRegisterController();
+        String username = usernamefield.getText();
+        String password = passwordfield.getText();
         alertbox.setText("");
-        if (usernamefield.getText().equals("") || passwordfield.getText().equals("")) {
+        if (username.equals("") || password.equals("")) {
             alertbox.setText("Warning: Username or Password empty");
         }
         else{
             if (passwordfield.getText().equals(confirmpasswordfield.getText())) {
+
+                if( registerController != null)
+                registerController.register(username, password);
                 alertbox.setText("Signed in as " + usernamefield.getText() + "!");
 
                 Parent root= FXMLLoader.load(getClass().getResource("../view/login.fxml"));
