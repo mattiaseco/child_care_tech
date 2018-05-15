@@ -1,5 +1,4 @@
 package common.Classes;
-import java.time.LocalDate;
 
 public class Attraversa {
     private Gateway cod_porta;

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Pediatra {
 
-    private String cod_qr;
     private String cf;
     private String nome;
     private String cognome;
@@ -12,23 +11,14 @@ public class Pediatra {
     private String indirizzo;
     private String telefono;
 
-    public  Pediatra (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
+    public  Pediatra (String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
 
-        this.cod_qr = cod_qr;
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
         this.data = data;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
-    }
-
-    public String getCod_qr() {
-        return cod_qr;
-    }
-
-    public void setCod_qr(String cod_qr) {
-        this.cod_qr = cod_qr;
     }
 
     public String getCf() {

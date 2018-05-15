@@ -1,7 +1,6 @@
 package Controller;
 
 import common.Classes.Genitore;
-import common.Classes.Person;
 import common.Interface.iGenitoreDAO;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

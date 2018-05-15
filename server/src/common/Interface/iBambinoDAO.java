@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface iBambinoDAO extends Remote {
 
-    void inserisciBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
-    void modificaBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
+    void inserisciBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
+    void modificaBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
     List<Bambino> getAllBambini() throws RemoteException,SQLException;
     void cancellaBambino(String cf)throws RemoteException,SQLException;
 

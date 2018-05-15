@@ -30,15 +30,13 @@ public class Database {
         stmt.executeUpdate(sql);
 
         String sql1 = "CREATE TABLE IF NOT EXISTS Bambino " +
-                "(cod_qr VARCHAR(10) NOT NULL," +
-                "cf VARCHAR(16) NOT NULL ," +
+                "(cf VARCHAR(16) NOT NULL PRIMARY KEY," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE NOT NULL," +
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "contatto1 VARCHAR(10) NOT NULL,"+
-                "contatto2 VARCHAR(10) ,"+
-                "PRIMARY KEY(cf, cod_qr))";
+                "contatto2 VARCHAR(10))";
         stmt.executeUpdate(sql1);
 
         String sql2 = "CREATE TABLE IF NOT EXISTS Genitore " +
@@ -54,7 +52,6 @@ public class Database {
         String sql3= "CREATE TABLE IF NOT EXISTS Personale " +
                 "(cf VARCHAR(16) NOT NULL ," +
                 "nome VARCHAR(25) NOT NULL," +
-                "codqr VARCHAR(10) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
@@ -64,7 +61,6 @@ public class Database {
 
         String sql4 = "CREATE TABLE IF NOT EXISTS Pediatra" +
                 "(cf VARCHAR(16) NOT NULL," +
-                "codqr VARCHAR(10) NOT NULL," +
                 "nome VARCHAR(20) NOT NULL,"+
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +

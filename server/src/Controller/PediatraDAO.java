@@ -1,7 +1,6 @@
 package Controller;
 
 import common.Classes.Pediatra;
-import common.Classes.Person;
 import common.Interface.iPediatraDAO;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -15,10 +14,10 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
     public PediatraDAO() throws RemoteException {}
 
     @Override
-    public void inserisciPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void inserisciPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         try {
-            createPediatra (cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            createPediatra (cf, nome, cognome, data, indirizzo, telefono);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -28,12 +27,12 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
     }
 
-    private static void createPediatra (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void createPediatra (String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreatePediatraSQL(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+        String sql = buildCreatePediatraSQL(cf, nome, cognome, data, indirizzo, telefono);
 
         try {
             rs = st.executeQuery(sql);
@@ -48,16 +47,16 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
         }
     }
 
-    private static String buildCreatePediatraSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
+    private static String buildCreatePediatraSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
 
         return "INSERT INTO Pediatra(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
-                "VALUES('"+cod_qr+"','"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
+                "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
 
     }
 
-    public void modificaPediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    public void modificaPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
         try{
-            updatePediatra(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+            updatePediatra(cf, nome, cognome, data, indirizzo, telefono);
         }catch (SQLException e){
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -66,12 +65,12 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
     }
 
-    private static void updatePediatra(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+    private static void updatePediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildUpdatePediatraSQL(cod_qr, cf, nome, cognome, data, indirizzo, telefono);
+        String sql = buildUpdatePediatraSQL(cf, nome, cognome, data, indirizzo, telefono);
 
         try {
             rs = st.executeQuery(sql);
@@ -87,8 +86,8 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
     }
 
-    public static String buildUpdatePediatraSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Pediatra SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+    public static String buildUpdatePediatraSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
+        return "UPDATE Pediatra SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
 
     public List<Pediatra> getAllPediatra() throws RemoteException,SQLException {
@@ -101,14 +100,13 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
         while (rs.next()) {
             String cf = rs.getString("cf");
-            String cod_qr= rs.getString("codqr");
             String nome = rs.getString("nome");
             String cognome = rs.getString("cognome");
             LocalDate data= LocalDate.parse(rs.getString("data"));
             String indirizzo = rs.getString("indirizzo");
             String telefono = rs.getString("telefono");
 
-            Pediatra pediatra= new Pediatra(cod_qr,cf,nome,cognome,data,indirizzo,telefono);
+            Pediatra pediatra= new Pediatra(cf,nome,cognome,data,indirizzo,telefono);
 
             pediatraList.add(pediatra);
         }

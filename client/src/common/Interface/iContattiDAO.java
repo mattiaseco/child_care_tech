@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface iContattiDAO {
-    void inserisciContatti(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
-    void modificaContatti(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void inserisciContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void modificaContatti(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Contatti> getAllContatti() throws RemoteException,SQLException;
 }

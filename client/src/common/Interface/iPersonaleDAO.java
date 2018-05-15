@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface iPersonaleDAO {
-    void inserisciPersonale(String cod_qr,String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
-    void modificaPersonale(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void inserisciPersonale(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void modificaPersonale(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Personale> getAllPersonale() throws RemoteException,SQLException;
 }

@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public class Bambino implements Serializable{
 
-    private String cod_qr;
     private String cf;
     private String nome;
     private String cognome;
@@ -14,9 +13,8 @@ public class Bambino implements Serializable{
     private String contatto1;
     private String contatto2;
 
-    public Bambino (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2){
+    public Bambino (String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2){
 
-        this.cod_qr = cod_qr;
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
@@ -26,12 +24,6 @@ public class Bambino implements Serializable{
         this.contatto2 = contatto2;
     }
 
-    public String getCod_qr() {
-        return cod_qr;
-    }
-    public void setCod_qr(String cod_qr) {
-        this.cod_qr = cod_qr;
-    }
 
     public String getCf() {
         return cf;

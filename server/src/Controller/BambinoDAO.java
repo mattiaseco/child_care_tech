@@ -16,10 +16,10 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
     }
 
     @Override
-    public void inserisciBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    public void inserisciBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         try {
-            createKid(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+            createKid(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -29,12 +29,12 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static void createKid(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    private static void createKid(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateKidSQL(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+        String sql = buildCreateKidSQL(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
 
         try {
             rs = st.executeQuery(sql);
@@ -50,16 +50,16 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static String buildCreateKidSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) {
+    private static String buildCreateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) {
 
         return "INSERT INTO Bambino(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
-                "VALUES('" + cod_qr + "','" + cf + "','" + nome + "','" + cognome + "','" + data + "','" + indirizzo + "','" + contatto1 + "','" + contatto2 + "')";
+                "VALUES('" + cf + "','" + nome + "','" + cognome + "','" + data + "','" + indirizzo + "','" + contatto1 + "','" + contatto2 + "')";
 
     }
 
-    public void modificaBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    public void modificaBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
         try {
-            updateKid(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+            updateKid(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -68,12 +68,12 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static void updateKid(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    private static void updateKid(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildUpdateKidSQL(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+        String sql = buildUpdateKidSQL(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
 
         try {
             rs = st.executeQuery(sql);
@@ -91,8 +91,8 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    public static String buildUpdateKidSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
-        return "UPDATE Bambino SET cod_qr = '" + cod_qr + "' andcf = '" + cf + "' and nome = '" + nome + "'and cognome ='" + cognome + "'and data ='" + data + "'and indirizzo ='" + indirizzo + "'and contatto1 ='" + contatto1 + "'and contatto2='" + contatto2 + "'";
+    public static String buildUpdateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+        return "UPDATE Bambino SET cf = '" + cf + "' and nome = '" + nome + "'and cognome ='" + cognome + "'and data ='" + data + "'and indirizzo ='" + indirizzo + "'and contatto1 ='" + contatto1 + "'and contatto2='" + contatto2 + "'";
     }
 
     public List<Bambino> getAllBambini() throws RemoteException, SQLException {
@@ -105,7 +105,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
         while (rs.next()) {
             String cf = rs.getString("cf");
-            String cod_qr = rs.getString("cod_qr");
             String nome = rs.getString("nome");
             String cognome = rs.getString("cognome");
             LocalDate data = LocalDate.parse(rs.getString("data"));
@@ -113,9 +112,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             String contatto1 = rs.getString("contatto1");
             String contatto2 = rs.getString("contatto2");
 
-            Bambino Bambino = new Bambino(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+            Bambino bambino = new Bambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
 
-            kids.add(Bambino);
+            kids.add(bambino);
         }
         return kids;
     }
