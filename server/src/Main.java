@@ -1,3 +1,6 @@
+import Controller.PediatraDAO;
+
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class Main {
@@ -6,8 +9,8 @@ public class Main {
 
         RMIServer rmiServer = new RMIServer();
         rmiServer.start();
-        /*try {
-            new BambinoDAO().getAllBambini();
-        } catch (RemoteException e) {}*/
+        try {
+            new PediatraDAO().getAllPediatra();
+        } catch (RemoteException e) {}
     }
 }

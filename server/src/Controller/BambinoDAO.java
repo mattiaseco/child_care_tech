@@ -1,7 +1,6 @@
 package Controller;
 
 import common.Classes.Bambino;
-import common.Classes.Person;
 import common.Interface.iBambinoDAO;
 
 import java.rmi.RemoteException;
@@ -16,7 +15,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
     public BambinoDAO() throws RemoteException {}
 
     @Override
-    public void inserisciBambino(int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    public void inserisciBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         try {
             createKid (cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
@@ -29,7 +28,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static void createKid (int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    private static void createKid (String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -50,14 +49,14 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static String buildCreateKidSQL(int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2){
+    private static String buildCreateKidSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2){
 
         return "INSERT INTO Bambino(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
                 "VALUES('"+cod_qr+"','"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+contatto1+"','"+contatto2+"')";
 
     }
 
-    public void  modificaBambino(int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    public void  modificaBambino(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
          try{
              updateKid(cod_qr, cf, nome, cognome, data, indirizzo, contatto1, contatto2);
          }catch (SQLException e){
@@ -68,7 +67,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    private static void updateKid(int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    private static void updateKid(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -91,7 +90,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     }
 
-    public static String buildUpdateKidSQL(int cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
+    public static String buildUpdateKidSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
         return "UPDATE Bambino SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'"; //TODO da finire!!!!
     }
 
@@ -113,8 +112,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             String contatto1 = rs.getString("contatto1");
             String contatto2 = rs.getString("contatto2");
 
-            Person Bimbo = new Person(cf, nome, cognome, data, indirizzo);
-            Bambino Bambino = new Bambino(cod_qr, Bimbo, contatto1, contatto2);
+            Bambino Bambino = new Bambino(cod_qr,cf, nome, cognome, data, indirizzo , contatto1, contatto2);
 
             kids.add(Bambino);
         }
