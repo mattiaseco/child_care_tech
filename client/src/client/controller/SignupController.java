@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class signupcontroller {
+public class SignupController {
 
 
     @FXML private TextField usernamefield;
@@ -51,7 +51,7 @@ public class signupcontroller {
                     registerController.register(username, password);
                     alertbox.setText("Signed in as " + usernamefield.getText() + "!");
 
-                    Parent root = FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
                     actual = (Stage) signupbutton2.getScene().getWindow();
                     actual.setScene(new Scene(root, signupbutton2.getScene().getWidth(), signupbutton2.getScene().getHeight()));
                     actual.show();

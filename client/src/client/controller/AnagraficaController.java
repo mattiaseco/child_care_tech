@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class anagraficacontroller {
+public class AnagraficaController {
 
     @FXML
     public BorderPane mainpane;
@@ -29,15 +29,15 @@ public class anagraficacontroller {
 
     private Stage actual;
 
-    private tabellepanecontroller tabelleinstance = new tabellepanecontroller();
+    private TabellePaneController tabelleinstance = new TabellePaneController();
     private visualizzapersonacontroller visualizzainstance = new visualizzapersonacontroller();
-    private modificapersonacontroller modivicainstance = new modificapersonacontroller();
-    private aggiungipersonacontroller aggiungiinstance = new aggiungipersonacontroller();
+    private ModificaBambinoController modivicainstance = new ModificaBambinoController();
+    private AggiungiBambinoController aggiungiinstance = new AggiungiBambinoController();
 
 
     @FXML
     private void backtohome()throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         actual =(Stage)backhome.getScene().getWindow();
         actual.setScene(new Scene(root,backhome.getScene().getWidth(),backhome.getScene().getHeight()));
         actual.show();
@@ -45,31 +45,31 @@ public class anagraficacontroller {
 
     @FXML
     public void initialize() throws IOException{
-        FXMLLoader loader = new FXMLLoader(anagraficacontroller.class.getResource("../view/tabellepane.fxml"));
+        FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
         tabelleinstance = loader.getController();
         mainpane.setCenter((Pane)loader.load());
 
-        //mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        //mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
     }
 
     @FXML
     private void gotovisualizzapersona()throws IOException {
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/visualizzapersona.fxml")));
+        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/VisualizzaBambino.fxml")));
     }
 
     @FXML
     private void gotomodificapersona()throws IOException {
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/modificapersona.fxml")));
+        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaBambino.fxml")));
 
     }
 
     @FXML
     private void gotoaggiungipersona()throws IOException {
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/aggiungipersona.fxml")));
+        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggiungiBambino.fxml")));
 
     }
 

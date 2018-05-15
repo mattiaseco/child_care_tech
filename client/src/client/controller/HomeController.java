@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class homecontroller {
+public class HomeController {
 
     @FXML
     private ImageView anagraficabutton;
@@ -31,7 +31,7 @@ public class homecontroller {
     @FXML
     private void gotoanagrafica()throws IOException {
 
-        Parent root= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
         actual =(Stage)anagraficabutton.getScene().getWindow();
         actual.setScene(new Scene(root,anagraficabutton.getScene().getWidth(),anagraficabutton.getScene().getHeight()));
         actual.show();
@@ -43,7 +43,7 @@ public class homecontroller {
     @FXML
     private void gotomensa()throws IOException {
 
-        Parent root=FXMLLoader.load(getClass().getResource("../view/mensa.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../view/Mensa.fxml"));
         actual =(Stage)mensabutton.getScene().getWindow();
         actual.setScene(new Scene(root,mensabutton.getScene().getWidth(),mensabutton.getScene().getHeight()));
         actual.show();
@@ -54,7 +54,7 @@ public class homecontroller {
     @FXML
     private void gotogite()throws IOException {
 
-        Parent root=FXMLLoader.load(getClass().getResource("../view/gite.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../view/Gite.fxml"));
         actual =(Stage)gitebutton.getScene().getWindow();
         actual.setScene(new Scene(root,gitebutton.getScene().getWidth(),gitebutton.getScene().getHeight()));
         actual.show();
@@ -65,7 +65,7 @@ public class homecontroller {
     @FXML
     private void gotoaccessi()throws IOException {
 
-        Parent root=FXMLLoader.load(getClass().getResource("../view/controlloaccessi.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../view/ControlloAccessi.fxml"));
         actual =(Stage)accessibutton.getScene().getWindow();
         actual.setScene(new Scene(root,accessibutton.getScene().getWidth(),accessibutton.getScene().getHeight()));
         actual.show();
@@ -76,7 +76,7 @@ public class homecontroller {
     @FXML
     private void gotologin()throws IOException {
 
-        Parent root=FXMLLoader.load(getClass().getResource("../view/login.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
         actual =(Stage)logoutbutton.getScene().getWindow();
         actual.setScene(new Scene(root,logoutbutton.getScene().getWidth(),logoutbutton.getScene().getHeight()));
         actual.show();

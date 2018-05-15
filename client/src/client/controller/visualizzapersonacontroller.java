@@ -22,7 +22,7 @@ public class visualizzapersonacontroller extends AnchorPane {
     @FXML
     private void returntotabellepane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
     }
 

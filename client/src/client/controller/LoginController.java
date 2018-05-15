@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class logincontroller{
+public class LoginController {
 
 
     @FXML private TextField usernamefield;
@@ -50,7 +50,7 @@ public class logincontroller{
             if (loginController != null && loginController.login(userName, password)) {
                 alertbox.setText("Signed in as " + usernamefield.getText() + "!");
 
-                Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));
+                Parent root= FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
                 actual =(Stage)loginbutton.getScene().getWindow();
                 actual.setScene(new Scene(root,loginbutton.getScene().getWidth(),loginbutton.getScene().getHeight()));
                 actual.show();
@@ -63,7 +63,7 @@ public class logincontroller{
     @FXML
     private void signupaction(ActionEvent event)throws IOException {
 
-        Parent root= FXMLLoader.load(getClass().getResource("../view/signup.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../view/Signup.fxml"));
         actual =(Stage)signupbutton.getScene().getWindow();
         actual.setScene(new Scene(root,signupbutton.getScene().getWidth(),signupbutton.getScene().getHeight()));
         actual.show();

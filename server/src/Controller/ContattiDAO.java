@@ -1,7 +1,6 @@
 package Controller;
 
 import common.Classes.Contatti;
-import common.Classes.Person;
 import common.Interface.iContattiDAO;
 
 import java.rmi.RemoteException;

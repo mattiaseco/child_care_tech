@@ -14,7 +14,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 
 
-public class tabellepanecontroller{
+public class TabellePaneController {
 
     @FXML
     private TabPane tabellePane;
@@ -54,7 +54,7 @@ public class tabellepanecontroller{
     @FXML
     private void returntoanagrafica()throws IOException {
 
-        aggiungipane= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        aggiungipane= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
     }
 */
 

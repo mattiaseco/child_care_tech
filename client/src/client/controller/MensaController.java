@@ -1,5 +1,6 @@
 package client.controller;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class controlloaccessicontroller {
+public class MensaController {
 
     @FXML
     private ImageView backhome;
@@ -18,7 +19,7 @@ public class controlloaccessicontroller {
 
     @FXML
     private void backtohome()throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("../view/home.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         actual =(Stage)backhome.getScene().getWindow();
         actual.setScene(new Scene(root,backhome.getScene().getWidth(),backhome.getScene().getHeight()));
         actual.show();

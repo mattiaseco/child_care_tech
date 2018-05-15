@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 
-public class modificapersonacontroller extends  AnchorPane{
+public class ModificaBambinoController extends  AnchorPane{
 
     @FXML
     Button annullabutton;
@@ -23,13 +23,13 @@ public class modificapersonacontroller extends  AnchorPane{
     @FXML
     private void returntotabellepane()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
     }
     @FXML
     private void modificapersona()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
 
 

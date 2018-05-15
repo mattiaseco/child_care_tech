@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 
-public class aggiungipersonacontroller extends AnchorPane {
+public class AggiungiBambinoController extends AnchorPane {
 
     @FXML
     Button annullabutton;
@@ -39,9 +39,9 @@ public class aggiungipersonacontroller extends AnchorPane {
     @FXML
     private void returntotabellepane()throws IOException {
 
-        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
-        //Parent root= FXMLLoader.load(getClass().getResource("../view/anagrafica.fxml"));
+        //Parent root= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
         //actual =(Stage)annullabutton.getScene().getWindow();
         //actual.setScene(new Scene(root,annullabutton.getScene().getWidth(),annullabutton.getScene().getHeight()));
         //actual.show();
@@ -72,7 +72,7 @@ public class aggiungipersonacontroller extends AnchorPane {
 
         }
 
-        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/tabellepane.fxml")));
+        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
 
 

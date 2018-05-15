@@ -15,7 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage)throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
         stage.setTitle("");
         stage.setScene(new Scene(root, 600, 400));
         stage.setMinHeight(400);
