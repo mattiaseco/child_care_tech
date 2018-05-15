@@ -90,8 +90,9 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
     }
 
     public static String buildUpdateGenitoreSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Genitore SET cf = '" + cf + "' and nome = '" + nome + "'"; //TODO da finire!!!!
+        return "UPDATE Genitore SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
+
 
     public List<Genitore> getAllGenitori() throws RemoteException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -114,6 +115,40 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
             genitoreList.add(Genitore);
         }
         return genitoreList;
+
+    }
+    public void cancellaGenitore(String cf)throws SQLException {
+        try {
+            deleteGenitore(cf);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deleteGenitore(String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteGenitoreSQL(cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+    private static String buildDeleteGenitoreSQL(String cf){
+        return "DELETE FROM Genitore WHERE cf='"+cf+"'";
 
     }
 }

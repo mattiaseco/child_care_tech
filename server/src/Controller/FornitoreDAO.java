@@ -89,7 +89,7 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
     }
 
     public static String buildUpdateFornitoreSQL(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Personale SET partita_iva = '"+partita_iva+"' and cf = '"+cf+"' and nome = '"+nome+"'"; //TODO da finire!!!!
+        return "UPDATE Personale SET partita_iva = '"+partita_iva+"' and cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
 
     public List<Fornitore> getAllFornitore() throws RemoteException,SQLException {
@@ -114,6 +114,40 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
             fornitoreList.add(fornitore);
         }
         return fornitoreList;
+
+    }
+    public void cancellaFornitore(String cf)throws SQLException {
+        try {
+            deleteFornitore(cf);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deleteFornitore(String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteFornitoreSQL(cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+    private static String buildDeleteFornitoreSQL(String cf){
+        return "DELETE FROM Fornitore WHERE cf='"+cf+"'";
 
     }
 }

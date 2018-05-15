@@ -88,7 +88,7 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
     }
 
     public static String buildUpdatePersonaleSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Personale SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'"; //TODO da finire!!!!
+        return "UPDATE Personale SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
 
     public List<Personale> getAllPersonale() throws RemoteException,SQLException {
@@ -113,6 +113,40 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
             personaleList.add(personale);
         }
         return personaleList;
+
+    }
+    public void cancellaPersonale(String cf)throws SQLException {
+        try {
+            deletePersonale(cf);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deletePersonale(String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeletePersonaleSQL(cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+    private static String buildDeletePersonaleSQL(String cf){
+        return "DELETE FROM Personale WHERE cf='"+cf+"'";
 
     }
 }

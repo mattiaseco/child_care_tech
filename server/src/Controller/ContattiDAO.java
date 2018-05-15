@@ -90,9 +90,8 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
     }
 
     public static String buildUpdateContattiSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Contatti SET cf = '" + cf + "' and nome = '" + nome + "'"; //TODO da finire!!!!
+        return "UPDATE Contatti SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
-
     public List<Contatti> getAllContatti() throws RemoteException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
@@ -114,6 +113,41 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
             contattiList.add(Contatto);
         }
         return contattiList;
+
+    }
+
+    public void cancellaContatto(String cf)throws SQLException {
+        try {
+            deleteContatto(cf);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deleteContatto(String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteContattoSQL(cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+    private static String buildDeleteContattoSQL(String cf){
+        return "DELETE FROM Contatti WHERE cf='"+cf+"'";
 
     }
 

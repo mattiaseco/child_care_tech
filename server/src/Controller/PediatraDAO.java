@@ -88,7 +88,7 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
     }
 
     public static String buildUpdatePediatraSQL(String cod_qr, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Pediatra SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'"; //TODO da finire!!!!
+        return "UPDATE Pediatra SET cod_qr = '"+cod_qr+"' and cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
     }
 
     public List<Pediatra> getAllPediatra() throws RemoteException,SQLException {
@@ -113,6 +113,40 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
             pediatraList.add(pediatra);
         }
         return pediatraList;
+
+    }
+    public void cancellaPediatra(String cf)throws SQLException {
+        try {
+            deletePediatra(cf);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deletePediatra(String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeletePediatraSQL(cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+    private static String buildDeletePediatraSQL(String cf){
+        return "DELETE FROM Pediatra WHERE cf='"+cf+"'";
 
     }
 
