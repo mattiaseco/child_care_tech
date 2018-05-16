@@ -69,7 +69,7 @@ public class AnagraficaController {
     @FXML
     private void gotoaggiungipersona()throws IOException {
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggiungiBambino.fxml")));
+        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ScegliPersona.fxml")));
 
     }
 

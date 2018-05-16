@@ -18,11 +18,8 @@ import java.time.LocalDate;
 
 public class AggiungiBambinoController extends AnchorPane {
 
-    @FXML
-    Button annullabutton;
-
-    @FXML
-    Button confermabutton;
+    @FXML private Button annullabutton;
+    @FXML private Button confermabutton;
 
     @FXML private TextField cfField;
     @FXML private TextField nomeField;
@@ -30,7 +27,6 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML private TextField indField;
     @FXML private TextField cont1Field;
     @FXML private TextField cont2Field;
-
     @FXML private DatePicker dateField;
 
     @FXML

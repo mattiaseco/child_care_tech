@@ -17,27 +17,16 @@ import java.time.LocalDate;
 
 public class AggiungiFornitoreController extends AnchorPane {
 
-    @FXML
-    Button annullabutton;
+    @FXML private Button annullabutton;
+    @FXML private Button confermabutton;
 
-    @FXML
-    Button confermabutton;
-
-    @FXML
-    private TextField cfField;
-    @FXML
-    private TextField nomeField;
-    @FXML
-    private TextField cognField;
-    @FXML
-    private TextField indField;
-    @FXML
-    private TextField telField;
-    @FXML
-    private TextField partivaField;
-
-    @FXML
-    private DatePicker dataField;
+    @FXML private TextField cfField;
+    @FXML private TextField nomeField;
+    @FXML private TextField cognField;
+    @FXML private TextField indField;
+    @FXML private TextField telField;
+    @FXML private TextField partivaField;
+    @FXML private DatePicker dataField;
 
     @FXML
     AnchorPane aggiungipane;

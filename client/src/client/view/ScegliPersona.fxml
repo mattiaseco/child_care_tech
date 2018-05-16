@@ -11,19 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scegliPersonaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.ScegliPersonaController">
+<AnchorPane fx:id="scegliPersonaPane" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.ScegliPersonaController">
     <children>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <GridPane alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="242.0" />
                     </columnConstraints>
                     <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -33,7 +29,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                  <RadioButton fx:id="BambinoButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToBambino" text="Bambino" textAlignment="CENTER">
+                  <RadioButton fx:id="BambinoButton" contentDisplay="CENTER" mnemonicParsing="false" text="Bambino" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -41,33 +37,29 @@
                         <ToggleGroup fx:id="persontipe" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="GenitoreButton" mnemonicParsing="false" onAction="#goToGenitore" text="Genitore" toggleGroup="$persontipe" GridPane.rowIndex="2">
+                  <RadioButton fx:id="GenitoreButton" mnemonicParsing="false" text="Genitore" toggleGroup="$persontipe" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="PersonaleButton" mnemonicParsing="false" onAction="#goToPersonale" text="Personale" toggleGroup="$persontipe" GridPane.rowIndex="4">
+                  <RadioButton fx:id="PersonaleButton" mnemonicParsing="false" text="Personale" toggleGroup="$persontipe" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="PediatraButton" mnemonicParsing="false" onAction="#goToPediatra" text="Pediatra" toggleGroup="$persontipe" GridPane.rowIndex="6">
+                  <RadioButton fx:id="PediatraButton" mnemonicParsing="false" text="Pediatra" toggleGroup="$persontipe" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="FornitoreButton" mnemonicParsing="false" onAction="#goToFornitore" text="Fornitore" toggleGroup="$persontipe" GridPane.rowIndex="8">
+                  <RadioButton fx:id="FornitoreButton" mnemonicParsing="false" text="Fornitore" toggleGroup="$persontipe" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="10">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                      <children>
-                        <Button fx:id="confermabutton" alignment="CENTER" mnemonicParsing="false" onAction="#confermaaction" opacity="0.9" style="-fx-background-color: #f18e32;" text="Conferma" textAlignment="CENTER" textFill="#fcfcfc">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
+                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#confermaAction" text="conferma" />
                      </children>
                   </HBox>
                     </children>

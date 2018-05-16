@@ -4,6 +4,7 @@ import client.NamingContextManager;
 import common.Interface.iGenitoreDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -15,8 +16,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AggiungiGenitoreController {
-    @FXML
-    AnchorPane aggiungipane;
+
+    @FXML AnchorPane aggiungipane;
+
+    @FXML private Button annullabutton;
+    @FXML private Button confermabutton;
+
     @FXML private TextField nomeField;
     @FXML private TextField cognField;
     @FXML private TextField cfField;

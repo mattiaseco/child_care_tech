@@ -1,9 +1,14 @@
 package client.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -30,34 +35,29 @@ public class ScegliPersonaController {
     AnchorPane scegliPersonaPane;
 
     @FXML
-    private void goToBambino()throws IOException {
+    ToggleGroup persontipe;
 
-        ((BorderPane)scegliPersonaPane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggingiBambino.fxml")));
 
-    }
     @FXML
-    private void goToGenitore()throws IOException {
+    private void confermaAction() throws IOException {
 
-        ((BorderPane)scegliPersonaPane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggingiGenitore.fxml")));
 
+        if (persontipe.getSelectedToggle().equals(BambinoButton))
+            ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiBambino.fxml")));
+        else {
+            if (persontipe.getSelectedToggle().equals(GenitoreButton))
+                ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiGenitore.fxml")));
+            else {
+                if (persontipe.getSelectedToggle().equals(PersonaleButton))
+                    ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiPersonale.fxml")));
+                else {
+                    if (persontipe.getSelectedToggle().equals(PediatraButton))
+                        ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiPediatra.fxml")));
+
+                    else
+                        ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiFornitore.fxml")));
+                }
+            }
+        }
     }
-    @FXML
-    private void goToPersonale()throws IOException {
-
-        ((BorderPane)scegliPersonaPane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggingiPersonale.fxml")));
-
-    }
-    @FXML
-    private void goToPediatra()throws IOException {
-
-        ((BorderPane)scegliPersonaPane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggingiPediatra.fxml")));
-
-    }
-    @FXML
-    private void goToFornitore()throws IOException {
-
-        ((BorderPane)scegliPersonaPane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/AggingiFornitore.fxml")));
-
-    }
-
 }
