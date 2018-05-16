@@ -40,13 +40,12 @@ public class Database {
         stmt.executeUpdate(sql1);
 
         String sql2 = "CREATE TABLE IF NOT EXISTS Genitore " +
-                "(cf VARCHAR(16) NOT NULL," +
+                "(cf VARCHAR(16) NOT NULL PRIMARY KEY," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
-                "telefono VARCHAR(10),"+
-                "PRIMARY KEY(cf))";
+                "telefono VARCHAR(10))";
         stmt.executeUpdate(sql2);
 
         String sql3= "CREATE TABLE IF NOT EXISTS Personale " +
@@ -54,18 +53,17 @@ public class Database {
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
-                "indirizzo VARCHAR(30) NOT NULL," +
+                "indirizzo VARCHAR(30) NOT NULL,"+
                 "telefono VARCHAR(10))";
         stmt.executeUpdate(sql3);
 
         String sql4 = "CREATE TABLE IF NOT EXISTS Pediatra" +
-                "(cf VARCHAR(16) NOT NULL," +
+                "(cf VARCHAR(16) NOT NULL PRIMARY KEY," +
                 "nome VARCHAR(20) NOT NULL,"+
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
-                "telefono VARCHAR(10),"+
-                "PRIMARY KEY(cf))";
+                "telefono VARCHAR(10))";
         stmt.executeUpdate(sql4);
 
         String sql5 = "CREATE TABLE IF NOT EXISTS Fornitore " +

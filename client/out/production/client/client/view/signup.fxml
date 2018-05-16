@@ -33,26 +33,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField fx:id="usernamefield" GridPane.rowIndex="1">
-                            <effect>
-                                <Blend />
-                            </effect>
-                        </TextField>
-                        <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                        <PasswordField fx:id="passwordfield" GridPane.rowIndex="3" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
-                     <children>
-                        <Button fx:id="signupbutton2" alignment="CENTER" mnemonicParsing="false" onAction="#signupaction2" opacity="0.9" style="-fx-background-color: #f18e32;" text="Sign up" textAlignment="CENTER" textFill="#fcfcfc">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
                   <Text fill="#323232" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                      <font>
                         <Font size="20.0" />
@@ -61,6 +41,11 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Text>
+                        <TextField fx:id="usernamefield" GridPane.rowIndex="1">
+                            <effect>
+                                <Blend />
+                            </effect>
+                        </TextField>
                   <Text fill="#323232" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
@@ -69,6 +54,7 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </Text>
+                        <PasswordField fx:id="passwordfield" GridPane.rowIndex="3" />
                   <Text fill="#323232" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password" GridPane.rowIndex="4">
                      <font>
                         <Font size="20.0" />
@@ -78,6 +64,20 @@
                      </GridPane.margin>
                   </Text>
                   <PasswordField fx:id="confirmpasswordfield" GridPane.rowIndex="5" />
+                        <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                     <children>
+                        <Button fx:id="signupbutton2" alignment="CENTER" mnemonicParsing="false" onAction="#signupaction2" opacity="0.9" style="-fx-background-color: #f18e32;" text="Sign up" textAlignment="CENTER" textFill="#fcfcfc">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                     </children>
                 </GridPane>
             </children>
