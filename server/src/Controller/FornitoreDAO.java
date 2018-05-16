@@ -51,7 +51,7 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
 
     private static String buildCreateFornitoreSQL(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
 
-        return "INSERT INTO Fornitore(partita_iva,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
+        return "INSERT INTO Fornitore(partita_iva,cf,nome,cognome,data,indirizzo,telefono)" +
                 "VALUES('"+partita_iva+"','"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
 
     }

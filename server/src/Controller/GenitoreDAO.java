@@ -37,6 +37,7 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
         String sql = buildCreateGenitoreSQL(cf, nome, cognome, data, indirizzo, telefono);
 
         try {
+
             rs = st.executeQuery(sql);
             conn.close();
             rs.next();

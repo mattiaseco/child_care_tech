@@ -49,7 +49,7 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
     private static String buildCreatePediatraSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
 
-        return "INSERT INTO Pediatra(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
+        return "INSERT INTO Pediatra(cf,nome,cognome,data,indirizzo,telefono)" +
                 "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
 
     }

@@ -20,9 +20,6 @@ public class AggiungiPediatraController {
 
     @FXML AnchorPane aggiungipane;
 
-    @FXML private Button annullabutton;
-    @FXML private Button confermabutton;
-
     @FXML private TextField nomeField;
     @FXML private TextField cognField;
     @FXML private TextField cfField;

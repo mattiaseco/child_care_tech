@@ -49,10 +49,28 @@ public class ModificaFornitoreController {
         telefono =telField.getText();
         partitaIVA = partivaField.getText();
 
+        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
 
+            //TODO aggiungere alterbox per segnalare un errore "CAMPI VUOTI"
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        }
+        else if( cf.length() < 16) {
+            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+        }
+        else if ( cf.length() > 17){
+            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+        }
+        else if( partitaIVA.length() < 11) {
+            //TODO segnalare errore "PARTITA IVA TROPPO CORTA"
+        }
+        else if ( partitaIVA.length() > 12) {
+            //TODO segnalare errore "PARTITA IVA TROPPO LUNGA"
+        }
+        else {
 
+            providersController.modificaFornitore(partitaIVA,cf,nome,cognome,data,indirizzo, telefono);
+            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        }
 
 
     }

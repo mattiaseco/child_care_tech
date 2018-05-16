@@ -27,8 +27,6 @@ public class AggiungiPersonaleController {
     @FXML private TextField indField;
     @FXML private TextField telField;
     @FXML private DatePicker dataField;
-    @FXML private Button confermabutton;
-    @FXML private Button annullabutton;
 
 
     @FXML

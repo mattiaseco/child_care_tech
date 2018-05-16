@@ -41,7 +41,7 @@ public class AggiungiFornitoreController extends AnchorPane {
     @FXML
     private void aggiungiFornitore() throws IOException, SQLException {
 
-        iFornitoreDAO providersControll = NamingContextManager.getProvidersController();
+        iFornitoreDAO providersController = NamingContextManager.getProvidersController();
         String nome, cognome, indirizzo, telefono, partitaIVA, cf;
         LocalDate data;
 
@@ -72,7 +72,7 @@ public class AggiungiFornitoreController extends AnchorPane {
         }
         else {
 
-            providersControll.inserisciFornitore(partitaIVA,cf,nome,cognome,data,indirizzo,telefono);
+            providersController.inserisciFornitore(partitaIVA,cf,nome,cognome,data,indirizzo,telefono);
             ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
         }
 

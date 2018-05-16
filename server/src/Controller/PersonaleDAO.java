@@ -50,7 +50,7 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
 
     private static String buildCreatePersonaleSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono){
 
-        return "INSERT INTO Personale(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
+        return "INSERT INTO Personale(cf,nome,cognome,data,indirizzo,telefono)" +
                 "VALUES('"+cf+"','"+nome+"','"+cognome+"','"+data+"','"+indirizzo+"','"+telefono+"')";
 
     }
