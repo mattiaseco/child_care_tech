@@ -64,10 +64,22 @@ public class AggiungiFornitoreController extends AnchorPane {
         partitaIVA = partivaField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null){
+        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore
+            //TODO aggiungere alterbox per segnalare un errore "CAMPI VUOTI"
 
+        }
+        else if( cf.length() < 16) {
+            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+        }
+        else if ( cf.length() > 17){
+            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+        }
+        else if( partitaIVA.length() < 11) {
+            //TODO segnalare errore "PARTITA IVA TROPPO CORTA"
+        }
+        else if ( partitaIVA.length() > 12) {
+            //TODO segnalare errore "PARTITA IVA TROPPO LUNGA"
         }
         else {
 

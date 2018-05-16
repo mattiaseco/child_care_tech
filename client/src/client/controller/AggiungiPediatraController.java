@@ -5,11 +5,11 @@ import common.Interface.iPediatraDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -49,10 +49,16 @@ public class AggiungiPediatraController {
         indirizzo = indField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null){
+        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
 
             //TODO aggiungere alterbox per segnalare un errore
 
+        }
+        else if( cf.length() < 16) {
+            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+        }
+        else if ( cf.length() > 17){
+            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
         }
         else {
 

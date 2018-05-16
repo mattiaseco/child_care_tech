@@ -70,7 +70,7 @@ public class Database {
                 "(cf VARCHAR(16) NOT NULL," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
-                "partita_iva VARCHAR(10) NOT NULL," +
+                "partita_iva VARCHAR(11) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "telefono VARCHAR(10),"+

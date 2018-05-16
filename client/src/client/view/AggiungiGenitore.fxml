@@ -68,9 +68,9 @@
                   <TextField fx:id="nomeField" GridPane.columnIndex="1" />
                   <TextField fx:id="cognField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <DatePicker fx:id="dataField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="cfField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="indField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="telField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField  fx:id="cfField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField  fx:id="indField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField  fx:id="telField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">

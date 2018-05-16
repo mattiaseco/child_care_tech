@@ -65,12 +65,18 @@ public class AggiungiBambinoController extends AnchorPane {
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || contatto1 == "" || data == null){
 
             //TODO aggiungere alterbox per segnalare un errore
-
+        }
+        else if( cf.length() < 16) {
+            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+        }
+        else if ( cf.length() > 17){
+            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
         }
         else {
-            //if(kidController != null)
-                kidController.inserisciBambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
-                ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            if(kidController != null) {
+                kidController.inserisciBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+                ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            }
 
         }
 

@@ -57,9 +57,21 @@ public class ModificaBambinoController extends  AnchorPane{
         contatto2 = cont2Field.getText();
         data = dataField.getValue();
 
-        kidController.modificaBambino(cf,nome,cognome,data,indirizzo,contatto1, contatto2);
+        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || contatto1 == ""){
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            //TODO aggiungere alterbox per segnalare un errore
+
+        }
+        else if( cf.length() < 16) {
+            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+        }
+        else if ( cf.length() > 17){
+            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+        }
+        else {
+            kidController.modificaBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        }
 
 
 
