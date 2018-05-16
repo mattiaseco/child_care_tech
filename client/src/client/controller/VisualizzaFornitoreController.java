@@ -9,21 +9,19 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-
-public class visualizzapersonacontroller extends AnchorPane {
-
+public class VisualizzaFornitoreController {
     @FXML
     Button annullabutton;
 
-    @FXML AnchorPane visualizzapane;
+    @FXML
+    AnchorPane visualizzapane;
 
 
 
     @FXML
-    private void returntotabellepane()throws IOException {
+    private void returnToTabellePane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        ((BorderPane)visualizzapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
     }
-
 }

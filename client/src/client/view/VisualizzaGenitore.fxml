@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="visualizzapane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.visualizzapersonacontroller">
+<AnchorPane fx:id="visualizzapane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.VisualizzaGenitoreController">
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -66,7 +66,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returntotabellepane" prefWidth="80.0" text=" annulla " />
+                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabellePane" prefWidth="80.0" text=" annulla " />
                      </children>
                   </HBox>
                   <Label text="Label" GridPane.columnIndex="1" />

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="aggiungipane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.aggiungipersonacontroller">
+<AnchorPane fx:id="aggiungipane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.AggiungiGenitoreController">
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -76,8 +76,8 @@
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returntotabellepane" prefWidth="80.0" text=" annulla " />
-                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiungipersona" text="conferma" />
+                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabellePane" prefWidth="80.0" text=" annulla " />
+                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiungiGenitore" text="conferma" />
                      </children>
                   </HBox>
                </children>

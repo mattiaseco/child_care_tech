@@ -30,7 +30,7 @@ public class AnagraficaController {
     private Stage actual;
 
     private TabellePaneController tabelleinstance = new TabellePaneController();
-    private visualizzapersonacontroller visualizzainstance = new visualizzapersonacontroller();
+    private VisualizzaBambinoController visualizzainstance = new VisualizzaBambinoController();
     private ModificaBambinoController modivicainstance = new ModificaBambinoController();
     private AggiungiBambinoController aggiungiinstance = new AggiungiBambinoController();
 
