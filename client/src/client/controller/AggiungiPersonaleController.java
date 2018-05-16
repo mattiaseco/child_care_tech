@@ -4,12 +4,15 @@ import client.NamingContextManager;
 import common.Interface.iPersonaleDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
+
+import javax.print.attribute.standard.MediaSize;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,6 +27,8 @@ public class AggiungiPersonaleController {
     @FXML private TextField indField;
     @FXML private TextField telField;
     @FXML private DatePicker dataField;
+    @FXML private Button confermabutton;
+    @FXML private Button annullabutton;
 
 
     @FXML
