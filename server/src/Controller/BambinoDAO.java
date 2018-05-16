@@ -37,6 +37,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         String sql = buildCreateKidSQL(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
 
         try {
+
             rs = st.executeQuery(sql);
             conn.close();
             rs.next();
@@ -52,7 +53,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     private static String buildCreateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) {
 
-        return "INSERT INTO Bambino(cod_qr,cf,nome,cognome,data,indirizzo,telefono,contatto1,contatto2)" +
+        return "INSERT INTO Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2)" +
                 "VALUES('" + cf + "','" + nome + "','" + cognome + "','" + data + "','" + indirizzo + "','" + contatto1 + "','" + contatto2 + "')";
 
     }

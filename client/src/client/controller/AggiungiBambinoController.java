@@ -37,7 +37,7 @@ public class AggiungiBambinoController extends AnchorPane {
     AnchorPane aggiungipane;
 
     @FXML
-    private void returntotabellepane()throws IOException {
+    private void returnToTabellePane()throws IOException {
 
         ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
@@ -48,12 +48,11 @@ public class AggiungiBambinoController extends AnchorPane {
     }
 
     @FXML
-    private void aggiungipersona() throws IOException, SQLException {
-
-        String cf, nome, cognome, indirizzo, contatto1, contatto2;
-        LocalDate data;
+    private void aggiungiPersona() throws IOException, SQLException {
 
         iBambinoDAO kidController = NamingContextManager.getKidController();
+        String cf, nome, cognome, indirizzo, contatto1, contatto2;
+        LocalDate data;
 
         cf = cfField.getText();
         nome = nomeField.getText();
@@ -64,19 +63,16 @@ public class AggiungiBambinoController extends AnchorPane {
         contatto2 = cont2Field.getText();
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || contatto1 == "" || data == null){
+
             //TODO aggiungere alterbox per segnalare un errore
+
         }
         else {
-            kidController.inserisciBambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
-
+            //if(kidController != null)
+                kidController.inserisciBambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+                ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
         }
-
-        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
-
-
-
 
 
 

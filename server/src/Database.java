@@ -50,13 +50,12 @@ public class Database {
         stmt.executeUpdate(sql2);
 
         String sql3= "CREATE TABLE IF NOT EXISTS Personale " +
-                "(cf VARCHAR(16) NOT NULL ," +
+                "(cf VARCHAR(16) NOT NULL PRIMARY KEY ," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
-                "telefono VARCHAR(10),"+
-                "PRIMARY KEY(cf, codqr))";
+                "telefono VARCHAR(10))";
         stmt.executeUpdate(sql3);
 
         String sql4 = "CREATE TABLE IF NOT EXISTS Pediatra" +
