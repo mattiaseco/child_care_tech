@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface iFornitoreDAO {
 
-    void inserisciFornitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
-    void modificaFornitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void inserisciFornitore(String partitaiva,String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
+    void modificaFornitore(String partitaiva,String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Fornitore> getAllFornitore() throws RemoteException,SQLException;
 }
