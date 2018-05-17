@@ -42,14 +42,14 @@ public class SignupController {
         String password = passwordfield.getText();
         alertbox.setText("");
         if (username.equals("") || password.equals("")) {
-            alertbox.setText("Warning: Username or Password empty");
+            alertbox.setText("Attenzione: Username o Password vuoti");
         }
         else{
             if (passwordfield.getText().equals(confirmpasswordfield.getText())) {
 
                 if(registerController != null) {
                     registerController.register(username, password);
-                    alertbox.setText("Signed in as " + usernamefield.getText() + "!");
+                    alertbox.setText("Signin: " + usernamefield.getText() + "!");
 
                     Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
                     actual = (Stage) signupbutton2.getScene().getWindow();
@@ -60,7 +60,7 @@ public class SignupController {
 
             }
             else
-                alertbox.setText("Warning: Password not match");
+                alertbox.setText("Attenzione: Password diverse");
         }
 
     }

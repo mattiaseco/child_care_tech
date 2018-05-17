@@ -44,11 +44,11 @@ public class LoginController {
         String password = passwordfield.getText();
         alertbox.setText("");
         if (userName.equals("") || password.equals("")) {
-            alertbox.setText("Warning: Username or Password empty");
+            alertbox.setText("Attenzione: Username o Password vuoti");
         }
         else{
             if (loginController != null && loginController.login(userName, password)) {
-                alertbox.setText("Signed in as " + usernamefield.getText() + "!");
+                alertbox.setText("Signin: " + usernamefield.getText() + "!");
 
                 Parent root= FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
                 actual =(Stage)loginbutton.getScene().getWindow();
@@ -56,7 +56,7 @@ public class LoginController {
                 actual.show();
             }
             else
-                alertbox.setText("Warning: Username or Password not valid");
+                alertbox.setText("Attenzione: Username o Password non validi");
         }
 
     }

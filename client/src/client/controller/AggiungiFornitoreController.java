@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,6 +32,8 @@ public class AggiungiFornitoreController extends AnchorPane {
     @FXML
     AnchorPane aggiungipane;
 
+    @FXML private Text alertbox;
+
 
     @FXML
     private void returnToTabellePane() throws IOException {
@@ -40,6 +43,8 @@ public class AggiungiFornitoreController extends AnchorPane {
     }
     @FXML
     private void aggiungiFornitore() throws IOException, SQLException {
+
+        alertbox.setText("");
 
         iFornitoreDAO providersController = NamingContextManager.getProvidersController();
         String nome, cognome, indirizzo, telefono, partitaIVA, cf;
@@ -55,20 +60,20 @@ public class AggiungiFornitoreController extends AnchorPane {
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore "CAMPI VUOTI"
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else if( partitaIVA.length() < 11) {
-            //TODO segnalare errore "PARTITA IVA TROPPO CORTA"
+            alertbox.setText("Attenzione: Partita IVA Fiscale troppo corta !");
         }
         else if ( partitaIVA.length() > 12) {
-            //TODO segnalare errore "PARTITA IVA TROPPO LUNGA"
+            alertbox.setText("Attenzione: Partita IVA Fiscale troppo lunga !");
         }
         else {
 

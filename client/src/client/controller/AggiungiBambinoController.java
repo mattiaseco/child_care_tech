@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,6 +30,8 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML private TextField cont2Field;
     @FXML private DatePicker dateField;
 
+    @FXML private Text alertbox;
+
     @FXML
     AnchorPane aggiungipane;
 
@@ -46,6 +49,8 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML
     private void aggiungiPersona() throws IOException, SQLException {
 
+        alertbox.setText("");
+
         iBambinoDAO kidController = NamingContextManager.getKidController();
         String cf, nome, cognome, indirizzo, contatto1, contatto2;
         LocalDate data;
@@ -60,13 +65,13 @@ public class AggiungiBambinoController extends AnchorPane {
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || contatto1 == "" || data == null){
 
-            //TODO aggiungere alterbox per segnalare un errore
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else {
             if(kidController != null) {
