@@ -6,6 +6,13 @@ public class Gateway {
     private int cod_porta;
     private LocalDate data_gate;
 
+    public  Gateway (int cod_porta,LocalDate data_gate){
+
+        this.cod_porta=cod_porta;
+        this.data_gate=data_gate;
+    }
+
+
 
 
 

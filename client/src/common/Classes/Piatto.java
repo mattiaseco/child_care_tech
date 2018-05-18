@@ -5,6 +5,12 @@ public class Piatto {
     private String nome_p;
     private String tipo;
     private int quantità;
+    public Piatto (String nome_p,String tipo,int quantità){
+
+        this.nome_p=nome_p;
+        this.tipo = tipo;
+        this.quantità=quantità;
+    }
 
 
     public String getNome_p() {

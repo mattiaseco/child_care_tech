@@ -7,6 +7,13 @@ public class Menu {
     private int numero;
     private LocalDate data;
 
+    public Menu (int numero,LocalDate data){
+
+        this.numero = numero;
+        this.data = data;
+
+    }
+
     public int getNumero() {
         return numero;
     }

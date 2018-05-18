@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class TabellePaneController {
@@ -42,8 +43,11 @@ public class TabellePaneController {
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
 
     @FXML
-    public void initialize() {
-        bambinotable.setItems(kids);
+    public void initialize() {}
+
+    public void initBambini(List<Bambino> bambini) {
+        this.bambinotable.getItems().clear();
+        this.bambinotable.getItems().addAll(bambini);
 
     }
 

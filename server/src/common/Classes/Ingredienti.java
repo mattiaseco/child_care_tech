@@ -4,6 +4,11 @@ public class Ingredienti {
 
     private String nome_i;
     private int quantità;
+    public Ingredienti (String nome_i,int quantità){
+
+        this.nome_i=nome_i;
+        this.quantità = quantità;
+    }
 
 
     public String getNome_i() {

@@ -4,6 +4,11 @@ public class Pullman {
 
     private String targa;
     private int capienza;
+    public Pullman (String targa,int capienza){
+
+        this.capienza=capienza;
+        this.targa = targa;
+    }
 
 
     public String getTarga() {

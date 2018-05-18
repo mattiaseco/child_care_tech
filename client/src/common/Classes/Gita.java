@@ -7,6 +7,15 @@ public class Gita {
     private int num_pullman;
     private int num_partecipanti;
 
+    public Gita (String codice_g, String destinazione, int num_pullman, int num_partecipanti){
+
+        this.codice_g = codice_g;
+        this.destinazione = destinazione;
+        this.num_partecipanti = num_partecipanti;
+        this.num_pullman = num_pullman;
+
+    }
+
 
     public String getCodice_g() {
         return codice_g;
