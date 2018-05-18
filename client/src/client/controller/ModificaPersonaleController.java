@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,6 +22,7 @@ public class ModificaPersonaleController {
     @FXML private TextField indField;
     @FXML private TextField telField;
     @FXML private DatePicker dataField;
+    @FXML private Text alertbox;
 
     @FXML
     AnchorPane modificapane;
@@ -33,6 +35,7 @@ public class ModificaPersonaleController {
     }
     @FXML
     private void modificaPersonale() throws IOException, SQLException {
+        alertbox.setText("");
 
 
         iPersonaleDAO personalController = NamingContextManager.getPersonalController();
@@ -49,14 +52,14 @@ public class ModificaPersonaleController {
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else {
             personalController.modificaPersonale(cf, nome, cognome, data, indirizzo, telefono);

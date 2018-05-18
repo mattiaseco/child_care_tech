@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ public class ModificaGenitoreController {
     @FXML private TextField indField;
     @FXML private DatePicker dataField;
     @FXML private AnchorPane modificapane;
+    @FXML private Text alertbox;
 
     @FXML
     private void returnToTabellePane()throws IOException {
@@ -30,6 +32,8 @@ public class ModificaGenitoreController {
     }
     @FXML
     private void modificaGenitore() throws IOException, SQLException {
+
+        alertbox.setText("");
 
         iGenitoreDAO parentsControll = NamingContextManager.getParentsController();
 
@@ -45,14 +49,14 @@ public class ModificaGenitoreController {
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore " CAMPI VUOTI"
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else {
 

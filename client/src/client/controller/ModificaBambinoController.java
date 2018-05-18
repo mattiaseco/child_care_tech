@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.awt.*;
 import java.io.IOException;
@@ -36,6 +37,8 @@ public class ModificaBambinoController extends  AnchorPane{
 
     @FXML AnchorPane modificapane;
 
+    @FXML private Text alertbox;
+
     @FXML
     private void returnToTabellePane()throws IOException {
         ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
@@ -54,6 +57,8 @@ public class ModificaBambinoController extends  AnchorPane{
     @FXML
     private void modificaPersona() throws IOException, SQLException {
 
+        alertbox.setText("");
+
         iBambinoDAO kidController = NamingContextManager.getKidController();
 
         String nome, cognome, cf, indirizzo, contatto1, contatto2;
@@ -69,14 +74,14 @@ public class ModificaBambinoController extends  AnchorPane{
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || contatto1 == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else {
             kidController.modificaBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);

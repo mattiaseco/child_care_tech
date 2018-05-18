@@ -34,39 +34,40 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label alignment="CENTER" text="Nome:">
+                  <Label alignment="CENTER" text="Nome*">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Cognome:" GridPane.rowIndex="1">
+                  <Label text="Cognome*" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Codice fiscale:" GridPane.rowIndex="3">
+                  <Label text="Codice fiscale*" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Indirizzo:" GridPane.rowIndex="4">
+                  <Label text="Indirizzo*" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Data di nascita:" GridPane.rowIndex="2">
+                  <Label text="Data di nascita*" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Contatto 1:" GridPane.rowIndex="5">
+                  <Label text="Contatto 1*" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Contatto 2:" GridPane.rowIndex="6">
+                  <Label text="Contatto 2" GridPane.rowIndex="6">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -79,10 +80,13 @@
                   <TextField fx:id="cont1Field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="cont2Field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                         <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabellePane" prefWidth="80.0" text=" annulla " />
                         <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#modificaPersona" text="conferma" />
                      </children>

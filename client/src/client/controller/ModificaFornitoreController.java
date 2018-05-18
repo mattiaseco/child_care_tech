@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ public class ModificaFornitoreController {
     @FXML private TextField indField;
     @FXML private TextField partivaField;
     @FXML private TextField telField;
+    @FXML private Text alertbox;
 
     @FXML
     AnchorPane modificapane;
@@ -35,6 +37,7 @@ public class ModificaFornitoreController {
     }
     @FXML
     private void modificaFornitore() throws IOException, SQLException {
+        alertbox.setText("");
 
         iFornitoreDAO providersController = NamingContextManager.getProvidersController();
 
@@ -51,20 +54,20 @@ public class ModificaFornitoreController {
 
         if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
 
-            //TODO aggiungere alterbox per segnalare un errore "CAMPI VUOTI"
+            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
         }
         else if( cf.length() < 16) {
-            //TODO segnalare errore "CODICE FISCALE TROPPO CORTO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
         else if ( cf.length() > 17){
-            //TODO segnalare errore"CODICE FISCALE TROPPO LUNGO"
+            alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else if( partitaIVA.length() < 11) {
-            //TODO segnalare errore "PARTITA IVA TROPPO CORTA"
+            alertbox.setText("Attenzione: Partita IVA troppo corta !");
         }
         else if ( partitaIVA.length() > 12) {
-            //TODO segnalare errore "PARTITA IVA TROPPO LUNGA"
+            alertbox.setText("Attenzione: Partita IVA troppo lunga !");
         }
         else {
 
