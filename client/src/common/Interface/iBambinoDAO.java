@@ -15,4 +15,5 @@ public interface iBambinoDAO extends Remote {
     List<Bambino> getAllBambini() throws RemoteException,SQLException;
     void cancellaBambino(String cf) throws RemoteException,SQLException;
 
+
 }
