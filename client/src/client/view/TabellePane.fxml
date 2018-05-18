@@ -15,66 +15,66 @@
               <tabs>
                 <Tab fx:id="kidTab" text="bambino">
                   <content>
-                        <TableView fx:id="bambinotable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="bambinoTable" prefHeight="500.0" prefWidth="500.0">
                           <columns>
-                            <TableColumn prefWidth="150.0" text="codice fiscale" />
-                            <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                            <TableColumn fx:id="cfColumn1" prefWidth="150.0" text="codice fiscale" />
+                            <TableColumn fx:id="nomeColumn1" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn1" prefWidth="150.0" text="cognome" />
                           </columns>
                         </TableView>
                   </content>
                 </Tab>
-                <Tab text="genitore">
+                <Tab fx:id="genitoreTab" text="genitore">
                   <content>
-                        <TableView fx:id="genitoretable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="genitoreTable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                              <TableColumn fx:id="cfColumn2" prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="nomeColumn2" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn2" prefWidth="150.0" text="cognome" />
                            </columns>
                         </TableView>
                   </content>
                 </Tab>
-                  <Tab text="personale">
+                  <Tab fx:id="personaleTab" text="personale">
                      <content>
-                        <TableView fx:id="personaletable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="personaleTable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                              <TableColumn fx:id="cfColumn3" prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="nomeColumn3" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn3" prefWidth="150.0" text="cognome" />
                            </columns>
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab text="pediatra">
+                  <Tab fx:id="pediatraTab" text="pediatra">
                      <content>
-                        <TableView fx:id="pediatratable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="pediatraTable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                              <TableColumn fx:id="cfColumn4" prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="nomeColumn4" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn4" prefWidth="150.0" text="cognome" />
                            </columns>
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab text="fornitore">
+                  <Tab fx:id="fornitoreTab" text="fornitore">
                      <content>
-                        <TableView fx:id="fornitoretable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="fornitoreTable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn fx:id="fcColumn" prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                              <TableColumn fx:id="cfColumn5" prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="nomeColumn5" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn5" prefWidth="150.0" text="cognome" />
                            </columns>
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab text="contatti">
+                  <Tab fx:id="contattiTab" text="contatti">
                      <content>
-                        <TableView fx:id="contattitable" prefHeight="500.0" prefWidth="500.0">
+                        <TableView fx:id="contattiTable" prefHeight="500.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn prefWidth="150.0" text="nome" />
-                              <TableColumn prefWidth="150.0" text="cognome" />
+                              <TableColumn fx:id="cfColumn6" prefWidth="150.0" text="codice fiscale" />
+                              <TableColumn fx:id="nomeColumn6" prefWidth="150.0" text="nome" />
+                              <TableColumn fx:id="cognomeColumn6" prefWidth="150.0" text="cognome" />
                            </columns>
                         </TableView>
                      </content>

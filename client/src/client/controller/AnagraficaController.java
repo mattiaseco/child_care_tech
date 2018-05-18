@@ -47,20 +47,20 @@ public class AnagraficaController {
 
     @FXML
     public void initialize() throws IOException,SQLException {
-        FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
-        tabelleinstance = loader.getController();
-        mainpane.setCenter((Pane)loader.load());
+        //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
+        //tabelleinstance = loader.getController();
+        //mainpane.setCenter((Pane)loader.load());
 
         mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-       try{
-            tabelleinstance.initBambini(NamingContextManager.getKidController().getAllBambini());
+       /*try{
+           / tabelleinstance.initBambini(NamingContextManager.getKidController().getAllBambini());
 
         }catch(SQLException e) {
             System.err.println("sql exception");
             e.printStackTrace();
         }
         mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+*/
     }
 
     @FXML
