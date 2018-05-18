@@ -1,8 +1,9 @@
 package common.Classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pediatra {
+public class Pediatra implements Serializable {
 
     private String cf;
     private String nome;

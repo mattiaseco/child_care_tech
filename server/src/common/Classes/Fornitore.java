@@ -1,8 +1,9 @@
 package common.Classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Fornitore {
+public class Fornitore implements Serializable {
     private String partita_iva;
     private String cf;
     private String nome;

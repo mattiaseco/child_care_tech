@@ -23,13 +23,12 @@ public class ModificaPediatraController {
     @FXML private TextField telField;
     @FXML private DatePicker dataField;
 
-    @FXML
-    AnchorPane modificapane;
+    @FXML AnchorPane modificapane;
 
     @FXML
     private void returnToTabellePane()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
 
     }
     @FXML

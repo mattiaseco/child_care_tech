@@ -1,6 +1,7 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
 import common.Interface.iBambinoDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,10 +38,19 @@ public class ModificaBambinoController extends  AnchorPane{
 
     @FXML
     private void returnToTabellePane()throws IOException {
-
-        ((BorderPane)modificapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
     }
+
+    public void inizializza(Bambino bambino){
+        nomeField.setText(bambino.getNome());
+        cognField.setText(bambino.getCognome());
+        dataField.setValue(bambino.getData());
+        cfField.setText(bambino.getCf());
+        indField.setText(bambino.getIndirizzo());
+        cont1Field.setText(bambino.getContatto1());
+        cont2Field.setText(bambino.getContatto2());
+    }
+
     @FXML
     private void modificaPersona() throws IOException, SQLException {
 

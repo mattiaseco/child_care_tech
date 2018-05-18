@@ -28,7 +28,7 @@ public class ModificaPersonaleController {
     @FXML
     private void returnToTabellePane()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
 
     }
     @FXML

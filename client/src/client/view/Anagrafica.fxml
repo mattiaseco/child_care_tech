@@ -37,7 +37,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="modificabutton" alignment="CENTER" mnemonicParsing="false" onAction="#gotomodificapersona" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="modifica" textFill="WHITE">
+                        <Button fx:id="modificabutton" alignment="CENTER" mnemonicParsing="false" onAction="#modificaAction" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="modifica" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

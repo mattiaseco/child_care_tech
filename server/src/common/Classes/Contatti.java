@@ -1,8 +1,9 @@
 package common.Classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Contatti {
+public class Contatti implements Serializable {
 
     private String cf;
     private String nome;

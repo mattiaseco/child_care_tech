@@ -1,9 +1,10 @@
 package common.Classes;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Genitore {
+public class Genitore implements Serializable {
     private String cf;
     private String nome;
     private String cognome;

@@ -22,14 +22,11 @@ public class ModificaGenitoreController {
     @FXML private TextField telField;
     @FXML private TextField indField;
     @FXML private DatePicker dataField;
-    @FXML
-    AnchorPane modificapane;
+    @FXML private AnchorPane modificapane;
 
     @FXML
     private void returnToTabellePane()throws IOException {
-
-        ((BorderPane)modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
     }
     @FXML
     private void modificaGenitore() throws IOException, SQLException {

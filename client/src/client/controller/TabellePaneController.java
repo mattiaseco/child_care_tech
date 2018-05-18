@@ -37,33 +37,35 @@ public class TabellePaneController {
     @FXML
     private Tab contattiTab;
 
-    @FXML
-    private TableView<Bambino> bambinoTable;
+
+    public String tabellaAttiva;
+
+    @FXML public TableView<Bambino> bambinoTable;
     @FXML private TableColumn<Bambino, String> cfColumn1;
     @FXML private TableColumn<Bambino, String> nomeColumn1;
     @FXML private TableColumn<Bambino, String> cognomeColumn1;
 
-    @FXML private TableView<Genitore> genitoreTable;
+    @FXML public TableView<Genitore> genitoreTable;
     @FXML private TableColumn<Genitore, String> cfColumn2;
     @FXML private TableColumn<Genitore, String> nomeColumn2;
     @FXML private TableColumn<Genitore, String> cognomeColumn2;
 
-    @FXML private TableView<Personale> personaleTable;
+    @FXML public TableView<Personale> personaleTable;
     @FXML private TableColumn<Personale, String> cfColumn3;
     @FXML private TableColumn<Personale, String> nomeColumn3;
     @FXML private TableColumn<Personale, String> cognomeColumn3;
 
-    @FXML private TableView<Pediatra> pediatraTable;
+    @FXML public TableView<Pediatra> pediatraTable;
     @FXML private TableColumn<Pediatra, String> cfColumn4;
     @FXML private TableColumn<Pediatra, String> nomeColumn4;
     @FXML private TableColumn<Pediatra, String> cognomeColumn4;
 
-    @FXML private TableView<Fornitore> fornitoreTable;
+    @FXML public TableView<Fornitore> fornitoreTable;
     @FXML private TableColumn<Fornitore, String> cfColumn5;
     @FXML private TableColumn<Fornitore, String> nomeColumn5;
     @FXML private TableColumn<Fornitore, String> cognomeColumn5;
 
-    @FXML private TableView<Contatti> contattiTable;
+    @FXML public TableView<Contatti> contattiTable;
     @FXML private TableColumn<Contatti, String> cfColumn6;
     @FXML private TableColumn<Contatti, String> nomeColumn6;
     @FXML private TableColumn<Contatti, String> cognomeColumn6;
@@ -103,6 +105,23 @@ public class TabellePaneController {
         pediatraTable.setItems(pediatra);
         fornitoreTable.setItems(providers);
         contattiTable.setItems(contacts);
+
+        tabellaAttiva = "kid";
+        tabellePane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals(kidTab)) {
+                tabellaAttiva = "kid";
+            } else if(newValue.equals(genitoreTab)){
+                tabellaAttiva="genitore";
+            } else if(newValue.equals(personaleTab)){
+                tabellaAttiva="personale";
+            } else if(newValue.equals(pediatraTab)){
+                tabellaAttiva="pediatra";
+            } else if(newValue.equals(fornitoreTab)){
+                tabellaAttiva="fornitore";
+            } else if(newValue.equals(contattiTab)){
+                tabellaAttiva="contatti";
+            }
+        });
 
         refreshKidTable();
         refreshGenitoreTable();

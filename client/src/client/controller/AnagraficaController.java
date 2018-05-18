@@ -31,10 +31,12 @@ public class AnagraficaController {
 
     private Stage actual;
 
-    private TabellePaneController tabelleinstance = new TabellePaneController();
-    private VisualizzaBambinoController visualizzainstance = new VisualizzaBambinoController();
-    private ModificaBambinoController modivicainstance = new ModificaBambinoController();
-    private AggiungiBambinoController aggiungiinstance = new AggiungiBambinoController();
+    private TabellePaneController tabellePaneController;
+    public static Pane tabellePane;
+
+    private VisualizzaBambinoController visualizzaBambinoController;
+    private ModificaBambinoController modificaBambinoController;
+    private AggiungiBambinoController aggiungiBambinoController;
 
 
     @FXML
@@ -51,7 +53,11 @@ public class AnagraficaController {
         //tabelleinstance = loader.getController();
         //mainpane.setCenter((Pane)loader.load());
 
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabellePane.fxml"));
+        tabellePane = loader.load();
+        tabellePaneController = loader.getController();
+        mainpane.setCenter(tabellePane);
+
        /*try{
            / tabelleinstance.initBambini(NamingContextManager.getKidController().getAllBambini());
 
@@ -63,16 +69,25 @@ public class AnagraficaController {
 */
     }
 
+
+
     @FXML
     private void gotovisualizzapersona()throws IOException {
-
         mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/VisualizzaBambino.fxml")));
     }
 
     @FXML
-    private void gotomodificapersona()throws IOException {
-
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaBambino.fxml")));
+    private void modificaAction()throws IOException {
+        if(tabellePaneController.tabellaAttiva.equals("kid"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaBambino.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("genitore"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaGenitore.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("personale"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPersonale.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPediatra.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("fornitore"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaFornitore.fxml")));
 
     }
 
