@@ -80,7 +80,7 @@
                   <TextField fx:id="telField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="partivaField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                  <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
                      <font>
                         <Font size="14.0" />
                      </font>
