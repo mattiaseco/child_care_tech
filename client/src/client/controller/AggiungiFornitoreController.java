@@ -70,10 +70,10 @@ public class AggiungiFornitoreController extends AnchorPane {
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else if( partitaIVA.length() < 11) {
-            alertbox.setText("Attenzione: Partita IVA Fiscale troppo corta !");
+            alertbox.setText("Attenzione: Partita IVA troppo corta !");
         }
         else if ( partitaIVA.length() > 12) {
-            alertbox.setText("Attenzione: Partita IVA Fiscale troppo lunga !");
+            alertbox.setText("Attenzione: Partita IVA troppo lunga !");
         }
         else {
 

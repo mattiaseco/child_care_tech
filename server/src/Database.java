@@ -66,15 +66,15 @@ public class Database {
                 "telefono VARCHAR(10))";
         stmt.executeUpdate(sql4);
 
-        String sql5 = "CREATE TABLE IF NOT EXISTS Fornitore " +
-                "(cf VARCHAR(16) NOT NULL," +
+        String sql5 = "CREATE TABLE IF NOT EXISTS Fornitore" +
+                "(partita_iva VARCHAR(11) NOT NULL," +
+                "cf VARCHAR(16) NOT NULL," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
-                "partita_iva VARCHAR(11) NOT NULL," +
                 "data DATE," +
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "telefono VARCHAR(10),"+
-                "PRIMARY KEY(cf, partita_iva))";
+                "PRIMARY KEY(partita_iva,cf))";
         stmt.executeUpdate(sql5);
 
         String sql6 = "CREATE TABLE IF NOT EXISTS Contatti" +

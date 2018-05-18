@@ -48,7 +48,6 @@ public class AnagraficaController {
         FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
         tabelleinstance = loader.getController();
         mainpane.setCenter((Pane)loader.load());
-
         //mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
     }
