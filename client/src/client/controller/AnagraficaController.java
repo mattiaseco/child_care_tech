@@ -3,6 +3,8 @@ package client.controller;
 
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
+import common.Classes.Genitore;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -73,7 +75,35 @@ public class AnagraficaController {
 
     @FXML
     private void gotovisualizzapersona()throws IOException {
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/VisualizzaBambino.fxml")));
+        FXMLLoader loader;
+        Pane visualizzaPane;
+
+        if(tabellePaneController.tabellaAttiva.equals("kid")) {
+            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaBambino.fxml"));
+            visualizzaPane = loader.load();
+            mainpane.setCenter(visualizzaPane);
+
+            VisualizzaBambinoController controller = loader.getController();
+            Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+
+            controller.inizializza(bambino);
+        } else if(tabellePaneController.tabellaAttiva.equals("genitore")){
+
+            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaGenitore.fxml"));
+            visualizzaPane = loader.load();
+            mainpane.setCenter(visualizzaPane);
+
+            VisualizzaGenitoreController controller = loader.getController();
+            Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(genitore);
+        }
+
+        else if(tabellePaneController.tabellaAttiva.equals("personale"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPersonale.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPediatra.fxml")));
+        else if(tabellePaneController.tabellaAttiva.equals("fornitore"))
+            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaFornitore.fxml")));
     }
 
     @FXML

@@ -75,13 +75,13 @@
                         <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returntotabellepane" prefWidth="80.0" text=" annulla " />
                      </children>
                   </HBox>
-                  <Label text="Label" GridPane.columnIndex="1" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="nomeLabel"/>
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="cognomeLabel" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="dataLabel" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="cfLabel" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="indirizzoLabel" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="contatto1Label" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="contatto2Label" />
                </children>
                <padding>
                   <Insets left="50.0" right="50.0" />
