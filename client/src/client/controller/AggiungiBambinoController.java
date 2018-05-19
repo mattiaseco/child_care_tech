@@ -41,6 +41,7 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML
     AnchorPane aggiungipane;
 
+
     public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
@@ -60,10 +61,6 @@ public class AggiungiBambinoController extends AnchorPane {
 
         alertbox.setText("");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabellePane.fxml"));
-        tabellePane = loader.load();
-        tabellePaneController = loader.getController();
-
         iBambinoDAO kidController = NamingContextManager.getKidController();
         String cf, nome, cognome, indirizzo, contatto1, contatto2;
         LocalDate data;
@@ -76,7 +73,7 @@ public class AggiungiBambinoController extends AnchorPane {
         contatto1 = cont1Field.getText();
         contatto2 = cont2Field.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || contatto1 == "" || data == null){
+        if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || contatto1.isEmpty() || data == null){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         }
