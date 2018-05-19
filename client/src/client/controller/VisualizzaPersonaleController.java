@@ -47,9 +47,9 @@ public class VisualizzaPersonaleController {
 
 
     @FXML
-    public void returnToTabellePane()throws IOException {
+    private void returnToTabellePane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
-        tabellePaneController.refreshTabelle();
+        ((BorderPane)visualizzapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+
     }
 }

@@ -161,7 +161,7 @@ public class TabellePaneController {
         nomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         cognomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
     }
-    private void refreshKidTable() {
+    public void refreshKidTable() {
         List<Bambino> kidsList = new ArrayList<>();
         try {
             kidsList = kidDAO.getAllBambini();
@@ -175,7 +175,7 @@ public class TabellePaneController {
         kids.clear();
         kids.addAll(kidsList);
     }
-    private void refreshGenitoreTable() {
+    public void refreshGenitoreTable() {
         List<Genitore> parentList = new ArrayList<>();
         try {
             parentList = parentsDAO.getAllGenitori();
@@ -189,7 +189,7 @@ public class TabellePaneController {
         parents.clear();
         parents.addAll(parentList);
     }
-    private void refreshPersonaleTable() {
+    public void refreshPersonaleTable() {
         List<Personale> personalList = new ArrayList<>();
         try {
             personalList = personalDAO.getAllPersonale();
@@ -203,7 +203,7 @@ public class TabellePaneController {
         personal.clear();
         personal.addAll(personalList);
     }
-    private void refreshPediatraTable() {
+    public void refreshPediatraTable() {
         List<Pediatra> pediatraList = new ArrayList<>();
         try {
             pediatraList = pediatraDAO.getAllPediatra();
@@ -217,7 +217,7 @@ public class TabellePaneController {
         pediatra.clear();
         pediatra.addAll(pediatraList);
     }
-    private void refreshFornitoreTable() {
+    public void refreshFornitoreTable() {
         List<Fornitore> fornitoreList = new ArrayList<>();
         try {
             fornitoreList = providersDAO.getAllFornitore();
@@ -231,7 +231,7 @@ public class TabellePaneController {
         providers.clear();
         providers.addAll(fornitoreList);
     }
-    private void refreshContattiTable() {
+    public void refreshContattiTable() {
         List<Contatti> contactsList = new ArrayList<>();
         try {
             contactsList = contactsDAO.getAllContatti();

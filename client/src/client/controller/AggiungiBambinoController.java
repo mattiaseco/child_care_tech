@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import static client.controller.AnagraficaController.tabellePane;
+
 
 public class AggiungiBambinoController extends AnchorPane {
 
@@ -30,6 +32,9 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML private TextField cont1Field;
     @FXML private TextField cont2Field;
     @FXML private DatePicker dateField;
+
+    private TabellePaneController tabellePaneController;
+    private Pane tabellePane;
 
     @FXML private Text alertbox;
 
@@ -46,8 +51,8 @@ public class AggiungiBambinoController extends AnchorPane {
     @FXML
     public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
         //Parent root= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
         //actual =(Stage)annullabutton.getScene().getWindow();
         //actual.setScene(new Scene(root,annullabutton.getScene().getWidth(),annullabutton.getScene().getHeight()));
@@ -58,6 +63,10 @@ public class AggiungiBambinoController extends AnchorPane {
     private void aggiungiPersona() throws IOException, SQLException {
 
         alertbox.setText("");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabellePane.fxml"));
+        tabellePane = loader.load();
+        tabellePaneController = loader.getController();
 
         iBambinoDAO kidController = NamingContextManager.getKidController();
         String cf, nome, cognome, indirizzo, contatto1, contatto2;
@@ -84,7 +93,9 @@ public class AggiungiBambinoController extends AnchorPane {
         else {
             if(kidController != null) {
                 kidController.inserisciBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
-                ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+                tabellePaneController.refreshTabelle();
+                ((BorderPane) aggiungipane.getParent()).setCenter(tabellePane);
+
             }
 
         }

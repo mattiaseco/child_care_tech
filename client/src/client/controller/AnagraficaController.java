@@ -1,9 +1,10 @@
 package client.controller;
 
 
-
+import client.controller.TabellePaneController;
 import client.NamingContextManager;
 import common.Classes.*;
+import common.Interface.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,6 +53,7 @@ public class AnagraficaController {
 
     @FXML
     public void initialize() throws IOException,SQLException {
+
         //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
         //tabelleinstance = loader.getController();
         //mainpane.setCenter((Pane)loader.load());
@@ -109,6 +111,7 @@ public class AnagraficaController {
             VisualizzaPersonaleController controller = loader.getController();
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
             controller.inizializza(personale, tabellePane, tabellePaneController);
+
         }
         else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
         {
@@ -182,15 +185,91 @@ public class AnagraficaController {
     private void gotoaggiungipersona()throws IOException {
         FXMLLoader loader;
         Pane visualizzaPane;
-        inizializza()
         mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ScegliPersona.fxml")));
 
     }
 
-    /*@FXML
+    @FXML
     private void cancellapersona()throws IOException {
-            alertbox.setText("");
-            alertbox.setText(......); qui metti la stringa ritornata dal cancella
 
-    }*/
+        alertbox.setText("");
+
+        if(tabellePaneController.tabellaAttiva.equals("kid")) {
+            String cf;
+            iBambinoDAO kidController = NamingContextManager.getKidController();
+            Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+            cf = bambino.getCf();
+            try {
+                kidController.cancellaBambino(cf);
+                tabellePaneController.refreshTabelle();
+                alertbox.setText("Bambino Cancellato!");
+            }catch (SQLException e){
+                e.printStackTrace();
+                System.err.println(e.getMessage());
+            }
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("genitore")) {
+                String cf;
+                iGenitoreDAO parentsController = NamingContextManager.getParentsController();
+                Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+                cf = genitore.getCf();
+                try {
+                    parentsController.cancellaGenitore(cf);
+                    tabellePaneController.refreshGenitoreTable();
+                    alertbox.setText("Genitore Cancellato!");
+                }catch (SQLException e){
+                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                }
+            }
+
+
+        else if(tabellePaneController.tabellaAttiva.equals("personale")) {
+            String cf;
+            iPersonaleDAO personalController = NamingContextManager.getPersonalController();
+            Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
+            cf = personale.getCf();
+            try {
+                personalController.cancellaPersonale(cf);
+                tabellePaneController.refreshPersonaleTable();
+                alertbox.setText("Membro del Personale Cancellato!");
+            }catch ( SQLException e){
+                e.printStackTrace();
+                System.err.println(e.getMessage());
+            }
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("pediatra")) {
+            String cf;
+            iPediatraDAO pediatraController = NamingContextManager.getPediatraController();
+            Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
+            cf = pediatra.getCf();
+            try {
+                pediatraController.cancellaPediatra(cf);
+                tabellePaneController.refreshPediatraTable();
+                alertbox.setText("Pediatra Cancellato!");
+            }catch (SQLException e){
+                e.printStackTrace();
+                System.err.println(e.getMessage());
+            }
+
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("fornitore")) {
+            String cf;
+            iFornitoreDAO providersController = NamingContextManager.getProvidersController();
+            Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
+            cf = fornitore.getCf();
+            try {
+                providersController.cancellaFornitore(cf);
+                tabellePaneController.refreshFornitoreTable();
+                alertbox.setText("Fornitore Cancellato!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println(e.getMessage());
+            }
+
+
+
+
+         }
+    }
 }
