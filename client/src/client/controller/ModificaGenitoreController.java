@@ -1,6 +1,8 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
+import common.Classes.Genitore;
 import common.Interface.iGenitoreDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +28,17 @@ public class ModificaGenitoreController {
     @FXML private AnchorPane modificapane;
     @FXML private Text alertbox;
 
+    public void inizializza(Genitore genitore){
+        nomeField.setText(genitore.getNome());
+        cognField.setText(genitore.getCognome());
+        dataField.setValue(genitore.getData());
+        cfField.setText(genitore.getCf());
+        indField.setText(genitore.getIndirizzo());
+        telField.setText(genitore.getTelefono());
+
+    }
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
         ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
     }
     @FXML

@@ -93,7 +93,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
     }
 
     public static String buildUpdateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
-        return "UPDATE Bambino SET cf = '" + cf + "' and nome = '" + nome + "'and cognome ='" + cognome + "'and data ='" + data + "'and indirizzo ='" + indirizzo + "'and contatto1 ='" + contatto1 + "'and contatto2='" + contatto2 + "'";
+        return "UPDATE Bambino SET cf = '" + cf + "' , nome = '" + nome + "', cognome ='" + cognome + "', data ='" + data + "', indirizzo ='" + indirizzo + "', contatto1 ='" + contatto1 + "', contatto2='" + contatto2 + "'WHERE cf='"+cf+"'";
     }
 
     public List<Bambino> getAllBambini() throws RemoteException, SQLException {

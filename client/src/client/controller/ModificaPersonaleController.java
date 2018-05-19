@@ -1,6 +1,8 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Pediatra;
+import common.Classes.Personale;
 import common.Interface.iPersonaleDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,16 @@ public class ModificaPersonaleController {
 
     @FXML
     AnchorPane modificapane;
+
+    public void inizializza(Personale personale){
+        nomeField.setText(personale.getNome());
+        cognField.setText(personale.getCognome());
+        dataField.setValue(personale.getData());
+        cfField.setText(personale.getCf());
+        indField.setText(personale.getIndirizzo());
+        telField.setText(personale.getTelefono());
+
+    }
 
     @FXML
     private void returnToTabellePane()throws IOException {

@@ -36,7 +36,7 @@ public class AggiungiBambinoController extends AnchorPane {
     AnchorPane aggiungipane;
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
         ((BorderPane)aggiungipane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 

@@ -37,12 +37,9 @@ public class VisualizzaBambinoController extends AnchorPane {
         contatto1Label.setText(bambino.getContatto1());
         contatto2Label.setText(bambino.getContatto2());
     }
-    @FXML
-    public BorderPane mainpane;
-
 
     @FXML
-    private void returntotabellepane()throws IOException {
+    public void returntotabellepane()throws IOException {
 
 
         ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));

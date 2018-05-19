@@ -1,6 +1,8 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Fornitore;
+import common.Classes.Genitore;
 import common.Interface.iFornitoreDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +31,19 @@ public class ModificaFornitoreController {
     @FXML
     AnchorPane modificapane;
 
+    public void inizializza(Fornitore fornitore){
+        nomeField.setText(fornitore.getNome());
+        cognField.setText(fornitore.getCognome());
+        dataField.setValue(fornitore.getData());
+        cfField.setText(fornitore.getCf());
+        indField.setText(fornitore.getIndirizzo());
+        telField.setText(fornitore.getTelefono());
+        partivaField.setText(fornitore.getPartita_iva());
+
+    }
+
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
         ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
 

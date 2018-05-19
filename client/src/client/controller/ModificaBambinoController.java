@@ -40,7 +40,7 @@ public class ModificaBambinoController extends  AnchorPane{
     @FXML private Text alertbox;
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
         ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
     }
 

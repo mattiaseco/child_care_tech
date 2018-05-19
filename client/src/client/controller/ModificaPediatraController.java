@@ -1,6 +1,8 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Genitore;
+import common.Classes.Pediatra;
 import common.Interface.iPediatraDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +29,18 @@ public class ModificaPediatraController {
     @FXML AnchorPane modificapane;
     @FXML private Text alertbox;
 
+    public void inizializza(Pediatra pediatra){
+        nomeField.setText(pediatra.getNome());
+        cognField.setText(pediatra.getCognome());
+        dataField.setValue(pediatra.getData());
+        cfField.setText(pediatra.getCf());
+        indField.setText(pediatra.getIndirizzo());
+        telField.setText(pediatra.getTelefono());
+
+    }
+
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
         ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
 

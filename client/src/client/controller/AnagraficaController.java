@@ -132,17 +132,48 @@ public class AnagraficaController {
 
     @FXML
     private void modificaAction()throws IOException {
-        if(tabellePaneController.tabellaAttiva.equals("kid"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaBambino.fxml")));
-        else if(tabellePaneController.tabellaAttiva.equals("genitore"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaGenitore.fxml")));
-        else if(tabellePaneController.tabellaAttiva.equals("personale"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPersonale.fxml")));
-        else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPediatra.fxml")));
-        else if(tabellePaneController.tabellaAttiva.equals("fornitore"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaFornitore.fxml")));
-
+        FXMLLoader loader;
+        Pane modificapane;
+        if(tabellePaneController.tabellaAttiva.equals("kid")){
+            loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
+            modificapane = loader.load();
+            mainpane.setCenter(modificapane);
+            ModificaBambinoController controller = loader.getController();
+            Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(bambino);
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("genitore")){
+            loader = new FXMLLoader(getClass().getResource("../view/ModificaGenitore.fxml"));
+            modificapane = loader.load();
+            mainpane.setCenter(modificapane);
+            ModificaGenitoreController controller = loader.getController();
+            Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(genitore);
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("personale")){
+            loader = new FXMLLoader(getClass().getResource("../view/ModificaPersonale.fxml"));
+            modificapane = loader.load();
+            mainpane.setCenter(modificapane);
+            ModificaPersonaleController controller = loader.getController();
+            Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(personale);
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("pediatra")){
+            loader = new FXMLLoader(getClass().getResource("../view/ModificaPediatra.fxml"));
+            modificapane = loader.load();
+            mainpane.setCenter(modificapane);
+            ModificaPediatraController controller = loader.getController();
+            Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(pediatra);
+        }
+        else if(tabellePaneController.tabellaAttiva.equals("fornitore")){
+            loader = new FXMLLoader(getClass().getResource("../view/ModificaFornitore.fxml"));
+            modificapane = loader.load();
+            mainpane.setCenter(modificapane);
+            ModificaFornitoreController controller = loader.getController();
+            Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(fornitore);
+        }
     }
 
     @FXML

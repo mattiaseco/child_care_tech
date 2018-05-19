@@ -36,7 +36,7 @@ public class AggiungiFornitoreController extends AnchorPane {
 
 
     @FXML
-    private void returnToTabellePane() throws IOException {
+    public void returnToTabellePane() throws IOException {
 
         ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
 
