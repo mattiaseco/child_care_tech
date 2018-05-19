@@ -1,5 +1,6 @@
 package client.controller;
 
+import common.Classes.Bambino;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -37,14 +38,31 @@ public class ScegliPersonaController {
     @FXML
     ToggleGroup persontipe;
 
+    private BorderPane mainpane;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
+
+    public void inizializza(BorderPane carloBarbieri, Pane tabellePane, TabellePaneController tabellePaneController){
+        this.mainpane = carloBarbieri;
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+    }
+
 
     @FXML
     private void confermaAction() throws IOException {
+        FXMLLoader loader;
+        Pane aggiungipane;
+        if (persontipe.getSelectedToggle().equals(BambinoButton)) {
+            loader = new FXMLLoader(getClass().getResource("../view/AggiungiBambino.fxml"));
+            aggiungipane = loader.load();
+            mainpane.setCenter(aggiungipane);
 
+            AggiungiBambinoController controller = loader.getController();
+            Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
-        if (persontipe.getSelectedToggle().equals(BambinoButton))
-            ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiBambino.fxml")));
-        else {
+            controller.inizializza(tabellePane, tabellePaneController);
+        } else {
             if (persontipe.getSelectedToggle().equals(GenitoreButton))
                 ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiGenitore.fxml")));
             else {

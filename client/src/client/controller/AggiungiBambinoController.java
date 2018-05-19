@@ -40,17 +40,13 @@ public class AggiungiBambinoController extends AnchorPane {
 
     @FXML
     AnchorPane aggiungipane;
-    private Pane tabellePane;
-    private TabellePaneController tabellePaneController;
-    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
 
+    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
-
     }
     @FXML
     public void returnToTabellePane()throws IOException {
-
         ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
         tabellePaneController.refreshTabelle();
         //Parent root= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
@@ -93,9 +89,8 @@ public class AggiungiBambinoController extends AnchorPane {
         else {
             if(kidController != null) {
                 kidController.inserisciBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+                ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
                 tabellePaneController.refreshTabelle();
-                ((BorderPane) aggiungipane.getParent()).setCenter(tabellePane);
-
             }
 
         }

@@ -184,9 +184,15 @@ public class AnagraficaController {
     @FXML
     private void gotoaggiungipersona()throws IOException {
         FXMLLoader loader;
-        Pane visualizzaPane;
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ScegliPersona.fxml")));
+        Pane aggiungipane;
+        loader = new FXMLLoader(getClass().getResource("../view/ScegliPersona.fxml"));
+        aggiungipane = loader.load();
+        mainpane.setCenter(aggiungipane);
 
+        ScegliPersonaController controller = loader.getController();
+        Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+
+        controller.inizializza(mainpane,tabellePane, tabellePaneController);
     }
 
     @FXML
