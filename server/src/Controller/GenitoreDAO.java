@@ -90,7 +90,7 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
     }
 
     public static String buildUpdateGenitoreSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Genitore SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+        return "UPDATE Genitore SET cf = '"+cf+"' , nome = '"+nome+"', cognome ='"+cognome+"', data ='"+data+"', indirizzo ='"+indirizzo+"', telefono ='"+telefono+"'WHERE cf='"+cf+"'";
     }
 
 

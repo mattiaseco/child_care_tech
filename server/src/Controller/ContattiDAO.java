@@ -89,7 +89,7 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
     }
 
     public static String buildUpdateContattiSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Contatti SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+        return "UPDATE Contatti SET cf = '"+cf+"' , nome = '"+nome+"', cognome ='"+cognome+"', data ='"+data+"', indirizzo ='"+indirizzo+"', telefono ='"+telefono+"'WHERE cf='"+cf+"'";
     }
     public List<Contatti> getAllContatti() throws RemoteException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");

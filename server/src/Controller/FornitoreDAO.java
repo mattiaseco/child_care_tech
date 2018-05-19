@@ -89,7 +89,7 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
     }
 
     public static String buildUpdateFornitoreSQL(String partita_iva, String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Personale SET partita_iva = '"+partita_iva+"' and cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+        return "UPDATE Personale SET partita_iva = '"+partita_iva+"' , cf = '"+cf+"' , nome = '"+nome+"', cognome ='"+cognome+"', data ='"+data+"', indirizzo ='"+indirizzo+"', telefono ='"+telefono+"'WHERE cf='"+cf+"'";
     }
 
     public List<Fornitore> getAllFornitore() throws RemoteException,SQLException {

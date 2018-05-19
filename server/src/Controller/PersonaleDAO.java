@@ -88,7 +88,7 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
     }
 
     public static String buildUpdatePersonaleSQL( String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Personale SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+        return "UPDATE Personale SET cf = '"+cf+"' , nome = '"+nome+"', cognome ='"+cognome+"', data ='"+data+"', indirizzo ='"+indirizzo+"', telefono ='"+telefono+"'WHERE cf='"+cf+"'";
     }
 
     public List<Personale> getAllPersonale() throws RemoteException,SQLException {

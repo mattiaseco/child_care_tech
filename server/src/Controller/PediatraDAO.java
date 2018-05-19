@@ -87,7 +87,7 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
     }
 
     public static String buildUpdatePediatraSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws SQLException {
-        return "UPDATE Pediatra SET cf = '"+cf+"' and nome = '"+nome+"'and cognome ='"+cognome+"'and data ='"+data+"'and indirizzo ='"+indirizzo+"'and telefono ='"+telefono+"'";
+        return "UPDATE Pediatra SET cf = '"+cf+"' , nome = '"+nome+"', cognome ='"+cognome+"', data ='"+data+"', indirizzo ='"+indirizzo+"', telefono ='"+telefono+"'WHERE cf='"+cf+"'";
     }
 
     public List<Pediatra> getAllPediatra() throws RemoteException,SQLException {

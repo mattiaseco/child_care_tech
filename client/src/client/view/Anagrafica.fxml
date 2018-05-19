@@ -48,7 +48,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="alertbox" fill="#029402" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font size="14.0" />
                            </font>
