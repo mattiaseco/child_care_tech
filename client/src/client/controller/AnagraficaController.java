@@ -3,8 +3,7 @@ package client.controller;
 
 
 import client.NamingContextManager;
-import common.Classes.Bambino;
-import common.Classes.Genitore;
+import common.Classes.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -101,11 +100,34 @@ public class AnagraficaController {
         }
 
         else if(tabellePaneController.tabellaAttiva.equals("personale"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPersonale.fxml")));
+
+        {
+            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPersonale.fxml"));
+            visualizzaPane = loader.load();
+            mainpane.setCenter(visualizzaPane);
+
+            VisualizzaPersonaleController controller = loader.getController();
+            Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(personale);}
         else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaPediatra.fxml")));
+        {
+            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPediatra.fxml"));
+            visualizzaPane = loader.load();
+            mainpane.setCenter(visualizzaPane);
+
+            VisualizzaPediatraController controller = loader.getController();
+            Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(pediatra);}
         else if(tabellePaneController.tabellaAttiva.equals("fornitore"))
-            mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/ModificaFornitore.fxml")));
+        {
+            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaFornitore.fxml"));
+            visualizzaPane = loader.load();
+            mainpane.setCenter(visualizzaPane);
+
+            VisualizzaFornitoreController controller = loader.getController();
+            Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(fornitore);
+        }
     }
 
     @FXML
