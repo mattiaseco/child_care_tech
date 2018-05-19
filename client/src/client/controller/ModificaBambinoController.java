@@ -38,13 +38,17 @@ public class ModificaBambinoController extends  AnchorPane{
     @FXML AnchorPane modificapane;
 
     @FXML private Text alertbox;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
+
 
     @FXML
     public void returnToTabellePane()throws IOException {
-        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
+        ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
 
-    public void inizializza(Bambino bambino){
+    public void inizializza(Bambino bambino, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeField.setText(bambino.getNome());
         cognField.setText(bambino.getCognome());
         dataField.setValue(bambino.getData());
@@ -52,6 +56,8 @@ public class ModificaBambinoController extends  AnchorPane{
         indField.setText(bambino.getIndirizzo());
         cont1Field.setText(bambino.getContatto1());
         cont2Field.setText(bambino.getContatto2());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
     }
 
     @FXML
@@ -85,7 +91,8 @@ public class ModificaBambinoController extends  AnchorPane{
         }
         else {
             kidController.modificaBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
-            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 

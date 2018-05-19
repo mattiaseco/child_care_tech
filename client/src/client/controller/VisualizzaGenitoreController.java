@@ -27,23 +27,28 @@ public class VisualizzaGenitoreController {
     @FXML Label indirizzoLabel;
     @FXML Label telefonoLabel;
 
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Genitore genitore){
+
+    public void inizializza(Genitore genitore, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeLabel.setText(genitore.getNome());
         cognomeLabel.setText(genitore.getCognome());
         dataLabel.setText(String.valueOf(genitore.getData()));
         cfLabel.setText(genitore.getCf());
         indirizzoLabel.setText(genitore.getIndirizzo());
         telefonoLabel.setText(genitore.getTelefono());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
 
     }
 
 
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
 }

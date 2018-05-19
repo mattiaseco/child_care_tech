@@ -27,7 +27,10 @@ public class VisualizzaFornitoreController {
     @FXML Label telefonoLabel;
     @FXML Label partitaIvaLabel;
 
-    public void inizializza(Fornitore fornitore){
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
+
+    public void inizializza(Fornitore fornitore, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeLabel.setText(fornitore.getNome());
         cognomeLabel.setText(fornitore.getCognome());
         dataLabel.setText(String.valueOf(fornitore.getData()));
@@ -36,14 +39,16 @@ public class VisualizzaFornitoreController {
         telefonoLabel.setText(fornitore.getTelefono());
         partitaIvaLabel.setText(fornitore.getPartita_iva());
 
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
 
     }
 
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
 }

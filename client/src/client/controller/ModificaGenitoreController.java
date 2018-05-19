@@ -27,19 +27,25 @@ public class ModificaGenitoreController {
     @FXML private DatePicker dataField;
     @FXML private AnchorPane modificapane;
     @FXML private Text alertbox;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Genitore genitore){
+
+    public void inizializza(Genitore genitore, Pane tabellePane,TabellePaneController tabellePaneController){
         nomeField.setText(genitore.getNome());
         cognField.setText(genitore.getCognome());
         dataField.setValue(genitore.getData());
         cfField.setText(genitore.getCf());
         indField.setText(genitore.getIndirizzo());
         telField.setText(genitore.getTelefono());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
 
     }
     @FXML
     public void returnToTabellePane()throws IOException {
-        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
+        ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void modificaGenitore() throws IOException, SQLException {
@@ -72,7 +78,8 @@ public class ModificaGenitoreController {
         else {
 
             parentsControll.modificaGenitore(cf,nome,cognome,data,indirizzo,telefono);
-            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 

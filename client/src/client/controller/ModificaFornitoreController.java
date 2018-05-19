@@ -30,8 +30,11 @@ public class ModificaFornitoreController {
 
     @FXML
     AnchorPane modificapane;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Fornitore fornitore){
+
+    public void inizializza(Fornitore fornitore, Pane tabellePane,TabellePaneController tabellePaneController){
         nomeField.setText(fornitore.getNome());
         cognField.setText(fornitore.getCognome());
         dataField.setValue(fornitore.getData());
@@ -39,14 +42,16 @@ public class ModificaFornitoreController {
         indField.setText(fornitore.getIndirizzo());
         telField.setText(fornitore.getTelefono());
         partivaField.setText(fornitore.getPartita_iva());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
 
     }
 
     @FXML
     public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
-
+        ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void modificaFornitore() throws IOException, SQLException {
@@ -85,7 +90,8 @@ public class ModificaFornitoreController {
         else {
 
             providersController.modificaFornitore(partitaIVA,cf,nome,cognome,data,indirizzo, telefono);
-            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 

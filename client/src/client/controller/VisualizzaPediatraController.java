@@ -25,24 +25,29 @@ public class VisualizzaPediatraController {
     @FXML Label cfLabel;
     @FXML Label indirizzoLabel;
     @FXML Label telefonoLabel;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
 
-    public void inizializza(Pediatra pediatra){
+
+    public void inizializza(Pediatra pediatra, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeLabel.setText(pediatra.getNome());
         cognomeLabel.setText(pediatra.getCognome());
         dataLabel.setText(String.valueOf(pediatra.getData()));
         cfLabel.setText(pediatra.getCf());
         indirizzoLabel.setText(pediatra.getIndirizzo());
         telefonoLabel.setText(pediatra.getTelefono());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
 
     }
 
 
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
 }

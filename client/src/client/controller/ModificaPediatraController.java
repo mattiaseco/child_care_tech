@@ -28,21 +28,27 @@ public class ModificaPediatraController {
 
     @FXML AnchorPane modificapane;
     @FXML private Text alertbox;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Pediatra pediatra){
+
+    public void inizializza(Pediatra pediatra, Pane tabellePane,TabellePaneController tabellePaneController){
         nomeField.setText(pediatra.getNome());
         cognField.setText(pediatra.getCognome());
         dataField.setValue(pediatra.getData());
         cfField.setText(pediatra.getCf());
         indField.setText(pediatra.getIndirizzo());
         telField.setText(pediatra.getTelefono());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+
 
     }
 
     @FXML
     public void returnToTabellePane()throws IOException {
-
-        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
+        ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
 
     }
     @FXML
@@ -76,7 +82,8 @@ public class ModificaPediatraController {
         else {
 
             pediatraController.modificaPediatra(cf, nome, cognome, data, indirizzo, telefono);
-            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 

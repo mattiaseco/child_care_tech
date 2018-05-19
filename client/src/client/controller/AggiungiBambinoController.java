@@ -1,6 +1,7 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Fornitore;
 import common.Interface.iBambinoDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,14 @@ public class AggiungiBambinoController extends AnchorPane {
 
     @FXML
     AnchorPane aggiungipane;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
+    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
 
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+
+    }
     @FXML
     public void returnToTabellePane()throws IOException {
 

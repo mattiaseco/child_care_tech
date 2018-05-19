@@ -28,22 +28,28 @@ public class ModificaPersonaleController {
 
     @FXML
     AnchorPane modificapane;
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Personale personale){
+
+    public void inizializza(Personale personale,Pane tabellePane,TabellePaneController tabellePaneController){
         nomeField.setText(personale.getNome());
         cognField.setText(personale.getCognome());
         dataField.setValue(personale.getData());
         cfField.setText(personale.getCf());
         indField.setText(personale.getIndirizzo());
         telField.setText(personale.getTelefono());
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+
 
     }
 
     @FXML
-    private void returnToTabellePane()throws IOException {
+    public void returnToTabellePane()throws IOException {
 
-        ((BorderPane)modificapane.getParent()).setCenter(AnagraficaController.tabellePane);
-
+        ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void modificaPersonale() throws IOException, SQLException {
@@ -75,7 +81,8 @@ public class ModificaPersonaleController {
         }
         else {
             personalController.modificaPersonale(cf, nome, cognome, data, indirizzo, telefono);
-            ((BorderPane) modificapane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)modificapane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 
