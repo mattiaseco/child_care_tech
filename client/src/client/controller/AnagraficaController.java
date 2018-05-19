@@ -24,12 +24,17 @@ public class AnagraficaController {
     @FXML
     public BorderPane mainpane;
 
-    @FXML private Button visualizzabutton;
-    @FXML private Button modificabutton;
-    @FXML private Button aggiungibutton;
-    @FXML private Button cancellabutton;
+    @FXML
+    private Button visualizzabutton;
+    @FXML
+    private Button modificabutton;
+    @FXML
+    private Button aggiungibutton;
+    @FXML
+    private Button cancellabutton;
 
-    @FXML private Text alertbox;
+    @FXML
+    private Text alertbox;
     @FXML
     private ImageView backhome;
 
@@ -44,15 +49,15 @@ public class AnagraficaController {
 
 
     @FXML
-    private void backtohome()throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
-        actual =(Stage)backhome.getScene().getWindow();
-        actual.setScene(new Scene(root,backhome.getScene().getWidth(),backhome.getScene().getHeight()));
+    private void backtohome() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        actual = (Stage) backhome.getScene().getWindow();
+        actual.setScene(new Scene(root, backhome.getScene().getWidth(), backhome.getScene().getHeight()));
         actual.show();
     }
 
     @FXML
-    public void initialize() throws IOException,SQLException {
+    public void initialize() throws IOException, SQLException {
 
         //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
         //tabelleinstance = loader.getController();
@@ -75,13 +80,12 @@ public class AnagraficaController {
     }
 
 
-
     @FXML
-    private void gotovisualizzapersona()throws IOException {
+    private void gotovisualizzapersona() throws IOException {
         FXMLLoader loader;
         Pane visualizzaPane;
 
-        if(tabellePaneController.tabellaAttiva.equals("kid")) {
+        if (tabellePaneController.tabellaAttiva.equals("kid")) {
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaBambino.fxml"));
             visualizzaPane = loader.load();
             mainpane.setCenter(visualizzaPane);
@@ -90,7 +94,7 @@ public class AnagraficaController {
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
             controller.inizializza(bambino, tabellePane, tabellePaneController);
-        } else if(tabellePaneController.tabellaAttiva.equals("genitore")){
+        } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
 
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaGenitore.fxml"));
             visualizzaPane = loader.load();
@@ -99,9 +103,7 @@ public class AnagraficaController {
             VisualizzaGenitoreController controller = loader.getController();
             Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
             controller.inizializza(genitore, tabellePane, tabellePaneController);
-        }
-
-        else if(tabellePaneController.tabellaAttiva.equals("personale"))
+        } else if (tabellePaneController.tabellaAttiva.equals("personale"))
 
         {
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPersonale.fxml"));
@@ -112,9 +114,7 @@ public class AnagraficaController {
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
             controller.inizializza(personale, tabellePane, tabellePaneController);
 
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("pediatra"))
-        {
+        } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPediatra.fxml"));
             visualizzaPane = loader.load();
             mainpane.setCenter(visualizzaPane);
@@ -122,9 +122,7 @@ public class AnagraficaController {
             VisualizzaPediatraController controller = loader.getController();
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
             controller.inizializza(pediatra, tabellePane, tabellePaneController);
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("fornitore"))
-        {
+        } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaFornitore.fxml"));
             visualizzaPane = loader.load();
             mainpane.setCenter(visualizzaPane);
@@ -136,42 +134,38 @@ public class AnagraficaController {
     }
 
     @FXML
-    private void modificaAction()throws IOException {
+    private void modificaAction() throws IOException {
         FXMLLoader loader;
         Pane modificapane;
-        if(tabellePaneController.tabellaAttiva.equals("kid")){
+        if (tabellePaneController.tabellaAttiva.equals("kid")) {
             loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
             modificapane = loader.load();
             mainpane.setCenter(modificapane);
             ModificaBambinoController controller = loader.getController();
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
             controller.inizializza(bambino, tabellePane, tabellePaneController);
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("genitore")){
+        } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
             loader = new FXMLLoader(getClass().getResource("../view/ModificaGenitore.fxml"));
             modificapane = loader.load();
             mainpane.setCenter(modificapane);
             ModificaGenitoreController controller = loader.getController();
             Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
             controller.inizializza(genitore, tabellePane, tabellePaneController);
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("personale")){
+        } else if (tabellePaneController.tabellaAttiva.equals("personale")) {
             loader = new FXMLLoader(getClass().getResource("../view/ModificaPersonale.fxml"));
             modificapane = loader.load();
             mainpane.setCenter(modificapane);
             ModificaPersonaleController controller = loader.getController();
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
             controller.inizializza(personale, tabellePane, tabellePaneController);
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("pediatra")){
+        } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
             loader = new FXMLLoader(getClass().getResource("../view/ModificaPediatra.fxml"));
             modificapane = loader.load();
             mainpane.setCenter(modificapane);
             ModificaPediatraController controller = loader.getController();
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
             controller.inizializza(pediatra, tabellePane, tabellePaneController);
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("fornitore")){
+        } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
             loader = new FXMLLoader(getClass().getResource("../view/ModificaFornitore.fxml"));
             modificapane = loader.load();
             mainpane.setCenter(modificapane);
@@ -182,7 +176,7 @@ public class AnagraficaController {
     }
 
     @FXML
-    private void gotoaggiungipersona()throws IOException {
+    private void gotoaggiungipersona() throws IOException {
         FXMLLoader loader;
         Pane aggiungipane;
         loader = new FXMLLoader(getClass().getResource("../view/ScegliPersona.fxml"));
@@ -192,90 +186,107 @@ public class AnagraficaController {
         ScegliPersonaController controller = loader.getController();
         Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
-        controller.inizializza(mainpane,tabellePane, tabellePaneController);
+        controller.inizializza(mainpane, tabellePane, tabellePaneController);
     }
 
     @FXML
-    private void cancellapersona()throws IOException {
+    private void cancellapersona() throws IOException, SQLException {
 
         alertbox.setText("");
 
-        if(tabellePaneController.tabellaAttiva.equals("kid")) {
+        if (tabellePaneController.tabellaAttiva.equals("kid")) {
             String cf;
             iBambinoDAO kidController = NamingContextManager.getKidController();
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
-            cf = bambino.getCf();
-            try {
+
+            if (bambino == null){
+
+                alertbox.setText("Attenzione selezionare una riga\n" +
+                        "                oppure" +
+                        "           popolare la tabella!!");
+
+            }
+            else {
+
+                cf = bambino.getCf();
                 kidController.cancellaBambino(cf);
                 tabellePaneController.refreshTabelle();
                 alertbox.setText("Bambino Cancellato!");
-            }catch (SQLException e){
-                e.printStackTrace();
-                System.err.println(e.getMessage());
             }
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("genitore")) {
-                String cf;
-                iGenitoreDAO parentsController = NamingContextManager.getParentsController();
-                Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+
+        } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
+            String cf;
+            iGenitoreDAO parentsController = NamingContextManager.getParentsController();
+            Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+
+            if (genitore== null){
+
+                alertbox.setText("Attenzione selezionare una riga\n" +
+                        "                oppure" +
+                        "           popolare la tabella!!");
+
+            }
+            else {
                 cf = genitore.getCf();
-                try {
-                    parentsController.cancellaGenitore(cf);
-                    tabellePaneController.refreshGenitoreTable();
-                    alertbox.setText("Genitore Cancellato!");
-                }catch (SQLException e){
-                    e.printStackTrace();
-                    System.err.println(e.getMessage());
-                }
+                parentsController.cancellaGenitore(cf);
+                tabellePaneController.refreshTabelle();
+                alertbox.setText("Genitore Cancellato!");
             }
 
-
-        else if(tabellePaneController.tabellaAttiva.equals("personale")) {
+        } else if (tabellePaneController.tabellaAttiva.equals("personale")) {
             String cf;
             iPersonaleDAO personalController = NamingContextManager.getPersonalController();
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
-            cf = personale.getCf();
-            try {
-                personalController.cancellaPersonale(cf);
-                tabellePaneController.refreshPersonaleTable();
-                alertbox.setText("Membro del Personale Cancellato!");
-            }catch ( SQLException e){
-                e.printStackTrace();
-                System.err.println(e.getMessage());
+
+            if (personale == null){
+
+                    alertbox.setText("Attenzione selezionare una riga\n" +
+                            "                oppure" +
+                            "           popolare la tabella!!");
+
             }
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("pediatra")) {
+            else {
+                cf = personale.getCf();
+                personalController.cancellaPersonale(cf);
+                tabellePaneController.refreshTabelle();
+                alertbox.setText("Membro del Personale \n " +
+                        "          Cancellato!");
+            }
+
+        } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
             String cf;
             iPediatraDAO pediatraController = NamingContextManager.getPediatraController();
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
-            cf = pediatra.getCf();
-            try {
+            if (pediatra == null) {
+
+                alertbox.setText("Attenzione selezionare una riga\n" +
+                        "                oppure" +
+                        "              popolare la tabella!!");
+
+            } else {
+
+                cf = pediatra.getCf();
                 pediatraController.cancellaPediatra(cf);
-                tabellePaneController.refreshPediatraTable();
+                tabellePaneController.refreshTabelle();
                 alertbox.setText("Pediatra Cancellato!");
-            }catch (SQLException e){
-                e.printStackTrace();
-                System.err.println(e.getMessage());
             }
 
-        }
-        else if(tabellePaneController.tabellaAttiva.equals("fornitore")) {
+
+        } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
             String cf;
             iFornitoreDAO providersController = NamingContextManager.getProvidersController();
             Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
-            cf = fornitore.getCf();
-            try {
-                providersController.cancellaFornitore(cf);
-                tabellePaneController.refreshFornitoreTable();
-                alertbox.setText("Fornitore Cancellato!");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.err.println(e.getMessage());
+            if (fornitore == null) {
+                alertbox.setText("Attenzione selezionare una riga\n" +
+                        "                   oppure" +
+                        "           popolare la tabella!!");
             }
-
-
-
-
-         }
+            else {
+                cf = fornitore.getCf();
+                providersController.cancellaFornitore(cf);
+                tabellePaneController.refreshTabelle();
+                alertbox.setText("Fornitore Cancellato!");
+            }
+        }
     }
 }
