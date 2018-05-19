@@ -43,7 +43,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="cancellabutton" alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="cancella" textFill="WHITE">
+                        <Button fx:id="cancellabutton" alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" onAction="#cancellapersona" text="cancella" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

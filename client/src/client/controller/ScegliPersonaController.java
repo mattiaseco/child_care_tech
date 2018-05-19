@@ -1,6 +1,6 @@
 package client.controller;
 
-import common.Classes.Bambino;
+import common.Classes.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -42,8 +42,8 @@ public class ScegliPersonaController {
     private Pane tabellePane;
     private TabellePaneController tabellePaneController;
 
-    public void inizializza(BorderPane carloBarbieri, Pane tabellePane, TabellePaneController tabellePaneController){
-        this.mainpane = carloBarbieri;
+    public void inizializza(BorderPane pane, Pane tabellePane, TabellePaneController tabellePaneController){
+        this.mainpane = pane;
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
     }
@@ -62,20 +62,42 @@ public class ScegliPersonaController {
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
             controller.inizializza(tabellePane, tabellePaneController);
-        } else {
-            if (persontipe.getSelectedToggle().equals(GenitoreButton))
-                ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiGenitore.fxml")));
-            else {
-                if (persontipe.getSelectedToggle().equals(PersonaleButton))
-                    ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiPersonale.fxml")));
-                else {
-                    if (persontipe.getSelectedToggle().equals(PediatraButton))
-                        ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiPediatra.fxml")));
+        }
+        else if (persontipe.getSelectedToggle().equals(GenitoreButton)){
+                loader = new FXMLLoader(getClass().getResource("../view/AggiungiGenitore.fxml"));
+                aggiungipane = loader.load();
+                mainpane.setCenter(aggiungipane);
+                AggiungiGenitoreController controller = loader.getController();
+                Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+                controller.inizializza(tabellePane, tabellePaneController);
+        }
+        else if (persontipe.getSelectedToggle().equals(PersonaleButton)){
+            loader = new FXMLLoader(getClass().getResource("../view/AggiungiPersonale.fxml"));
+            aggiungipane = loader.load();
+            mainpane.setCenter(aggiungipane);
+            AggiungiPersonaleController controller = loader.getController();
+            Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(tabellePane, tabellePaneController);
 
-                    else
-                        ((BorderPane) scegliPersonaPane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/AggiungiFornitore.fxml")));
-                }
-            }
+
+        }
+        else if (persontipe.getSelectedToggle().equals(PediatraButton)) {
+            loader = new FXMLLoader(getClass().getResource("../view/AggiungiPediatra.fxml"));
+            aggiungipane = loader.load();
+            mainpane.setCenter(aggiungipane);
+            AggiungiPediatraController controller = loader.getController();
+            Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(tabellePane, tabellePaneController);
+        }
+        else if (persontipe.getSelectedToggle().equals(FornitoreButton)){
+            loader = new FXMLLoader(getClass().getResource("../view/AggiungiFornitore.fxml"));
+            aggiungipane = loader.load();
+            mainpane.setCenter(aggiungipane);
+            AggiungiFornitoreController controller = loader.getController();
+            Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(tabellePane, tabellePaneController);
+
+
         }
     }
 }

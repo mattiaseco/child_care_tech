@@ -29,14 +29,21 @@ public class AggiungiGenitoreController {
     @FXML private TextField telField;
     @FXML private TextField indField;
     @FXML private DatePicker dataField;
+    private TabellePaneController tabellePaneController;
+    private Pane tabellePane;
 
     @FXML private Text alertbox;
+
+    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+    }
 
     @FXML
     public void returnToTabellePane() throws IOException {
 
-        ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void aggiungiGenitore() throws IOException, SQLException {
@@ -69,7 +76,8 @@ public class AggiungiGenitoreController {
 
             parentsControll.inserisciGenitore(cf,nome,cognome,data,indirizzo,telefono);
 
-            ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
     }
 }

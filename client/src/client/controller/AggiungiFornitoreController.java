@@ -28,6 +28,13 @@ public class AggiungiFornitoreController extends AnchorPane {
     @FXML private TextField telField;
     @FXML private TextField partivaField;
     @FXML private DatePicker dataField;
+    private TabellePaneController tabellePaneController;
+    private Pane tabellePane;
+
+    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+    }
 
     @FXML
     AnchorPane aggiungipane;
@@ -38,8 +45,8 @@ public class AggiungiFornitoreController extends AnchorPane {
     @FXML
     public void returnToTabellePane() throws IOException {
 
-        ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void aggiungiFornitore() throws IOException, SQLException {
@@ -78,7 +85,8 @@ public class AggiungiFornitoreController extends AnchorPane {
         else {
 
             providersController.inserisciFornitore(partitaIVA,cf,nome,cognome,data,indirizzo,telefono);
-            ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
+            ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
         }
 
 

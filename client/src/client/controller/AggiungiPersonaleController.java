@@ -30,12 +30,19 @@ public class AggiungiPersonaleController {
     @FXML private DatePicker dataField;
 
     @FXML private Text alertbox;
+    private TabellePaneController tabellePaneController;
+    private Pane tabellePane;
+
+    public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+    }
 
     @FXML
     public void returnToTabellePane() throws IOException {
 
-        ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
     @FXML
     private void aggiungiPersonale() throws IOException, SQLException {
@@ -68,8 +75,8 @@ public class AggiungiPersonaleController {
         else {
 
             personalController.inserisciPersonale(cf,nome,cognome,data,indirizzo,telefono);
-            ((BorderPane) aggiungipane.getParent()).setCenter((Pane) FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-        }
+            ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();        }
 
     }
 }
