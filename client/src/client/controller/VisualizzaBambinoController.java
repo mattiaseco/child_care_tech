@@ -27,8 +27,10 @@ public class VisualizzaBambinoController extends AnchorPane {
     @FXML Label contatto1Label;
     @FXML Label contatto2Label;
 
+    private Pane tabellePane;
+    private TabellePaneController tabellePaneController;
 
-    public void inizializza(Bambino bambino){
+    public void inizializza(Bambino bambino, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeLabel.setText(bambino.getNome());
         cognomeLabel.setText(bambino.getCognome());
         dataLabel.setText(String.valueOf(bambino.getData()));
@@ -36,14 +38,15 @@ public class VisualizzaBambinoController extends AnchorPane {
         indirizzoLabel.setText(bambino.getIndirizzo());
         contatto1Label.setText(bambino.getContatto1());
         contatto2Label.setText(bambino.getContatto2());
+
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
     }
 
     @FXML
     public void returntotabellepane()throws IOException {
-
-
-        ((BorderPane)visualizzapane.getParent()).setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-
+        ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
+        tabellePaneController.refreshTabelle();
     }
 
 }

@@ -87,7 +87,7 @@ public class AnagraficaController {
             VisualizzaBambinoController controller = loader.getController();
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
-            controller.inizializza(bambino);
+            controller.inizializza(bambino, tabellePane, tabellePaneController);
         } else if(tabellePaneController.tabellaAttiva.equals("genitore")){
 
             loader = new FXMLLoader(getClass().getResource("../view/VisualizzaGenitore.fxml"));

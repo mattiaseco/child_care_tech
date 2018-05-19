@@ -131,6 +131,16 @@ public class TabellePaneController {
         refreshContattiTable();
 
     }
+
+    public void refreshTabelle(){
+        refreshKidTable();
+        refreshGenitoreTable();
+        refreshPersonaleTable();
+        refreshPediatraTable();
+        refreshFornitoreTable();
+        refreshContattiTable();
+    }
+
     private void initColumns() {
         cfColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
         nomeColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
@@ -162,6 +172,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        kids.clear();
         kids.addAll(kidsList);
     }
     private void refreshGenitoreTable() {
@@ -175,6 +186,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        parents.clear();
         parents.addAll(parentList);
     }
     private void refreshPersonaleTable() {
@@ -188,6 +200,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        personal.clear();
         personal.addAll(personalList);
     }
     private void refreshPediatraTable() {
@@ -201,6 +214,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        pediatra.clear();
         pediatra.addAll(pediatraList);
     }
     private void refreshFornitoreTable() {
@@ -214,6 +228,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        providers.clear();
         providers.addAll(fornitoreList);
     }
     private void refreshContattiTable() {
@@ -227,6 +242,7 @@ public class TabellePaneController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
+        contacts.clear();
         contacts.addAll(contactsList);
     }
 
