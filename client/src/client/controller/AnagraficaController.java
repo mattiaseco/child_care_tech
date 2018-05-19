@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class AnagraficaController {
     @FXML private Button aggiungibutton;
     @FXML private Button cancellabutton;
 
+    @FXML private Text alertbox;
     @FXML
     private ImageView backhome;
 
@@ -128,6 +130,10 @@ public class AnagraficaController {
 
     }
 
-    //@FXML
-    //private void cancellapersona()throws IOException { }
+    /*@FXML
+    private void cancellapersona()throws IOException {
+            alertbox.setText("");
+            alertbox.setText(......); qui metti la stringa ritornata dal cancella
+
+    }*/
 }
