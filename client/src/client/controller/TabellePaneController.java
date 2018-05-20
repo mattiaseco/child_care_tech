@@ -34,8 +34,8 @@ public class TabellePaneController {
     private Tab pediatraTab;
     @FXML
     private Tab personaleTab;
-    @FXML
-    private Tab contattiTab;
+    //@FXML
+    //private Tab contattiTab;
 
 
     public String tabellaAttiva;
@@ -65,10 +65,10 @@ public class TabellePaneController {
     @FXML private TableColumn<Fornitore, String> nomeColumn5;
     @FXML private TableColumn<Fornitore, String> cognomeColumn5;
 
-    @FXML public TableView<Contatti> contattiTable;
-    @FXML private TableColumn<Contatti, String> cfColumn6;
-    @FXML private TableColumn<Contatti, String> nomeColumn6;
-    @FXML private TableColumn<Contatti, String> cognomeColumn6;
+    //@FXML public TableView<Contatti> contattiTable;
+    //@FXML private TableColumn<Contatti, String> cfColumn6;
+    //@FXML private TableColumn<Contatti, String> nomeColumn6;
+    //@FXML private TableColumn<Contatti, String> cognomeColumn6;
 
 
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
@@ -76,14 +76,14 @@ public class TabellePaneController {
     private ObservableList<Personale> personal = FXCollections.observableArrayList();
     private ObservableList<Pediatra> pediatra = FXCollections.observableArrayList();
     private ObservableList<Fornitore> providers = FXCollections.observableArrayList();
-    private ObservableList<Contatti> contacts = FXCollections.observableArrayList();
+    //private ObservableList<Contatti> contacts = FXCollections.observableArrayList();
 
     private iBambinoDAO kidDAO;
     private iGenitoreDAO parentsDAO;
     private iPersonaleDAO personalDAO;
     private iPediatraDAO pediatraDAO;
     private iFornitoreDAO providersDAO;
-    private iContattiDAO contactsDAO;
+    //private iContattiDAO contactsDAO;
 
 
     public void initialize() {
@@ -92,7 +92,7 @@ public class TabellePaneController {
         personalDAO = NamingContextManager.getPersonalController();
         pediatraDAO = NamingContextManager.getPediatraController();
         providersDAO = NamingContextManager.getProvidersController();
-        contactsDAO = NamingContextManager.getContactsController();
+        //contactsDAO = NamingContextManager.getContactsController();
 
         initTables();
         initColumns();
@@ -104,7 +104,7 @@ public class TabellePaneController {
         personaleTable.setItems(personal);
         pediatraTable.setItems(pediatra);
         fornitoreTable.setItems(providers);
-        contattiTable.setItems(contacts);
+        //contattiTable.setItems(contacts);
 
         tabellaAttiva = "kid";
         tabellePane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -118,9 +118,10 @@ public class TabellePaneController {
                 tabellaAttiva="pediatra";
             } else if(newValue.equals(fornitoreTab)){
                 tabellaAttiva="fornitore";
-            } else if(newValue.equals(contattiTab)){
-                tabellaAttiva="contatti";
             }
+            //else if(newValue.equals(contattiTab)){
+            //    tabellaAttiva="contatti";
+            //}
         });
 
         refreshKidTable();
@@ -128,7 +129,7 @@ public class TabellePaneController {
         refreshPersonaleTable();
         refreshPediatraTable();
         refreshFornitoreTable();
-        refreshContattiTable();
+        //refreshContattiTable();
 
     }
 
@@ -138,7 +139,7 @@ public class TabellePaneController {
         refreshPersonaleTable();
         refreshPediatraTable();
         refreshFornitoreTable();
-        refreshContattiTable();
+        //refreshContattiTable();
     }
 
     private void initColumns() {
@@ -157,9 +158,9 @@ public class TabellePaneController {
         cfColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
         nomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
         cognomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        cfColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        //cfColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        //nomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        //cognomeColumn6.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
     }
     public void refreshKidTable() {
         List<Bambino> kidsList = new ArrayList<>();
@@ -231,7 +232,7 @@ public class TabellePaneController {
         providers.clear();
         providers.addAll(fornitoreList);
     }
-    public void refreshContattiTable() {
+    /*public void refreshContattiTable() {
         List<Contatti> contactsList = new ArrayList<>();
         try {
             contactsList = contactsDAO.getAllContatti();
@@ -244,6 +245,6 @@ public class TabellePaneController {
         }
         contacts.clear();
         contacts.addAll(contactsList);
-    }
+    }*/
 
 }

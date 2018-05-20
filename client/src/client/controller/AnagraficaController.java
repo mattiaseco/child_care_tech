@@ -36,6 +36,8 @@ public class AnagraficaController {
     @FXML
     private Text alertbox;
     @FXML
+    private Text alertboxerror;
+    @FXML
     private ImageView backhome;
 
     private Stage actual;
@@ -50,6 +52,7 @@ public class AnagraficaController {
 
     @FXML
     private void backtohome() throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         actual = (Stage) backhome.getScene().getWindow();
         actual.setScene(new Scene(root, backhome.getScene().getWidth(), backhome.getScene().getHeight()));
@@ -82,6 +85,9 @@ public class AnagraficaController {
 
     @FXML
     private void gotovisualizzapersona() throws IOException {
+        alertbox.setText("");
+        alertboxerror.setText("");
+
         FXMLLoader loader;
         Pane visualizzaPane;
 
@@ -135,6 +141,9 @@ public class AnagraficaController {
 
     @FXML
     private void modificaAction() throws IOException {
+        alertbox.setText("");
+        alertboxerror.setText("");
+
         FXMLLoader loader;
         Pane modificapane;
         if (tabellePaneController.tabellaAttiva.equals("kid")) {
@@ -177,6 +186,9 @@ public class AnagraficaController {
 
     @FXML
     private void gotoaggiungipersona() throws IOException {
+        alertbox.setText("");
+        alertboxerror.setText("");
+
         FXMLLoader loader;
         Pane aggiungipane;
         loader = new FXMLLoader(getClass().getResource("../view/ScegliPersona.fxml"));
@@ -193,6 +205,7 @@ public class AnagraficaController {
     private void cancellapersona() throws IOException, SQLException {
 
         alertbox.setText("");
+        alertboxerror.setText("");
 
         if (tabellePaneController.tabellaAttiva.equals("kid")) {
             String cf;
@@ -200,10 +213,8 @@ public class AnagraficaController {
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
             if (bambino == null){
-
-                alertbox.setText("Attenzione selezionare una riga\n" +
-                        "                oppure" +
-                        "           popolare la tabella!!");
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
             }
             else {
@@ -211,7 +222,10 @@ public class AnagraficaController {
                 cf = bambino.getCf();
                 kidController.cancellaBambino(cf);
                 tabellePaneController.refreshTabelle();
-                alertbox.setText("Bambino Cancellato!");
+                alertboxerror.setText("");
+                alertbox.setText("Cancellazione\neffettuata !");
+
+
             }
 
         } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
@@ -220,17 +234,17 @@ public class AnagraficaController {
             Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
 
             if (genitore== null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-                alertbox.setText("Attenzione selezionare una riga\n" +
-                        "                oppure" +
-                        "           popolare la tabella!!");
 
             }
             else {
                 cf = genitore.getCf();
                 parentsController.cancellaGenitore(cf);
                 tabellePaneController.refreshTabelle();
-                alertbox.setText("Genitore Cancellato!");
+                alertboxerror.setText("");
+                alertbox.setText("Cancellazione\neffettuata !");
             }
 
         } else if (tabellePaneController.tabellaAttiva.equals("personale")) {
@@ -239,18 +253,18 @@ public class AnagraficaController {
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
 
             if (personale == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-                    alertbox.setText("Attenzione selezionare una riga\n" +
-                            "                oppure" +
-                            "           popolare la tabella!!");
 
             }
             else {
                 cf = personale.getCf();
                 personalController.cancellaPersonale(cf);
                 tabellePaneController.refreshTabelle();
-                alertbox.setText("Membro del Personale \n " +
-                        "          Cancellato!");
+                alertboxerror.setText("");
+                alertbox.setText("Cancellazione\neffettuata !");
+
             }
 
         } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
@@ -258,17 +272,17 @@ public class AnagraficaController {
             iPediatraDAO pediatraController = NamingContextManager.getPediatraController();
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
             if (pediatra == null) {
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-                alertbox.setText("Attenzione selezionare una riga\n" +
-                        "                oppure" +
-                        "              popolare la tabella!!");
 
             } else {
 
                 cf = pediatra.getCf();
                 pediatraController.cancellaPediatra(cf);
                 tabellePaneController.refreshTabelle();
-                alertbox.setText("Pediatra Cancellato!");
+                alertboxerror.setText("");
+                alertbox.setText("Cancellazione\neffettuata !");
             }
 
 
@@ -277,15 +291,16 @@ public class AnagraficaController {
             iFornitoreDAO providersController = NamingContextManager.getProvidersController();
             Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
             if (fornitore == null) {
-                alertbox.setText("Attenzione selezionare una riga\n" +
-                        "                   oppure" +
-                        "           popolare la tabella!!");
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
             }
             else {
                 cf = fornitore.getCf();
                 providersController.cancellaFornitore(cf);
                 tabellePaneController.refreshTabelle();
-                alertbox.setText("Fornitore Cancellato!");
+                alertboxerror.setText("");
+                alertbox.setText("Cancellazione\neffettuata !");
             }
         }
     }

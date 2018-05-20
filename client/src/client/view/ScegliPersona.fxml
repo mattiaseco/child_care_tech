@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="scegliPersonaPane" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.ScegliPersonaController">
     <children>
@@ -27,6 +28,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                   <RadioButton fx:id="BambinoButton" contentDisplay="CENTER" mnemonicParsing="false" text="Bambino" textAlignment="CENTER">
@@ -34,25 +36,25 @@
                         <Font size="18.0" />
                      </font>
                      <toggleGroup>
-                        <ToggleGroup fx:id="persontipe" />
+                        <ToggleGroup fx:id="persontype" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="GenitoreButton" mnemonicParsing="false" text="Genitore" toggleGroup="$persontipe" GridPane.rowIndex="1">
+                  <RadioButton fx:id="GenitoreButton" mnemonicParsing="false" text="Genitore" toggleGroup="$persontype" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="PersonaleButton" mnemonicParsing="false" text="Personale" toggleGroup="$persontipe" GridPane.rowIndex="2">
+                  <RadioButton fx:id="PersonaleButton" mnemonicParsing="false" text="Personale" toggleGroup="$persontype" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="PediatraButton" mnemonicParsing="false" text="Pediatra" toggleGroup="$persontipe" GridPane.rowIndex="3">
+                  <RadioButton fx:id="PediatraButton" mnemonicParsing="false" text="Pediatra" toggleGroup="$persontype" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="FornitoreButton" mnemonicParsing="false" text="Fornitore" toggleGroup="$persontipe" GridPane.rowIndex="4">
+                  <RadioButton fx:id="FornitoreButton" mnemonicParsing="false" text="Fornitore" toggleGroup="$persontype" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -62,6 +64,11 @@
                         <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#confermaAction" text="conferma" />
                      </children>
                   </HBox>
+                  <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
                     </children>
                 </GridPane>
             </children>

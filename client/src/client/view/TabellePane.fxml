@@ -68,17 +68,6 @@
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab fx:id="contattiTab" text="contatti">
-                     <content>
-                        <TableView fx:id="contattiTable" prefHeight="500.0" prefWidth="500.0">
-                           <columns>
-                              <TableColumn fx:id="cfColumn6" prefWidth="150.0" text="codice fiscale" />
-                              <TableColumn fx:id="nomeColumn6" prefWidth="150.0" text="nome" />
-                              <TableColumn fx:id="cognomeColumn6" prefWidth="150.0" text="cognome" />
-                           </columns>
-                        </TableView>
-                     </content>
-                  </Tab>
               </tabs>
             </TabPane>
          </children>

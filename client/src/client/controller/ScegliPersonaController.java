@@ -1,18 +1,15 @@
 package client.controller;
 
 import common.Classes.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -36,7 +33,10 @@ public class ScegliPersonaController {
     AnchorPane scegliPersonaPane;
 
     @FXML
-    ToggleGroup persontipe;
+    ToggleGroup persontype;
+
+    @FXML
+    private Text alertbox;
 
     private BorderPane mainpane;
     private Pane tabellePane;
@@ -51,9 +51,11 @@ public class ScegliPersonaController {
 
     @FXML
     private void confermaAction() throws IOException {
+        alertbox.setText("");
+
         FXMLLoader loader;
         Pane aggiungipane;
-        if (persontipe.getSelectedToggle().equals(BambinoButton)) {
+        if (persontype.getSelectedToggle().equals(BambinoButton)) {
             loader = new FXMLLoader(getClass().getResource("../view/AggiungiBambino.fxml"));
             aggiungipane = loader.load();
             mainpane.setCenter(aggiungipane);
@@ -63,15 +65,15 @@ public class ScegliPersonaController {
 
             controller.inizializza(tabellePane, tabellePaneController);
         }
-        else if (persontipe.getSelectedToggle().equals(GenitoreButton)){
-                loader = new FXMLLoader(getClass().getResource("../view/AggiungiGenitore.fxml"));
-                aggiungipane = loader.load();
-                mainpane.setCenter(aggiungipane);
-                AggiungiGenitoreController controller = loader.getController();
-                Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
-                controller.inizializza(tabellePane, tabellePaneController);
+        else if (persontype.getSelectedToggle().equals(GenitoreButton)){
+            loader = new FXMLLoader(getClass().getResource("../view/AggiungiGenitore.fxml"));
+            aggiungipane = loader.load();
+            mainpane.setCenter(aggiungipane);
+            AggiungiGenitoreController controller = loader.getController();
+            Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
+            controller.inizializza(tabellePane, tabellePaneController);
         }
-        else if (persontipe.getSelectedToggle().equals(PersonaleButton)){
+        else if (persontype.getSelectedToggle().equals(PersonaleButton)){
             loader = new FXMLLoader(getClass().getResource("../view/AggiungiPersonale.fxml"));
             aggiungipane = loader.load();
             mainpane.setCenter(aggiungipane);
@@ -81,7 +83,7 @@ public class ScegliPersonaController {
 
 
         }
-        else if (persontipe.getSelectedToggle().equals(PediatraButton)) {
+        else if (persontype.getSelectedToggle().equals(PediatraButton)) {
             loader = new FXMLLoader(getClass().getResource("../view/AggiungiPediatra.fxml"));
             aggiungipane = loader.load();
             mainpane.setCenter(aggiungipane);
@@ -89,7 +91,7 @@ public class ScegliPersonaController {
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
             controller.inizializza(tabellePane, tabellePaneController);
         }
-        else if (persontipe.getSelectedToggle().equals(FornitoreButton)){
+        else if (persontype.getSelectedToggle().equals(FornitoreButton)){
             loader = new FXMLLoader(getClass().getResource("../view/AggiungiFornitore.fxml"));
             aggiungipane = loader.load();
             mainpane.setCenter(aggiungipane);
@@ -99,5 +101,9 @@ public class ScegliPersonaController {
 
 
         }
+        /*else{
+            alertbox.setText("Attenzione: selezionare un tipo di persona !");
+
+        }*/
     }
 }
