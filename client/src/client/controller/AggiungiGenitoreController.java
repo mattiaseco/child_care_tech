@@ -69,7 +69,7 @@ public class AggiungiGenitoreController {
         else if( cf.length() < 16) {
             alertbox.setText("Attenzione: Codice Fiscale troppo corto !");
         }
-        else if ( cf.length() > 17){
+        else if ( cf.length() > 16){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
         else {
