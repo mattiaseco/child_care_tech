@@ -92,50 +92,88 @@ public class AnagraficaController {
         Pane visualizzaPane;
 
         if (tabellePaneController.tabellaAttiva.equals("kid")) {
-            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaBambino.fxml"));
-            visualizzaPane = loader.load();
-            mainpane.setCenter(visualizzaPane);
 
-            VisualizzaBambinoController controller = loader.getController();
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+            if (bambino == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-            controller.inizializza(bambino, tabellePane, tabellePaneController);
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/VisualizzaBambino.fxml"));
+                visualizzaPane = loader.load();
+                mainpane.setCenter(visualizzaPane);
+                VisualizzaBambinoController controller = loader.getController();
+                controller.inizializza(bambino, tabellePane, tabellePaneController);
+            }
         } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
 
-            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaGenitore.fxml"));
-            visualizzaPane = loader.load();
-            mainpane.setCenter(visualizzaPane);
-
-            VisualizzaGenitoreController controller = loader.getController();
             Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(genitore, tabellePane, tabellePaneController);
-        } else if (tabellePaneController.tabellaAttiva.equals("personale"))
+            if (genitore == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-        {
-            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPersonale.fxml"));
-            visualizzaPane = loader.load();
-            mainpane.setCenter(visualizzaPane);
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/VisualizzaGenitore.fxml"));
+                visualizzaPane = loader.load();
+                mainpane.setCenter(visualizzaPane);
 
-            VisualizzaPersonaleController controller = loader.getController();
+                VisualizzaGenitoreController controller = loader.getController();
+                controller.inizializza(genitore, tabellePane, tabellePaneController);
+
+            }
+        } else if (tabellePaneController.tabellaAttiva.equals("personale")) {
+
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(personale, tabellePane, tabellePaneController);
+            if (personale == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPersonale.fxml"));
+                visualizzaPane = loader.load();
+                mainpane.setCenter(visualizzaPane);
+
+                VisualizzaPersonaleController controller = loader.getController();
+                controller.inizializza(personale, tabellePane, tabellePaneController);
+
+            }
 
         } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
-            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPediatra.fxml"));
-            visualizzaPane = loader.load();
-            mainpane.setCenter(visualizzaPane);
 
-            VisualizzaPediatraController controller = loader.getController();
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(pediatra, tabellePane, tabellePaneController);
-        } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
-            loader = new FXMLLoader(getClass().getResource("../view/VisualizzaFornitore.fxml"));
-            visualizzaPane = loader.load();
-            mainpane.setCenter(visualizzaPane);
+            if (pediatra == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
-            VisualizzaFornitoreController controller = loader.getController();
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/VisualizzaPediatra.fxml"));
+                visualizzaPane = loader.load();
+                mainpane.setCenter(visualizzaPane);
+
+                VisualizzaPediatraController controller = loader.getController();
+                controller.inizializza(pediatra, tabellePane, tabellePaneController);
+
+            }
+        } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
+
             Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(fornitore, tabellePane, tabellePaneController);
+            if (fornitore == null){
+                    alertbox.setText("");
+                    alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/VisualizzaFornitore.fxml"));
+                visualizzaPane = loader.load();
+                mainpane.setCenter(visualizzaPane);
+
+                VisualizzaFornitoreController controller = loader.getController();
+                controller.inizializza(fornitore, tabellePane, tabellePaneController);
+
+            }
         }
     }
 
@@ -147,40 +185,87 @@ public class AnagraficaController {
         FXMLLoader loader;
         Pane modificapane;
         if (tabellePaneController.tabellaAttiva.equals("kid")) {
-            loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
-            modificapane = loader.load();
-            mainpane.setCenter(modificapane);
-            ModificaBambinoController controller = loader.getController();
+            //loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
+            //modificapane = loader.load();
+            //mainpane.setCenter(modificapane);
+            //ModificaBambinoController controller = loader.getController();
             Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(bambino, tabellePane, tabellePaneController);
+            if (bambino == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else{
+                loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
+                modificapane = loader.load();
+                mainpane.setCenter(modificapane);
+                ModificaBambinoController controller = loader.getController();
+                controller.inizializza(bambino, tabellePane, tabellePaneController);
+            }
+            //controller.inizializza(bambino, tabellePane, tabellePaneController);
         } else if (tabellePaneController.tabellaAttiva.equals("genitore")) {
-            loader = new FXMLLoader(getClass().getResource("../view/ModificaGenitore.fxml"));
-            modificapane = loader.load();
-            mainpane.setCenter(modificapane);
-            ModificaGenitoreController controller = loader.getController();
+
             Genitore genitore = tabellePaneController.genitoreTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(genitore, tabellePane, tabellePaneController);
+            if (genitore == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else{
+                loader = new FXMLLoader(getClass().getResource("../view/ModificaGenitore.fxml"));
+                modificapane = loader.load();
+                mainpane.setCenter(modificapane);
+                ModificaGenitoreController controller = loader.getController();
+                controller.inizializza(genitore, tabellePane, tabellePaneController);
+
+            }
         } else if (tabellePaneController.tabellaAttiva.equals("personale")) {
-            loader = new FXMLLoader(getClass().getResource("../view/ModificaPersonale.fxml"));
-            modificapane = loader.load();
-            mainpane.setCenter(modificapane);
-            ModificaPersonaleController controller = loader.getController();
+
             Personale personale = tabellePaneController.personaleTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(personale, tabellePane, tabellePaneController);
+            if (personale == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else{
+                loader = new FXMLLoader(getClass().getResource("../view/ModificaPersonale.fxml"));
+                modificapane = loader.load();
+                mainpane.setCenter(modificapane);
+                ModificaPersonaleController controller = loader.getController();
+                controller.inizializza(personale, tabellePane, tabellePaneController);
+
+            }
         } else if (tabellePaneController.tabellaAttiva.equals("pediatra")) {
-            loader = new FXMLLoader(getClass().getResource("../view/ModificaPediatra.fxml"));
-            modificapane = loader.load();
-            mainpane.setCenter(modificapane);
-            ModificaPediatraController controller = loader.getController();
+
             Pediatra pediatra = tabellePaneController.pediatraTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(pediatra, tabellePane, tabellePaneController);
+            if (pediatra == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/ModificaPediatra.fxml"));
+                modificapane = loader.load();
+                mainpane.setCenter(modificapane);
+                ModificaPediatraController controller = loader.getController();
+                controller.inizializza(pediatra, tabellePane, tabellePaneController);
+            }
         } else if (tabellePaneController.tabellaAttiva.equals("fornitore")) {
-            loader = new FXMLLoader(getClass().getResource("../view/ModificaFornitore.fxml"));
-            modificapane = loader.load();
-            mainpane.setCenter(modificapane);
-            ModificaFornitoreController controller = loader.getController();
+
             Fornitore fornitore = tabellePaneController.fornitoreTable.getSelectionModel().getSelectedItem();
-            controller.inizializza(fornitore, tabellePane, tabellePaneController);
+            if (fornitore == null){
+                alertbox.setText("");
+                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+            }
+            else {
+                loader = new FXMLLoader(getClass().getResource("../view/ModificaFornitore.fxml"));
+                modificapane = loader.load();
+                mainpane.setCenter(modificapane);
+                ModificaFornitoreController controller = loader.getController();
+                controller.inizializza(fornitore, tabellePane, tabellePaneController);
+
+            }
         }
     }
 

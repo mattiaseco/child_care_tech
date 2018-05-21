@@ -55,6 +55,10 @@ public class ScegliPersonaController {
 
         FXMLLoader loader;
         Pane aggiungipane;
+        if(persontype.getSelectedToggle() == null) {
+            alertbox.setText("Attenzione: selezionare un tipo di persona !");
+            return;
+        }
         if (persontype.getSelectedToggle().equals(BambinoButton)) {
             loader = new FXMLLoader(getClass().getResource("../view/AggiungiBambino.fxml"));
             aggiungipane = loader.load();
