@@ -6,6 +6,7 @@ import common.Interface.iGitaDAO;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,10 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
     public GitaDAO() throws RemoteException {
     }
     @Override
-    public void inserisciGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti) throws SQLException {
+    public void inserisciGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti, LocalDate data_partenza, LocalDate data_ritorno, String costo,String descrizione) throws SQLException {
 
         try {
-            createGita(codice_g,destinazione,num_pullman,num_partecipanti);
+            createGita(codice_g,destinazione,num_pullman,num_partecipanti, data_partenza, data_ritorno,costo,descrizione);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -27,12 +28,12 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    private static void createGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti) throws SQLException {
+    private static void createGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno,String costo,String descrizione) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateGitaSQL(codice_g,destinazione,num_pullman,num_partecipanti);
+        String sql = buildCreateGitaSQL(codice_g,destinazione,num_pullman,num_partecipanti, data_partenza, data_ritorno,costo,descrizione);
 
         try {
 
@@ -49,16 +50,16 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    private static String buildCreateGitaSQL(String codice_g, String destinazione, int num_pullman, int num_partecipanti) {
+    private static String buildCreateGitaSQL(String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno, String costo,String descrizione) {
 
-        return "INSERT INTO Bambino(codice_g,destinazione,num_pullman,num_partecipanti)" +
-                "VALUES('" + codice_g + "','" + destinazione + "','" + num_pullman + "','" + num_pullman +"')";
+        return "INSERT INTO Bambino(codice_g,destinazione,num_pullman,num_partecipanti,data_partenza,data_ritorno,costo,descrizione)" +
+                "VALUES('" + codice_g + "','" + destinazione + "','" + num_pullman + "','" + num_pullman +"','"+data_partenza+"',"+data_ritorno+"','"+costo+"',"+descrizione+"')";
 
     }
 
-    public void modificaGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti) throws SQLException {
+    public void modificaGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno,String costo,String descrizione) throws SQLException {
         try {
-            updateGita(codice_g,destinazione,num_pullman,num_partecipanti);
+            updateGita(codice_g,destinazione,num_pullman,num_partecipanti,data_partenza,data_ritorno, costo, descrizione);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -67,12 +68,12 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    private static void updateGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti) throws SQLException {
+    private static void updateGita(String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno, String costo, String descrizione) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildUpdateGitaSQL(codice_g,destinazione,num_pullman,num_partecipanti);
+        String sql = buildUpdateGitaSQL(codice_g,destinazione,num_pullman,num_partecipanti,data_partenza,data_ritorno,costo,descrizione);
 
         try {
             rs = st.executeQuery(sql);
@@ -90,8 +91,8 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    public static String buildUpdateGitaSQL(String codice_g, String destinazione, int num_pullman, int num_partecipanti) throws SQLException {
-        return "UPDATE Gita SET codice_g = '" + codice_g + "' and destinazione = '" + destinazione + "'and num_pulman ='" + num_pullman + "'and num_partecipanti ='" + num_partecipanti + "'";
+    public static String buildUpdateGitaSQL(String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno, String costo, String descrizione) throws SQLException {
+        return "UPDATE Gita SET codice_g = '" + codice_g + "' , destinazione = '" + destinazione + "', num_pulman ='" + num_pullman + "', num_partecipanti ='" + num_partecipanti + "',data_partenza='"+data_partenza+"',data_ritorno='"+data_ritorno+"',costo='"+costo+"',descrizione='"+descrizione+"'WHERE codice_g='"+codice_g+"'";
     }
 
     public List<Gita> getAllGite() throws RemoteException, SQLException {
@@ -107,8 +108,12 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
             String destinazione = rs.getString("destinazione");
             int num_pullman=rs.getInt("num_pullman");
             int num_partecipanti=rs.getInt("num_partecipanti");
+            LocalDate data_partenza=LocalDate.parse("data_partenza");
+            LocalDate data_ritorno=LocalDate.parse("data_ritorno");
+            String costo=rs.getString("costo");
+            String descrizione=rs.getString("descrizione");
 
-            Gita gita = new Gita(codice_g,destinazione,num_pullman,num_partecipanti);
+            Gita gita = new Gita(codice_g,destinazione,num_pullman,num_partecipanti,data_partenza,data_ritorno,costo,descrizione);
 
             gitaList.add(gita);
         }

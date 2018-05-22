@@ -2,21 +2,21 @@ package common.Classes;
 
 public class Intolleranze {
 
-    private Piatto nomePiatto;
+    private Bambino cf;
     private Ingredienti nomeIngr;
 
-    public Intolleranze (Piatto nomePiatto, Ingredienti nomeIngr){
+    public Intolleranze (Bambino cf, Ingredienti nomeIngr){
 
-        this.nomePiatto = nomePiatto;
+        this.cf = cf;
         this.nomeIngr = nomeIngr;
     }
 
-    public Piatto getNomePiatto() {
-        return nomePiatto;
+    public Bambino getCf() {
+        return cf;
     }
 
-    public void setNomePiatto(Piatto nomePiatto) {
-        this.nomePiatto = nomePiatto;
+    public void setCf(Bambino cf) {
+        this.cf = cf;
     }
 
     public Ingredienti getNomeIngr() {

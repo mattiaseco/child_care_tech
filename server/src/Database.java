@@ -111,6 +111,10 @@ public class Database {
                 "num_pullman INT NOT NULL ," +
                 "destinazione VARCHAR(20) NOT NULL ," +
                 "num_partecipanti INT NOT NULL,"+
+                "data_partenza DATE NOT NULL,"+
+                "data_ritorno DATE NOT NULL,"+
+                "costo VARCHAR(10) NOT NULL,"+
+                "descrizione VARCHAR(256)"+
                 "PRIMARY KEY(codice_g))";
         stmt.executeUpdate(sql10);
 
