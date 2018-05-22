@@ -78,7 +78,7 @@ public class ModificaBambinoController extends  AnchorPane{
         contatto2 = cont2Field.getText();
         data = dataField.getValue();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || contatto1 == ""){
+        if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || contatto1.isEmpty() || data == null){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

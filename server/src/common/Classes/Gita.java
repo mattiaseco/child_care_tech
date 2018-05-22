@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Gita {
 
-    private String codice_g;
+    private int codice_g;
     private String destinazione;
     private int num_pullman;
     private int num_partecipanti;
@@ -14,7 +14,7 @@ public class Gita {
     private String descrizione;
 
 
-    public Gita (String codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno,String costo, String descrizione){
+    public Gita (int codice_g, String destinazione, int num_pullman, int num_partecipanti,LocalDate data_partenza, LocalDate data_ritorno,String costo, String descrizione){
 
         this.codice_g = codice_g;
         this.destinazione = destinazione;
@@ -27,10 +27,10 @@ public class Gita {
 
     }
 
-    public String getCodice_g() {
+    public int getCodice_g() {
         return codice_g;
     }
-    public void setCodice_g(String codice_g) {
+    public void setCodice_g(int codice_g) {
         this.codice_g = codice_g;
     }
 

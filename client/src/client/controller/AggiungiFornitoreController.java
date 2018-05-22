@@ -65,7 +65,7 @@ public class AggiungiFornitoreController extends AnchorPane {
         partitaIVA = partivaField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
+        if(cf.isEmpty()|| nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() ||  data == null || partitaIVA.isEmpty() || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

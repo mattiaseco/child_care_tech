@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class VisualizzaPersonaleController {
+public class VisualizzaPersonaleController extends AnchorPane{
     @FXML
     Button annullabutton;
 

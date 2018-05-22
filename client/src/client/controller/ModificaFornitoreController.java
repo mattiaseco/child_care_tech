@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class ModificaFornitoreController {
+public class ModificaFornitoreController extends AnchorPane{
 
     @FXML private TextField nomeField;
     @FXML private TextField cognField;
@@ -70,7 +70,7 @@ public class ModificaFornitoreController {
         telefono =telField.getText();
         partitaIVA = partivaField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" ||  data == null || partitaIVA == "" || telefono == ""){
+        if(cf.isEmpty()|| nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() ||  data == null || partitaIVA.isEmpty() || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

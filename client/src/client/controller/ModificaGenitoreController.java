@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class ModificaGenitoreController {
+public class ModificaGenitoreController extends AnchorPane{
 
     @FXML private TextField nomeField;
     @FXML private TextField cognField;
@@ -64,7 +64,7 @@ public class ModificaGenitoreController {
         indirizzo = indField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
+        if(cf.isEmpty() || nome.isEmpty()|| cognome.isEmpty() || indirizzo.isEmpty() || data == null || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

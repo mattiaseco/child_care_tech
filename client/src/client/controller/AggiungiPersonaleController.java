@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class AggiungiPersonaleController {
+public class AggiungiPersonaleController extends AnchorPane{
     @FXML
     AnchorPane aggiungipane;
 
@@ -61,7 +61,7 @@ public class AggiungiPersonaleController {
         indirizzo = indField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
+        if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || data == null || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

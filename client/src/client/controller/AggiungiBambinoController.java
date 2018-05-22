@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import static client.controller.AnagraficaController.tabellePane;
 
 
-public class AggiungiBambinoController extends AnchorPane {
+public class AggiungiBambinoController {
 
     @FXML private Button annullabutton;
     @FXML private Button confermabutton;

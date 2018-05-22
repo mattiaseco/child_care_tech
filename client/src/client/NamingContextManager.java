@@ -87,10 +87,10 @@ public class NamingContextManager {
 
     }
 
-    public static iContattiDAO getContactsController() {
+    public static iGitaDAO getTripsController(){
         try {
-            String url = "rmi://127.0.0.1:1099/contacts_controller";
-            return (iContattiDAO) Naming.lookup(url);
+            String url = "rmi://127.0.0.1:1099/trips_controller";
+            return (iGitaDAO) Naming.lookup(url);
         } catch (NotBoundException | MalformedURLException | RemoteException e){
             System.err.println(e.getMessage());
             e.printStackTrace();

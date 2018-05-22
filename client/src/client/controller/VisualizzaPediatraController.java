@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class VisualizzaPediatraController {
+public class VisualizzaPediatraController extends AnchorPane {
     @FXML
     Button annullabutton;
 

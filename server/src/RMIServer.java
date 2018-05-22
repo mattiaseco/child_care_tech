@@ -18,7 +18,7 @@ public class RMIServer {
             registry.bind("pediatra_controller", new PediatraDAO());
             registry.bind("personal_controller",new PersonaleDAO());
             registry.bind("providers_controller", new FornitoreDAO());
-            registry.bind("contacts_controller", new ContattiDAO());
+            registry.bind("trips_controller", new GitaDAO());
         } catch (Exception e) {
             System.err.println("[RMI]Server exception");
             e.printStackTrace();

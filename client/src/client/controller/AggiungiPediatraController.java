@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.concurrent.TimeoutException;
 
-public class AggiungiPediatraController {
+public class AggiungiPediatraController extends AnchorPane {
 
     @FXML AnchorPane aggiungipane;
 
@@ -61,7 +61,7 @@ public class AggiungiPediatraController {
         indirizzo = indField.getText();
         telefono = telField.getText();
 
-        if(cf == "" || nome == "" || cognome == "" || indirizzo == "" || data == null || telefono == ""){
+        if(cf.isEmpty() || nome.isEmpty()|| cognome.isEmpty() || indirizzo.isEmpty() || data == null || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 
