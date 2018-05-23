@@ -1,6 +1,7 @@
 package Controller;
 
 import common.Classes.Menu;
+import common.Classes.Piatto;
 import common.Interface.iMunuDAO;
 
 import java.rmi.RemoteException;
@@ -14,10 +15,10 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
     public MenuDAO() throws RemoteException {
     }
     @Override
-    public void inserisciMenu(String numero, LocalDate data) throws SQLException {
+    public void inserisciMenu(String numero, LocalDate data, Piatto piatto1, Piatto piatto2, Piatto piatto3) throws SQLException {
 
         try {
-            createMenu(numero,data);
+            createMenu(numero,data,piatto1.getNome_p(),piatto2.getNome_p(),piatto3.getNome_p());
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -27,12 +28,12 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static void createMenu(String numero, LocalDate data) throws SQLException {
+    private static void createMenu(String numero, LocalDate data,String piatto1,String piatto2,String piatto3) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateMenuSQL(numero, data);
+        String sql = buildCreateMenuSQL(numero, data,piatto1,piatto2,piatto3);
 
         try {
 
@@ -49,16 +50,16 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static String buildCreateMenuSQL(String numero, LocalDate data) {
+    private static String buildCreateMenuSQL(String numero, LocalDate data,String piatto1,String piatto2,String piatto3) {
 
-        return "INSERT INTO Menu(numero,data)" +
-                "VALUES('" + numero + "','" + data + "')";
+        return "INSERT INTO Menu(numero,data,piatto1,piatto2,piatto3)" +
+                "VALUES('" + numero + "','" + data + "','"+piatto1+"','"+piatto2+"','"+piatto3+"')";
 
     }
 
-    public void modificaMenu(String numero, LocalDate data) throws SQLException {
+    public void modificaMenu(String numero, LocalDate data,Piatto piatto1, Piatto piatto2, Piatto piatto3) throws SQLException {
         try {
-            updateMenu(numero, data);
+            updateMenu(numero, data,piatto1.getNome_p(),piatto2.getNome_p(),piatto3.getNome_p());
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -67,12 +68,12 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static void updateMenu(String numero, LocalDate data) throws SQLException {
+    private static void updateMenu(String numero, LocalDate data,String piatto1,String piatto2,String piatto3) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildUpdateMenuSQL(numero, data);
+        String sql = buildUpdateMenuSQL(numero, data,piatto1,piatto2,piatto3);
 
         try {
             rs = st.executeQuery(sql);
@@ -90,8 +91,8 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    public static String buildUpdateMenuSQL(String numero, LocalDate data)  throws SQLException {
-        return "UPDATE Menu SET numero = '" + numero + "' and data = '" + data + "'";
+    public static String buildUpdateMenuSQL(String numero, LocalDate data,String piatto1,String piatto2,String piatto3)  throws SQLException {
+        return "UPDATE Menu SET numero = '" + numero + "' , data = '" + data + "',piatto1='"+piatto1+"',piatto2='"+piatto2+"',piatto3='"+piatto3+"'";
     }
 
     public List<common.Classes.Menu> getAllMenu()  throws RemoteException, SQLException {
@@ -106,12 +107,28 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
             String numero=rs.getString("numero");
             LocalDate data = LocalDate.parse(rs.getString("data"));
+            String piatto1=rs.getString("piatto1");
+            String piatto2=rs.getString("piatto2");
+            String piatto3=rs.getString("piatto3");
 
-            common.Classes.Menu menu = new Menu(numero,data);
+            common.Classes.Menu menu = new Menu(numero,data,getPiatto(piatto1),getPiatto(piatto2),getPiatto(piatto3));
 
             menuList.add(menu);
         }
         return menuList;
+    }
+    private Piatto getPiatto(String piatto)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Piatto WHERE nome_p='"+piatto+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        String nome_p = rs.getString("nome_p");
+        String tipo=rs.getString("tipo");
+        int quantità=rs.getInt("quantita");
+
+        Piatto piatto1= new Piatto(nome_p,tipo,quantità);
+         return piatto1;
+
     }
 
     public void cancellaMenu(String numero)throws SQLException {

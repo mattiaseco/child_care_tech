@@ -90,19 +90,25 @@ public class Database {
         String sql7 = "CREATE TABLE IF NOT EXISTS Menu " +
                 "(numero INT ," +
                 "data_menu DATE, "+
+                "piatto1 VARCHAR(15) ,"+
+                "piatto2 VARCHAR(15) ,"+
+                "piatto3 VARCHAR(15) ,"+
+                "INDEX(piatto1), FOREIGN KEY (piatto1) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(piatto2), FOREIGN KEY (piatto2) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(piatto3), FOREIGN KEY (piatto3) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(numero))";
         stmt.executeUpdate(sql7);
 
         String sql8 = "CREATE TABLE IF NOT EXISTS Piatto " +
                 "(nome_p VARCHAR(15) NOT NULL," +
                 "tipo VARCHAR(15) NOT NULL ,"+
-                "quantita INT NOT NULL,"+
+                "quantita INT ,"+
                  "PRIMARY KEY(nome_p))";
         stmt.executeUpdate(sql8);
 
         String sql9 = "CREATE TABLE IF NOT EXISTS Ingrediente " +
                 "(nome_i VARCHAR(15) NOT NULL," +
-                "quantita INT NOT NULL ,"+
+                "quantita INT ,"+
                 "PRIMARY KEY(nome_i))";
         stmt.executeUpdate(sql9);
 
