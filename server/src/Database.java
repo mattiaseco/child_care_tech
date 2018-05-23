@@ -102,7 +102,7 @@ public class Database {
 
         String sql9 = "CREATE TABLE IF NOT EXISTS Ingrediente " +
                 "(nome_i VARCHAR(15) NOT NULL," +
-                "quantita INT ,"+
+                "quantita INT NOT NULL ,"+
                 "PRIMARY KEY(nome_i))";
         stmt.executeUpdate(sql9);
 
@@ -113,7 +113,7 @@ public class Database {
                 "num_partecipanti INT NOT NULL,"+
                 "data_partenza DATE NOT NULL,"+
                 "data_ritorno DATE NOT NULL,"+
-                "costo VARCHAR(10) NOT NULL,"+
+                "costo DOUBLE(4,2) NOT NULL,"+
                 "descrizione VARCHAR(256),"+
                 "PRIMARY KEY(codice_g))";
         stmt.executeUpdate(sql10);
@@ -125,7 +125,7 @@ public class Database {
         stmt.executeUpdate(sql11);
 
         String sql12 = "CREATE TABLE IF NOT EXISTS Tappa " +
-                "(codice_t VARCHAR(15) NOT NULL,"+
+                "(codice_t INT(10) NOT NULL AUTO_INCREMENT,"+
                 "PRIMARY KEY(codice_t))";
         stmt.executeUpdate(sql12);
 
@@ -138,59 +138,59 @@ public class Database {
         String sql14 = "CREATE TABLE IF NOT EXISTS Attraversa " + //PERSONA GATEWAY
                 "(data_gate DATE, " +
                 "cod_porta VARCHAR(15), " +
-                "cf VARCHAR(16), "+
-                "FOREIGN KEY (data_gate) REFERENCES Gateway(data_gate) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "FOREIGN KEY (cod_porta) REFERENCES Gateway(cod_porta) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "cf VARCHAR(16) , "+
+                "INDEX(cod_porta,data_gate), FOREIGN KEY (cod_porta,data_gate) REFERENCES Gateway(cod_porta,data_gate) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(cod_porta ,data_gate, cf))";
         stmt.executeUpdate(sql14);
+
 
         String sql15 = "CREATE TABLE IF NOT EXISTS Intolleranza "+//BAMBINO INGREDIENTE
                 "(cf VARCHAR(16) NOT NULL,"+
                 "ingrediente VARCHAR(15) NOT NULL,"+
-                "FOREIGN KEY (ingrediente) REFERENCES Ingrediente(ingrediente) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "PRIMARY KEY(cf,ingrediente))";
+                "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(ingrediente), FOREIGN KEY (ingrediente) REFERENCES Ingrediente(nome_i) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY( cf, ingrediente))";
         stmt.executeUpdate(sql15);
 
         String sql16 = "CREATE TABLE IF NOT EXISTS Contiene "+//PIATTO INGREDIENTE
                 "(nome_p VARCHAR(16),"+
                 "nome_i VARCHAR(15),"+
-                "FOREIGN KEY (nome_p) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "FOREIGN KEY (nome_i) REFERENCES Ingrediente(ingrediente) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "PRIMARY KEY(nome_p, nome_i))";
+                "INDEX (nome_p), FOREIGN KEY (nome_p) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(nome_i), FOREIGN KEY (nome_i) REFERENCES Ingrediente(nome_i) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY( nome_p, nome_i))";
         stmt.executeUpdate(sql16);
 
         String sql17 = "CREATE TABLE IF NOT EXISTS Aderisce"+//GITA BAMBINO
                 "(cf VARCHAR(16),"+
-                "codice_g VARCHAR(15),"+
-                "FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "FOREIGN KEY (codice_g) REFERENCES Gita(codice_g) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "PRIMARY KEY(codice_g , cf))";
+                "codice_g int,"+
+                "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(codice_g), FOREIGN KEY (codice_g) REFERENCES Gita(codice_g) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY( cf, codice_g))";
         stmt.executeUpdate(sql17);
 
         String sql18 = "CREATE TABLE IF NOT EXISTS Utilizza"+//GITA PULLMAN
-                "(targa VARCHAR(16),"+
-                "codice_g VARCHAR(15),"+
-                "FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "FOREIGN KEY (codice_g) REFERENCES Gita(codice_g) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "(targa VARCHAR(15),"+
+                "codice_g INT,"+
+                "INDEX(targa),FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
+                "INDEX(codice_g),FOREIGN KEY (codice_g) REFERENCES Gita(codice_g) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(codice_g , targa))";
         stmt.executeUpdate(sql18);
 
         String sql19 = "CREATE TABLE IF NOT EXISTS Effettua"+//PULLMAN TAPPA
-                "(targa VARCHAR(16),"+
-                "codice_t VARCHAR(15),"+
-                "FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "FOREIGN KEY (codice_t) REFERENCES Tappa(codice_t) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "PRIMARY KEY(codice_t ,targa))";
+                "(targa VARCHAR(15),"+
+                "codice_t INT,"+
+                "INDEX(targa),FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
+                "INDEX(codice_t),FOREIGN KEY (codice_t) REFERENCES Tappa(codice_t) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY(targa , codice_t))";
         stmt.executeUpdate(sql19);
 
         String sql20 = "CREATE TABLE IF NOT EXISTS Controllo"+//PULLMAN TAPPA BAMBINO
                 "(targa VARCHAR(16),"+
                 "cf VARCHAR(16),"+
-                "FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
-                "FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "PRIMARY KEY(targa ,cf))";
+                "INDEX(targa),FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
+                "INDEX(cf),FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY(targa , cf))";
         stmt.executeUpdate(sql20);
 
         conn.close();
