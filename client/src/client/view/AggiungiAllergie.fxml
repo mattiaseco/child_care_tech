@@ -15,7 +15,7 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER" minHeight="50.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -35,10 +35,10 @@
             <TableView fx:id="intolleranzeTable" prefHeight="300.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="intolleranzaColumn" prefWidth="500.0" text="intolleranze" />
-                  <TableColumn fx:id="checkIntolleranza" prefWidth="100.0" text="seleziona" />
+                  <TableColumn fx:id="selectColumn" prefWidth="100.0" text="seleziona" />
               </columns>
             </TableView>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="80.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER_LEFT" minWidth="200.0" prefWidth="400.0" spacing="20.0">
                      <children>

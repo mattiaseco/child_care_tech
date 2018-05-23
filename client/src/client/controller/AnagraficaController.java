@@ -394,6 +394,10 @@ public class AnagraficaController {
 
     @FXML
     private void allergieAction() throws IOException{
-
+        FXMLLoader loader;
+        Pane allergiePane;
+        loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
+        allergiePane = loader.load();
+        mainpane.setCenter(allergiePane);
     }
 }

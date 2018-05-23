@@ -46,6 +46,7 @@ public class AggiungiBambinoController {
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
     }
+
     @FXML
     public void returnToTabellePane()throws IOException {
         ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
