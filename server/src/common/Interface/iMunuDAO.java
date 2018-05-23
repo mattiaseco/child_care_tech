@@ -13,10 +13,10 @@ import java.util.List;
 
 public interface iMunuDAO extends Remote {
 
-    void inserisciMenu(String numero, LocalDate data,Piatto piatto1, Piatto piatto2, Piatto piatto3) throws RemoteException, SQLException;
-    void modificaMenu(String numero, LocalDate data,Piatto piatto1,Piatto piatto2,Piatto piatto3) throws RemoteException, SQLException;
+    void inserisciMenu(int numero, LocalDate data,Piatto piatto1, Piatto piatto2, Piatto piatto3) throws RemoteException, SQLException;
+    void modificaMenu(int numero, LocalDate data,Piatto piatto1,Piatto piatto2,Piatto piatto3) throws RemoteException, SQLException;
     List<Menu> getAllMenu() throws RemoteException,SQLException;
-    void cancellaMenu( String numero)throws RemoteException,SQLException;
+    void cancellaMenu( int numero)throws RemoteException,SQLException;
     List<Mangia> GetAllBambiniMenu(Menu menu)throws RemoteException,SQLException;
 
 

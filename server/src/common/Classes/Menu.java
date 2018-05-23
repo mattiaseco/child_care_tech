@@ -5,13 +5,13 @@ import java.time.LocalDate;
 
 public class Menu implements Serializable{
 
-    private String numero;
+    private int numero;
     private LocalDate data;
     private Piatto piatto1;
     private Piatto piatto2;
     private Piatto piatto3;
 
-    public Menu (String numero,LocalDate data,Piatto piatto1,Piatto piatto2,Piatto piatto3){
+    public Menu (int numero,LocalDate data,Piatto piatto1,Piatto piatto2,Piatto piatto3){
 
         this.numero = numero;
         this.data = data;
@@ -38,10 +38,10 @@ public class Menu implements Serializable{
         this.piatto3 = piatto3;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
