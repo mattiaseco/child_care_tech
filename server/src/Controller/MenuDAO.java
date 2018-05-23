@@ -14,7 +14,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
     public MenuDAO() throws RemoteException {
     }
     @Override
-    public void inserisciMenu(int numero, LocalDate data) throws SQLException {
+    public void inserisciMenu(String numero, LocalDate data) throws SQLException {
 
         try {
             createMenu(numero,data);
@@ -27,7 +27,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static void createMenu(int numero, LocalDate data) throws SQLException {
+    private static void createMenu(String numero, LocalDate data) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -49,14 +49,14 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static String buildCreateMenuSQL(int numero, LocalDate data) {
+    private static String buildCreateMenuSQL(String numero, LocalDate data) {
 
         return "INSERT INTO Menu(numero,data)" +
                 "VALUES('" + numero + "','" + data + "')";
 
     }
 
-    public void modificaMenu(int numero, LocalDate data) throws SQLException {
+    public void modificaMenu(String numero, LocalDate data) throws SQLException {
         try {
             updateMenu(numero, data);
         } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    private static void updateMenu(int numero, LocalDate data) throws SQLException {
+    private static void updateMenu(String numero, LocalDate data) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -90,7 +90,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
-    public static String buildUpdateMenuSQL(int numero, LocalDate data)  throws SQLException {
+    public static String buildUpdateMenuSQL(String numero, LocalDate data)  throws SQLException {
         return "UPDATE Menu SET numero = '" + numero + "' and data = '" + data + "'";
     }
 
@@ -104,7 +104,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
         while (rs.next()) {
 
-            int numero=rs.getInt("numero");
+            String numero=rs.getString("numero");
             LocalDate data = LocalDate.parse(rs.getString("data"));
 
             common.Classes.Menu menu = new Menu(numero,data);
@@ -114,7 +114,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
         return menuList;
     }
 
-    public void cancellaMenu(int numero)throws SQLException {
+    public void cancellaMenu(String numero)throws SQLException {
         try {
             deleteMenu(numero);
         }catch (SQLException e){
@@ -123,7 +123,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
             return;
         }
     }
-    private static void deleteMenu(int numero) throws SQLException {
+    private static void deleteMenu(String numero) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -144,7 +144,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
         }
 
     }
-    private static String buildDeleteMenuSQL( int numero){
+    private static String buildDeleteMenuSQL( String numero){
         return "DELETE FROM Menu WHERE numero='"+numero+"'";
 
     }

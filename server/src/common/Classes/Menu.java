@@ -4,20 +4,20 @@ import java.time.LocalDate;
 
 public class Menu {
 
-    private int numero;
+    private String numero;
     private LocalDate data;
 
-    public Menu (int numero,LocalDate data){
+    public Menu (String numero,LocalDate data){
 
         this.numero = numero;
         this.data = data;
 
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

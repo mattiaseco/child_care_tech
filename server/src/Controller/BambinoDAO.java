@@ -1,6 +1,7 @@
 package Controller;
 
 import common.Classes.Bambino;
+import common.Classes.Ingredienti;
 import common.Interface.iBambinoDAO;
 
 import java.rmi.RemoteException;
@@ -154,4 +155,94 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         return "DELETE FROM Bambino WHERE cf='"+cf+"'";
 
     }
+
+    @Override
+    public void inserisciAllergia(Bambino bambino, Ingredienti ingrediente) throws SQLException{
+        try {
+            createIntolleranza(bambino.getCf(), ingrediente.getNome_i());
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void createIntolleranza(String cf,String ingrediente)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateIntolleranzaSQL(cf, ingrediente);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildCreateIntolleranzaSQL(String cf, String ingrediente)throws SQLException{
+        return "INSERT INTO Intolleranza(cf,ingrediente) VALUES('" + cf + "','" + ingrediente+ "')";
+
+
+    }
+
+    public List<Ingredienti> getAllAllergie(Bambino bambino) throws  RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Ingredienti WHERE nome_i IN (" +
+                "SELECT ingrediente FROM Intolleranza WHERE cf = '" + bambino.getCf() + "')";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Ingredienti> allergieList = new ArrayList<>();
+
+        while (rs.next()) {
+            String nome_i = rs.getString("nome_i");
+            int quantita = rs.getInt("quantita");
+            Ingredienti allergia = new Ingredienti(nome_i,quantita);
+
+            allergieList.add(allergia);
+
+        }
+        return allergieList;
+    }
+
+    public void cancellaAllergia(Bambino bambino,Ingredienti ingrediente)throws RemoteException,SQLException{
+        try {
+            deleteAllergia(bambino.getCf(),ingrediente.getNome_i());
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deleteAllergia(String cf,String nome_i )throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteAllergiaSQL(cf,nome_i);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildDeleteAllergiaSQL(String cf,String nome_i){
+        return "DELETE FROM Intolleranza WHERE nome_i='"+nome_i+"',cf='"+cf+"'";
+
+    }
+
 }

@@ -144,8 +144,8 @@ public class Database {
 
         String sql15 = "CREATE TABLE IF NOT EXISTS Intolleranza "+//BAMBINO INGREDIENTE
                 "(cf VARCHAR(16) REFERENCES Bambino ON DELETE CASCADE ,"+
-                "nome VARCHAR(15) REFERENCES Ingrediente ON DELETE CASCADE ,"+
-                "PRIMARY KEY(cf ,nome))";
+                "ingrediente VARCHAR(15) REFERENCES Ingrediente ON DELETE CASCADE,"+
+                "PRIMARY KEY(cf ,ingrediente))";
         stmt.executeUpdate(sql15);
 
         String sql16 = "CREATE TABLE IF NOT EXISTS Contiene "+//PIATTO INGREDIENTE
