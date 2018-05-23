@@ -111,5 +111,15 @@ public class NamingContextManager {
 
     }
 
+    public static iMenuDAO getMenuController(){
+        try {
+            String url = "rmi://127.0.0.1:1099/menu_controller";
+            return (iMenuDAO) Naming.lookup(url);
+        } catch (NotBoundException | MalformedURLException | RemoteException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
 
+    }
 }

@@ -4,6 +4,7 @@ import client.NamingContextManager;
 import common.Classes.Gita;
 import common.Classes.Menu;
 import common.Interface.iGitaDAO;
+import common.Interface.iMenuDAO;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,38 +28,38 @@ public class TabelleMenuController {
     @FXML private TableColumn<Menu, String> secondoColumn;
     @FXML private TableColumn<Menu, String> contornoColumn;
 
-    @FXML AnchorPane mensaPane;
+    @FXML AnchorPane tabelleMenu;
 
 
     private ObservableList<Menu> menus = FXCollections.observableArrayList();
-/*
-    private iGitaDAO gitaDAO;
+
+    private iMenuDAO menuDAO;
 
     public void initialize() {
 
-        gitaDAO = NamingContextManager.getTripsController();
+        menuDAO = NamingContextManager.getMenuController();
         initTables();
         initColumns();
     }
 
     private void initTables() {
-        giteTable.setItems(trips);
-        refreshTripsTable();
+        mensaTable.setItems(menus);
+        refreshMenuTable();
 
     }
     private void initColumns() {
 
-        dest.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDestinazione()));
-        dat_part.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getData_partenza()));
-        dat_rit.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getData_ritorno()));
-        num_part.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNum_partecipanti()));
+        menuColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero()));
+        primoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto1()));
+        secondoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto2()));
+        contornoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto3()));
     }
 
-    public void refreshTripsTable() {
+    public void refreshMenuTable() {
 
-        List<Gita> gitaList = new ArrayList<>();
+        List<Menu> menuList = new ArrayList<>();
         try {
-            gitaList = gitaDAO.getAllGite();
+            menuList = menuDAO.getAllMenu();
         } catch(RemoteException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
@@ -66,9 +67,8 @@ public class TabelleMenuController {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
-        trips.clear();
-        trips.addAll(gitaList);
+        menus.clear();
+        menus.addAll(menuList);
     }
-    */
 
 }

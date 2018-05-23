@@ -4,7 +4,7 @@ import common.Classes.Bambino;
 import common.Classes.Mangia;
 import common.Classes.Menu;
 import common.Classes.Piatto;
-import common.Interface.iMunuDAO;
+import common.Interface.iMeunuDAO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
+public class MenuDAO extends UnicastRemoteObject implements iMeunuDAO {
     public MenuDAO() throws RemoteException {
     }
     @Override

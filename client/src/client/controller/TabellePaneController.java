@@ -18,20 +18,12 @@ import common.Interface.*;
 
 public class TabellePaneController {
 
-    @FXML
-    private TabPane tabellePane;
-    @FXML
-    private Tab kidTab;
-    @FXML
-    private Tab genitoreTab;
-    @FXML
-    private Tab fornitoreTab;
-    @FXML
-    private Tab pediatraTab;
-    @FXML
-    private Tab personaleTab;
-
-
+    @FXML private TabPane tabellePane;
+    @FXML private Tab kidTab;
+    @FXML private Tab genitoreTab;
+    @FXML private Tab fornitoreTab;
+    @FXML private Tab pediatraTab;
+    @FXML private Tab personaleTab;
 
     public String tabellaAttiva;
 
