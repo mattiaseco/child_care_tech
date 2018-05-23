@@ -58,7 +58,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fx:id="alertboxerror" fill="#ff0606" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="alertboxerror" fill="#ff0606" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>

@@ -1,7 +1,9 @@
 package common.Classes;
 
 
-public class Piatto {
+import java.io.Serializable;
+
+public class Piatto implements Serializable{
 
     private String nome_p;
     private String tipo;

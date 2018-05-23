@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Aderisce {
+import java.io.Serializable;
+
+public class Aderisce implements Serializable {
     private Bambino cf;
     private Gita codice_g;
 

@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Pullman {
+import java.io.Serializable;
+
+public class Pullman implements Serializable{
 
     private String targa;
     private int capienza;

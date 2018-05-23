@@ -1,7 +1,8 @@
 package common.Classes;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Attraversa {
+public class Attraversa implements Serializable{
     private Gateway cod_porta;
     private Bambino cf;
     private Gateway data_gate;

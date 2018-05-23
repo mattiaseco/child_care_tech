@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Attraversa {
+import java.io.Serializable;
+
+public class Attraversa implements Serializable{
     private Gateway cod_porta;
     private Bambino cf;
     private Gateway data_gate;

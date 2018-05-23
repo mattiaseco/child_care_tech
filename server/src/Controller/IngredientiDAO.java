@@ -10,9 +10,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IngrediantiDAO extends UnicastRemoteObject implements iIngredientiDAO {
+public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiDAO {
 
-    public IngrediantiDAO() throws RemoteException {
+    public IngredientiDAO() throws RemoteException {
     }
     @Override
     public void inserisciIngrediente(String nome_i,int quantità)  throws SQLException {

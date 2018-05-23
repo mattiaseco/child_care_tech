@@ -1,8 +1,9 @@
 package common.Classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Menu {
+public class Menu implements Serializable{
 
     private String numero;
     private LocalDate data;

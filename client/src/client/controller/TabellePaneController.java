@@ -61,7 +61,6 @@ public class TabellePaneController {
     @FXML private TableColumn<Fornitore, String> cognomeColumn5;
 
 
-
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
     private ObservableList<Genitore> parents = FXCollections.observableArrayList();
     private ObservableList<Personale> personal = FXCollections.observableArrayList();

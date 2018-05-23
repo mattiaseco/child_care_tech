@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Intolleranze {
+import java.io.Serializable;
+
+public class Intolleranze implements Serializable{
 
     private Piatto nomePiatto;
     private Ingredienti nomeIngr;

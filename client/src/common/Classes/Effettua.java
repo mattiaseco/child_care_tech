@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Effettua {
+import java.io.Serializable;
+
+public class Effettua implements Serializable{
     private Pullman targa;
     private Tappa codice_t;
 

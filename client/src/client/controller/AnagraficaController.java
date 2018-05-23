@@ -394,10 +394,29 @@ public class AnagraficaController {
 
     @FXML
     private void allergieAction() throws IOException{
+
         FXMLLoader loader;
-        Pane allergiePane;
-        loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
-        allergiePane = loader.load();
-        mainpane.setCenter(allergiePane);
+        Pane allergiepane;
+        if (!(tabellePaneController.tabellaAttiva.equals("kid"))) {
+            //loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
+            //modificapane = loader.load();
+            //mainpane.setCenter(modificapane);
+            //ModificaBambinoController controller = loader.getController();
+            alertbox.setText("");
+            alertboxerror.setText("Attenzione:\nfunzione\ndisponibile\nsolo per bambino\n");
+        }else{
+                Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+                if (bambino == null) {
+                    alertbox.setText("");
+                    alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+
+                } else {
+                    loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
+                    allergiepane = loader.load();
+                    mainpane.setCenter(allergiepane);
+                    AggiungiAllergieController controller = loader.getController();
+                    controller.inizializza(bambino, tabellePane, tabellePaneController);
+                }
+            }
+        }
     }
-}

@@ -1,8 +1,9 @@
 package common.Classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Gita {
+public class Gita implements Serializable{
 
     private int codice_g;
     private String destinazione;

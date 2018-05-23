@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Tappa {
+import java.io.Serializable;
+
+public class Tappa implements Serializable{
     private String codice_t;
     public Tappa (String codice_t){
 

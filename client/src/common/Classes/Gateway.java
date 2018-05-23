@@ -1,7 +1,8 @@
 package common.Classes;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Gateway {
+public class Gateway implements Serializable{
 
     private int cod_porta;
     private LocalDate data_gate;

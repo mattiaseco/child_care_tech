@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Utilizza {
+import java.io.Serializable;
+
+public class Utilizza implements Serializable {
     private Gita codice_g;
     private Pullman targa;
 

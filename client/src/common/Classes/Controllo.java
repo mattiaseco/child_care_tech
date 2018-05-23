@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Controllo {
+import java.io.Serializable;
+
+public class Controllo implements Serializable{
     private Pullman targa;
     private Bambino cf;
     private Tappa codice_t;

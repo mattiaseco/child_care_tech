@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Ingredienti {
+import java.io.Serializable;
+
+public class Ingredienti implements Serializable{
 
     private String nome_i;
     private int quantità;

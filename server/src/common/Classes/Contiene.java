@@ -1,6 +1,8 @@
 package common.Classes;
 
-public class Contiene {
+import java.io.Serializable;
+
+public class Contiene implements Serializable {
 
     private Piatto nome_p;
     private Ingredienti nome_i;
