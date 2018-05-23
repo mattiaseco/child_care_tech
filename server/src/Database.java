@@ -90,9 +90,9 @@ public class Database {
         String sql7 = "CREATE TABLE IF NOT EXISTS Menu " +
                 "(numero INT ," +
                 "data_menu DATE, "+
-                "piatto1 VARCHAR(15) ,"+
-                "piatto2 VARCHAR(15) ,"+
-                "piatto3 VARCHAR(15) ,"+
+                "piatto1 VARCHAR(15) NOT NULL,"+
+                "piatto2 VARCHAR(15) NOT NULL ,"+
+                "piatto3 VARCHAR(15) NOT NULL,"+
                 "INDEX(piatto1), FOREIGN KEY (piatto1) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(piatto2), FOREIGN KEY (piatto2) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(piatto3), FOREIGN KEY (piatto3) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
