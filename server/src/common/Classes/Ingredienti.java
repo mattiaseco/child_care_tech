@@ -27,9 +27,6 @@ public class Ingredienti implements Serializable {
         this.quantità = quantità;
     }
 
-
-
-
 }
 
 

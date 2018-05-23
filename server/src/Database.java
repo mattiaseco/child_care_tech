@@ -114,6 +114,16 @@ public class Database {
                 "PRIMARY KEY(nome_i))";
         stmt.executeUpdate(sql9);
 
+        String sql21 = "CREATE TABLE IF NOT EXISTS Mangia " +
+                "(cf VARCHAR(16) NOT NULL," +
+                "numero INT,"+
+                "INDEX(cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(numero), FOREIGN KEY (numero) REFERENCES Menu(numero) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY(cf,numero))";
+        stmt.executeUpdate(sql21);
+
+
+
         String sql10 = "CREATE TABLE IF NOT EXISTS Gita " +
                 "(codice_g INT(10) NOT NULL AUTO_INCREMENT," +
                 "num_pullman INT NOT NULL ," +

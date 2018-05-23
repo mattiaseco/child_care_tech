@@ -1,5 +1,7 @@
 package Controller;
 
+import common.Classes.Bambino;
+import common.Classes.Mangia;
 import common.Classes.Menu;
 import common.Classes.Piatto;
 import common.Interface.iMunuDAO;
@@ -166,4 +168,59 @@ public class MenuDAO extends UnicastRemoteObject implements iMunuDAO  {
 
     }
 
+    @Override
+    public List<Mangia> GetAllBambiniMenu(Menu menu) throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Mangia WHERE numero='"+menu.getNumero()+"'";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Mangia> mangiaList = new ArrayList<>();
+
+        while (rs.next()) {
+
+            int numero=rs.getInt("numero");
+            String cf=rs.getString("cf");
+
+
+            Mangia mangia = new Mangia(getBambino(cf),getMenu(numero));
+
+            mangiaList.add(mangia);
+        }
+        return mangiaList;
+    }
+    private Bambino getBambino(String cod_f)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Bambino WHERE cf='"+cod_f+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        String cf=rs.getString("cf");
+        String nome = rs.getString("nome");
+        String cognome=rs.getString("cognome");
+        LocalDate data = LocalDate.parse(rs.getString("data"));
+        String indirizzo=rs.getString("indirizzo");
+        String contatto1=rs.getString("contatto1");
+        String contatto2=rs.getString("contatto2");
+
+        Bambino kid= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+        return kid;
+
+    }
+    private Menu getMenu(int numero_menu)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Menu WHERE numero='"+numero_menu+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+
+
+        String numero=rs.getString("numero");
+        LocalDate data = LocalDate.parse(rs.getString("data"));
+        String piatto1=rs.getString("piatto1");
+        String piatto2=rs.getString("piatto2");
+        String piatto3=rs.getString("piatto3");
+
+        Menu menu1 = new Menu(numero,data,getPiatto(piatto1),getPiatto(piatto2),getPiatto(piatto3));
+        return menu1;
+
+    }
 }
