@@ -1,20 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mensapane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.MensaController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="80.0" layoutX="62.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="90.0" layoutX="62.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../image/mensa2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="backhome" fitHeight="50.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#backtohome" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backhome" fitHeight="50.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#backtohome" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../image/back2.png" />
          </image>
       </ImageView>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <BorderPane fx:id="mainpane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0">
+               <left>
+                  <VBox alignment="TOP_CENTER" prefHeight="349.0" prefWidth="120.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="aggiungibutton" alignment="CENTER" mnemonicParsing="false" onAction="#gotoaggiungimenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="aggiungi" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="visualizzabutton" alignment="CENTER" minWidth="110.0" mnemonicParsing="false" onAction="#gotovisualizzamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="visualizza" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="modificabutton" alignment="CENTER" mnemonicParsing="false" onAction="#modificamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="modifica" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancellabutton" alignment="CENTER" mnemonicParsing="false" onAction="#cancellamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="cancella" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Text fx:id="alertbox" fill="#029402" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="alertboxerror" fill="#ff0606" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </left>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+            </BorderPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

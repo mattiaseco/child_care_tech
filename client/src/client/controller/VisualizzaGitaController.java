@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class AggiungiGitaController extends AnchorPane{
+public class VisualizzaGitaController extends AnchorPane{
 
     @FXML private AnchorPane aggiungiGitePane;
 
@@ -27,10 +27,10 @@ public class AggiungiGitaController extends AnchorPane{
     @FXML private TextField numpartField;
     @FXML private TextField numpullmanField;
 
-    @FXML private TabelleGitePaneController tabellePaneController;
+    @FXML private TabelleGiteController tabellePaneController;
     @FXML private Pane tabellePane;
 
-    public void inizializza(TabelleGitePaneController tabellePaneController, Pane tabellePane){
+    public void inizializza(TabelleGiteController tabellePaneController, Pane tabellePane){
 
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;

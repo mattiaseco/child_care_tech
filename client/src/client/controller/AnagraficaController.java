@@ -32,6 +32,8 @@ public class AnagraficaController {
     private Button aggiungibutton;
     @FXML
     private Button cancellabutton;
+    @FXML
+    private Button allergiebutton;
 
     @FXML
     private Text alertbox;
@@ -388,5 +390,10 @@ public class AnagraficaController {
                 alertbox.setText("Cancellazione\neffettuata !");
             }
         }
+    }
+
+    @FXML
+    private void allergieAction() throws IOException{
+
     }
 }

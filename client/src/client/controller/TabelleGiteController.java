@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabelleGitePaneController {
+public class TabelleGiteController {
 
 
     @FXML public TableView<Gita> giteTable;
