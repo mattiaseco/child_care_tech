@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface iMeunuDAO extends Remote {
+public interface iMenuDAO extends Remote {
 
     void inserisciMenu(int numero, LocalDate data,Piatto piatto1, Piatto piatto2, Piatto piatto3) throws RemoteException, SQLException;
     void modificaMenu(int numero, LocalDate data,Piatto piatto1,Piatto piatto2,Piatto piatto3) throws RemoteException, SQLException;

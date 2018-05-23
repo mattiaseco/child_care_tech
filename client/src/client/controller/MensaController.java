@@ -112,7 +112,7 @@ public class MensaController {
     }
 
     @FXML
-    private void CancellaMenu() throws IOException, SQLException {
+    private void cancellaMenu() throws IOException, SQLException {
         alertbox.setText("");
         alertboxerror.setText("");
         int numero;
@@ -161,6 +161,6 @@ public class MensaController {
                 AggiungiAllergieController controller = loader.getController();
                 //controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
             }
-        }
+
     }
 }

@@ -35,8 +35,8 @@ public class TabelleMenuController {
 
     private iMenuDAO menuDAO;
 
+    @FXML
     public void initialize() {
-
         menuDAO = NamingContextManager.getMenuController();
         initTables();
         initColumns();
@@ -49,7 +49,7 @@ public class TabelleMenuController {
     }
     private void initColumns() {
 
-        menuColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumero()));
+        menuColumn.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNumero())));
         primoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto1()));
         secondoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto2()));
         contornoColumn.setCellValueFactory(data -> new SimpleObjectProperty(data.getValue().getPiatto3()));
