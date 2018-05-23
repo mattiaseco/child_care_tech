@@ -28,22 +28,22 @@
                <left>
                   <VBox alignment="TOP_CENTER" prefHeight="349.0" prefWidth="120.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="aggiungibutton" alignment="CENTER" mnemonicParsing="false" onAction="#gotoaggiungimenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="aggiungi" textFill="WHITE">
+                        <Button fx:id="ingredientibutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#goToIngredienti" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="ingredienti" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="visualizzabutton" alignment="CENTER" minWidth="110.0" mnemonicParsing="false" onAction="#gotovisualizzamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="visualizza" textFill="WHITE">
+                        <Button fx:id="creabutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#goToCreaMenu" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="crea menù" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="modificabutton" alignment="CENTER" mnemonicParsing="false" onAction="#modificamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="modifica" textFill="WHITE">
+                        <Button fx:id="cancellabutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#cancellaMenu" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="cancella" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="cancellabutton" alignment="CENTER" mnemonicParsing="false" onAction="#cancellamenu" prefWidth="110.0" style="-fx-background-color: #f18e32 #f18e32;" text="cancella" textFill="WHITE">
+                        <Button fx:id="adesionibutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#goToAdesioni" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="adesioni" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -60,7 +60,7 @@
                         </Text>
                      </children>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets right="15.0" top="10.0" />
                      </padding>
                   </VBox>
                </left>

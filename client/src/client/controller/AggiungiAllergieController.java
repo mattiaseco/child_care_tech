@@ -2,7 +2,9 @@ package client.controller;
 
 import client.NamingContextManager;
 import common.Classes.Bambino;
+import common.Classes.Ingredienti;
 import common.Interface.iBambinoDAO;
+import common.Interface.iIngredientiDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,22 +32,22 @@ public class AggiungiAllergieController {
 
 
 
-    @FXML public TableView<Bambino> intolleranzeTable;
-    @FXML private TableColumn<Bambino, String> intolleranzaColumn;
-    @FXML private TableColumn<Bambino, CheckBox> selectColumn;
+    @FXML public TableView<Ingredienti> intolleranzeTable;
+    @FXML private TableColumn<Ingredienti, String> intolleranzaColumn;
+    @FXML private TableColumn<Ingredienti, CheckBox> selectColumn;
 
 
-    private ObservableList<Bambino> kids = FXCollections.observableArrayList();
+    private ObservableList<Ingredienti> intolleranza = FXCollections.observableArrayList();
 
-    private iBambinoDAO kidDAO;
+    private iIngredientiDAO intolleranzaDAO;
 
     public void initialize() {
-        kidDAO = NamingContextManager.getKidController();
+        intolleranzaDAO = NamingContextManager.getKidController();
         initTables();
         initColumns();
     }
     private void initTables() {
-        intolleranzeTable.setItems(kids);
+        intolleranzeTable.setItems(intolleranza);
         refreshIntolleranzeTable();
     }
     private void initColumns() {

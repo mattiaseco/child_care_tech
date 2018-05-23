@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="TabelleMenu" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.TabelleMenuController">
+   <children>
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TableView fx:id="mensaTable" prefHeight="500.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="menuColumn" prefWidth="150.0" text="menù" />
+                <TableColumn fx:id="primoColumn" prefWidth="150.0" text="primo" />
+                  <TableColumn fx:id="secondoColumn" prefWidth="150.0" text="secondo" />
+                  <TableColumn fx:id="contornoColumn" prefWidth="150.0" text="contorno" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
