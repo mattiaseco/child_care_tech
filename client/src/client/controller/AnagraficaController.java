@@ -21,27 +21,17 @@ import java.sql.SQLException;
 
 public class AnagraficaController {
 
-    @FXML
-    public BorderPane mainpane;
+    @FXML public BorderPane mainpane;
 
-    @FXML
-    private Button visualizzabutton;
-    @FXML
-    private Button modificabutton;
-    @FXML
-    private Button aggiungibutton;
-    @FXML
-    private Button cancellabutton;
-    @FXML
-    private Button allergiebutton;
+    @FXML private Button visualizzabutton;
+    @FXML private Button modificabutton;
+    @FXML private Button aggiungibutton;
+    @FXML private Button cancellabutton;
+    @FXML private Button allergiebutton;
 
-    @FXML
-    private Text alertbox;
-    @FXML
-    private Text alertboxerror;
-    @FXML
-    private ImageView backhome;
-
+    @FXML private Text alertbox;
+    @FXML private Text alertboxerror;
+    @FXML private ImageView backhome;
     private Stage actual;
 
     private TabellePaneController tabellePaneController;
@@ -64,24 +54,13 @@ public class AnagraficaController {
     @FXML
     public void initialize() throws IOException, SQLException {
 
-        //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
-        //tabelleinstance = loader.getController();
-        //mainpane.setCenter((Pane)loader.load());
+        //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/nomefile.fxml")));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabellePane.fxml"));
         tabellePane = loader.load();
         tabellePaneController = loader.getController();
         mainpane.setCenter(tabellePane);
 
-       /*try{
-           / tabelleinstance.initBambini(NamingContextManager.getKidController().getAllBambini());
-
-        }catch(SQLException e) {
-            System.err.println("sql exception");
-            e.printStackTrace();
-        }
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-*/
     }
 
 

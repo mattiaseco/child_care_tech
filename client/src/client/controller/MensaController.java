@@ -20,12 +20,6 @@ import java.sql.SQLException;
 
 public class MensaController {
 
-
-    @FXML
-    private ImageView backhome;
-    private Stage actual;
-
-
     @FXML public BorderPane mainpane;
 
     @FXML public Button ingredientibutton;
@@ -36,14 +30,15 @@ public class MensaController {
 
     @FXML private Text alertbox;
     @FXML private Text alertboxerror;
-
+    @FXML private ImageView backhome;
+    private Stage actual;
 
     private TabelleMenuController tabelleMenuController;
     public static Pane tabelleMenuPane;
 
-    //private VisualizzaBambinoController visualizzaBambinoController;
-    //private ModificaBambinoController modificaBambinoController;
-    //private AggiungiBambinoController aggiungiBambinoController;
+    /*private AdesioniController adesioniController;
+    private ModificaBambinoController modificaBambinoController;
+    private AggiungiBambinoController aggiungiBambinoController;*/
 
 
     @FXML
@@ -64,23 +59,26 @@ public class MensaController {
         tabelleMenuController = loader.getController();
         mainpane.setCenter(tabelleMenuPane);
 
-       /*try{
-           / tabelleinstance.initBambini(NamingContextManager.getKidController().getAllBambini());
-
-        }catch(SQLException e) {
-            System.err.println("sql exception");
-            e.printStackTrace();
-        }
-        mainpane.setCenter((Pane)FXMLLoader.load(getClass().getResource("../view/TabellePane.fxml")));
-*/
     }
 
 
     @FXML
     private void goToIngredienti() throws IOException {
+        /*alertbox.setText("");
+        alertboxerror.setText("");
+        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/AggiungiIngredienti.fxml")));*/
         alertbox.setText("");
         alertboxerror.setText("");
-        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/AggiungiIngredienti.fxml")));
+
+        FXMLLoader loader;
+        Pane ingredientiPane;
+        loader = new FXMLLoader(getClass().getResource("../view/AggiungiIngredienti.fxml"));
+        ingredientiPane = loader.load();
+        mainpane.setCenter(ingredientiPane);
+
+        //AggiungiIngredientiController controller = loader.getController();
+        //Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
+        //controller.inizializza(mainpane, tabelleMenuPane, tabelleMenuController);
 
     }
     @FXML
@@ -139,6 +137,24 @@ public class MensaController {
     @FXML
     private void goToAdesioni() throws IOException{
 
+        alertbox.setText("");
+        alertboxerror.setText("");
+
+        FXMLLoader loader;
+        Pane adesionipane;
+        loader = new FXMLLoader(getClass().getResource("../view/Adesioni.fxml"));
+        adesionipane = loader.load();
+        mainpane.setCenter(adesionipane);
+
+        AdesioniController controller = loader.getController();
+        Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
+
+        controller.inizializza(mainpane, tabelleMenuPane, tabelleMenuController);
+
+        //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/Adesioni.fxml")));
+
+
+/*
         FXMLLoader loader;
         Pane adesionipane;
 
@@ -154,6 +170,8 @@ public class MensaController {
                 AggiungiAllergieController controller = loader.getController();
                 //controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
             }
-
+*/
     }
+
+
 }

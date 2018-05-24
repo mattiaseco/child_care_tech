@@ -15,10 +15,10 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
     public IngredientiDAO() throws RemoteException {
     }
     @Override
-    public void inserisciIngrediente(String nome_i,int quantità)  throws SQLException {
+    public void inserisciIngrediente(String nome_i)  throws SQLException {
 
         try {
-            createIngrediente(nome_i, quantità);
+            createIngrediente(nome_i);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -28,12 +28,12 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
 
     }
 
-    private static void createIngrediente(String nome_i,int quantità) throws SQLException {
+    private static void createIngrediente(String nome_i) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateIngredienteSQL(nome_i, quantità);
+        String sql = buildCreateIngredienteSQL(nome_i);
 
         try {
 
@@ -50,16 +50,16 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
 
     }
 
-    private static String buildCreateIngredienteSQL(String nome_i,int quantità) {
+    private static String buildCreateIngredienteSQL(String nome_i) {
 
-        return "INSERT INTO Ingrediente(nome_i,quantita)" +
-                "VALUES('" + nome_i + "','" + quantità + "')";
+        return "INSERT INTO Ingrediente(nome_i)" +
+                "VALUES('" + nome_i + "')";
 
     }
 
-    public void modificaIngrediente(String nome_i,int quantità) throws SQLException {
+    public void modificaIngrediente(String nome_i) throws SQLException {
         try {
-            updateIngrediente(nome_i, quantità);
+            updateIngrediente(nome_i);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -68,12 +68,12 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
 
     }
 
-    private static void updateIngrediente(String nome_i,int quantità) throws SQLException {
+    private static void updateIngrediente(String nome_i) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildUpdateIngredienteSQL(nome_i, quantità);
+        String sql = buildUpdateIngredienteSQL(nome_i);
 
         try {
             rs = st.executeQuery(sql);
@@ -91,8 +91,8 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
 
     }
 
-    public static String buildUpdateIngredienteSQL(String nome_i,int quantità) throws SQLException {
-        return "UPDATE Ingrediente SET nome_i = '" + nome_i + "' and quantita = '" + quantità + "'";
+    public static String buildUpdateIngredienteSQL(String nome_i) throws SQLException {
+        return "UPDATE Ingrediente SET nome_i = '" + nome_i + "'";
     }
 
     public List<Ingredienti> getAllIngredienti() throws RemoteException, SQLException {

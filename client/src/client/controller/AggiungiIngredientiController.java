@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -72,11 +73,25 @@ public class AggiungiIngredientiController {
 
     }
     @FXML
-    public void aggiungiIngrediente()throws IOException {
+    public void aggiungiIngrediente() throws IOException, SQLException {
+
+        iIngredientiDAO ingredientiController = NamingContextManager.getIngredientiController();
+
+        String ingrediente;
+
+
+        ingrediente = ingredienteField.getText();
+
+        ingredientiController.inserisciIngrediente(ingrediente);
+
+
 
     }
     @FXML
     public void aggiornaIngredienti()throws IOException {
+
+        ((BorderPane)ingredientiPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/TabelleMenu.fxml")));
+
 
     }
 
