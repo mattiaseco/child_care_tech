@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="step2MenuPane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.Step2MenuController">
+<AnchorPane fx:id="step3MenuPane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.Step3MenuController">
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,7 +34,7 @@
                <children>
                   <TableView fx:id="piattiTable" prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="secondiColumn" prefWidth="300.0" text="Secondo piatto" />
+                      <TableColumn fx:id="contorniColumn" prefWidth="300.0" text="Contorno" />
                         <TableColumn fx:id="selectColumn" prefWidth="100.0" text="seleziona" />
                     </columns>
                      <columnResizePolicy>
@@ -63,10 +63,10 @@
                      </padding>
                      <children>
                         <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabelleMenu" prefWidth="80.0" text=" annulla " />
-                        <Button fx:id="proseguibutton" minWidth="80.0" mnemonicParsing="false" onAction="#goToStep3" prefWidth="80.0" text="prosegui">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
+                        <Button fx:id="confermaButton" alignment="TOP_CENTER" minWidth="120.0" mnemonicParsing="false" onAction="#salvaMenu" opacity="0.9" prefWidth="130.0" style="-fx-background-color: #f18e32;" text="conferma" textAlignment="CENTER" textFill="#fcfcfc">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>

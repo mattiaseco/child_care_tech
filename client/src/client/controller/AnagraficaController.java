@@ -398,10 +398,6 @@ public class AnagraficaController {
         FXMLLoader loader;
         Pane allergiepane;
         if (!(tabellePaneController.tabellaAttiva.equals("kid"))) {
-            //loader = new FXMLLoader(getClass().getResource("../view/ModificaBambino.fxml"));
-            //modificapane = loader.load();
-            //mainpane.setCenter(modificapane);
-            //ModificaBambinoController controller = loader.getController();
             alertbox.setText("");
             alertboxerror.setText("Attenzione:\nfunzione\ndisponibile\nsolo per bambino\n");
         }else{
@@ -411,6 +407,8 @@ public class AnagraficaController {
                     alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
 
                 } else {
+                    alertbox.setText("");
+                    alertboxerror.setText("");
                     loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
                     allergiepane = loader.load();
                     mainpane.setCenter(allergiepane);

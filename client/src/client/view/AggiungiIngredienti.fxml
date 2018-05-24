@@ -16,15 +16,21 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="intolleranzeTable" prefHeight="300.0" prefWidth="500.0">
-              <columns>
-                <TableColumn fx:id="intolleranzaColumn" prefWidth="500.0" text="intolleranze" />
-                  <TableColumn fx:id="selectColumn" prefWidth="100.0" text="seleziona" />
-              </columns>
-            </TableView>
+            <AnchorPane>
+               <children>
+                  <TableView fx:id="ingredientiTable" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="nomeiColumn" prefWidth="500.0" text="ingredienti" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
             <HBox alignment="CENTER_RIGHT" maxHeight="80.0" minHeight="40.0" spacing="10.0">
                <children>
-                  <Button fx:id="eliminaIngredienteButton" minWidth="80.0" mnemonicParsing="false" onAction="#eliminaIngrediente" prefWidth="80.0" text="elimina">
+                  <Button fx:id="eliminaButton" minWidth="80.0" mnemonicParsing="false" onAction="#eliminaIngrediente" prefWidth="80.0" text="elimina">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -44,8 +50,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="ingredienteLabel" />
-                  <Button fx:id="confermabutton1" minWidth="80.0" mnemonicParsing="false" onAction="#aggiungiIngrediente" prefWidth="80.0" text="aggiungi" />
+                  <TextField fx:id="ingredienteField" />
+                  <Button fx:id="aggiungibutton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiungiIngrediente" prefWidth="80.0" text="aggiungi" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="40.0" spacing="10.0">
@@ -67,7 +73,7 @@
                         <Insets right="20.0" />
                      </padding>
                      <children>
-                        <Button fx:id="fineButton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiornaIntolleranze" prefWidth="80.0" text="fine">
+                        <Button fx:id="saveButton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiornaIngredienti" prefWidth="80.0" text="fine">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

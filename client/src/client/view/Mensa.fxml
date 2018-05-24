@@ -33,6 +33,11 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
+                        <Button fx:id="piattibutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#goToPiatti" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="piatti" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
                         <Button fx:id="creabutton" alignment="CENTER" minWidth="130.0" mnemonicParsing="false" onAction="#goToCreaMenu" prefWidth="130.0" style="-fx-background-color: #f18e32 #f18e32;" text="crea menù" textFill="WHITE">
                            <font>
                               <Font size="18.0" />

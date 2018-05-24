@@ -1,10 +1,7 @@
 package client.controller;
 
-import client.NamingContextManager;
-import common.Classes.Bambino;
-import common.Classes.Menu;
-import common.Interface.iBambinoDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +13,24 @@ import java.io.IOException;
 
 public class Step1MenuController extends AnchorPane{
 
+    @FXML private Button annullabutton;
+    @FXML private Button proseguibutton;
+
+    @FXML public AnchorPane step1MenuPane;
+
+    @FXML
+    public void returnToTabelleMenu()throws IOException {
+
+    }
+
+    @FXML
+    public void goToStep2()throws IOException {
+        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step2Menu.fxml")));
+
+    }
+
+
+/*
     @FXML private TextField numeroMenuField;
     @FXML private TextField nomePrimoField;
     @FXML private TextField nomeSecondoField;
@@ -40,17 +55,27 @@ public class Step1MenuController extends AnchorPane{
     //public void inizializza(Menu menu, Pane tabellePane, TabellePaneController tabellePaneController){ }
     @FXML
     public void goToIngredientiPrimo()throws IOException {
-
+        FXMLLoader loader;
+        Pane step2MenuPane;
+        loader = new FXMLLoader(getClass().getResource("../view/Step2MenuController.fxml"));
+        step2MenuPane = loader.load();
+        mainpane.setCenter(step2MenuPane);
+        AggiungiAllergieController controller = loader.getController();
+        controller.inizializza(bambino, tabellePane, tabellePaneController);
+        */
+/*
+        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
 
     }
+
     @FXML
     public void goToIngredientiSecondo()throws IOException {
-
+        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
 
     }
     @FXML
     public void goToIngredientiContorno()throws IOException {
-
+        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
 
     }
     @FXML
@@ -58,5 +83,5 @@ public class Step1MenuController extends AnchorPane{
 
 
     }
-
+*/
 }

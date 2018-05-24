@@ -20,6 +20,7 @@ import java.sql.SQLException;
 
 public class MensaController {
 
+
     @FXML
     private ImageView backhome;
     private Stage actual;
@@ -28,6 +29,7 @@ public class MensaController {
     @FXML public BorderPane mainpane;
 
     @FXML public Button ingredientibutton;
+    @FXML public Button piattibutton;
     @FXML public Button creabutton;
     @FXML public Button cancellabutton;
     @FXML public Button adesionibutton;
@@ -78,24 +80,15 @@ public class MensaController {
     private void goToIngredienti() throws IOException {
         alertbox.setText("");
         alertboxerror.setText("");
+        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/AggiungiIngredienti.fxml")));
 
-        FXMLLoader loader;
-        Pane tabelleMenuPane;
-        Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-            if (menu == null){
-                alertbox.setText("");
-                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
-
-            }
-            else {
-                loader = new FXMLLoader(getClass().getResource("../view/AggiungiIngredienti.fxml"));
-                tabelleMenuPane = loader.load();
-                mainpane.setCenter(tabelleMenuPane);
-                AggiungiIngredientiController controller = loader.getController();
-                //controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
-            }
     }
-
+    @FXML
+    private void goToPiatti() throws IOException {
+        alertbox.setText("");
+        alertboxerror.setText("");
+        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/CreaPiatto.fxml")));
+    }
     @FXML
     private void goToCreaMenu() throws IOException {
         alertbox.setText("");
