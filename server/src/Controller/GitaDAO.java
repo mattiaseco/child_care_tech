@@ -1,6 +1,8 @@
 package Controller;
 
+import common.Classes.Bambino;
 import common.Classes.Gita;
+import common.Classes.Pullman;
 import common.Interface.iGitaDAO;
 
 import java.rmi.RemoteException;
@@ -152,6 +154,91 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
     }
     private static String buildDeleteGitaSQL(int codice_g){
         return "DELETE FROM Gita WHERE codice_g='"+codice_g+"'";
+
+    }
+
+
+    public void inserisciBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException{
+
+
+        try {
+            createBambinoGita(gita.getCodice_g(),bambino.getCf());
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+        private static void createBambinoGita(int codice_g,String cf) throws SQLException {
+
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            String sql = buildCreateBambinoGitaSQL(codice_g,cf);
+
+            try {
+
+                rs = st.executeQuery(sql);
+                conn.close();
+                rs.next();
+
+            } catch (SQLException ex) {
+                System.err.println("sql exception");
+                ex.printStackTrace();
+                conn.close();
+                return;
+            }
+
+        }
+        private static String buildCreateBambinoGitaSQL(int codice_g, String cf) {
+
+            return "INSERT INTO Aderisce(cf, codice_g)" +
+                    " VALUES('"+ cf + "','" + codice_g + "')";
+
+        }
+        public void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException{
+
+
+            try {
+                createBambinoPullman(pullman.getTarga(),bambino.getCf());
+            } catch (SQLException e) {
+
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+    private static void createBambinoPullman(String targa, String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateBambinoPullmanSQL(targa,cf);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+
+    private static String buildCreateBambinoPullmanSQL(String targa, String cf) {
+
+        return "INSERT INTO Sale( cf, targa)" +
+                " VALUES('"+ cf + "','" + targa + "')";
 
     }
 

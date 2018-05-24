@@ -147,7 +147,7 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql = "SELECT * FROM Piatto WHERE tipo='"+"primo"+"'";
+        String sql = "SELECT * FROM Piatto WHERE tipo='"+"Primo"+"'";
         ResultSet rs=stmt.executeQuery(sql);
         List<Piatto> piattoList = new ArrayList<>();
 
@@ -165,7 +165,7 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql = "SELECT * FROM Piatto WHERE tipo='"+"secondo"+"'";
+        String sql = "SELECT * FROM Piatto WHERE tipo='"+"Secondo"+"'";
         ResultSet rs=stmt.executeQuery(sql);
         List<Piatto> piattoList = new ArrayList<>();
 
@@ -182,7 +182,7 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql = "SELECT * FROM Piatto WHERE tipo='"+"contorno"+"'";
+        String sql = "SELECT * FROM Piatto WHERE tipo='"+"Contorno"+"'";
         ResultSet rs=stmt.executeQuery(sql);
         List<Piatto> piattoList = new ArrayList<>();
 

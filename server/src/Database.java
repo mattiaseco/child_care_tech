@@ -140,7 +140,7 @@ public class Database {
                 "PRIMARY KEY(targa))";
         stmt.executeUpdate(sql11);
 
-        String sql22= "CREATE TABLE IF NOT EXISTS Sale "+//PIATTO INGREDIENTE
+        String sql22= "CREATE TABLE IF NOT EXISTS Sale "+//BAMBINO PULLMAN
                 "(cf VARCHAR(16),"+
                 "targa VARCHAR(15),"+
                 "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
