@@ -52,6 +52,8 @@ public class GiteController {
 
         loader = new FXMLLoader(getClass().getResource("../view/Step1AggiungiGita.fxml"));
         gitepane = loader.load();
+        Step1AggiungiGitaController controller = loader.getController();
+        controller.inizializza(tabellePane, tabelleGitaController, mainpane);
         mainpane.setCenter(gitepane);
     }
 

@@ -24,13 +24,13 @@ public class Step1AggiungiGitaController {
     @FXML private TextField prezzoField;
 
     @FXML
-    private AnchorPane gitepane;
+    AnchorPane gitepane;
 
     private Pane tabelleGitaPene;
     private TabelleGiteController tabelleGiteController;
     private BorderPane mainpane;
 
-   private void inizializza( Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane){
+   public void inizializza( Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane){
 
        this.tabelleGitaPene = tabelleGitaPene;
        this.tabelleGiteController = tabelleGitaController;
@@ -50,9 +50,8 @@ public class Step1AggiungiGitaController {
     private void goToStep2() throws IOException {
 
         iGitaDAO gitaController = NamingContextManager.getTripsController();
-
         FXMLLoader loader;
-        Pane gitepane;
+        Pane gitepane2;
 
         String destinazione, note;
         LocalDate data_partenza, data_ritorno;
@@ -76,10 +75,11 @@ public class Step1AggiungiGitaController {
         }
         else {
 
-
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
-            gitepane= loader.load();
-            mainpane.setCenter(gitepane);
+            gitepane2= loader.load();
+            Step2AggiungiGitaController controller = loader.getController();
+            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
+            mainpane.setCenter(gitepane2);
 
         }
 
