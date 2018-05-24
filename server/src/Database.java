@@ -92,13 +92,11 @@ public class Database {
         String sql7 = "CREATE TABLE IF NOT EXISTS Piatto " +
                 "(nome_p VARCHAR(15) NOT NULL," +
                 "tipo VARCHAR(15) NOT NULL ,"+
-                "quantita INT ,"+
                  "PRIMARY KEY(nome_p))";
         stmt.executeUpdate(sql7);
 
         String sql8 = "CREATE TABLE IF NOT EXISTS Menu " +
                 "(numero INT AUTO_INCREMENT," +
-                "data_menu DATE, "+
                 "piatto1 VARCHAR(15) NOT NULL,"+
                 "piatto2 VARCHAR(15) NOT NULL,"+
                 "piatto3 VARCHAR(15) NOT NULL,"+
