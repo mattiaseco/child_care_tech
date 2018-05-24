@@ -1,6 +1,7 @@
 package client.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -31,7 +32,14 @@ public class Step3AggiungiGitaController {
         // tabelleGiteController.refreshGiteTables();
 
     }
-    public void goToAggiungiPullman(){
+    public void goToAggiungiPullman() throws IOException {
+
+        Pane aggiungipullmanpane;
+        FXMLLoader loader;
+
+        loader = new FXMLLoader(getClass().getResource("../view/AggiungiPullman.fxml"));
+        aggiungipullmanpane= loader.load();
+        mainpane.setCenter(aggiungipullmanpane);
 
     }
 
