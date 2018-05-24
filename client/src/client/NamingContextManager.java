@@ -12,18 +12,18 @@ public class NamingContextManager {
         try {
             String url = "rmi://127.0.0.1:1099/login_controller";
             return (iLoginController) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
     }
 
-    public static iRegisterController getRegisterController(){
+    public static iRegisterController getRegisterController() {
         try {
             String url = "rmi://127.0.0.1:1099/register_controller";
             return (iRegisterController) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
@@ -35,51 +35,55 @@ public class NamingContextManager {
         try {
             String url = "rmi://127.0.0.1:1099/kid_controller";
             return (iBambinoDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
 
     }
+
     public static iGenitoreDAO getParentsController() {
         try {
             String url = "rmi://127.0.0.1:1099/parents_controller";
             return (iGenitoreDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
 
     }
+
     public static iPediatraDAO getPediatraController() {
         try {
             String url = "rmi://127.0.0.1:1099/pediatra_controller";
             return (iPediatraDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
 
     }
+
     public static iPersonaleDAO getPersonalController() {
         try {
             String url = "rmi://127.0.0.1:1099/personal_controller";
             return (iPersonaleDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
 
     }
+
     public static iFornitoreDAO getProvidersController() {
         try {
             String url = "rmi://127.0.0.1:1099/providers_controller";
             return (iFornitoreDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
@@ -87,11 +91,11 @@ public class NamingContextManager {
 
     }
 
-    public static iGitaDAO getTripsController(){
+    public static iGitaDAO getTripsController() {
         try {
             String url = "rmi://127.0.0.1:1099/trips_controller";
             return (iGitaDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
@@ -99,27 +103,40 @@ public class NamingContextManager {
 
     }
 
-    public static iIngredientiDAO getIngredientiController(){
+    public static iIngredientiDAO getIngredientiController() {
         try {
             String url = "rmi://127.0.0.1:1099/ingredienti_controller";
             return (iIngredientiDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
-
     }
 
-    public static iMenuDAO getMenuController(){
+
+    public static iMenuDAO getMenuController() {
         try {
             String url = "rmi://127.0.0.1:1099/menu_controller";
             return (iMenuDAO) Naming.lookup(url);
-        } catch (NotBoundException | MalformedURLException | RemoteException e){
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }
+    }
 
+            public static iPullmanDAO getPullmanController () {
+                try {
+                    String url = "rmi://127.0.0.1:1099/pullman_controller";
+                    return (iPullmanDAO) Naming.lookup(url);
+                } catch (NotBoundException | MalformedURLException | RemoteException e) {
+                    System.err.println(e.getMessage());
+                    e.printStackTrace();
+                    return null;
+                }
     }
 }
+
+
+

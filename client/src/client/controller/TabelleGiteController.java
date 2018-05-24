@@ -40,8 +40,11 @@ public class TabelleGiteController {
     }
 
     private void initTables() {
+
         giteTable.setItems(trips);
+
         refreshTripsTable();
+        refreshPullmanTable();
 
     }
     private void initColumns() {
@@ -50,6 +53,12 @@ public class TabelleGiteController {
         dat_part.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getData_partenza()));
         dat_rit.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getData_ritorno()));
         num_part.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNum_partecipanti()));
+    }
+
+    public void refreshGiteTables(){
+
+        refreshTripsTable();
+        refreshPullmanTable();
     }
 
     public void refreshTripsTable() {
@@ -67,4 +76,22 @@ public class TabelleGiteController {
         trips.clear();
         trips.addAll(gitaList);
     }
+
+    public void refreshPullmanTable() {
+
+        List<Gita> gitaList = new ArrayList<>();
+        try {
+            gitaList = gitaDAO.getAllGite();
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        trips.clear();
+        trips.addAll(gitaList);
+    }
+
+
 }

@@ -41,7 +41,6 @@ public class AggiungiAllergieController {
     private TabellePaneController tabellePaneController;
 
 
-
     @FXML public TableView<IngredienteTemp> intolleranzeTable;
     @FXML private TableColumn<IngredienteTemp, String> intolleranzaColumn;
     @FXML private TableColumn<IngredienteTemp, Boolean> selectColumn;
@@ -66,6 +65,7 @@ public class AggiungiAllergieController {
         refreshIntolleranzeTable();
     }
     private void initColumns() {
+
         intolleranzaColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIngrediente().getNome_i()));
         selectColumn.setCellValueFactory(data->new SimpleBooleanProperty(data.getValue().getBool()));
         selectColumn.setCellValueFactory( new PropertyValueFactory<IngredienteTemp,Boolean>( "checkBoxValue" ) );
@@ -73,6 +73,7 @@ public class AggiungiAllergieController {
 
     }
     public void refreshIntolleranzeTable(){
+
         List<Ingredienti> ingredientsList = new ArrayList<>();
         try {
             ingredientsList = intolleranzaDAO.getAllIngredienti();
@@ -122,12 +123,19 @@ public class AggiungiAllergieController {
     private static class IngredienteTemp {
         private Ingredienti ing;
         private boolean bool;
-        public IngredienteTemp(Ingredienti ing) {
+        public IngredienteTemp (Ingredienti ing) {
             this.ing = ing;
         }
         public Ingredienti getIngrediente() { return ing; }
         public boolean getBool() { return bool; }
         public void setBool(boolean bool) { this.bool = bool; }
+
+    }
+
+    public void selezionaAllergia() {
+
+
+
 
     }
 }

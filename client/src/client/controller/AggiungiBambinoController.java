@@ -43,12 +43,14 @@ public class AggiungiBambinoController {
 
 
     public void inizializza(Pane tabellePane, TabellePaneController tabellePaneController){
+
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
     }
 
     @FXML
     public void returnToTabellePane()throws IOException {
+
         ((BorderPane)aggiungipane.getParent()).setCenter(tabellePane);
         tabellePaneController.refreshTabelle();
         //Parent root= FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
