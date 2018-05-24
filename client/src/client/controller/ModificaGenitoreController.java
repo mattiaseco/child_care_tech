@@ -75,6 +75,9 @@ public class ModificaGenitoreController extends AnchorPane{
         else if ( cf.length() > 17){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
+        else if ( telefono.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
 
             parentsControll.modificaGenitore(cf,nome,cognome,data,indirizzo,telefono);

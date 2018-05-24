@@ -87,6 +87,9 @@ public class ModificaFornitoreController extends AnchorPane{
         else if ( partitaIVA.length() > 12) {
             alertbox.setText("Attenzione: Partita IVA troppo lunga !");
         }
+        else if ( telefono.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
 
             providersController.modificaFornitore(partitaIVA,cf,nome,cognome,data,indirizzo, telefono);

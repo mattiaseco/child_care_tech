@@ -89,6 +89,12 @@ public class ModificaBambinoController extends  AnchorPane{
         else if ( cf.length() > 17){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
+        else if ( contatto1.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
+        else if ( contatto2.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
             kidController.modificaBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
             ((BorderPane)modificapane.getParent()).setCenter(tabellePane);

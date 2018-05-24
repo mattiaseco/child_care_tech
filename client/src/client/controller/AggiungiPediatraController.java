@@ -72,6 +72,9 @@ public class AggiungiPediatraController extends AnchorPane {
         else if ( cf.length() > 16){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
+        else if ( telefono.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
 
             pediatraController.inserisciPediatra(cf, nome,cognome,data,indirizzo,telefono);

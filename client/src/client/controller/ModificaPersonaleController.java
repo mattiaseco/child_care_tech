@@ -79,6 +79,9 @@ public class ModificaPersonaleController extends AnchorPane{
         else if ( cf.length() > 17){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
+        else if ( telefono.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
             personalController.modificaPersonale(cf, nome, cognome, data, indirizzo, telefono);
             ((BorderPane)modificapane.getParent()).setCenter(tabellePane);

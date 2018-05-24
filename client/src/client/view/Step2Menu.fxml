@@ -15,12 +15,12 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER" minHeight="50.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <children>
-                  <Label fx:id="nomeLabel1" alignment="CENTER" text="Seleziona ingredienti secondo piatto:">
+                  <Label alignment="CENTER" text="Seleziona ingredienti:">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -32,7 +32,7 @@
             </HBox>
             <TableView fx:id="intolleranzeTable" prefHeight="300.0" prefWidth="500.0">
               <columns>
-                <TableColumn fx:id="intolleranzaColumn" prefWidth="500.0" text="ingredienti" />
+                <TableColumn fx:id="intolleranzaColumn" prefWidth="300.0" text="ingredienti" />
                   <TableColumn fx:id="selectColumn" prefWidth="100.0" text="seleziona" />
               </columns>
             </TableView>
@@ -55,8 +55,8 @@
                         <Insets right="20.0" />
                      </padding>
                      <children>
-                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabelleMenu" prefWidth="80.0" text=" annulla " />
-                        <Button fx:id="proseguiButton" minWidth="80.0" mnemonicParsing="false" onAction="#goToStep3" prefWidth="80.0" text="prosegui">
+                        <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToStep1Menu" prefWidth="80.0" text=" annulla " />
+                        <Button fx:id="confermabutton" minWidth="80.0" mnemonicParsing="false" onAction="#salvaIngredientiPiatto" prefWidth="80.0" text="conferma">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

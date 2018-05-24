@@ -11,10 +11,10 @@
          <children>
             <TableView fx:id="mensaTable" prefHeight="500.0" prefWidth="500.0">
               <columns>
-                <TableColumn fx:id="menuColumn" prefWidth="150.0" text="menù" />
-                <TableColumn fx:id="primoColumn" prefWidth="150.0" text="primo" />
-                  <TableColumn fx:id="secondoColumn" prefWidth="150.0" text="secondo" />
-                  <TableColumn fx:id="contornoColumn" prefWidth="150.0" text="contorno" />
+                <TableColumn fx:id="menuColumn" prefWidth="100.0" text="menù" />
+                <TableColumn fx:id="primoColumn" prefWidth="100.0" text="primo" />
+                  <TableColumn fx:id="secondoColumn" prefWidth="100.0" text="secondo" />
+                  <TableColumn fx:id="contornoColumn" prefWidth="100.0" text="contorno" />
               </columns>
             </TableView>
          </children>

@@ -86,6 +86,12 @@ public class AggiungiBambinoController {
         else if ( cf.length() > 16){
             alertbox.setText("Attenzione: Codice Fiscale troppo lungo !");
         }
+        else if ( contatto1.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
+        else if ( contatto2.length() > 10){
+            alertbox.setText("Attenzione: numero di telefono troppo lungo !");
+        }
         else {
             if(kidController != null) {
                 kidController.inserisciBambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);

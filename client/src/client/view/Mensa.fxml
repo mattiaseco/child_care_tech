@@ -60,7 +60,7 @@
                         </Text>
                      </children>
                      <padding>
-                        <Insets right="15.0" top="10.0" />
+                        <Insets left="5.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
                </left>
