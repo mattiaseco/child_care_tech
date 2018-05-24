@@ -26,7 +26,7 @@ public class GiteController {
     @FXML
     private TabelleGiteController tabelleGitaController;
     @FXML
-    public static Pane tabellePane;
+    public static Pane tabelleGita;
     @FXML
     private ImageView backhome;
     @FXML
@@ -37,6 +37,20 @@ public class GiteController {
     private AnchorPane gitepane;
 
     private Stage actual;
+
+    @FXML
+    public void initialize() throws IOException, SQLException {
+
+        //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
+        //tabelleinstance = loader.getController();
+        //mainpane.setCenter((Pane)loader.load());
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabelleGite.fxml"));
+        tabelleGita = loader.load();
+        tabelleGitaController = loader.getController();
+        mainpane.setCenter(tabelleGita);
+
+    }
 
     @FXML
     private void backtohome()throws IOException {
@@ -53,7 +67,7 @@ public class GiteController {
         loader = new FXMLLoader(getClass().getResource("../view/Step1AggiungiGita.fxml"));
         gitepane = loader.load();
         Step1AggiungiGitaController controller = loader.getController();
-        controller.inizializza(tabellePane, tabelleGitaController, mainpane);
+        controller.inizializza(tabelleGita, tabelleGitaController, mainpane);
         mainpane.setCenter(gitepane);
     }
 

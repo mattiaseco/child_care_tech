@@ -80,6 +80,24 @@ public class TabellePaneController {
         initColumns();
     }
 
+    private void initColumns() {
+        cfColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        cfColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        cfColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        cfColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        cfColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+    }
+
     private void initTables() {
         bambinoTable.setItems(kids);
         genitoreTable.setItems(parents);
@@ -120,23 +138,7 @@ public class TabellePaneController {
         refreshFornitoreTable();
     }
 
-    private void initColumns() {
-        cfColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        cfColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        cfColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn3.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        cfColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn4.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-        cfColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn5.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
-    }
+
     public void refreshKidTable() {
         List<Bambino> kidsList = new ArrayList<>();
         try {
