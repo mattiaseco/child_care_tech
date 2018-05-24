@@ -124,9 +124,9 @@ public class Database {
 
         String sql10 = "CREATE TABLE IF NOT EXISTS Gita " +
                 "(codice_g INT(10) NOT NULL AUTO_INCREMENT," +
-                "num_pullman INT NOT NULL ," +
+                "num_pullman INT ," +
                 "destinazione VARCHAR(20) NOT NULL ," +
-                "num_partecipanti INT NOT NULL,"+
+                "num_partecipanti INT ,"+
                 "data_partenza DATE NOT NULL,"+
                 "data_ritorno DATE NOT NULL,"+
                 "costo DOUBLE(4,2) NOT NULL,"+
@@ -139,6 +139,14 @@ public class Database {
                 "capienza INT,"+
                 "PRIMARY KEY(targa))";
         stmt.executeUpdate(sql11);
+
+        String sql22= "CREATE TABLE IF NOT EXISTS Sale "+//PIATTO INGREDIENTE
+                "(cf VARCHAR(16),"+
+                "targa VARCHAR(15),"+
+                "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "INDEX(targa), FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY( cf, targa))";
+        stmt.executeUpdate(sql22);
 
         String sql12 = "CREATE TABLE IF NOT EXISTS Tappa " +
                 "(codice_t INT(10) NOT NULL AUTO_INCREMENT,"+
