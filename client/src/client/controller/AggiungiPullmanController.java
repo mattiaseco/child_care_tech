@@ -18,7 +18,7 @@ public class AggiungiPullmanController {
 
      @FXML private BorderPane mainpane;
      @FXML private FXMLLoader loader;
-     @FXML private AnchorPane aggiungipane;
+     @FXML private AnchorPane gitepane;
      @FXML private Pane tabelleGitaPane;
      @FXML private TabelleGiteController tabelleGiteController;
 
@@ -35,11 +35,7 @@ public class AggiungiPullmanController {
 
     public void returnToTabellePane() throws IOException{
 
-        loader = new FXMLLoader(getClass().getResource("../view/Step3AggiungiGita.fxml"));
-        aggiungipane = loader.load();
-        Step3AggiungiGitaController controller = loader.getController();
-        controller.inizializza(tabelleGitaPane,tabelleGiteController,mainpane);
-        mainpane.setCenter(aggiungipane);
+        ((BorderPane)gitepane.getParent()).setCenter(tabelleGitaPane);
     }
 
     public void aggiungiPullman() throws IOException, SQLException{
@@ -74,8 +70,6 @@ public class AggiungiPullmanController {
         else{
 
             pullmanController.inserisciPullman(targa,capienza);
-
-
             loader = new FXMLLoader(getClass().getResource("../view/Step3AggiungiGita.fxml"));
             gitepane3= loader.load();
             mainpane.setCenter(gitepane3);

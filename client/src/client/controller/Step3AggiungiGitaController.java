@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Step3AggiungiGitaController {
 
     @FXML
-    AnchorPane gitepane;
+    AnchorPane gitepane3;
 
     private Pane tabelleGitaPene;
     private TabelleGiteController tabelleGiteController;
@@ -28,7 +28,7 @@ public class Step3AggiungiGitaController {
     @FXML
     private void returnToGitePane() throws IOException {
 
-        ((BorderPane)gitepane.getParent()).setCenter(tabelleGitaPene);
+        ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
         // tabelleGiteController.refreshGiteTables();
 
     }
@@ -39,12 +39,15 @@ public class Step3AggiungiGitaController {
 
         loader = new FXMLLoader(getClass().getResource("../view/AggiungiPullman.fxml"));
         aggiungipullmanpane= loader.load();
+        AggiungiPullmanController controller = loader.getController();
+        controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
         mainpane.setCenter(aggiungipullmanpane);
 
     }
 
     public void goToGitePane(){
 
+        ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
 
     }
 

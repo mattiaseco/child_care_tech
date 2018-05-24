@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Step2AggiungiGitaController {
 
     @FXML
-    AnchorPane gitepane;
+    AnchorPane gitepane2;
 
     private Pane tabelleGitaPene;
     private TabelleGiteController tabelleGiteController;
@@ -28,7 +28,7 @@ public class Step2AggiungiGitaController {
     @FXML
     private void returnToGitePane() throws IOException{
 
-        ((BorderPane)gitepane.getParent()).setCenter(tabelleGitaPene);
+        ((BorderPane)gitepane2.getParent()).setCenter(tabelleGitaPene);
         // tabelleGiteController.refreshGiteTables();
 
     }
