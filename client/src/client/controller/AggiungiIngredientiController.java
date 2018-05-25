@@ -16,10 +16,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class AggiungiIngredientiController {
     @FXML public Button aggiungiButton;
     @FXML public Button saveButton;
     @FXML public TextField ingredienteField;
+    @FXML public Text alertbox;
 
     @FXML public TableView<Ingredienti> ingredientiTable;
     @FXML private TableColumn<Ingredienti, String> nomeiColumn;
@@ -70,23 +73,55 @@ public class AggiungiIngredientiController {
 
     @FXML
     public void eliminaIngrediente()throws IOException {
+        alertbox.setText("");
+        String ingrediente;
+        iIngredientiDAO ingredientiController = NamingContextManager.getIngredientiController();
+        Ingredienti ingredienti= ingredientiTable.getSelectionModel().getSelectedItem();
+        if (ingredienti == null)
+            alertbox.setText("Attenzione: selezionare una riga !");
+        else {
+            ingrediente = ingredienti.getNome_i();
+            try {
+                ingredientiController.cancellaIngredienti(ingrediente);
+                refreshIngredientiTable();
+            } catch(RemoteException ex) {
+                ex.printStackTrace();
+            } catch(SQLException ex) {
+                ex.printStackTrace();
+            }
+            alertbox.setText("Cancellazione effettuata !");
+        }
 
     }
     @FXML
     public void aggiungiIngrediente() throws IOException, SQLException {
 
+        alertbox.setText("");
+
         iIngredientiDAO ingredientiController = NamingContextManager.getIngredientiController();
-
         String ingrediente;
-
-
         ingrediente = ingredienteField.getText();
+        if(ingrediente.isEmpty() ){
 
-        ingredientiController.inserisciIngrediente(ingrediente);
+            alertbox.setText("Attenzione: inserire ingrediente !");
+        }
+        else if( ingrediente.length() > 16) {
+            alertbox.setText("Attenzione: nome troppo lungo !");
+        }
+        else {
+            if(ingredientiTable.getItems().contains(new Ingredienti(ingrediente, 0)))
+                alertbox.setText("Attenzione: Ingrediente già presente!");
+            else {
+                ingredientiController.inserisciIngrediente(ingrediente);
+                refreshIngredientiTable();
+                ingredienteField.clear();
+                alertbox.setText("");
 
-
+            }
+        }
 
     }
+
     @FXML
     public void aggiornaIngredienti()throws IOException {
 

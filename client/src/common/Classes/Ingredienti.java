@@ -27,9 +27,14 @@ public class Ingredienti implements Serializable{
         this.quantità = quantità;
     }
 
-
-
-
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Ingredienti))
+            return false;
+        return this.nome_i.equals(((Ingredienti) obj).nome_i);
+    }
 }
 
 
