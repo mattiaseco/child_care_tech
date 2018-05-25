@@ -87,7 +87,7 @@ public class Step3AggiungiGitaController {
     private void returnToGitePane() throws IOException {
 
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
-        // tabelleGiteController.refreshGiteTables();
+        tabelleGiteController.refreshGiteTables();
 
     }
     public void goToAggiungiPullman() throws IOException {

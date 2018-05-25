@@ -53,7 +53,6 @@ public class Step2AggiungiGitaController {
 
     private void initTable() {
         bambinoTable.setItems(kids);
-
         refreshKidTable();
     }
 

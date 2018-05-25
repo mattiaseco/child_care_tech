@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 
 public class AggiungiPullmanController {
 
+     @FXML private Text alertbox;
      @FXML private BorderPane mainpane;
      @FXML private FXMLLoader loader;
      @FXML private AnchorPane gitepane;
@@ -40,6 +42,8 @@ public class AggiungiPullmanController {
 
     public void aggiungiPullman() throws IOException, SQLException{
 
+        alertbox.setText("");
+
         iPullmanDAO pullmanController = NamingContextManager.getPullmanController();
         Pane gitepane3;
         FXMLLoader loader;
@@ -52,20 +56,20 @@ public class AggiungiPullmanController {
 
         if (targa.isEmpty() || capienza == null){
 
-            //TODO errore "riempire campi obbligatori"
+            alertbox.setText("ATTENZIONE:Inserire i campi obbligatori!");
 
         }
         else if ( capienza > 50 ){
 
-            //TODO pullman max 50 posti
+            alertbox.setText("ATTENZIONE: Capienza Massima 50!");
         }
 
         else if( targa.length() < 7 ){
 
-            //TODO targa troppo corta
+            alertbox.setText("ATTENZIONE:Targa troppo corta!");
         }
         else if( targa.length() > 7){
-            //TODO targa troppo lunga
+            alertbox.setText("ATTENZIONE:Targa troppo lunga!");
         }
         else{
 
