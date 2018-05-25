@@ -129,7 +129,7 @@ public class Database {
                 "num_partecipanti INT ,"+
                 "data_partenza DATE NOT NULL,"+
                 "data_ritorno DATE NOT NULL,"+
-                "costo DOUBLE(4,2) NOT NULL,"+
+                "costo DOUBLE(6,2) NOT NULL,"+
                 "descrizione VARCHAR(256),"+
                 "PRIMARY KEY(codice_g))";
         stmt.executeUpdate(sql10);
