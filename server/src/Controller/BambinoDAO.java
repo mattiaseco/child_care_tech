@@ -241,7 +241,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         }
     }
     private static String buildDeleteAllergiaSQL(String cf,String nome_i){
-        return "DELETE FROM Intolleranza WHERE nome_i='"+nome_i+"',cf='"+cf+"'";
+        return "DELETE FROM Intolleranza WHERE ingrediente='"+nome_i+"',cf='"+cf+"'";
 
     }
 
