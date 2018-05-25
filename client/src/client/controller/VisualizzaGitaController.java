@@ -48,20 +48,21 @@ public class VisualizzaGitaController extends AnchorPane{
 
         iGitaDAO gitaController = NamingContextManager.getTripsController();
 
-        String destinazione, descrizione, costo;
+        String destinazione, descrizione;
         int num_partecipanti, num_pullman;
         LocalDate data_rit, data_part;
+        Double costo;
 
 
         destinazione = destField.getText();
         descrizione = descgitaField.getText();
-        costo = costoField.getText();
+        costo = Double.parseDouble(costoField.getText());
         num_partecipanti = Integer.valueOf(numpartField.getText());
         num_pullman = Integer.valueOf(numpullmanField.getText());
         data_part = datapartField.getValue();
         data_rit = dataritField.getValue();
 
-        gitaController.inserisciGita(destinazione, num_pullman,num_partecipanti, data_part,data_rit, costo,descrizione);
+        //gitaController.getAllGite(destinazione, num_pullman,num_partecipanti, data_part,data_rit, costo,descrizione);
         tabellePaneController.refreshTripsTable();
         ((BorderPane)aggiungiGitePane.getParent()).setCenter(tabellePane);
 

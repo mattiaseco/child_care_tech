@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -27,7 +28,6 @@ public class TabelleGiteController {
     @FXML private TableColumn<Gita, LocalDate> dat_part;
     @FXML private TableColumn<Gita, LocalDate> dat_rit;
     @FXML private TableColumn<Gita, Integer> num_part;
-
 
     private ObservableList<Gita> trips = FXCollections.observableArrayList();
 
@@ -76,6 +76,31 @@ public class TabelleGiteController {
         }
         trips.clear();
         trips.addAll(gitaList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public void refreshPullmanTable() {

@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Step1AggiungiGitaController {
@@ -47,7 +48,7 @@ public class Step1AggiungiGitaController {
     }
 
     @FXML
-    private void goToStep2() throws IOException {
+    private void goToStep2() throws IOException, SQLException {
 
         iGitaDAO gitaController = NamingContextManager.getTripsController();
         FXMLLoader loader;
@@ -75,11 +76,13 @@ public class Step1AggiungiGitaController {
         }
         else {
 
+            gitaController.inserisciGita(destinazione,data_partenza,data_ritorno,prezzo,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
             gitepane2= loader.load();
             Step2AggiungiGitaController controller = loader.getController();
             controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
             mainpane.setCenter(gitepane2);
+            tabelleGiteController.refreshGiteTables();
 
         }
 

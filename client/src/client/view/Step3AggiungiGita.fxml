@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="bambinoTable" prefHeight="350.0" prefWidth="500.0">
+            <TableView fx:id="pullmanTable" prefHeight="350.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="targaColumn" prefWidth="150.0" text="targa" />
                 <TableColumn fx:id="capienzaColumn" prefWidth="150.0" text="capienza" />
