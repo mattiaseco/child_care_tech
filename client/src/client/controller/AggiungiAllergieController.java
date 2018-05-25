@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -38,6 +39,7 @@ public class AggiungiAllergieController {
         private Button removeButton;
         @FXML
         private Button saveButton;
+        @FXML private Text nomebambino;
 
         private Bambino bambino;
         private iBambinoDAO bambinoDAO;
@@ -53,6 +55,7 @@ public class AggiungiAllergieController {
             bambinoDAO = NamingContextManager.getKidController();
             initMenu();
             initTable();
+
         }
 
     @FXML
@@ -172,6 +175,8 @@ public class AggiungiAllergieController {
                 ex.printStackTrace();
             }
             foods.removeAll(allergies);
+            nomebambino.setText(bambino.getCognome()+" "+bambino.getNome());
+
         }
 
 }
