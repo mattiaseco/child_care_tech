@@ -1,7 +1,6 @@
 package client.controller;
 
 
-import client.controller.TabellePaneController;
 import client.NamingContextManager;
 import common.Classes.*;
 import common.Interface.*;
@@ -387,6 +386,7 @@ public class AnagraficaController {
                 } else {
                     alertbox.setText("");
                     alertboxerror.setText("");
+                    //loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
                     loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
                     allergiepane = loader.load();
                     mainpane.setCenter(allergiepane);
