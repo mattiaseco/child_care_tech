@@ -35,6 +35,7 @@ public class AggiungiIngredientiController {
     @FXML public Button saveButton;
     @FXML public TextField ingredienteField;
     @FXML public Text alertbox;
+    @FXML public Text alertboxok;
 
     @FXML public TableView<Ingredienti> ingredientiTable;
     @FXML private TableColumn<Ingredienti, String> nomeiColumn;
@@ -74,11 +75,15 @@ public class AggiungiIngredientiController {
     @FXML
     public void eliminaIngrediente()throws IOException {
         alertbox.setText("");
+        alertboxok.setText("");
+
         String ingrediente;
         iIngredientiDAO ingredientiController = NamingContextManager.getIngredientiController();
         Ingredienti ingredienti= ingredientiTable.getSelectionModel().getSelectedItem();
-        if (ingredienti == null)
+        if (ingredienti == null) {
             alertbox.setText("Attenzione: selezionare una riga !");
+            alertboxok.setText("");
+        }
         else {
             ingrediente = ingredienti.getNome_i();
             try {
@@ -89,7 +94,8 @@ public class AggiungiIngredientiController {
             } catch(SQLException ex) {
                 ex.printStackTrace();
             }
-            alertbox.setText("Cancellazione effettuata !");
+            alertbox.setText("");
+            alertboxok.setText("Cancellazione effettuata !");
         }
 
     }
@@ -97,6 +103,7 @@ public class AggiungiIngredientiController {
     public void aggiungiIngrediente() throws IOException, SQLException {
 
         alertbox.setText("");
+        alertboxok.setText("");
 
         iIngredientiDAO ingredientiController = NamingContextManager.getIngredientiController();
         String ingrediente;
@@ -105,7 +112,7 @@ public class AggiungiIngredientiController {
 
             alertbox.setText("Attenzione: inserire ingrediente !");
         }
-        else if( ingrediente.length() > 16) {
+        else if( ingrediente.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
         }
         else {

@@ -42,6 +42,11 @@
                   <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <Text fx:id="alertboxok" fill="#16b903" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
                   <Button fx:id="eliminaButton" alignment="CENTER" minWidth="80.0" mnemonicParsing="false" onAction="#eliminaIngrediente" prefWidth="80.0" text="elimina" GridPane.columnIndex="1" />
                   <Button fx:id="aggiungibutton" minWidth="80.0" mnemonicParsing="false" onAction="#aggiungiIngrediente" prefWidth="80.0" text="aggiungi" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="1">
