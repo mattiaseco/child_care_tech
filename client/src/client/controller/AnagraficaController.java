@@ -41,6 +41,7 @@ public class AnagraficaController {
     private AggiungiBambinoController aggiungiBambinoController;
 
 
+    @FXML
     private void backtohome() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
