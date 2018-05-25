@@ -44,7 +44,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             rs.next();
 
         } catch (SQLException ex) {
-            System.err.println("sql exception");
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
             conn.close();
             return;
@@ -234,14 +234,14 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
 
         } catch (SQLException ex) {
-            System.err.println("sql exception");
+            System.err.println(ex.getMessage());
             ex.printStackTrace();
             conn.close();
             return;
         }
     }
     private static String buildDeleteAllergiaSQL(String cf,String nome_i){
-        return "DELETE FROM Intolleranza WHERE ingrediente='"+nome_i+"',cf='"+cf+"'";
+        return "DELETE FROM Intolleranza WHERE cf='"+cf+"' AND ingrediente='"+nome_i+"'";
 
     }
 

@@ -60,26 +60,25 @@ public class AggiungiAllergieController {
 
     @FXML
         public void saveButtonAction(ActionEvent event)throws RemoteException, SQLException{
-            Set<Ingredienti> newAllergies = new HashSet<Ingredienti>();
-            Set<Ingredienti> oldAllergies = new HashSet<Ingredienti>(bambinoDAO.getAllAllergie(bambino));
+            List<Ingredienti> newAllergies = new ArrayList<>();
+            List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
 
             Bambino bambino1;
             //PersonDTO newPerson;
             newAllergies.addAll(allergies);
-            try {
+            /*try {
 
                 for(Ingredienti oldAllergy : oldAllergies) {
-                    //Client.getSessionService().getSession().removeAllergy(kidDTO.getPerson(), oldAllergy);
 
                     bambinoDAO.cancellaAllergia(bambino,oldAllergy);
 
                     Set<Ingredienti>allergies=new HashSet<>(bambinoDAO.getAllAllergie(bambino));
-                    newAllergies.clear();
-                    oldAllergies.clear();
+                    Set<Ingredienti>allergie=new HashSet<>(ingredientiDAO.getAllIngredienti());
+                    oldAllergies.addAll(allergie);
 
                 }
                 for(Ingredienti newAllergy : newAllergies) {
-                    //Client.getSessionService().getSession().addAllergy(kidDTO.getPerson(), newAllergy);
+
                     bambinoDAO.inserisciAllergia(bambino,newAllergy);
                     Set<Ingredienti>allergies=new HashSet<>(bambinoDAO.getAllAllergie(bambino));
                     newAllergies.addAll(allergies);
@@ -89,7 +88,26 @@ public class AggiungiAllergieController {
             } catch (RemoteException ex) {
                 System.err.println(ex.getMessage());
                 ex.printStackTrace();
-            }
+            }*/
+
+            try{
+
+                for(Ingredienti newAllergy : newAllergies) {
+                    if(!oldAllergies.contains(newAllergy))
+                        bambinoDAO.inserisciAllergia(bambino,newAllergy);
+                }
+                for(Ingredienti oldAllergy : oldAllergies) {
+                    if(!newAllergies.contains(oldAllergy))
+                        bambinoDAO.cancellaAllergia(bambino,oldAllergy);
+                }
+                tabellePaneController.refreshTabelle();
+
+            }catch (RemoteException ex){
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();}
+
+
+
         }
 
         public void addButtonAction() {

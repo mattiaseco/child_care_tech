@@ -174,7 +174,7 @@ public class Database {
                 "ingrediente VARCHAR(15) NOT NULL,"+
                 "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(ingrediente), FOREIGN KEY (ingrediente) REFERENCES Ingrediente(nome_i) ON DELETE CASCADE ON UPDATE CASCADE,"+
-                "PRIMARY KEY( cf, ingrediente))";
+                "PRIMARY KEY(cf,ingrediente))";
         stmt.executeUpdate(sql15);
 
         String sql16 = "CREATE TABLE IF NOT EXISTS Contiene "+//PIATTO INGREDIENTE
