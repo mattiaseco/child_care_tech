@@ -1,9 +1,7 @@
 package client.controller;
 
 import client.NamingContextManager;
-import common.Classes.Bambino;
-import common.Classes.Ingredienti;
-import common.Classes.Piatto;
+import common.Classes.*;
 import common.Interface.iBambinoDAO;
 import common.Interface.iIngredientiDAO;
 import common.Interface.iPiattoDAO;
@@ -12,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -71,36 +70,7 @@ public class CreaPiattoController {
         initTable();
 
     }
-    /*@FXML
-    public void saveButtonAction(ActionEvent event)throws RemoteException, SQLException{
-        List<Ingredienti> newAllergies = new ArrayList<>();
-        List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
 
-        Bambino bambino1;
-        //PersonDTO newPerson;
-        newAllergies.addAll(allergies);
-
-        try{
-
-            for(Ingredienti newAllergy : newAllergies) {
-                if(!oldAllergies.contains(newAllergy))
-                    bambinoDAO.inserisciAllergia(bambino,newAllergy);
-            }
-            for(Ingredienti oldAllergy : oldAllergies) {
-                if(!newAllergies.contains(oldAllergy))
-                    bambinoDAO.cancellaAllergia(bambino,oldAllergy);
-            }
-            ((BorderPane)allergiePane.getParent()).setCenter(tabellePane);
-
-            tabellePaneController.refreshTabelle();
-
-        }catch (RemoteException ex){
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();}
-
-
-
-    } */
 
     public void addButtonAction() {
         addButtonAction();
@@ -167,12 +137,42 @@ public class CreaPiattoController {
         ingredientiPiatto.clear();
         ingredientiDisponibili.addAll(tempFoods);
     }
+        /*@FXML
+    public void saveButtonAction(ActionEvent event)throws RemoteException, SQLException{
+        List<Ingredienti> newAllergies = new ArrayList<>();
+        List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
+
+        Bambino bambino1;
+        //PersonDTO newPerson;
+        newAllergies.addAll(allergies);
+
+        try{
+
+            for(Ingredienti newAllergy : newAllergies) {
+                if(!oldAllergies.contains(newAllergy))
+                    bambinoDAO.inserisciAllergia(bambino,newAllergy);
+            }
+            for(Ingredienti oldAllergy : oldAllergies) {
+                if(!newAllergies.contains(oldAllergy))
+                    bambinoDAO.cancellaAllergia(bambino,oldAllergy);
+            }
+            ((BorderPane)allergiePane.getParent()).setCenter(tabellePane);
+
+            tabellePaneController.refreshTabelle();
+
+        }catch (RemoteException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();}
+
+
+
+    } */
 
 
 
     @FXML
     private void salvaPiatto(ActionEvent event)throws RemoteException, SQLException, IOException {
-        /*
+
         alertbox.setText("");
         iPiattoDAO piattoController = NamingContextManager.getPiattoController();
         String nome_p;
@@ -184,20 +184,24 @@ public class CreaPiattoController {
         else if( nome_p.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
         }
-        else {
-            if(ingredientiTable.getItems().contains(new Ingredienti(ingrediente, 0)))
-                alertbox.setText("Attenzione: Ingrediente già presente!");
-            else {
-                ingredientiController.inserisciIngrediente(ingrediente);
-                refreshIngredientiTable();
-                ingredienteField.clear();
-                alertbox.setText("");
-
-            }
+        if(tipoPiatto.getSelectedToggle() == null) {
+            alertbox.setText("Attenzione: selezionare un tipo di piatto !");
+            return;
         }
+        if (tipoPiatto.getSelectedToggle().equals(primobutton)) {
+            piattoController.inserisciPiatto(nome_p,"Primo");
+
+        }
+        else if (tipoPiatto.getSelectedToggle().equals(secondobutton)){
+            piattoController.inserisciPiatto(nome_p,"Secondo");
+        }
+        else if (tipoPiatto.getSelectedToggle().equals(contornobutton)){
+            piattoController.inserisciPiatto(nome_p,"Contorno");
+        }
+        
 
 
-*/
+
     }
 
 

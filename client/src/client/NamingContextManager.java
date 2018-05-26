@@ -138,7 +138,7 @@ public class NamingContextManager {
     }
     public static iPiattoDAO getPiattoController() {
         try {
-            String url = "rmi://127.0.0.1:1099/ingredienti_controller";
+            String url = "rmi://127.0.0.1:1099/piatto_controller";
             return (iPiattoDAO) Naming.lookup(url);
         } catch (NotBoundException | MalformedURLException | RemoteException e) {
             System.err.println(e.getMessage());

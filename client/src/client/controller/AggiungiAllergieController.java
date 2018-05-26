@@ -69,7 +69,6 @@ public class AggiungiAllergieController {
             List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
 
             Bambino bambino1;
-            //PersonDTO newPerson;
             newAllergies.addAll(allergies);
 
             try{
