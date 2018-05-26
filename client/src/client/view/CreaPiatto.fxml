@@ -54,7 +54,7 @@
                      <children>
                         <TableView fx:id="allergiesTable" maxHeight="300.0" maxWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumnA" prefWidth="75.0" text="ingredienti disponibili" />
+                              <TableColumn fx:id="nameColumnA" prefWidth="75.0" text="ingredienti piatto" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -72,7 +72,7 @@
                      <children>
                         <TableView fx:id="foodsTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumnF" prefWidth="75.0" text="ingredienti piatto" />
+                              <TableColumn fx:id="nameColumnF" prefWidth="75.0" text="ingredienti disponibili" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
