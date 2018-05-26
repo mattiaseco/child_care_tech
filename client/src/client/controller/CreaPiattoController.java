@@ -171,7 +171,7 @@ public class CreaPiattoController extends AnchorPane {
         List<Ingredienti> newingredienti = new ArrayList<>();
         List<Ingredienti> oldingredienti = new ArrayList<>(piattoDAO.getAllIngredientiPiatto(piatto));
 
-        newingredienti.addAll(ingredientiDisponibili);
+        newingredienti.addAll(ingredientiPiatto);
 
         try{
 
