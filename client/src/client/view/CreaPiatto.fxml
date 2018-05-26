@@ -82,20 +82,20 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="50.0" prefHeight="50.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="30.0" prefHeight="30.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" minWidth="200.0" prefWidth="400.0" spacing="20.0">
-                     <children>
-                        <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
+                  <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" maxHeight="80.0" minHeight="50.0" prefHeight="50.0" spacing="10.0">
+               <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <padding>
                         <Insets right="20.0" />

@@ -143,14 +143,16 @@ public class CreaPiattoController extends AnchorPane {
         alertbox.setText("");
         String nome_p;
         nome_p = nomepField.getText();
+
         if(nome_p.isEmpty() ){
 
             alertbox.setText("Attenzione: inserire nome del piatto !");
         }
         else if( nome_p.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
-        }
-        else {
+
+        }else {
+
             if (tipoPiatto.getSelectedToggle() == null) {
                 alertbox.setText("Attenzione: selezionare un tipo di piatto !");
                 return;
