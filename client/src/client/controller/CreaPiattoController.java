@@ -150,9 +150,10 @@ public class CreaPiattoController extends AnchorPane {
         }
         else if( nome_p.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
-
-        }else {
-
+        }else if (piattoDAO.getAllNomiPiatti().contains(nome_p)){
+            alertbox.setText("Attenzione: piatto già presente !");
+        }
+        else {
             if (tipoPiatto.getSelectedToggle() == null) {
                 alertbox.setText("Attenzione: selezionare un tipo di piatto !");
                 return;

@@ -20,4 +20,5 @@ public interface iPiattoDAO extends Remote {
     void inserisciIngredientePiatto(Piatto piatto, Ingredienti ingrediente)throws RemoteException,SQLException;
     void cancellaIngredientePiatto(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException;
     List<Ingredienti>getAllIngredientiPiatto(Piatto piatto)throws RemoteException,SQLException;
+    List<String>getAllNomiPiatti()throws RemoteException,SQLException;
 }
