@@ -30,12 +30,11 @@
                   <Insets left="20.0" />
                </padding>
             </HBox>
-            <AnchorPane>
+            <AnchorPane maxWidth="350.0" prefWidth="350.0">
                <children>
                   <TableView fx:id="piattiTable" prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="contorniColumn" prefWidth="300.0" text="Contorno" />
-                        <TableColumn fx:id="selectColumn" prefWidth="100.0" text="seleziona" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
