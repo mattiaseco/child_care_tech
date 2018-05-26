@@ -150,9 +150,12 @@ public class CreaPiattoController extends AnchorPane {
         }
         else if( nome_p.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
-        }else if (piattoDAO.getAllNomiPiatti().contains(nome_p)){
-            alertbox.setText("Attenzione: piatto già presente !");
         }
+        //else if (piattoDAO.getAllNomiPiatti().contains(nome_p))
+            //alertbox.setText("Attenzione: piatto già presente !");
+
+        if (piattoDAO.getAllNomiPiatti().contains(nome_p))
+            alertbox.setText("Attenzione: piatto già presente !");
         else {
             if (tipoPiatto.getSelectedToggle() == null) {
                 alertbox.setText("Attenzione: selezionare un tipo di piatto !");
@@ -169,33 +172,30 @@ public class CreaPiattoController extends AnchorPane {
                 piattoDAO.inserisciPiatto(nome_p, "Contorno");
                 piatto = new Piatto(nome_p, "Contorno");
             }
-        }
+            List<Ingredienti> newingredienti = new ArrayList<>();
+            List<Ingredienti> oldingredienti = new ArrayList<>(piattoDAO.getAllIngredientiPiatto(piatto));
 
-        List<Ingredienti> newingredienti = new ArrayList<>();
-        List<Ingredienti> oldingredienti = new ArrayList<>(piattoDAO.getAllIngredientiPiatto(piatto));
+            newingredienti.addAll(ingredientiPiatto);
 
-        newingredienti.addAll(ingredientiPiatto);
+            try {
 
-        try{
+                for (Ingredienti newIngredienti : newingredienti) {
+                    if (!oldingredienti.contains(newIngredienti))
+                        piattoDAO.inserisciIngredientePiatto(piatto, newIngredienti);
+                }
+                for (Ingredienti oldIngredienti : oldingredienti) {
+                    if (!newingredienti.contains(oldIngredienti))
+                        piattoDAO.cancellaIngredientePiatto(piatto, oldIngredienti);
+                }
 
-            for(Ingredienti newIngredienti : newingredienti) {
-                if(!oldingredienti.contains(newIngredienti))
-                    piattoDAO.inserisciIngredientePiatto(piatto,newIngredienti);
+                ((BorderPane) piattoPane.getParent()).setCenter(tabellePane);
+                tabellePaneController.refreshMenuTable();
+
+            } catch (RemoteException ex) {
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();
             }
-            for(Ingredienti oldIngredienti : oldingredienti) {
-                if(!newingredienti.contains(oldIngredienti))
-                    piattoDAO.cancellaIngredientePiatto(piatto,oldIngredienti);
-            }
-
-
-            ((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
-            tabellePaneController.refreshMenuTable();
-
-        }catch (RemoteException ex){
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();
         }
-
     }
     public void addButtonAction() {
         addButtonAction();
