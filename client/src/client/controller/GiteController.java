@@ -25,8 +25,8 @@ import java.sql.SQLException;
 public class GiteController {
 
 
-    @FXML
-    private Text alertbox;
+    @FXML private Text alertbox;
+    @FXML private Text alertboxerror;
     @FXML
     private TabelleGiteController tabelleGitaController;
     @FXML
@@ -44,10 +44,8 @@ public class GiteController {
 
     @FXML
     public void initialize() throws IOException, SQLException {
-
-        //FXMLLoader loader = new FXMLLoader(AnagraficaController.class.getResource("../view/TabellePane.fxml"));
-        //tabelleinstance = loader.getController();
-        //mainpane.setCenter((Pane)loader.load());
+        alertbox.setText("");
+        alertboxerror.setText("");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TabelleGite.fxml"));
         tabelleGita = loader.load();
@@ -78,8 +76,8 @@ public class GiteController {
     @FXML
     private void gotoVisualizzaGita(ActionEvent event) throws IOException{
 
-        alertbox.setText("");
-        //alertboxerror.setText("");
+        alertboxerror.setText("");
+        alertboxerror.setText("");
 
         FXMLLoader loader;
         Pane visualizzaGite;
@@ -87,7 +85,7 @@ public class GiteController {
         Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
 
         if(gita == null){
-            alertbox.setText("ATTENZIONE: Selezionere una riga!");
+            alertboxerror.setText("ATTENZIONE:\nSelezionere\nuna riga!");
         }
         else {
 
@@ -105,19 +103,25 @@ public class GiteController {
     @FXML
     private void cancellaGita(ActionEvent event) throws IOException, SQLException {
 
-        int cod_g;
 
         alertbox.setText("");
+        alertboxerror.setText("");
+
+        int cod_g;
+
         iGitaDAO gitaController = NamingContextManager.getTripsController();
         Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
 
         if (gita == null){
-            alertbox.setText("ATTENZIONE: Selezionare una riga!!");
+            alertbox.setText("");
+            alertboxerror.setText("ATTENZIONE:\nSelezionare\nuna riga!");
         }
         else {
             cod_g = gita.getCodice_g();
             gitaController.cancellaGita(cod_g);
             tabelleGitaController.refreshGiteTables();
+
+            alertboxerror.setText("");
             alertbox.setText("Cancellazione\neffettuata");
         }
 

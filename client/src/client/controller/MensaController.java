@@ -72,9 +72,7 @@ public class MensaController {
 
     @FXML
     private void goToIngredienti() throws IOException {
-        /*alertbox.setText("");
-        alertboxerror.setText("");
-        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/AggiungiIngredienti.fxml")));*/
+
         alertbox.setText("");
         alertboxerror.setText("");
 
@@ -83,10 +81,6 @@ public class MensaController {
         loader = new FXMLLoader(getClass().getResource("../view/AggiungiIngredienti.fxml"));
         ingredientiPane = loader.load();
         mainpane.setCenter(ingredientiPane);
-
-        //AggiungiIngredientiController controller = loader.getController();
-        //Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-        //controller.inizializza(mainpane, tabelleMenuPane, tabelleMenuController);
 
     }
     @FXML
@@ -120,14 +114,13 @@ public class MensaController {
     private void cancellaMenu() throws IOException, SQLException {
         alertbox.setText("");
         alertboxerror.setText("");
+
         int numero;
-        FXMLLoader loader;
-        Pane tabelleMenuPane;
         iMenuDAO menuController = NamingContextManager.getMenuController();
         Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
         if (menu == null){
             alertbox.setText("");
-            alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
+            alertboxerror.setText("Attenzione:\nselezionare\nuna riga !");
 
         }
         else {
@@ -135,15 +128,7 @@ public class MensaController {
             menuController.cancellaMenu(numero);
             tabelleMenuController.refreshMenuTable();
             alertboxerror.setText("");
-            alertbox.setText("Cancellazione\neffettuata !");
-
-
-
-            //loader = new FXMLLoader(getClass().getResource("../view/AggiungiIngredienti.fxml"));
-            //tabelleMenuPane = loader.load();
-            //mainpane.setCenter(tabelleMenuPane);
-            //AggiungiIngredientiController controller = loader.getController();
-            //controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
+            alertbox.setText("Cancellazione\neffettuata");
         }
 
     }
