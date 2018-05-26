@@ -1,6 +1,7 @@
 package Controller;
 
 
+import common.Classes.Ingredienti;
 import common.Classes.Piatto;
 import common.Interface.iPiattoDAO;
 
@@ -195,6 +196,71 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
             piattoList.add(piatto);
         }
         return piattoList;
+    }
+
+
+    public void inserisciIngredientePiatto(Piatto piatto, Ingredienti ingrediente)throws RemoteException,SQLException{
+        try {
+            createIngredientePiatto(piatto.getNome_p(), ingrediente.getNome_i());
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void createIngredientePiatto(String nome_p,String ingrediente)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateIngredientePiattoSQL(nome_p, ingrediente);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildCreateIngredientePiattoSQL(String nome_p, String ingrediente)throws SQLException{
+        return "INSERT INTO Contiene(nome_p,ingrediente) VALUES('" + nome_p + "','" + ingrediente+ "')";
+    }
+    public void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException{ try {
+        deleteIngrediente(piatto.getNome_p(),ingredienti.getNome_i());
+    }catch (SQLException e){
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+        return;
+    }
+    }
+    private static void deleteIngrediente(String nome_p,String nome_i )throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteIngredienteSQL(nome_p,nome_i);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildDeleteIngredienteSQL(String nome_p,String nome_i){
+        return "DELETE FROM Contiene WHERE nome_p='"+nome_p+"' AND ingrediente='"+nome_i+"'";
+
     }
 
 

@@ -1,5 +1,6 @@
 package common.Interface;
 
+import common.Classes.Ingredienti;
 import common.Classes.Piatto;
 
 import java.rmi.Remote;
@@ -15,5 +16,7 @@ public interface iPiattoDAO extends Remote {
     List<Piatto>getAllPrimi()throws  RemoteException,SQLException;
     List<Piatto>getAllSecondi()throws  RemoteException,SQLException;
     List<Piatto>getAllContorni()throws  RemoteException,SQLException;
+    void inserisciIngredientePiatto(Piatto piatto, Ingredienti ingrediente)throws RemoteException,SQLException;
+    void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException;
 
 }
