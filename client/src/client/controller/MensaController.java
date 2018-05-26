@@ -93,7 +93,13 @@ public class MensaController {
     private void goToPiatti() throws IOException {
         alertbox.setText("");
         alertboxerror.setText("");
-        mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/CreaPiatto.fxml")));
+        FXMLLoader loader;
+        Pane piattoPane;
+        loader = new FXMLLoader(getClass().getResource("../view/CreaPiatto.fxml"));
+        piattoPane = loader.load();
+        mainpane.setCenter(piattoPane);
+        CreaPiattoController controller = loader.getController();
+        controller.inizializza(tabelleMenuPane,tabelleMenuController);
     }
     @FXML
     private void goToCreaMenu() throws IOException {

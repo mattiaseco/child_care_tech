@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreaPiattoController {
+public class CreaPiattoController extends AnchorPane {
 
     @FXML
     private TableView<Ingredienti> ingredientipTable;
@@ -52,7 +52,7 @@ public class CreaPiattoController {
     @FXML private Text alertbox;
 
     private Pane tabellePane;
-    private TabellePaneController tabellePaneController;
+    private TabelleMenuController tabellePaneController;
 
 
     private Piatto piatto;
@@ -73,9 +73,7 @@ public class CreaPiattoController {
     }
 
 
-    public void addButtonAction() {
-        addButtonAction();
-    }
+
 
 
     public void addButtonAction(ActionEvent event ) {
@@ -186,29 +184,28 @@ public class CreaPiattoController {
 
 
             ((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
-            tabellePaneController.refreshTabelle();
+            tabellePaneController.refreshMenuTable();
 
         }catch (RemoteException ex){
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
 
-
-
-
     }
-
+    public void addButtonAction() {
+        addButtonAction();
+    }
 
     @FXML
     private void returnToTabelleMenu() throws IOException {
         alertbox.setText("");
         ((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
-        tabellePaneController.refreshTabelle();
+        tabellePaneController.refreshMenuTable();
 
 
     }
-    public void inizializza( Pane pane, TabellePaneController tabellePaneController) {
-        this.tabellePane = pane;
+    public void inizializza( Pane tabellePane, TabelleMenuController tabellePaneController) {
+        this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
 
     }

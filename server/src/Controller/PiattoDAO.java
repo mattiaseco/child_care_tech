@@ -229,9 +229,10 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
         }
     }
     private static String buildCreateIngredientePiattoSQL(String nome_p, String ingrediente)throws SQLException{
-        return "INSERT INTO Contiene(nome_p,ingrediente) VALUES('" + nome_p + "','" + ingrediente+ "')";
+        return "INSERT INTO Contiene(nome_p,nome_i) VALUES('" + nome_p + "','" + ingrediente+ "')";
     }
-    public void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException{ try {
+    public void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException{
+        try {
         deleteIngrediente(piatto.getNome_p(),ingredienti.getNome_i());
     }catch (SQLException e){
         System.err.println(e.getMessage());
@@ -259,7 +260,7 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
         }
     }
     private static String buildDeleteIngredienteSQL(String nome_p,String nome_i){
-        return "DELETE FROM Contiene WHERE nome_p='"+nome_p+"' AND ingrediente='"+nome_i+"'";
+        return "DELETE FROM Contiene WHERE nome_p='"+nome_p+"' AND nome_i='"+nome_i+"'";
 
     }
 
