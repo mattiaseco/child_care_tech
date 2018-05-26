@@ -22,6 +22,7 @@ public class RMIServer {
             registry.bind("ingredienti_controller", new IngredientiDAO());
             registry.bind("menu_controller", new MenuDAO());
             registry.bind("pullman_controller", new PullmanDAO());
+            registry.bind("piatto_controller", new PiattoDAO());
         } catch (Exception e) {
             System.err.println("[RMI]Server exception");
             e.printStackTrace();

@@ -126,16 +126,17 @@ public class NamingContextManager {
         }
     }
 
-    public static iPullmanDAO getPullmanController () {
-                try {
-                    String url = "rmi://127.0.0.1:1099/pullman_controller";
-                    return (iPullmanDAO) Naming.lookup(url);
-                } catch (NotBoundException | MalformedURLException | RemoteException e) {
-                    System.err.println(e.getMessage());
-                    e.printStackTrace();
-                    return null;
-                }
+    public static iPullmanDAO getPullmanController() {
+        try {
+            String url = "rmi://127.0.0.1:1099/pullman_controller";
+            return (iPullmanDAO) Naming.lookup(url);
+        } catch (NotBoundException | MalformedURLException | RemoteException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
+
     public static iPiattoDAO getPiattoController() {
         try {
             String url = "rmi://127.0.0.1:1099/piatto_controller";
@@ -145,6 +146,7 @@ public class NamingContextManager {
             e.printStackTrace();
             return null;
         }
+
     }
 }
 

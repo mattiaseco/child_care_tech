@@ -43,7 +43,7 @@ public class Step1AggiungiGitaController {
     private void returnToGitePane() throws IOException{
 
         ((BorderPane)gitepane.getParent()).setCenter(tabelleGitaPene);
-       // tabelleGiteController.refreshGiteTables();
+         tabelleGiteController.refreshGiteTables();
 
     }
 

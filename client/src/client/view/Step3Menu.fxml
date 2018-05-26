@@ -32,7 +32,7 @@
             </HBox>
             <AnchorPane maxWidth="350.0" prefWidth="350.0">
                <children>
-                  <TableView fx:id="piattiTable" prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="contorniTable" prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="contorniColumn" prefWidth="300.0" text="Contorno" />
                     </columns>

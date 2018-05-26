@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 public class MensaController {
 
     @FXML public BorderPane mainpane;
@@ -39,6 +40,13 @@ public class MensaController {
     /*private AdesioniController adesioniController;
     private ModificaBambinoController modificaBambinoController;
     private AggiungiBambinoController aggiungiBambinoController;*/
+
+    public void inizializza(BorderPane mainpane, Pane tabelleMenuPane, TabelleMenuController tabelleMenuController){
+
+        this.mainpane = mainpane;
+        this.tabelleMenuPane = tabelleMenuPane;
+        this.tabelleMenuController = tabelleMenuController;
+    }
 
 
     @FXML
@@ -94,12 +102,12 @@ public class MensaController {
 
         FXMLLoader loader;
         Pane step1MenuPane;
-        loader = new FXMLLoader(getClass().getResource("../view/step1Menu.fxml"));
+        loader = new FXMLLoader(getClass().getResource("../view/Step1Menu.fxml"));
         step1MenuPane = loader.load();
         mainpane.setCenter(step1MenuPane);
         Step1MenuController controller = loader.getController();
         Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-        //controller.inizializza(mainpane, tabellePane, tabellePaneController);
+        //controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane);
     }
 
     @FXML

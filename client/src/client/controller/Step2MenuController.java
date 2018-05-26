@@ -3,35 +3,93 @@ package client.controller;
 import client.NamingContextManager;
 import common.Classes.Bambino;
 import common.Classes.Ingredienti;
+import common.Classes.Menu;
+import common.Classes.Piatto;
 import common.Interface.iIngredientiDAO;
+import common.Interface.iMenuDAO;
+import common.Interface.iPiattoDAO;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import javax.print.attribute.standard.MediaSize;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Step2MenuController {
-    @FXML private Button annullabutton;
-    @FXML private Button proseguibutton;
+    @FXML public TableView secondiTable;
+    @FXML private TableColumn<Piatto, String> secondiColumn;
 
     @FXML public AnchorPane step2MenuPane;
 
+    private TabelleMenuController tabelleMenuController;
+    private Pane tabelleMenuPane;
+    private BorderPane mainpane;
+
+    private ObservableList<Piatto> secondi = FXCollections.observableArrayList();
+    private iPiattoDAO piattoDAO;
+
+    public void initialize(){
+
+        piattoDAO = NamingContextManager.getPiattoController();
+
+        initColumns();
+        initTable();
+    }
+
+    private void initColumns(){
+        secondiColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome_p()));
+
+    }
+
+    private void initTable(){
+
+        secondiTable.setItems(secondi);
+        refreshSecondiTable();
+
+    }
+
+    public void refreshSecondiTable() {
+        List<Piatto> secondiList = new ArrayList<>();
+        try {
+            secondiList = piattoDAO.getAllSecondi();
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        secondi.clear();
+        secondi.addAll(secondiList);
+    }
+
+
+
+    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane) {
+
+        this.tabelleMenuController = tabelleMenuController;
+        this.tabelleMenuPane = tabelleMenuPane;
+        this.mainpane = mainpane;
+    }
+
     @FXML
     public void returnToTabelleMenu()throws IOException {
+
+        ((BorderPane)step2MenuPane.getParent()).setCenter(tabelleMenuPane);
 
     }
 
