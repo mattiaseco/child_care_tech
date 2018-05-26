@@ -1,6 +1,7 @@
 package common.Interface;
 
 
+import common.Classes.Contiene;
 import common.Classes.Ingredienti;
 import common.Classes.Piatto;
 
@@ -18,5 +19,6 @@ public interface iPiattoDAO extends Remote {
     List<Piatto>getAllSecondi()throws  RemoteException,SQLException;
     List<Piatto>getAllContorni()throws  RemoteException,SQLException;
     void inserisciIngredientePiatto(Piatto piatto, Ingredienti ingrediente)throws RemoteException,SQLException;
-    void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException;
+    void cancellaIngredientePiatto(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException;
+    List<Ingredienti>getAllIngredientiPiatto(Piatto piatto)throws RemoteException,SQLException;
 }

@@ -178,7 +178,7 @@ public class Database {
         stmt.executeUpdate(sql15);
 
         String sql16 = "CREATE TABLE IF NOT EXISTS Contiene "+//PIATTO INGREDIENTE
-                "(nome_p VARCHAR(16),"+
+                "(nome_p VARCHAR(15),"+
                 "nome_i VARCHAR(15),"+
                 "INDEX (nome_p), FOREIGN KEY (nome_p) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(nome_i), FOREIGN KEY (nome_i) REFERENCES Ingrediente(nome_i) ON DELETE CASCADE ON UPDATE CASCADE,"+

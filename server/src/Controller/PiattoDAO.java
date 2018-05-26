@@ -1,6 +1,7 @@
 package Controller;
 
 
+import common.Classes.Contiene;
 import common.Classes.Ingredienti;
 import common.Classes.Piatto;
 import common.Interface.iPiattoDAO;
@@ -231,7 +232,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
     private static String buildCreateIngredientePiattoSQL(String nome_p, String ingrediente)throws SQLException{
         return "INSERT INTO Contiene(nome_p,nome_i) VALUES('" + nome_p + "','" + ingrediente+ "')";
     }
-    public void cancellaIngrediente(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException{
+
+
+    public void cancellaIngredientePiatto(Piatto piatto,Ingredienti ingredienti)throws RemoteException,SQLException{
         try {
         deleteIngrediente(piatto.getNome_p(),ingredienti.getNome_i());
     }catch (SQLException e){
@@ -262,6 +265,28 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
     private static String buildDeleteIngredienteSQL(String nome_p,String nome_i){
         return "DELETE FROM Contiene WHERE nome_p='"+nome_p+"' AND nome_i='"+nome_i+"'";
 
+    }
+
+
+    public List<Ingredienti>getAllIngredientiPiatto(Piatto piatto)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Ingrediente WHERE nome_i IN (" +
+                "SELECT nome_i FROM Contiene WHERE nome_p = '" + piatto.getNome_p() + "')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Ingredienti> ingredientiList = new ArrayList<>();
+
+        while (rs.next()) {
+            String nome_i = rs.getString("nome_i");
+            int quantita = rs.getInt("quantita");
+            Ingredienti ing_piatto = new Ingredienti(nome_i,quantita);
+
+            ingredientiList.add(ing_piatto);
+
+        }
+        return ingredientiList;
     }
 
 

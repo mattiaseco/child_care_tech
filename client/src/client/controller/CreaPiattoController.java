@@ -141,7 +141,6 @@ public class CreaPiattoController extends AnchorPane {
     private void salvaPiatto(ActionEvent event)throws RemoteException, SQLException, IOException {
 
         alertbox.setText("");
-        iPiattoDAO piattoController = NamingContextManager.getPiattoController();
         String nome_p;
         nome_p = nomepField.getText();
         if(nome_p.isEmpty() ){
@@ -157,16 +156,20 @@ public class CreaPiattoController extends AnchorPane {
                 return;
             }
             if (tipoPiatto.getSelectedToggle().equals(primobutton)) {
-                piattoController.inserisciPiatto(nome_p, "Primo");
+                piattoDAO.inserisciPiatto(nome_p, "Primo");
+                piatto = new Piatto(nome_p, "Primo");
 
             } else if (tipoPiatto.getSelectedToggle().equals(secondobutton)) {
-                piattoController.inserisciPiatto(nome_p, "Secondo");
+                piattoDAO.inserisciPiatto(nome_p, "Secondo");
+                piatto = new Piatto(nome_p, "Secondo");
             } else if (tipoPiatto.getSelectedToggle().equals(contornobutton)) {
-                piattoController.inserisciPiatto(nome_p, "Contorno");
+                piattoDAO.inserisciPiatto(nome_p, "Contorno");
+                piatto = new Piatto(nome_p, "Contorno");
             }
         }
+
         List<Ingredienti> newingredienti = new ArrayList<>();
-        List<Ingredienti> oldingredienti = new ArrayList<>(ingredientiDAO.getAllIngredienti());
+        List<Ingredienti> oldingredienti = new ArrayList<>(piattoDAO.getAllIngredientiPiatto(piatto));
 
         newingredienti.addAll(ingredientiDisponibili);
 
@@ -174,12 +177,11 @@ public class CreaPiattoController extends AnchorPane {
 
             for(Ingredienti newIngredienti : newingredienti) {
                 if(!oldingredienti.contains(newIngredienti))
-
                     piattoDAO.inserisciIngredientePiatto(piatto,newIngredienti);
             }
             for(Ingredienti oldIngredienti : oldingredienti) {
                 if(!newingredienti.contains(oldIngredienti))
-                    piattoDAO.cancellaIngrediente(piatto,oldIngredienti);
+                    piattoDAO.cancellaIngredientePiatto(piatto,oldIngredienti);
             }
 
 
