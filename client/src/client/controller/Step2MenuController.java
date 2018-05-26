@@ -30,9 +30,10 @@ import java.util.List;
 
 
 public class Step2MenuController {
-    @FXML public TableView secondiTable;
+    @FXML public TableView<Piatto> secondiTable;
     @FXML private TableColumn<Piatto, String> secondiColumn;
-
+;
+    @FXML private Text alertbox;
     @FXML public AnchorPane step2MenuPane;
 
     private TabelleMenuController tabelleMenuController;
@@ -94,8 +95,32 @@ public class Step2MenuController {
     }
 
     @FXML
-    public void goToStep3()throws IOException {
-        ((BorderPane)step2MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step3Menu.fxml")));
+    public void goToStep3() throws IOException, SQLException {
+        alertbox.setText("");
+
+        FXMLLoader loader;
+        Pane step3MenuPane;
+
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+        Piatto piatto = secondiTable.getSelectionModel().getSelectedItem();
+
+        if (piatto == null) {
+
+            alertbox.setText("ATTENZIONE: Selezionare una riga!");
+
+        } else {
+            //((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step2Menu.fxml")))
+            menuDAO.inserisciSecondo(piatto);
+            loader = new FXMLLoader(getClass().getResource("../view/Step3Menu.fxml"));
+            step3MenuPane = loader.load();
+            Step3MenuController controller = loader.getController();
+            controller.inizializza(tabelleMenuController, tabelleMenuPane, mainpane);
+            ((BorderPane)step2MenuPane.getParent()).setCenter(step3MenuPane);
+
+
+
+        }
+        //((BorderPane)step2MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step3Menu.fxml")));
 
     }
 

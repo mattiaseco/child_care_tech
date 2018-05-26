@@ -103,6 +103,13 @@ public class Step3AggiungiGitaController {
 
     }
 
+    public void addButtonAction(){
+
+    }
+    public void removeButtonAction(){
+
+    }
+
     public void goToGitePane(){
 
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);

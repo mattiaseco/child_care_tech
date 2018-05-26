@@ -98,8 +98,8 @@ public class Database {
         String sql8 = "CREATE TABLE IF NOT EXISTS Menu " +
                 "(numero INT AUTO_INCREMENT," +
                 "piatto1 VARCHAR(15) NOT NULL,"+
-                "piatto2 VARCHAR(15) NOT NULL,"+
-                "piatto3 VARCHAR(15) NOT NULL,"+
+                "piatto2 VARCHAR(15),"+
+                "piatto3 VARCHAR(15),"+
                 "INDEX(piatto1), FOREIGN KEY (piatto1) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(piatto2), FOREIGN KEY (piatto2) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(piatto3), FOREIGN KEY (piatto3) REFERENCES Piatto(nome_p) ON DELETE CASCADE ON UPDATE CASCADE,"+

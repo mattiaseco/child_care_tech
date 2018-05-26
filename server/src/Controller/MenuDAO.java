@@ -17,10 +17,10 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
     public MenuDAO() throws RemoteException {
     }
     @Override
-    public void inserisciMenu(int numero, Piatto piatto1, Piatto piatto2, Piatto piatto3) throws SQLException {
+    public void inserisciPrimo(Piatto piatto1) throws SQLException {
 
         try {
-            createMenu(numero,piatto1.getNome_p(),piatto2.getNome_p(),piatto3.getNome_p());
+            createPrimo(piatto1);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -30,12 +30,12 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
     }
 
-    private static void createMenu(int numero,String piatto1,String piatto2,String piatto3) throws SQLException {
+    private static void createPrimo(Piatto piatto1) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateMenuSQL(numero,piatto1,piatto2,piatto3);
+        String sql = buildCreatePrimoSQL(piatto1);
 
         try {
 
@@ -52,10 +52,92 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
     }
 
-    private static String buildCreateMenuSQL(int numero, String piatto1,String piatto2,String piatto3) {
+    private static String buildCreatePrimoSQL(Piatto piatto1) {
 
-        return "INSERT INTO Menu(numero,piatto1,piatto2,piatto3)" +
-                "VALUES('" + numero + "','"+piatto1+"','"+piatto2+"','"+piatto3+"')";
+        return "INSERT INTO Menu(piatto1)" +
+                "VALUES('"+piatto1.getNome_p()+"')";
+
+    }
+    @Override
+    public void inserisciSecondo(Piatto piatto2) throws SQLException {
+
+        try {
+            createSecondo(piatto2);
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+    private static void createSecondo(Piatto piatto2) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateSecondoSQL(piatto2);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+
+    private static String buildCreateSecondoSQL(Piatto piatto2) {
+
+        return "UPDATE Menu SET piatto2 = '"+piatto2.getNome_p()+"'";
+
+    }
+    @Override
+    public void inserisciContorno(Piatto piatto3) throws SQLException {
+
+        try {
+            createContorno(piatto3);
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+    private static void createContorno(Piatto piatto3) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateContornoSQL(piatto3);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+
+    private static String buildCreateContornoSQL(Piatto piatto3) {
+
+        return "UPDATE Menu SET piatto3 = '"+piatto3.getNome_p()+"'";
 
     }
 

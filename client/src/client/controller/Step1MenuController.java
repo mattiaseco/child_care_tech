@@ -30,12 +30,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class Step1MenuController extends AnchorPane{
+public class Step1MenuController extends AnchorPane {
 
-    @FXML public TableView primiTable;
-    @FXML public TableColumn<Piatto, String> primiColumn;
 
-    @FXML public AnchorPane step1MenuPane;
+    @FXML
+    public TableView<Piatto> primiTable;
+    @FXML
+    public TableColumn<Piatto, String> primiColumn;
+
+    @FXML
+    private Text alertbox;
+
+    @FXML
+    public AnchorPane step1MenuPane;
 
     private TabelleMenuController tabelleMenuController;
     private Pane tabelleMenuPane;
@@ -45,7 +52,7 @@ public class Step1MenuController extends AnchorPane{
 
     private iPiattoDAO piattoDAO;
 
-    public void initialize(){
+    public void initialize() {
 
         piattoDAO = NamingContextManager.getPiattoController();
 
@@ -53,13 +60,14 @@ public class Step1MenuController extends AnchorPane{
         initColumns();
     }
 
-    private void initTable(){
+    private void initTable() {
         primiTable.setItems(primi);
         refreshPrimiTable();
 
     }
-    private void initColumns(){
-        primiColumn.setCellValueFactory(data-> new SimpleStringProperty(data.getValue().getNome_p()));
+
+    private void initColumns() {
+        primiColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome_p()));
     }
 
 
@@ -67,10 +75,10 @@ public class Step1MenuController extends AnchorPane{
         List<Piatto> primiList = new ArrayList<>();
         try {
             primiList = piattoDAO.getAllPrimi();
-        } catch(RemoteException ex) {
+        } catch (RemoteException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
         }
@@ -87,16 +95,39 @@ public class Step1MenuController extends AnchorPane{
     }
 
     @FXML
-    public void returnToTabelleMenu()throws IOException {
-        ((BorderPane)step1MenuPane.getParent()).setCenter(tabelleMenuPane);
+    public void returnToTabelleMenu() throws IOException {
+        ((BorderPane) step1MenuPane.getParent()).setCenter(tabelleMenuPane);
         //tabelleMenuController.refreshMenuTable();
     }
 
     @FXML
-    public void goToStep2()throws IOException {
-        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step2Menu.fxml")));
+    public void goToStep2() throws IOException, SQLException {
 
-    }
+        alertbox.setText("");
+
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+
+        FXMLLoader loader;
+        Pane step2MenuPane;
+
+        Piatto piatto = primiTable.getSelectionModel().getSelectedItem();
+
+        if (piatto == null) {
+
+            alertbox.setText("ATTENZIONE: Selezionare una riga!");
+
+        } else {
+
+            menuDAO.inserisciPrimo(piatto);
+            loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
+            step2MenuPane = loader.load();
+            Step2MenuController controller = loader.getController();
+            controller.inizializza(tabelleMenuController, tabelleMenuPane, mainpane);
+            ((BorderPane)step1MenuPane.getParent()).setCenter(step2MenuPane);
+
+
+
+        }
 
 
 /*
@@ -153,4 +184,5 @@ public class Step1MenuController extends AnchorPane{
 
     }
 */
+    }
 }

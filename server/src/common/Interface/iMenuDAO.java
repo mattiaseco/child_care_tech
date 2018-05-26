@@ -13,7 +13,9 @@ import java.util.List;
 
 public interface iMenuDAO extends Remote {
 
-    void inserisciMenu(int numero,Piatto piatto1, Piatto piatto2, Piatto piatto3) throws RemoteException, SQLException;
+    void inserisciPrimo( Piatto piatto1) throws RemoteException,SQLException;
+    void inserisciSecondo(Piatto piatto2) throws RemoteException,SQLException;
+    void inserisciContorno(Piatto piatto3) throws RemoteException,SQLException;
     void modificaMenu(int numero, Piatto piatto1,Piatto piatto2,Piatto piatto3) throws RemoteException, SQLException;
     List<Menu> getAllMenu() throws RemoteException,SQLException;
     void cancellaMenu( int numero)throws RemoteException,SQLException;

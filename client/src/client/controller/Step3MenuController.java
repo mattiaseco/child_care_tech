@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Step3MenuController {
-    @FXML public TableView contorniTable;
+    @FXML public TableView<Piatto> contorniTable;
     @FXML private TableColumn<Piatto, String> contorniColumn;
 
     @FXML public AnchorPane step3MenuPane;
@@ -91,8 +91,17 @@ public class Step3MenuController {
     }
 
     @FXML
-    public void salvaMenu()throws IOException {
+    public void salvaMenu() throws IOException, SQLException {
+
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+
+        Piatto piatto = contorniTable.getSelectionModel().getSelectedItem();
+
+        menuDAO.inserisciContorno(piatto);
+
         ((BorderPane)step3MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/TabelleMenu.fxml")));
+
+        //tabelleMenuController.refreshMenuTable();
 
     }
 }

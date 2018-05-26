@@ -87,6 +87,13 @@ public class Step2AggiungiGitaController {
 
     }
 
+    public void addButtonAction(){
+
+    }
+    public void removeButtonAction(){
+
+    }
+
 
     @FXML
     public void goToStep3() throws IOException{
