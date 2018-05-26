@@ -62,6 +62,7 @@ public class CreaPiattoController {
     private ObservableList<Ingredienti> ingredientiPiatto = FXCollections.observableArrayList();
 
 
+
     @FXML
     public void initialize() {
         ingredientiDAO = NamingContextManager.getIngredientiController();
@@ -137,38 +138,6 @@ public class CreaPiattoController {
         ingredientiPiatto.clear();
         ingredientiDisponibili.addAll(tempFoods);
     }
-        /*@FXML
-    public void saveButtonAction(ActionEvent event)throws RemoteException, SQLException{
-        List<Ingredienti> newAllergies = new ArrayList<>();
-        List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
-
-        Bambino bambino1;
-        //PersonDTO newPerson;
-        newAllergies.addAll(allergies);
-
-        try{
-
-            for(Ingredienti newAllergy : newAllergies) {
-                if(!oldAllergies.contains(newAllergy))
-                    bambinoDAO.inserisciAllergia(bambino,newAllergy);
-            }
-            for(Ingredienti oldAllergy : oldAllergies) {
-                if(!newAllergies.contains(oldAllergy))
-                    bambinoDAO.cancellaAllergia(bambino,oldAllergy);
-            }
-            ((BorderPane)allergiePane.getParent()).setCenter(tabellePane);
-
-            tabellePaneController.refreshTabelle();
-
-        }catch (RemoteException ex){
-            System.err.println(ex.getMessage());
-            ex.printStackTrace();}
-
-
-
-    } */
-
-
 
     @FXML
     private void salvaPiatto(ActionEvent event)throws RemoteException, SQLException, IOException {
@@ -184,21 +153,46 @@ public class CreaPiattoController {
         else if( nome_p.length() > 15) {
             alertbox.setText("Attenzione: nome troppo lungo !");
         }
-        if(tipoPiatto.getSelectedToggle() == null) {
-            alertbox.setText("Attenzione: selezionare un tipo di piatto !");
-            return;
-        }
-        if (tipoPiatto.getSelectedToggle().equals(primobutton)) {
-            piattoController.inserisciPiatto(nome_p,"Primo");
+        else {
+            if (tipoPiatto.getSelectedToggle() == null) {
+                alertbox.setText("Attenzione: selezionare un tipo di piatto !");
+                return;
+            }
+            if (tipoPiatto.getSelectedToggle().equals(primobutton)) {
+                piattoController.inserisciPiatto(nome_p, "Primo");
 
+            } else if (tipoPiatto.getSelectedToggle().equals(secondobutton)) {
+                piattoController.inserisciPiatto(nome_p, "Secondo");
+            } else if (tipoPiatto.getSelectedToggle().equals(contornobutton)) {
+                piattoController.inserisciPiatto(nome_p, "Contorno");
+            }
         }
-        else if (tipoPiatto.getSelectedToggle().equals(secondobutton)){
-            piattoController.inserisciPiatto(nome_p,"Secondo");
+        List<Ingredienti> newingredienti = new ArrayList<>();
+        List<Ingredienti> oldingredienti = new ArrayList<>(ingredientiDAO.getAllIngredienti());
+
+        newingredienti.addAll(ingredientiDisponibili);
+
+        try{
+
+            for(Ingredienti newIngredienti : newingredienti) {
+                if(!oldingredienti.contains(newIngredienti))
+
+                    piattoDAO.inserisciIngredientePiatto(piatto,newIngredienti);
+            }
+            for(Ingredienti oldIngredienti : oldingredienti) {
+                if(!newingredienti.contains(oldIngredienti))
+                    piattoDAO.cancellaIngrediente(piatto,oldIngredienti);
+            }
+
+
+            ((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshTabelle();
+
+        }catch (RemoteException ex){
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        else if (tipoPiatto.getSelectedToggle().equals(contornobutton)){
-            piattoController.inserisciPiatto(nome_p,"Contorno");
-        }
-        
+
 
 
 
