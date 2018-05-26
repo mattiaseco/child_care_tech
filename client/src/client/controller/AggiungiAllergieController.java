@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -41,11 +43,14 @@ public class AggiungiAllergieController {
         private Button saveButton;
         @FXML private Text nomebambino;
 
+        @FXML private AnchorPane allergiePane;
+
         private Bambino bambino;
         private iBambinoDAO bambinoDAO;
         private iIngredientiDAO ingredientiDAO;
         private ObservableList<Ingredienti> allergies = FXCollections.observableArrayList();
         private ObservableList<Ingredienti> foods = FXCollections.observableArrayList();
+
         private Pane tabellePane;
         private TabellePaneController tabellePaneController;
 
@@ -66,29 +71,6 @@ public class AggiungiAllergieController {
             Bambino bambino1;
             //PersonDTO newPerson;
             newAllergies.addAll(allergies);
-            /*try {
-
-                for(Ingredienti oldAllergy : oldAllergies) {
-
-                    bambinoDAO.cancellaAllergia(bambino,oldAllergy);
-
-                    Set<Ingredienti>allergies=new HashSet<>(bambinoDAO.getAllAllergie(bambino));
-                    Set<Ingredienti>allergie=new HashSet<>(ingredientiDAO.getAllIngredienti());
-                    oldAllergies.addAll(allergie);
-
-                }
-                for(Ingredienti newAllergy : newAllergies) {
-
-                    bambinoDAO.inserisciAllergia(bambino,newAllergy);
-                    Set<Ingredienti>allergies=new HashSet<>(bambinoDAO.getAllAllergie(bambino));
-                    newAllergies.addAll(allergies);
-                }
-                //accessorWindowService.close();
-                tabellePaneController.refreshTabelle();
-            } catch (RemoteException ex) {
-                System.err.println(ex.getMessage());
-                ex.printStackTrace();
-            }*/
 
             try{
 
@@ -100,6 +82,8 @@ public class AggiungiAllergieController {
                     if(!newAllergies.contains(oldAllergy))
                         bambinoDAO.cancellaAllergia(bambino,oldAllergy);
                 }
+                ((BorderPane)allergiePane.getParent()).setCenter(tabellePane);
+
                 tabellePaneController.refreshTabelle();
 
             }catch (RemoteException ex){
