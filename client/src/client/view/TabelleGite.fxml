@@ -9,14 +9,21 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="giteTable" prefHeight="500.0" prefWidth="500.0">
-              <columns>
-                <TableColumn fx:id="dest" prefWidth="150.0" text="destinazione" />
-                <TableColumn fx:id="dat_part" prefWidth="150.0" text="data partenza" />
-                  <TableColumn fx:id="dat_rit" prefWidth="150.0" text="data ritorno" />
-                  <TableColumn fx:id="num_part" prefWidth="150.0" text="numero partecipanti" />
-              </columns>
-            </TableView>
+            <AnchorPane>
+               <children>
+                  <TableView fx:id="giteTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="dest" prefWidth="150.0" text="destinazione" />
+                      <TableColumn fx:id="dat_part" prefWidth="150.0" text="data partenza" />
+                        <TableColumn fx:id="dat_rit" prefWidth="150.0" text="data ritorno" />
+                        <TableColumn fx:id="num_part" prefWidth="150.0" text="numero bambini" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </children>

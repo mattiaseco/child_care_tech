@@ -57,7 +57,9 @@
                      </font>
                   </Label>
                   <TextField fx:id="destinazioneField" GridPane.columnIndex="1" />
+                  <TextArea fx:id="noteField" maxHeight="75.0" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <DatePicker fx:id="dataPartenzaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="dataRitornoField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="prezzoField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -71,13 +73,11 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="noteField" maxHeight="75.0" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Data ritorno*" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="dataRitornoField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
