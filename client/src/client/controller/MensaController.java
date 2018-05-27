@@ -148,7 +148,7 @@ public class MensaController {
         AdesioniController controller = loader.getController();
         Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
 
-        controller.inizializza(mainpane, tabelleMenuPane, tabelleMenuController);
+        controller.inizializza( tabelleMenuPane, tabelleMenuController);
 
         //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/Adesioni.fxml")));
 
