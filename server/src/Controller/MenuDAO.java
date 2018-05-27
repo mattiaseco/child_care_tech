@@ -205,6 +205,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         Statement stmt = conn.createStatement();
         String sql="SELECT * FROM Piatto WHERE nome_p='"+piatto+"'";
         ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
         String nome_p = rs.getString("nome_p");
         String tipo=rs.getString("tipo");
 

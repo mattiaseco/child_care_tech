@@ -9,14 +9,21 @@
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="mensaTable" prefHeight="500.0" prefWidth="500.0">
-              <columns>
-                <TableColumn fx:id="menuColumn" prefWidth="100.0" text="menù" />
-                <TableColumn fx:id="primoColumn" prefWidth="100.0" text="primo" />
-                  <TableColumn fx:id="secondoColumn" prefWidth="100.0" text="secondo" />
-                  <TableColumn fx:id="contornoColumn" prefWidth="100.0" text="contorno" />
-              </columns>
-            </TableView>
+            <AnchorPane>
+               <children>
+                  <TableView fx:id="mensaTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="menuColumn" prefWidth="100.0" text="menù" />
+                      <TableColumn fx:id="primoColumn" prefWidth="100.0" text="primo" />
+                        <TableColumn fx:id="secondoColumn" prefWidth="100.0" text="secondo" />
+                        <TableColumn fx:id="contornoColumn" prefWidth="100.0" text="contorno" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </children>

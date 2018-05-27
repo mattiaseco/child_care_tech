@@ -25,12 +25,15 @@ public class TabelleMenuController {
 
     @FXML public TableView<Menu> mensaTable;
     @FXML private TableColumn<Menu, Integer> menuColumn;
-    @FXML private TableColumn<Menu, Piatto> primoColumn;
+    /*@FXML private TableColumn<Menu, Piatto> primoColumn;
     @FXML private TableColumn<Menu, Piatto> secondoColumn;
     @FXML private TableColumn<Menu, Piatto> contornoColumn;
+    */
+    @FXML private TableColumn<Menu, String> primoColumn;
+    @FXML private TableColumn<Menu, String> secondoColumn;
+    @FXML private TableColumn<Menu, String> contornoColumn;
 
     @FXML AnchorPane menuPane;
-
 
     private ObservableList<Menu> menus = FXCollections.observableArrayList();
 
@@ -43,18 +46,20 @@ public class TabelleMenuController {
         initColumns();
     }
 
-    private void initTables() {
-        mensaTable.setItems(menus);
-        //refreshMenuTable();
-
-    }
     private void initColumns() {
 
         menuColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumero()));
-        primoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto1()));
-        secondoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto2()));
-        contornoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto3()));
+        primoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto1().getNome_p()));
+        secondoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto2().getNome_p()));
+        contornoColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPiatto3().getNome_p()));
     }
+
+    private void initTables() {
+        mensaTable.setItems(menus);
+        refreshMenuTable();
+
+    }
+
 
     public void refreshMenuTable() {
 
