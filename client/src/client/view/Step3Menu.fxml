@@ -22,7 +22,7 @@
                <children>
                   <Label alignment="CENTER" text="Creazione Menù ">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
                </children>
