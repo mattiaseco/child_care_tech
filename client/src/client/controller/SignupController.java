@@ -27,11 +27,12 @@ public class SignupController {
     @FXML private PasswordField confirmpasswordfield;
 
     @FXML private Button signupbutton2;
+    @FXML private Button annullabutton;
+
 
     @FXML private Text alertbox;
 
     private Stage actual;
-
 
 
     @FXML
@@ -41,9 +42,8 @@ public class SignupController {
         String username = usernamefield.getText();
         String password = passwordfield.getText();
         alertbox.setText("");
-        if (username.equals("") || password.equals("")) {
+        if (username.equals("") || password.equals(""))
             alertbox.setText("Attenzione: Username o Password vuoti");
-        }
         else{
             if (passwordfield.getText().equals(confirmpasswordfield.getText())) {
 
@@ -63,6 +63,14 @@ public class SignupController {
                 alertbox.setText("Attenzione: Password diverse");
         }
 
+    }
+
+
+    @FXML private void returnToLogin(ActionEvent event) throws  IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+        actual = (Stage) annullabutton.getScene().getWindow();
+        actual.setScene(new Scene(root, annullabutton.getScene().getWidth(), annullabutton.getScene().getHeight()));
+        actual.show();
     }
 
 }

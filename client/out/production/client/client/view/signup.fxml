@@ -69,8 +69,9 @@
                                 <Font size="18.0" />
                             </font>
                         </Text>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="7">
                      <children>
+                        <Button fx:id="annullabutton" minWidth="70.0" mnemonicParsing="false" onAction="#returnToLogin" prefWidth="70.0" text=" annulla " />
                         <Button fx:id="signupbutton2" alignment="CENTER" mnemonicParsing="false" onAction="#signupaction2" opacity="0.9" style="-fx-background-color: #f18e32;" text="Sign up" textAlignment="CENTER" textFill="#fcfcfc">
                            <font>
                               <Font size="18.0" />
