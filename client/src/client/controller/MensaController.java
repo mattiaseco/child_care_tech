@@ -32,22 +32,22 @@ public class MensaController {
     @FXML private Text alertbox;
     @FXML private Text alertboxerror;
     @FXML private ImageView backhome;
+
     private Stage actual;
 
     private TabelleMenuController tabelleMenuController;
     public static Pane tabelleMenuPane;
 
+    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane){
+
+        this.tabelleMenuController = tabelleMenuController;
+        this.tabelleMenuPane = tabelleMenuPane;
+        this.mainpane = mainpane;
+    }
+
     /*private AdesioniController adesioniController;
     private ModificaBambinoController modificaBambinoController;
     private AggiungiBambinoController aggiungiBambinoController;*/
-
-    public void inizializza(BorderPane mainpane, Pane tabelleMenuPane, TabelleMenuController tabelleMenuController){
-
-        this.mainpane = mainpane;
-        this.tabelleMenuPane = tabelleMenuPane;
-        this.tabelleMenuController = tabelleMenuController;
-    }
-
 
     @FXML
     private void backtohome() throws IOException {
@@ -106,8 +106,7 @@ public class MensaController {
         step1MenuPane = loader.load();
         mainpane.setCenter(step1MenuPane);
         Step1MenuController controller = loader.getController();
-        Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-        //controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane);
+        controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane);
     }
 
     @FXML

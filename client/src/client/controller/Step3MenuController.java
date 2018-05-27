@@ -34,6 +34,8 @@ public class Step3MenuController {
     private TabelleMenuController tabelleMenuController;
     private Pane tabelleMenuPane;
     private BorderPane mainpane;
+    private int numeroMenu;
+
 
     private ObservableList<Piatto> contorni = FXCollections.observableArrayList();
     private iPiattoDAO piattoDAO;
@@ -74,11 +76,13 @@ public class Step3MenuController {
         contorni.addAll(contorniList);
     }
 
-    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane) {
+    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane, int numeroMenu) {
 
         this.tabelleMenuController = tabelleMenuController;
         this.tabelleMenuPane = tabelleMenuPane;
         this.mainpane = mainpane;
+        this.numeroMenu = numeroMenu;
+
     }
 
 
@@ -97,7 +101,7 @@ public class Step3MenuController {
 
         Piatto piatto = contorniTable.getSelectionModel().getSelectedItem();
 
-        menuDAO.inserisciContorno(piatto);
+        menuDAO.inserisciContorno(numeroMenu,piatto);
 
         ((BorderPane)step3MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/TabelleMenu.fxml")));
 

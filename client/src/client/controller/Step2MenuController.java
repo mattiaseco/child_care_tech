@@ -39,6 +39,8 @@ public class Step2MenuController {
     private TabelleMenuController tabelleMenuController;
     private Pane tabelleMenuPane;
     private BorderPane mainpane;
+    private int numeroMenu;
+
 
     private ObservableList<Piatto> secondi = FXCollections.observableArrayList();
     private iPiattoDAO piattoDAO;
@@ -80,11 +82,13 @@ public class Step2MenuController {
 
 
 
-    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane) {
+    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane, BorderPane mainpane, int numeroMenu) {
 
         this.tabelleMenuController = tabelleMenuController;
         this.tabelleMenuPane = tabelleMenuPane;
         this.mainpane = mainpane;
+        this.numeroMenu = numeroMenu;
+
     }
 
     @FXML
@@ -110,11 +114,11 @@ public class Step2MenuController {
 
         } else {
             //((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step2Menu.fxml")))
-            menuDAO.inserisciSecondo(piatto);
+            menuDAO.inserisciSecondo(numeroMenu,piatto);
             loader = new FXMLLoader(getClass().getResource("../view/Step3Menu.fxml"));
             step3MenuPane = loader.load();
             Step3MenuController controller = loader.getController();
-            controller.inizializza(tabelleMenuController, tabelleMenuPane, mainpane);
+            controller.inizializza(tabelleMenuController, tabelleMenuPane,mainpane, numeroMenu);
             ((BorderPane)step2MenuPane.getParent()).setCenter(step3MenuPane);
 
 

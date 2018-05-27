@@ -96,7 +96,7 @@ public class Database {
         stmt.executeUpdate(sql7);
 
         String sql8 = "CREATE TABLE IF NOT EXISTS Menu " +
-                "(numero INT AUTO_INCREMENT," +
+                "(numero INT NOT NULL," +
                 "piatto1 VARCHAR(15) NOT NULL,"+
                 "piatto2 VARCHAR(15),"+
                 "piatto3 VARCHAR(15),"+

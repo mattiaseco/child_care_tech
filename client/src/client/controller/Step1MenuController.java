@@ -36,7 +36,9 @@ public class Step1MenuController extends AnchorPane {
     @FXML
     public TableView<Piatto> primiTable;
     @FXML
-    public TableColumn<Piatto, String> primiColumn;
+    private TableColumn<Piatto, String> primiColumn;
+    @FXML
+    public TextField numeroMenuField;
 
     @FXML
     private Text alertbox;
@@ -47,7 +49,6 @@ public class Step1MenuController extends AnchorPane {
     private TabelleMenuController tabelleMenuController;
     private Pane tabelleMenuPane;
     private BorderPane mainpane;
-
     private ObservableList<Piatto> primi = FXCollections.observableArrayList();
 
     private iPiattoDAO piattoDAO;
@@ -92,6 +93,8 @@ public class Step1MenuController extends AnchorPane {
         this.tabelleMenuController = tabelleMenuController;
         this.tabelleMenuPane = tabelleMenuPane;
         this.mainpane = mainpane;
+
+
     }
 
     @FXML
@@ -104,12 +107,13 @@ public class Step1MenuController extends AnchorPane {
     public void goToStep2() throws IOException, SQLException {
 
         alertbox.setText("");
-
-        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+        int numeroMenu;
 
         FXMLLoader loader;
         Pane step2MenuPane;
 
+        numeroMenu = Integer.parseInt(numeroMenuField.getText());
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
         Piatto piatto = primiTable.getSelectionModel().getSelectedItem();
 
         if (piatto == null) {
@@ -118,11 +122,11 @@ public class Step1MenuController extends AnchorPane {
 
         } else {
 
-            menuDAO.inserisciPrimo(piatto);
+            menuDAO.inserisciPrimo(numeroMenu,piatto);
             loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
             step2MenuPane = loader.load();
             Step2MenuController controller = loader.getController();
-            controller.inizializza(tabelleMenuController, tabelleMenuPane, mainpane);
+            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,numeroMenu);
             ((BorderPane)step1MenuPane.getParent()).setCenter(step2MenuPane);
 
 
