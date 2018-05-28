@@ -74,4 +74,13 @@ public class Bambino implements Serializable{
         this.contatto2 = contatto2;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Bambino))
+            return false;
+        return this.cf.equals(((Bambino) obj).cf);
+    }
+
 }

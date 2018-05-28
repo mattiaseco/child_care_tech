@@ -53,7 +53,6 @@ public class AdesioniController {
 
 
     private Menu menu;
-    private Bambino bambino;
     private iBambinoDAO bambinoDAO;
     private iMenuDAO menuDAO;
     private ObservableList<Bambino> bambiniDisponibili = FXCollections.observableArrayList();
