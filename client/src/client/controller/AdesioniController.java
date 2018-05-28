@@ -3,6 +3,7 @@ package client.controller;
 import client.NamingContextManager;
 import common.Classes.Bambino;
 import common.Classes.Ingredienti;
+import common.Classes.Menu;
 import common.Classes.Piatto;
 import common.Interface.iBambinoDAO;
 import common.Interface.iMenuDAO;
@@ -51,6 +52,7 @@ public class AdesioniController {
     private TabelleMenuController tabellePaneController;
 
 
+    private Menu menu;
     private Bambino bambino;
     private iBambinoDAO bambinoDAO;
     private iMenuDAO menuDAO;
@@ -138,21 +140,25 @@ public class AdesioniController {
     private void aggiornaAdesioni(ActionEvent event)throws RemoteException, SQLException, IOException {
 
         alertbox.setText("");
-       /*
-            List<Ingredienti> newingredienti = new ArrayList<>();
-            List<Ingredienti> oldingredienti = new ArrayList<>(piattoDAO.getAllIngredientiPiatto(piatto));
+        int numero=menu.getNumero();
+        common.Classes.Menu menu=new common.Classes.Menu(numero,menuDAO.getPiatto1(numero),menuDAO.getPiatto2(numero),menuDAO.getPiatto3(numero));
 
-            newingredienti.addAll(bambiniPresenti);
+            List<Bambino> newbambini = new ArrayList<>();
+            List<Bambino> oldbambini = new ArrayList<>(menuDAO.getAllBambiniMenu(menu));
+
+            newbambini.addAll(bambiniPresenti);
+
 
             try {
 
-                for (Ingredienti newIngredienti : newingredienti) {
-                    if (!oldingredienti.contains(newIngredienti))
-                        piattoDAO.inserisciIngredientePiatto(piatto, newIngredienti);
+                for (Bambino newBambino : newbambini) {
+                    if (!oldbambini.contains(newBambino))
+                        menuDAO.inserisciBambinoMangia(menu, newBambino);
+
                 }
-                for (Ingredienti oldIngredienti : oldingredienti) {
-                    if (!newingredienti.contains(oldIngredienti))
-                        piattoDAO.cancellaIngredientePiatto(piatto, oldIngredienti);
+                for (Bambino oldBambino : oldbambini) {
+                    if (!newbambini.contains(oldBambino))
+                        menuDAO.cancellaBambinoMangia(menu, oldBambino);
                 }
 
                 ((BorderPane) adesionipane.getParent()).setCenter(tabellePane);
@@ -162,7 +168,7 @@ public class AdesioniController {
                 System.err.println(ex.getMessage());
                 ex.printStackTrace();
             }
-            */
+
         }
 
     public void addButtonAction() {
@@ -177,10 +183,9 @@ public class AdesioniController {
 
 
     }
-    public void inizializza( Pane tabellePane, TabelleMenuController tabellePaneController) {
+    public void inizializza(Menu menu, Pane tabellePane, TabelleMenuController tabellePaneController) {
 
-        //numeroMenuLabel.setText(());
-
+        this.menu=menu;
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
 

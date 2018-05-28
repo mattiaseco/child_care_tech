@@ -150,13 +150,14 @@ public class MensaController {
         else {
             //tabelleMenuController.refreshMenuTable();
 
+
             alertboxerror.setText("");
             loader = new FXMLLoader(getClass().getResource("../view/Adesioni.fxml"));
             adesionipane = loader.load();
             mainpane.setCenter(adesionipane);
             AdesioniController controller = loader.getController();
             //Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-            controller.inizializza( tabelleMenuPane, tabelleMenuController);
+            controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
         }
         
         //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/Adesioni.fxml")));

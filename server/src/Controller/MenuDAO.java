@@ -1,9 +1,6 @@
 package Controller;
 
-import common.Classes.Bambino;
-import common.Classes.Mangia;
-import common.Classes.Menu;
-import common.Classes.Piatto;
+import common.Classes.*;
 import common.Interface.iMenuDAO;
 
 import java.rmi.RemoteException;
@@ -32,26 +29,26 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
     private static void createPrimo(int numeroMenu,Piatto piatto1) throws SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
-        Statement st = conn.createStatement();
-        ResultSet rs;
-        String sql = buildCreatePrimoSQL(numeroMenu,piatto1);
 
-        try {
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            String sql = buildCreatePrimoSQL(numeroMenu, piatto1);
 
-            rs = st.executeQuery(sql);
-            conn.close();
-            rs.next();
+            try {
 
-        } catch (SQLException ex) {
-            System.err.println("sql exception");
-            ex.printStackTrace();
-            conn.close();
-            return;
+                rs = st.executeQuery(sql);
+                conn.close();
+                rs.next();
+
+            } catch (SQLException ex) {
+                System.err.println("sql exception");
+                ex.printStackTrace();
+                conn.close();
+                return;
+            }
+
         }
-
-    }
-
     private static String buildCreatePrimoSQL(int numeroMenu,Piatto piatto1) {
 
         return "INSERT INTO Menu(numero,piatto1)" +
@@ -113,7 +110,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
     }
 
+
     private static void createContorno(int numeroMenu,Piatto piatto3) throws SQLException {
+
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
@@ -151,7 +150,6 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         }
 
     }
-
     private static void updateMenu(int numero, String piatto1,String piatto2,String piatto3) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -174,7 +172,6 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
 
     }
-
     public static String buildUpdateMenuSQL(int numero, String piatto1,String piatto2,String piatto3)  throws SQLException {
         return "UPDATE Menu SET numero = '" + numero + "' ,piatto1='"+piatto1+"',piatto2='"+piatto2+"',piatto3='"+piatto3+"'";
     }
@@ -249,8 +246,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
     }
 
-    @Override
-    public List<Mangia> GetAllBambiniMenu(Menu menu) throws SQLException{
+    public List<Mangia> GetAllBambiniMenuMangia(Menu menu) throws SQLException{
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
@@ -304,4 +300,140 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         return menu1;
 
     }
+    public List<Bambino>getAllBambiniMenu(Menu menu)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Bambino WHERE cf IN (" +
+                "SELECT cf FROM Mangia WHERE numero = '" + menu.getNumero() + "')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Bambino> bambinoList = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            LocalDate data = LocalDate.parse(rs.getString("data"));
+            String indirizzo = rs.getString("indirizzo");
+            String contatto1 = rs.getString("contatto1");
+            String contatto2 = rs.getString("contatto2");
+
+
+            Bambino bambino_menu= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+
+            bambinoList.add(bambino_menu);
+
+        }
+        return bambinoList;
+
+
+    }
+
+    public void inserisciBambinoMangia(Menu menu, Bambino bambino)throws RemoteException,SQLException{
+        try {
+            createBambinoMangia(menu.getNumero(), bambino.getCf());
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void createBambinoMangia(int numero,String cf)throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateBambinoMangiaSQL(numero, cf);
+
+        try {
+
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildCreateBambinoMangiaSQL(int numero, String cf)throws SQLException{
+        return "INSERT INTO Mangia(cf,numero) VALUES('" + cf + "','" + numero+ "')";
+    }
+
+    public void cancellaBambinoMangia(Menu menu, Bambino bambino) throws RemoteException, SQLException {
+        try {
+        deleteBambinoMangia(menu.getNumero(),bambino.getCf());
+    }catch (SQLException e){
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+        return;
+    }
+    }
+    private static void deleteBambinoMangia(int numero,String cf )throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteBambinoMangiaSQL(numero,cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildDeleteBambinoMangiaSQL(int numero,String cf){
+        return "DELETE FROM Mangia WHERE numero='"+numero+"' AND cf='"+cf+"'";
+
+    }
+
+
+
+    public Piatto getPiatto1(int numero)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT piatto1 FROM Menu WHERE numero='"+numero+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
+
+        String nome_p = rs.getString("piatto1");
+
+
+        return getPiatto(nome_p);
+    }
+    public Piatto getPiatto2(int numero)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT piatto2 FROM Menu WHERE numero='"+numero+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
+
+        String nome_p = rs.getString("piatto2");
+
+
+        return getPiatto(nome_p);
+    }
+    public Piatto getPiatto3(int numero)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT piatto3 FROM Menu WHERE numero='"+numero+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
+
+        String nome_p = rs.getString("piatto3");
+
+
+        return getPiatto(nome_p);
+    }
+
+
+
 }

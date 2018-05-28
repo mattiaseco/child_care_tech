@@ -13,6 +13,5 @@ public interface iPediatraDAO extends Remote {
     void inserisciPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     void modificaPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Pediatra> getAllPediatra() throws RemoteException,SQLException;
-    void  cancellaPediatra(String cf) throws RemoteException, SQLException;
-
+    void cancellaPediatra(String cf) throws RemoteException,SQLException;
 }
