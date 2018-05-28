@@ -288,6 +288,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         Statement stmt = conn.createStatement();
         String sql="SELECT * FROM Menu WHERE numero='"+numero_menu+"'";
         ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
 
 
         int numero=rs.getInt("numero");
@@ -432,6 +433,37 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
 
         return getPiatto(nome_p);
+    }
+    public List<Ingredienti>getAllIngredientiMenu(Menu menu)throws RemoteException,SQLException{
+        List<Ingredienti>ingredientiPiatto1List=new ArrayList<>(getAllIngredientiPiatto(getPiatto1(menu.getNumero())));
+        List<Ingredienti>ingredientiPiatto2List=new ArrayList<>(getAllIngredientiPiatto(getPiatto2(menu.getNumero())));
+        List<Ingredienti>ingredientiPiatto3List=new ArrayList<>(getAllIngredientiPiatto(getPiatto3(menu.getNumero())));
+        List<Ingredienti> ingredientiMenu = new ArrayList<Ingredienti>();
+        ingredientiMenu.addAll(ingredientiPiatto1List);
+        ingredientiMenu.addAll(ingredientiPiatto2List);
+        ingredientiMenu.addAll(ingredientiPiatto3List);
+
+        return ingredientiMenu;
+    }
+    public List<Ingredienti>getAllIngredientiPiatto(Piatto piatto)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Ingrediente WHERE nome_i IN (" +
+                "SELECT nome_i FROM Contiene WHERE nome_p = '" + piatto.getNome_p() + "')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Ingredienti> ingredientiList = new ArrayList<>();
+
+        while (rs.next()) {
+            String nome_i = rs.getString("nome_i");
+            int quantita = rs.getInt("quantita");
+            Ingredienti ing_piatto = new Ingredienti(nome_i,quantita);
+
+            ingredientiList.add(ing_piatto);
+
+        }
+        return ingredientiList;
     }
 
 

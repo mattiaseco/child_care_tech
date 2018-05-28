@@ -1,10 +1,7 @@
 package common.Interface;
 
 import com.sun.org.apache.regexp.internal.RE;
-import common.Classes.Bambino;
-import common.Classes.Mangia;
-import common.Classes.Menu;
-import common.Classes.Piatto;
+import common.Classes.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface iMenuDAO extends Remote {
+
 
     void inserisciPrimo(int numeroMenu,Piatto piatto1) throws RemoteException,SQLException;
     void inserisciSecondo(int numeroMenu,Piatto piatto2) throws RemoteException,SQLException;
@@ -27,6 +25,7 @@ public interface iMenuDAO extends Remote {
     Piatto getPiatto1(int numero)throws RemoteException,SQLException;
     Piatto getPiatto2(int numero)throws RemoteException,SQLException;
     Piatto getPiatto3(int numero)throws RemoteException,SQLException;
+    List<Ingredienti>getAllIngredientiMenu(Menu menu)throws RemoteException,SQLException;
 
 
 }

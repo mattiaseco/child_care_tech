@@ -1,9 +1,6 @@
 package common.Interface;
 
-import common.Classes.Bambino;
-import common.Classes.Mangia;
-import common.Classes.Menu;
-import common.Classes.Piatto;
+import common.Classes.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -27,5 +24,6 @@ public interface iMenuDAO extends Remote{
     Piatto getPiatto1(int numero)throws RemoteException,SQLException;
     Piatto getPiatto2(int numero)throws RemoteException,SQLException;
     Piatto getPiatto3(int numero)throws RemoteException,SQLException;
+    List<Ingredienti>getAllIngredientiMenu(Menu menu)throws RemoteException,SQLException;
 
 }

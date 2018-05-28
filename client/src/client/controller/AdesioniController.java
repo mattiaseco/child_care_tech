@@ -69,11 +69,22 @@ public class AdesioniController {
 
     }
 
-    public void addButtonAction(ActionEvent event ) {
+    public void addButtonAction(ActionEvent event )throws RemoteException,SQLException {
         Bambino selected = bambiniDTable.getSelectionModel().getSelectedItem();
         if(selected == null) return;
-        bambiniPresenti.add(selected);
-        bambiniDisponibili.remove(selected);
+        //bambiniPresenti.add(selected);
+        //bambiniDisponibili.remove(selected);
+
+        for (Ingredienti ingrediente : menuDAO.getAllIngredientiMenu(menu)) {
+            if (bambinoDAO.getAllAllergie(selected).contains(ingrediente)) {
+                alertbox.setText("è allergico a qualche ingrediente nel menù");
+                bambiniPresenti.remove(selected);
+                break;
+            }else{
+                bambiniPresenti.add(selected);
+                bambiniDisponibili.remove(selected);
+            }
+        }
     }
     @FXML
     public void removeButtonAction(ActionEvent event ) {
@@ -146,11 +157,11 @@ public class AdesioniController {
 
             try {
 
-                for (Bambino newBambino : newbambini) {
+                for (Bambino newBambino : newbambini)
                     if (!oldbambini.contains(newBambino))
-                        menuDAO.inserisciBambinoMangia(menu, newBambino);
+                            menuDAO.inserisciBambinoMangia(menu, newBambino);
 
-                }
+
                 for (Bambino oldBambino : oldbambini) {
                     if (!newbambini.contains(oldBambino))
                         menuDAO.cancellaBambinoMangia(menu, oldBambino);
