@@ -81,8 +81,9 @@ public class AdesioniController {
                 bambiniPresenti.remove(selected);
                 break;
             }else{
+                if(!(bambiniPresenti.contains(selected))){
                 bambiniPresenti.add(selected);
-                bambiniDisponibili.remove(selected);
+                bambiniDisponibili.remove(selected);}
             }
         }
     }

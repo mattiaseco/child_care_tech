@@ -117,12 +117,18 @@ public class Step1MenuController extends AnchorPane {
         iMenuDAO menuDAO = NamingContextManager.getMenuController();
         Piatto piatto = primiTable.getSelectionModel().getSelectedItem();
 
-        if(numeroMenu.isEmpty())
+        int numMenu;
+        try{
+            numMenu = Integer.parseInt(numeroMenu);
+        } catch (NumberFormatException e){
             alertbox.setText("ATTENZIONE: Inserire numero Menù!");
-        else if (piatto == null)
+            return;
+        }
+
+        if (piatto == null)
             alertbox.setText("ATTENZIONE: Selezionare un piatto!");
         else {
-            menuDAO.inserisciPrimo(Integer.parseInt(numeroMenu),piatto);
+            menuDAO.inserisciPrimo(numMenu,piatto);
             loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
             step2MenuPane = loader.load();
             Step2MenuController controller = loader.getController();
