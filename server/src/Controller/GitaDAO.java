@@ -171,7 +171,6 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
         }
 
     }
-
         private static void createBambinoGita(int codice_g,String cf) throws SQLException {
 
             Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -199,6 +198,42 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
                     " VALUES('"+ cf + "','" + codice_g + "')";
 
         }
+
+    public void cancellaBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException{
+        try {
+            deleteBambinoGita(gita.getCodice_g(),bambino.getCf());
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+    private static void deleteBambinoGita(int codice_g,String cf )throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteBambinoGitaSQL(codice_g,cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildDeleteBambinoGitaSQL(int codice_g,String cf){
+        return "DELETE FROM Aderisce WHERE codice_g='"+codice_g+"' AND cf='"+cf+"'";
+
+    }
+
+
+
         public void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException{
 
 
