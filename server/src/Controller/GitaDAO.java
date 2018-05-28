@@ -241,5 +241,32 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
                 " VALUES('"+ cf + "','" + targa + "')";
 
     }
+    public List<Bambino>getAllBambiniGita(Gita gita)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Bambino WHERE cf IN (" +
+                "SELECT cf FROM Aderisce WHERE codice_g = '" + gita.getCodice_g() + "')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Bambino> bambinoList = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            LocalDate data = LocalDate.parse(rs.getString("data"));
+            String indirizzo = rs.getString("indirizzo");
+            String contatto1 = rs.getString("contatto1");
+            String contatto2 = rs.getString("contatto2");
+
+
+            Bambino bambino_menu= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+
+            bambinoList.add(bambino_menu);
+
+        }
+        return bambinoList;
+
+    }
 
 }
