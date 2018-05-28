@@ -70,10 +70,6 @@ public class AdesioniController {
 
     }
 
-
-
-
-
     public void addButtonAction(ActionEvent event ) {
         Bambino selected = bambiniDTable.getSelectionModel().getSelectedItem();
         if(selected == null) return;
@@ -146,7 +142,7 @@ public class AdesioniController {
             List<Bambino> newbambini = new ArrayList<>();
             List<Bambino> oldbambini = new ArrayList<>(menuDAO.getAllBambiniMenu(menu));
 
-            newbambini.addAll(bambiniPresenti);
+            newbambini.addAll( bambiniPresenti);
 
 
             try {
@@ -163,6 +159,7 @@ public class AdesioniController {
 
                 ((BorderPane) adesionipane.getParent()).setCenter(tabellePane);
                 tabellePaneController.refreshMenuTable();
+
 
             } catch (RemoteException ex) {
                 System.err.println(ex.getMessage());
@@ -185,9 +182,29 @@ public class AdesioniController {
     }
     public void inizializza(Menu menu, Pane tabellePane, TabelleMenuController tabellePaneController) {
 
-        this.menu=menu;
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
+
+        if(menu == null)
+            return;
+        this.menu = menu;
+        try {
+            bambiniPresenti.addAll(menuDAO.getAllBambiniMenu(menu));
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        bambiniDisponibili.removeAll(bambiniPresenti);
+
+        numeroMenuLabel.setText(String.valueOf(menu.getNumero()));
+
+
+
 
     }
 
