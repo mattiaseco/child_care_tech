@@ -66,23 +66,20 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="50.0" prefHeight="50.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="40.0" prefHeight="40.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" minWidth="200.0" prefWidth="400.0" spacing="20.0">
-                     <children>
-                        <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
+                  <Text fx:id="alertbox1" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" maxHeight="80.0" minHeight="50.0" prefHeight="50.0" spacing="10.0">
+               <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <padding>
-                        <Insets right="20.0" />
+                        <Insets bottom="10.0" right="20.0" top="10.0" />
                      </padding>
                      <children>
                         <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToTabelleMenu" prefWidth="80.0" text=" annulla " />

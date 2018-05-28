@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,11 +32,24 @@ public class SignupController {
     @FXML private Button signupbutton2;
     @FXML private Button annullabutton;
 
+    @FXML private AnchorPane signuppane;
 
     @FXML private Text alertbox;
 
     private Stage actual;
-
+    @FXML
+    public void initialize() {
+        signuppane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if(ev.getCode() == KeyCode.ENTER) {
+                try {
+                    signupaction2(null);
+                } catch(IOException | SQLException ex){
+                    ex.printStackTrace();
+                }
+                ev.consume();
+            }
+        });
+    }
 
     @FXML
     private void signupaction2(ActionEvent event) throws IOException, SQLException {

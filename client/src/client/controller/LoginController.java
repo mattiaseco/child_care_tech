@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,6 +30,8 @@ public class LoginController {
 
     @FXML private Button signupbutton;
 
+    @FXML private AnchorPane rootpane;
+
     //@FXML private RadioButton rmibutton;
 
     //@FXML private RadioButton socketbutton;
@@ -35,7 +40,19 @@ public class LoginController {
 
     private Stage actual;
 
-
+    @FXML
+    public void initialize() {
+        rootpane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if(ev.getCode() == KeyCode.ENTER) {
+                try {
+                    loginaction(null);
+                } catch(IOException ex){
+                    ex.printStackTrace();
+                }
+                ev.consume();
+            }
+        });
+    }
 
     @FXML
     private void loginaction(ActionEvent event)throws IOException {
