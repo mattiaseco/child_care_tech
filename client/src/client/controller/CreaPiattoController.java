@@ -199,8 +199,12 @@ public class CreaPiattoController extends AnchorPane {
     @FXML
     private void returnToTabelleMenu() throws IOException {
         alertbox.setText("");
-        ((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
-        tabellePaneController.refreshMenuTable();
+
+        ((BorderPane) piattoPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Piatti.fxml")));
+
+
+        //((BorderPane)piattoPane.getParent()).setCenter(tabellePane);
+        //tabellePaneController.refreshMenuTable();
 
 
     }
