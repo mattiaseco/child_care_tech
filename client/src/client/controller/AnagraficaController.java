@@ -261,7 +261,7 @@ public class AnagraficaController {
         mainpane.setCenter(aggiungipane);
 
         ScegliPersonaController controller = loader.getController();
-        Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
+        //Bambino bambino = tabellePaneController.bambinoTable.getSelectionModel().getSelectedItem();
 
         controller.inizializza(mainpane, tabellePane, tabellePaneController);
     }

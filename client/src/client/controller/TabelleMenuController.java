@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -38,6 +40,17 @@ public class TabelleMenuController {
     private ObservableList<Menu> menus = FXCollections.observableArrayList();
 
     private iMenuDAO menuDAO;
+
+    private Pane tabelleMenuPane;
+    private TabelleMenuController tabelleMenuController;
+
+    public void inizializza(TabelleMenuController tabelleMenuController, Pane tabelleMenuPane) {
+
+        this.tabelleMenuController = tabelleMenuController;
+        this.tabelleMenuPane = tabelleMenuPane;
+
+
+    }
 
     @FXML
     public void initialize() {

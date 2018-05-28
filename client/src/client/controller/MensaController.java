@@ -88,11 +88,11 @@ public class MensaController {
         alertbox.setText("");
         alertboxerror.setText("");
         FXMLLoader loader;
-        Pane piattoPane;
-        loader = new FXMLLoader(getClass().getResource("../view/CreaPiatto.fxml"));
-        piattoPane = loader.load();
-        mainpane.setCenter(piattoPane);
-        CreaPiattoController controller = loader.getController();
+        Pane piattiPane;
+        loader = new FXMLLoader(getClass().getResource("../view/Piatti.fxml"));
+        piattiPane = loader.load();
+        mainpane.setCenter(piattiPane);
+        PiattiController controller = loader.getController();
         controller.inizializza(tabelleMenuPane,tabelleMenuController);
     }
     @FXML
@@ -159,7 +159,7 @@ public class MensaController {
             //Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
             controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
         }
-        
+
         //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/Adesioni.fxml")));
 
 

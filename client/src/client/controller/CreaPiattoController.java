@@ -144,14 +144,11 @@ public class CreaPiattoController extends AnchorPane {
         String nome_p;
         nome_p = nomepField.getText();
 
-        if(nome_p.isEmpty() ){
-
+        if(nome_p.isEmpty() )
             alertbox.setText("Attenzione: inserire nome del piatto !");
-        }
-        else if( nome_p.length() > 15) {
+        else if( nome_p.length() > 15)
             alertbox.setText("Attenzione: nome troppo lungo !");
-        }
-        if (piattoDAO.getAllNomiPiatti().contains(nome_p))
+        else if (piattoDAO.getAllNomiPiatti().contains(nome_p))
             alertbox.setText("Attenzione: piatto già presente !");
         else {
             if (tipoPiatto.getSelectedToggle() == null) {
@@ -184,9 +181,10 @@ public class CreaPiattoController extends AnchorPane {
                     if (!newingredienti.contains(oldIngredienti))
                         piattoDAO.cancellaIngredientePiatto(piatto, oldIngredienti);
                 }
+                ((BorderPane) piattoPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Piatti.fxml")));
 
-                ((BorderPane) piattoPane.getParent()).setCenter(tabellePane);
-                tabellePaneController.refreshMenuTable();
+                //((BorderPane) piattoPane.getParent()).setCenter(tabellePane);
+                //tabellePaneController.refreshMenuTable();
 
             } catch (RemoteException ex) {
                 System.err.println(ex.getMessage());

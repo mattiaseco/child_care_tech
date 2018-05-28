@@ -100,93 +100,38 @@ public class Step1MenuController extends AnchorPane {
     @FXML
     public void returnToTabelleMenu() throws IOException {
         ((BorderPane) step1MenuPane.getParent()).setCenter(tabelleMenuPane);
-        //tabelleMenuController.refreshMenuTable();
+        tabelleMenuController.refreshMenuTable();
     }
 
     @FXML
     public void goToStep2() throws IOException, SQLException {
 
         alertbox.setText("");
-        int numeroMenu;
-
+        //int numeroMenu;
+        String numeroMenu;
         FXMLLoader loader;
         Pane step2MenuPane;
 
-        numeroMenu = Integer.parseInt(numeroMenuField.getText());
+        //numeroMenu = Integer.parseInt(numeroMenuField.getText());
+        numeroMenu = numeroMenuField.getText();
         iMenuDAO menuDAO = NamingContextManager.getMenuController();
         Piatto piatto = primiTable.getSelectionModel().getSelectedItem();
 
-        if (piatto == null) {
-
-            alertbox.setText("ATTENZIONE: Selezionare una riga!");
-
-        } else {
-
-            menuDAO.inserisciPrimo(numeroMenu,piatto);
+        if(numeroMenu.isEmpty())
+            alertbox.setText("ATTENZIONE: Inserire numero Menù!");
+        else if (piatto == null)
+            alertbox.setText("ATTENZIONE: Selezionare un piatto!");
+        else {
+            menuDAO.inserisciPrimo(Integer.parseInt(numeroMenu),piatto);
             loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
             step2MenuPane = loader.load();
             Step2MenuController controller = loader.getController();
-            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,numeroMenu);
+            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,Integer.parseInt(numeroMenu));
             ((BorderPane)step1MenuPane.getParent()).setCenter(step2MenuPane);
 
 
 
         }
 
-
-/*
-    @FXML private TextField numeroMenuField;
-    @FXML private TextField nomePrimoField;
-    @FXML private TextField nomeSecondoField;
-    @FXML private TextField nomeContornoField;
-    @FXML private Button annullabutton;
-    @FXML private Button confermaButton;
-    @FXML private Button ingredientiprimobutton;
-    @FXML private Button ingredientisecondobutton;
-    @FXML private Button ingredienticontornobutton;
-
-    @FXML public AnchorPane step1MenuPane;
-
-    @FXML private Text alertbox;
-    private Pane tabellePane;
-    private TabellePaneController tabellePaneController;
-
-
-    @FXML
-    public void returnToTabelleMenu()throws IOException {
-
-    }
-    //public void inizializza(Menu menu, Pane tabellePane, TabellePaneController tabellePaneController){ }
-    @FXML
-    public void goToIngredientiPrimo()throws IOException {
-        FXMLLoader loader;
-        Pane step2MenuPane;
-        loader = new FXMLLoader(getClass().getResource("../view/Step2MenuController.fxml"));
-        step2MenuPane = loader.load();
-        mainpane.setCenter(step2MenuPane);
-        AggiungiAllergieController controller = loader.getController();
-        controller.inizializza(bambino, tabellePane, tabellePaneController);
-        */
-/*
-        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
-
-    }
-
-    @FXML
-    public void goToIngredientiSecondo()throws IOException {
-        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
-
-    }
-    @FXML
-    public void goToIngredientiContorno()throws IOException {
-        ((BorderPane)step1MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/Step1Menu.fxml")));
-
-    }
-    @FXML
-    public void salvaMenu()throws IOException {
-
-
-    }
-*/
     }
 }

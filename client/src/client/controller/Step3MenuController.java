@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import javax.print.attribute.standard.MediaSize;
 import java.io.IOException;
@@ -26,8 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Step3MenuController {
+
     @FXML public TableView<Piatto> contorniTable;
     @FXML private TableColumn<Piatto, String> contorniColumn;
+
+    @FXML private Text alertbox;
 
     @FXML public AnchorPane step3MenuPane;
 
@@ -60,7 +64,6 @@ public class Step3MenuController {
 
     }
 
-
     public void refreshContorniTable() {
         List<Piatto> contorniList = new ArrayList<>();
         try {
@@ -85,26 +88,43 @@ public class Step3MenuController {
 
     }
 
-
-
     @FXML
-    public void returnToTabelleMenu()throws IOException {
+    public void returnToTabelleMenu() throws IOException, SQLException {
+
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+        menuDAO.cancellaMenu(numeroMenu);
 
         ((BorderPane)step3MenuPane.getParent()).setCenter(tabelleMenuPane);
-
+        tabelleMenuController.refreshMenuTable();
     }
 
     @FXML
     public void salvaMenu() throws IOException, SQLException {
 
-        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+        //((BorderPane)step3MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/TabelleMenu.fxml")));
 
+        alertbox.setText("");
+
+        //FXMLLoader loader;
+        //Pane tabelleMenuPane;
+
+        iMenuDAO menuDAO = NamingContextManager.getMenuController();
         Piatto piatto = contorniTable.getSelectionModel().getSelectedItem();
 
-        menuDAO.inserisciContorno(numeroMenu,piatto);
+        if (piatto == null)
+            alertbox.setText("ATTENZIONE: Selezionare un piatto!");
+        else {
+            menuDAO.inserisciContorno(numeroMenu,piatto);
 
-        ((BorderPane)step3MenuPane.getParent()).setCenter(FXMLLoader.load(getClass().getResource("../view/TabelleMenu.fxml")));
+            //loader = new FXMLLoader(getClass().getResource("../view/TabelleMenu.fxml"));
+            //tabelleMenuPane = loader.load();
+            //TabelleMenuController controller = loader.getController();
+            //controller.inizializza(tabelleMenuController, tabelleMenuPane);
+            ((BorderPane)step3MenuPane.getParent()).setCenter(tabelleMenuPane);
+            tabelleMenuController.refreshMenuTable();
 
+
+        }
         //tabelleMenuController.refreshMenuTable();
 
     }
