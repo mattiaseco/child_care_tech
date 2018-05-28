@@ -21,7 +21,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totaleAderenzeLabel1" alignment="CENTER" minWidth="40.0" text="Pullman disponibili">
+                  <Label fx:id="totalePullmanPrenotatiLabel" alignment="CENTER" minWidth="40.0" text="Pullman disponibili">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -38,10 +38,10 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <TableView fx:id="allergiesTable" maxHeight="300.0" maxWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="pullmanDispTable" maxHeight="300.0" maxWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumnA" prefWidth="75.0" text="targa" />
-                              <TableColumn fx:id="nameColumnA1" prefWidth="75.0" text="capienza" />
+                              <TableColumn fx:id="targaDispColumn" prefWidth="75.0" text="targa" />
+                              <TableColumn fx:id="capienzaDispColumn" prefWidth="75.0" text="capienza" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -57,10 +57,10 @@
                   </VBox>
                   <AnchorPane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <TableView fx:id="foodsTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="pullmanPrenotatiTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumnF" prefWidth="75.0" text="targa" />
-                              <TableColumn fx:id="nameColumnF1" prefWidth="75.0" text="capienza" />
+                              <TableColumn fx:id="targaPrenotatiColumn" prefWidth="75.0" text="targa" />
+                              <TableColumn fx:id="capienzaPrenotatiColumn" prefWidth="75.0" text="capienza" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

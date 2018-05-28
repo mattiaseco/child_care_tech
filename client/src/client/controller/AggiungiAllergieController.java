@@ -93,11 +93,7 @@ public class AggiungiAllergieController {
 
         }
 
-        public void addButtonAction() {
-            addButtonAction();
-        }
-
-
+        @FXML
         public void addButtonAction(ActionEvent event ) {
             Ingredienti selected = foodsTable.getSelectionModel().getSelectedItem();
             if(selected == null) return;

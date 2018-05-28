@@ -6,7 +6,7 @@ public class Aderisce implements Serializable {
     private Bambino cf;
     private Gita codice_g;
 
-    public Aderisce (Pullman targa, Gita codice_g){
+    public Aderisce (Bambino cf, Gita codice_g){
 
         this.codice_g=codice_g;
         this.cf = cf;

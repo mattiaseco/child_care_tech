@@ -1,13 +1,19 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Aderisce;
 import common.Classes.Bambino;
 import common.Interface.iBambinoDAO;
+import common.Interface.iGitaDAO;
+import common.Interface.iMenuDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -22,44 +28,123 @@ import java.util.List;
 
 public class Step2AggiungiGitaController {
 
-    @FXML public TableView bambinoTable;
+    @FXML private Button removeButton;
+    @FXML private Button addButton;
+    @FXML private Label totaleAderenzeLabel;
+
+    @FXML public TableView<Bambino> cfTable;
     @FXML private TableColumn<Bambino, String> cfColumn;
-    @FXML private TableColumn<Bambino, String> nomeColumn;
-    @FXML private TableColumn<Bambino, String> cognomeColumn;
+
+    @FXML public TableView<Bambino> adesioniTable;
+    @FXML private TableColumn<Bambino, String> adesioniColumn;
 
     @FXML
     AnchorPane gitepane2;
 
+
+    private ObservableList<Bambino> kids = FXCollections.observableArrayList();
+    private iBambinoDAO bambinoDAO;
+
+    private ObservableList<Bambino> adesioni = FXCollections.observableArrayList();
+    private iGitaDAO gitaDAO;
+
+    private int totPartecipazioni;
     private Pane tabelleGitaPene;
     private TabelleGiteController tabelleGiteController;
     private BorderPane mainpane;
 
-    private ObservableList<Bambino> kids = FXCollections.observableArrayList();
-
-    private iBambinoDAO kidDAO;
-
-    public void initialize() {
-        kidDAO = NamingContextManager.getKidController();
+    public void initialize(){
+        totaleAderenzeLabel.setText("0");
+        bambinoDAO = NamingContextManager.getKidController();
+        gitaDAO = NamingContextManager.getTripsController();
 
         initColumns();
         initTable();
+
     }
 
-    private void initColumns() {
-        cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+    private void initColumns(){
+
+
+            List<Bambino> tempKids = new ArrayList<>();
+            cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+            adesioniColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+            adesioniTable.setItems(adesioni);
+            cfTable.setItems(kids);
+
+            try {
+                tempKids = bambinoDAO.getAllBambini();
+            } catch(RemoteException ex) {
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();
+            } catch(SQLException ex) {
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();
+            }
+            kids.clear();
+            adesioni.clear();
+            kids.addAll(tempKids);
+
+
+    }
+    private void initTable(){
+        removeButton.setDisable(true);
+        addButton.setDisable(true);
+
+        adesioniTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                removeButton.setDisable(false);
+                addButton.setDisable(true);
+            }
+            else {
+                removeButton.setDisable(true);
+                addButton.setDisable(true);
+            }
+        });
+        cfTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                removeButton.setDisable(true);
+                addButton.setDisable(false);
+            }
+            else {
+                removeButton.setDisable(true);
+                addButton.setDisable(true);
+            }
+        });
     }
 
-    private void initTable() {
-        bambinoTable.setItems(kids);
-        refreshKidTable();
+    public void refreshAdesioniTable() {
+        removeButton.setDisable(true);
+        addButton.setDisable(true);
+
+        adesioniTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                removeButton.setDisable(false);
+                addButton.setDisable(true);
+            }
+            else {
+                removeButton.setDisable(true);
+                addButton.setDisable(true);
+            }
+        });
+        cfTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                removeButton.setDisable(true);
+                addButton.setDisable(false);
+            }
+            else {
+                removeButton.setDisable(true);
+                addButton.setDisable(true);
+            }
+        });
     }
+
+
 
     public void refreshKidTable() {
         List<Bambino> kidsList = new ArrayList<>();
         try {
-            kidsList = kidDAO.getAllBambini();
+            kidsList = bambinoDAO.getAllBambini();
         } catch(RemoteException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
@@ -87,20 +172,32 @@ public class Step2AggiungiGitaController {
 
     }
 
-    public void addButtonAction(){
+    @FXML
+    public void addButtonAction(ActionEvent event ) {
 
+        totPartecipazioni = adesioniTable.getItems().size() + 1;
+        totaleAderenzeLabel.setText(Integer.toString(totPartecipazioni));
+        Bambino selected = cfTable.getSelectionModel().getSelectedItem();
+        if(selected == null) return;
+        adesioni.add(selected);
+        kids.remove(selected);
     }
-    public void removeButtonAction(){
-
+    @FXML
+    public void removeButtonAction(ActionEvent event ) {
+        Bambino selected = adesioniTable.getSelectionModel().getSelectedItem();
+        if(selected == null) return;
+        kids.add(selected);
+        adesioni.remove(selected);
     }
 
 
     @FXML
-    public void goToStep3() throws IOException{
+    public void goToStep3() throws IOException, SQLException {
 
         Pane gitepane3;
         FXMLLoader loader;
 
+        gitaDAO.insertNumPartecipanti(totPartecipazioni);
         loader = new FXMLLoader(getClass().getResource("../view/Step3AggiungiGita.fxml"));
         gitepane3= loader.load();
         Step3AggiungiGitaController controller = loader.getController();
