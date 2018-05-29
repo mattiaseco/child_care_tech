@@ -67,7 +67,7 @@ public class Step1AggiungiGitaController {
         data_ritorno = dataRitornoField.getValue();
         prezzo = prezzoField.getText();
         double prezzoGita;
-        
+
         if(destinazione.isEmpty() || data_partenza == null || data_ritorno == null)
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         else if (note.length() > 256 )
