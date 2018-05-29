@@ -2,7 +2,7 @@ package common.Classes;
 
 import java.io.Serializable;
 
-public class Intolleranze implements Serializable{
+public class Intolleranze implements Serializable {
 
     private Bambino cf;
     private Ingredienti nomeIngr;
@@ -35,5 +35,4 @@ public class Intolleranze implements Serializable{
             return false;
         return this.cf.equals(((Intolleranze) obj).cf);
     }
-
 }

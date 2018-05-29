@@ -1,6 +1,9 @@
 package Controller;
 
+import common.Classes.Bambino;
 import common.Classes.Gateway;
+import common.Classes.Ingredienti;
+import common.Classes.Intolleranze;
 import common.Interface.iGatewayDAO;
 
 import java.rmi.RemoteException;
@@ -26,7 +29,6 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
         }
 
     }
-
     private static void createGateway (int cod_porta,LocalDate data_gate) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -46,7 +48,6 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
             return;
         }
     }
-
     private static String buildCreateGatewaySQL(int cod_porta,LocalDate data_gate){
 
         return "INSERT INTO Gateway(cod_porta,date_gate)" +
@@ -64,7 +65,6 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
         }
 
     }
-
     private static void updateGateway(int cod_porta,LocalDate data_gate) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -85,7 +85,6 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
         }
 
     }
-
     public static String buildUpdateGatewaySQL(int cod_porta,LocalDate data_gate) throws SQLException {
         return "UPDATE Gateway SET cod_porta = '"+cod_porta+"' and data_gate = '"+data_gate+"'";
     }
@@ -108,6 +107,7 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
         return gatewayList;
 
     }
+
     public void cancellaGatway(int cod_porta)throws SQLException {
         try {
             deleteGateway(cod_porta);
@@ -142,4 +142,120 @@ public class GatewayDAO  extends UnicastRemoteObject implements iGatewayDAO {
         return "DELETE FROM Gateway WHERE cod_porta='"+cod_porta+"'";
 
     }
+
+    public List<Bambino>getAllBambiniPresenti(Gateway gateway)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Bambino WHERE cf IN (" +
+                "SELECT cf FROM Gateway WHERE cod_porta = '" + gateway.getCod_porta() + "'AND data_gate='"+gateway.getData_gate()+"')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Bambino> bambinoList = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            LocalDate data = LocalDate.parse(rs.getString("data"));
+            String indirizzo = rs.getString("indirizzo");
+            String contatto1 = rs.getString("contatto1");
+            String contatto2 = rs.getString("contatto2");
+
+            Bambino bambino_presente= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+
+            bambinoList.add(bambino_presente);
+        }
+        return bambinoList;
+
+    }
+
+    public void inserisciBambinoGateway(Bambino bambino,Gateway gateway)throws RemoteException,SQLException{
+
+        try {
+            createGatewayBambino_presente (gateway.getData_gate(),gateway.getCod_porta(),bambino.getCf());
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+    }
+    private static void createGatewayBambino_presente (LocalDate data_gate, int cod_porta,String cf) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateGatewayBambino_presenteSQL(data_gate,cod_porta,cf);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+        } catch(SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+    }
+    private static String buildCreateGatewayBambino_presenteSQL(LocalDate data_gate, int cod_porta,String cf){
+
+        return "INSERT INTO Attraversa(cod_porta ,data_gate, cf)" +
+                "VALUES('"+cod_porta+"','"+data_gate+"','"+cf+"')";
+
+    }
+
+    public List<Intolleranze>getAllBambiniPresentiIntolleranze(Gateway gateway)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql="SELECT * FROM Intolleranza WHERE cf IN (" +
+                "SELECT cf FROM Attraversa WHERE cod_porta = '" + gateway.getCod_porta() + "'AND data_gate='"+gateway.getData_gate()+"')";
+        ResultSet rs=stmt.executeQuery(sql);
+        List<Intolleranze> bambinoList = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String ingrediente = rs.getString("ingrediente");
+
+            Intolleranze bambino_allergico= new Intolleranze(getBambino(cf),getIngrediente(ingrediente));
+
+            bambinoList.add(bambino_allergico);
+        }
+        return bambinoList;
+    }
+    private Bambino getBambino(String cod_f)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Bambino WHERE cf='"+cod_f+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        String cf=rs.getString("cf");
+        String nome = rs.getString("nome");
+        String cognome=rs.getString("cognome");
+        LocalDate data = LocalDate.parse(rs.getString("data"));
+        String indirizzo=rs.getString("indirizzo");
+        String contatto1=rs.getString("contatto1");
+        String contatto2=rs.getString("contatto2");
+
+        Bambino kid= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+        return kid;
+    }
+    private Ingredienti getIngrediente(String ingrediente)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Ingrediente WHERE nome_i='"+ingrediente+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
+        String nome_i = rs.getString("nome_i");
+        int quantita=rs.getInt("quantita");
+
+        Ingredienti ingredienti= new Ingredienti(nome_i,quantita);
+        return ingredienti;
+    }
+
 }

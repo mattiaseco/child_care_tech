@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="adesionipane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.AdesioniController">
+<AnchorPane fx:id="adesionipane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.AdesioniController">
    <children>
       <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -68,7 +68,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="80.0" minHeight="40.0" prefHeight="40.0">
                <children>
-                  <Text fx:id="alertbox1" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
+                  <Text fx:id="alertbox" fill="#da2b2b" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="18.0" />
                      </font>
