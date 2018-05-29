@@ -35,22 +35,16 @@ public class AdesioniController {
     @FXML
     private TableColumn<Bambino, String> nameColumnD;
 
-
     @FXML private Button addButton;
     @FXML private Button removeButton;
-
     @FXML Button annullabutton;
     @FXML Button confermabutton;
-
     @FXML AnchorPane adesionipane;
-
     @FXML Label numeroMenuLabel;
-
     @FXML private Text alertbox;
 
     private Pane tabellePane;
     private TabelleMenuController tabellePaneController;
-
 
     private Menu menu;
     private iBambinoDAO bambinoDAO;
@@ -59,14 +53,12 @@ public class AdesioniController {
     private ObservableList<Bambino> bambiniPresenti = FXCollections.observableArrayList();
 
 
-
     @FXML
     public void initialize() {
         bambinoDAO = NamingContextManager.getKidController();
         menuDAO = NamingContextManager.getMenuController();
         initMenu();
         initTable();
-
     }
 
     public void addButtonAction(ActionEvent event )throws RemoteException,SQLException {
@@ -87,6 +79,7 @@ public class AdesioniController {
             }
         }
     }
+
     @FXML
     public void removeButtonAction(ActionEvent event ) {
         Bambino selected = bambiniPTable.getSelectionModel().getSelectedItem();
@@ -150,34 +143,27 @@ public class AdesioniController {
         int numero=menu.getNumero();
         common.Classes.Menu menu=new common.Classes.Menu(numero,menuDAO.getPiatto1(numero),menuDAO.getPiatto2(numero),menuDAO.getPiatto3(numero));
 
-            List<Bambino> newbambini = new ArrayList<>();
-            List<Bambino> oldbambini = new ArrayList<>(menuDAO.getAllBambiniMenu(menu));
+        List<Bambino> newbambini = new ArrayList<>();
+        List<Bambino> oldbambini = new ArrayList<>(menuDAO.getAllBambiniMenu(menu));
 
-            newbambini.addAll( bambiniPresenti);
+        newbambini.addAll( bambiniPresenti);
 
-
-            try {
-
-                for (Bambino newBambino : newbambini)
-                    if (!oldbambini.contains(newBambino))
-                            menuDAO.inserisciBambinoMangia(menu, newBambino);
-
-
-                for (Bambino oldBambino : oldbambini) {
-                    if (!newbambini.contains(oldBambino))
-                        menuDAO.cancellaBambinoMangia(menu, oldBambino);
-                }
-
-                ((BorderPane) adesionipane.getParent()).setCenter(tabellePane);
-                tabellePaneController.refreshMenuTable();
-
-
-            } catch (RemoteException ex) {
-                System.err.println(ex.getMessage());
-                ex.printStackTrace();
+        try {
+            for (Bambino newBambino : newbambini)
+                if (!oldbambini.contains(newBambino))
+                    menuDAO.inserisciBambinoMangia(menu, newBambino);
+            for (Bambino oldBambino : oldbambini) {
+                if (!newbambini.contains(oldBambino))
+                    menuDAO.cancellaBambinoMangia(menu, oldBambino);
             }
+            ((BorderPane) adesionipane.getParent()).setCenter(tabellePane);
+            tabellePaneController.refreshMenuTable();
 
+        } catch (RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
+    }
 
     public void addButtonAction() {
         addButtonAction();
@@ -188,9 +174,8 @@ public class AdesioniController {
         alertbox.setText("");
         ((BorderPane) adesionipane.getParent()).setCenter(tabellePane);
         tabellePaneController.refreshMenuTable();
-
-
     }
+
     public void inizializza(Menu menu, Pane tabellePane, TabelleMenuController tabellePaneController) {
 
         this.tabellePane = tabellePane;
@@ -214,10 +199,6 @@ public class AdesioniController {
 
         numeroMenuLabel.setText(String.valueOf(menu.getNumero()));
 
-
-
-
     }
-
 }
 

@@ -67,13 +67,7 @@ public class Step1AggiungiGitaController {
         data_ritorno = dataRitornoField.getValue();
         prezzo = prezzoField.getText();
         double prezzoGita;
-        try{
-            prezzoGita = Double.parseDouble(prezzo);
-        } catch (NumberFormatException e){
-            alertbox.setText("Attenzione: inserire campi obbligatori (*)");
-            return;
-        }
-
+        
         if(destinazione.isEmpty() || data_partenza == null || data_ritorno == null)
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         else if (note.length() > 256 )
@@ -81,6 +75,12 @@ public class Step1AggiungiGitaController {
         else if(data_ritorno.isBefore(data_partenza))
             alertbox.setText("Attenzione: data di ritorno precedente a quella di partenza!");
         else {
+            try{
+                prezzoGita = Double.parseDouble(prezzo);
+            } catch (NumberFormatException e){
+                alertbox.setText("Attenzione: inserire un prezzo valido ");
+                return;
+            }
             /*
             gitaController.inserisciGita(destinazione,data_partenza,data_ritorno,prezzoGita,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));

@@ -35,14 +35,11 @@ public class AggiungiAllergieController {
         private TableColumn<Ingredienti, String> nameColumnA;
         @FXML
         private TableColumn<Ingredienti, String> nameColumnF;
-        @FXML
-        private Button addButton;
-        @FXML
-        private Button removeButton;
-        @FXML
-        private Button saveButton;
-        @FXML private Text nomebambino;
 
+        @FXML private Button addButton;
+        @FXML private Button removeButton;
+        @FXML private Button saveButton;
+        @FXML private Text nomebambino;
         @FXML private AnchorPane allergiePane;
 
         private Bambino bambino;
@@ -63,7 +60,7 @@ public class AggiungiAllergieController {
 
         }
 
-    @FXML
+        @FXML
         public void saveButtonAction(ActionEvent event)throws RemoteException, SQLException{
             List<Ingredienti> newAllergies = new ArrayList<>();
             List<Ingredienti> oldAllergies = new ArrayList<>(bambinoDAO.getAllAllergie(bambino));
@@ -72,7 +69,6 @@ public class AggiungiAllergieController {
             newAllergies.addAll(allergies);
 
             try{
-
                 for(Ingredienti newAllergy : newAllergies) {
                     if(!oldAllergies.contains(newAllergy))
                         bambinoDAO.inserisciAllergia(bambino,newAllergy);
@@ -84,13 +80,9 @@ public class AggiungiAllergieController {
                 ((BorderPane)allergiePane.getParent()).setCenter(tabellePane);
 
                 tabellePaneController.refreshTabelle();
-
             }catch (RemoteException ex){
                 System.err.println(ex.getMessage());
                 ex.printStackTrace();}
-
-
-
         }
 
         @FXML
@@ -100,6 +92,7 @@ public class AggiungiAllergieController {
             allergies.add(selected);
             foods.remove(selected);
         }
+
         @FXML
         public void removeButtonAction(ActionEvent event ) {
             Ingredienti selected = allergiesTable.getSelectionModel().getSelectedItem();
@@ -133,6 +126,7 @@ public class AggiungiAllergieController {
                 }
             });
         }
+
         private void initTable() {
             List<Ingredienti> tempFoods = new ArrayList<>();
 
