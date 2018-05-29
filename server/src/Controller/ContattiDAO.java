@@ -115,7 +115,7 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
 
     }
 
-    public void cancellaContatto(String cf)throws SQLException {
+    public void cancellaContatti(String cf)throws SQLException {
         try {
             deleteContatto(cf);
         }catch (SQLException e){
@@ -147,6 +147,26 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
     }
     private static String buildDeleteContattoSQL(String cf){
         return "DELETE FROM Contatti WHERE cf='"+cf+"'";
+
+    }
+    public List<String>getAllCf()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Contatti ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> contattiCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            contattiCf.add(cf);
+
+        }
+        System.out.println(contattiCf);
+        return contattiCf;
+
 
     }
 

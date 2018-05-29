@@ -11,7 +11,7 @@ public class Main {
         RMIServer rmiServer = new RMIServer();
         rmiServer.start();
         /*try {
-            new BambinoDAO().cancellaBambino("1");
+            new BambinoDAO().getAllCf();
         } catch (RemoteException e) {}*/
     }
 }

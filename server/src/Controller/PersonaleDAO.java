@@ -148,4 +148,24 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
         return "DELETE FROM Personale WHERE cf='"+cf+"'";
 
     }
+    public List<String>getAllCf()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Pediatra ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> personaleCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            personaleCf.add(cf);
+
+        }
+        System.out.println(personaleCf);
+        return personaleCf;
+
+
+    }
 }

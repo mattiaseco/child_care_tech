@@ -150,4 +150,24 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
         return "DELETE FROM Fornitore WHERE cf='"+cf+"'";
 
     }
+    public List<String>getAllCf()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Fornitore ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> providersCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            providersCf.add(cf);
+
+        }
+        System.out.println(providersCf);
+        return providersCf;
+
+
+    }
 }

@@ -151,4 +151,24 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
         return "DELETE FROM Genitore WHERE cf='"+cf+"'";
 
     }
+    public List<String>getAllCf()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Genitore ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> genitoreCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            genitoreCf.add(cf);
+
+        }
+        System.out.println(genitoreCf);
+        return genitoreCf;
+
+
+    }
 }

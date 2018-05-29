@@ -29,7 +29,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         }
 
     }
-
     private static void createKid(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -51,7 +50,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         }
 
     }
-
     private static String buildCreateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) {
 
         return "INSERT INTO Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2)" +
@@ -69,7 +67,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         }
 
     }
-
     private static void updateKid(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -92,7 +89,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
 
     }
-
     public static String buildUpdateKidSQL(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
         return "UPDATE Bambino SET cf = '" + cf + "' , nome = '" + nome + "', cognome ='" + cognome + "', data ='" + data + "', indirizzo ='" + indirizzo + "', contatto1 ='" + contatto1 + "', contatto2='" + contatto2 + "'WHERE cf='"+cf+"'";
     }
@@ -242,6 +238,26 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
     }
     private static String buildDeleteAllergiaSQL(String cf,String nome_i){
         return "DELETE FROM Intolleranza WHERE cf='"+cf+"' AND ingrediente='"+nome_i+"'";
+
+    }
+
+    public List<String>getAllCf()throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Bambino ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> kidsCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            kidsCf.add(cf);
+
+        }
+        System.out.println(kidsCf);
+        return kidsCf;
+
 
     }
 

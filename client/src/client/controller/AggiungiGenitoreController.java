@@ -61,7 +61,10 @@ public class AggiungiGenitoreController extends AnchorPane {
         indirizzo = indField.getText();
         telefono = telField.getText();
 
-        if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || data == null || telefono.isEmpty()){
+
+        if (parentsControll.getAllCf().contains(cf)) {
+            alertbox.setText("Attenzione: codice fiscale già presente");
+        }else if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || data == null || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

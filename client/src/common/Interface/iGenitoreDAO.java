@@ -14,6 +14,7 @@ public interface iGenitoreDAO extends Remote{
     void modificaGenitore(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException;
     List<Genitore> getAllGenitori() throws RemoteException,SQLException;
     void cancellaGenitore(String cf) throws  RemoteException, SQLException;
+    List<String>getAllCf()throws RemoteException,SQLException;
 
 
 }

@@ -147,5 +147,25 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
         return "DELETE FROM Pediatra WHERE cf='"+cf+"'";
 
     }
+    public List<String>getAllCf()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Pediatra ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> pediatraCf = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+
+            pediatraCf.add(cf);
+
+        }
+        System.out.println(pediatraCf);
+        return pediatraCf;
+
+
+    }
 
 }

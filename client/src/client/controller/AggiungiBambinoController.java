@@ -1,6 +1,7 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
 import common.Classes.Fornitore;
 import common.Interface.iBambinoDAO;
 import javafx.fxml.FXML;
@@ -14,8 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import static client.controller.AnagraficaController.tabellePane;
 
@@ -35,6 +38,8 @@ public class AggiungiBambinoController {
 
     private TabellePaneController tabellePaneController;
     private Pane tabellePane;
+
+
 
     @FXML private Text alertbox;
 
@@ -60,7 +65,7 @@ public class AggiungiBambinoController {
     }
 
     @FXML
-    private void aggiungiPersona() throws IOException, SQLException {
+    private void aggiungiPersona() throws IOException, SQLException ,RemoteException {
 
         alertbox.setText("");
 
@@ -75,9 +80,12 @@ public class AggiungiBambinoController {
         indirizzo = indField.getText();
         contatto1 = cont1Field.getText();
         contatto2 = cont2Field.getText();
+        //eventualmente cancellare FOR
 
-        if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || contatto1.isEmpty() || data == null){
 
+        if (kidController.getAllCf().contains(cf)) {
+            alertbox.setText("Attenzione: codice fiscale già presente");
+        }else if(cf.isEmpty() || nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || contatto1.isEmpty() || data == null){
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         }
         else if( cf.length() < 16) {
