@@ -16,7 +16,7 @@ public class ControlloAccessiController {
     @FXML private ImageView backhome;
     @FXML public Button QRgitabutton;
     @FXML public Button QRmensabutton;
-    @FXML public Button QRscuola;
+    @FXML public Button QRscuolabutton;
 
     @FXML private Text alertbox;
     @FXML private Text alertboxerror;
@@ -32,15 +32,24 @@ public class ControlloAccessiController {
     }
     @FXML
     private void goToPresenzeGita()throws IOException {
-
+        Parent root=FXMLLoader.load(getClass().getResource("../view/GiteQR.fxml"));
+        actual =(Stage)QRgitabutton.getScene().getWindow();
+        actual.setScene(new Scene(root,QRgitabutton.getScene().getWidth(),QRgitabutton.getScene().getHeight()));
+        actual.show();
     }
     @FXML
     private void goToPresenzeMensa()throws IOException {
-
+        Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeMensa.fxml"));
+        actual =(Stage)QRmensabutton.getScene().getWindow();
+        actual.setScene(new Scene(root,QRmensabutton.getScene().getWidth(),QRmensabutton.getScene().getHeight()));
+        actual.show();
     }
     @FXML
     private void goToPresenzeScuola()throws IOException {
-
+        Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeScuola.fxml"));
+        actual =(Stage)QRscuolabutton.getScene().getWindow();
+        actual.setScene(new Scene(root,QRscuolabutton.getScene().getWidth(),QRscuolabutton.getScene().getHeight()));
+        actual.show();
     }
 
 
