@@ -60,25 +60,36 @@ public class GiteQRController {
      @FXML
      private void goToPresenzeIniziali(ActionEvent event) throws IOException{
 
-         loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
-         giteQrPpane = loader.load();
+         Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeGita.fxml"));
+         actual =(Stage)partenzaButton.getScene().getWindow();
+         actual.setScene(new Scene(root,partenzaButton.getScene().getWidth(),partenzaButton.getScene().getHeight()));
+         actual.show();
+
+
+         //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
+         //giteQrPpane = loader.load();
+         //mainpane.setCenter(giteQrPpane);
 
          //Step1AggiungiGitaController controller = loader.getController();
          //controller.inizializza(tabelleGita, tabelleGitaController, mainpane);
 
-         mainpane.setCenter(giteQrPpane);
      }
 
      @FXML
      private void goToPresenzeTappa(ActionEvent event) throws IOException{
 
-         loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
-         giteQrPpane = loader.load();
+         Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeGita.fxml"));
+         actual =(Stage)TappeButton.getScene().getWindow();
+         actual.setScene(new Scene(root,TappeButton.getScene().getWidth(),TappeButton.getScene().getHeight()));
+         actual.show();
+
+
+         //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
+         //giteQrPpane = loader.load();
+         //mainpane.setCenter(giteQrPpane);
 
          //Step1AggiungiGitaController controller = loader.getController();
          //controller.inizializza(tabelleGita, tabelleGitaController, mainpane);
-
-         mainpane.setCenter(giteQrPpane);
      }
 
 }
