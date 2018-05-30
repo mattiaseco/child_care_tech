@@ -93,8 +93,46 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    public static String buildUpdateGitaSQL( Integer num_partecipanti) throws SQLException {
+    public static String buildUpdateGitaSQL(Integer num_partecipanti) throws SQLException {
         return "UPDATE Gita SET num_partecipanti ='" + num_partecipanti + "'";
+    }
+
+    public void insertNumPullman(Integer num_pullman) throws SQLException {
+        try {
+            updateGitaPullman(num_pullman);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+    private static void updateGitaPullman(Integer num_pullman) throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildUpdateGitaPullmanSQL(num_pullman);
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+
+    }
+
+    public static String buildUpdateGitaPullmanSQL(Integer num_pullman) throws SQLException {
+        return "UPDATE Gita SET num_pullman ='" + num_pullman + "'";
     }
 
     public List<Gita> getAllGite() throws RemoteException, SQLException {

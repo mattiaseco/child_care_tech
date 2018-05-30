@@ -120,7 +120,7 @@ public class Step2AggiungiGitaController {
         adesioniTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 removeButton.setDisable(false);
-                addButton.setDisable(true);
+                addButton.setDisable(false);
             }
             else {
                 removeButton.setDisable(true);
@@ -129,7 +129,7 @@ public class Step2AggiungiGitaController {
         });
         cfTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                removeButton.setDisable(true);
+                removeButton.setDisable(false);
                 addButton.setDisable(false);
             }
             else {
@@ -184,6 +184,8 @@ public class Step2AggiungiGitaController {
     }
     @FXML
     public void removeButtonAction(ActionEvent event ) {
+        totPartecipazioni = totPartecipazioni -1;
+        totaleAderenzeLabel.setText(Integer.toString(totPartecipazioni));
         Bambino selected = adesioniTable.getSelectionModel().getSelectedItem();
         if(selected == null) return;
         kids.add(selected);

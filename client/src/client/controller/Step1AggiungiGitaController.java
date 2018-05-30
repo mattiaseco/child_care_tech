@@ -56,10 +56,10 @@ public class Step1AggiungiGitaController {
         iGitaDAO gitaController = NamingContextManager.getTripsController();
         FXMLLoader loader;
         Pane gitepane2;
-
         String destinazione, note;
         LocalDate data_partenza, data_ritorno;
         String prezzo;
+
 
         destinazione = destinazioneField.getText();
         note = noteField.getText();

@@ -57,6 +57,7 @@ public class Step3AggiungiGitaController {
     private int totPullmanPrenotati;
 
     public void initialize() {
+        totalePullmanPrenotatiLabel.setText("0");
         pullmandispDAO = NamingContextManager.getPullmanController();
         pullmanpreDAO = NamingContextManager.getPullmanController();
 
@@ -98,7 +99,7 @@ public class Step3AggiungiGitaController {
         pullmanPrenotatiTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 removeButton.setDisable(false);
-                addButton.setDisable(true);
+                addButton.setDisable(false);
             }
             else {
                 removeButton.setDisable(true);
@@ -107,7 +108,7 @@ public class Step3AggiungiGitaController {
         });
         pullmanDispTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                removeButton.setDisable(true);
+                removeButton.setDisable(false);
                 addButton.setDisable(false);
             }
             else {
@@ -175,6 +176,8 @@ public class Step3AggiungiGitaController {
     }
     @FXML
     public void removeButtonAction(ActionEvent event ) {
+        totPullmanPrenotati = totPullmanPrenotati -1;
+        totalePullmanPrenotatiLabel.setText(Integer.toString(totPullmanPrenotati));
         Pullman selected = pullmanPrenotatiTable.getSelectionModel().getSelectedItem();
         if(selected == null) return;
         pullmanPrenotati.remove(selected);
@@ -182,13 +185,13 @@ public class Step3AggiungiGitaController {
 
     }
 
-    public void goToGitePane(){
+    public void goToGitePane() throws RemoteException, SQLException {
 
-        iGitaDAO gitaDAO;
+        iGitaDAO gitaDAO =NamingContextManager.getTripsController();
 
-        //gitaDAO.;
-
+        gitaDAO.insertNumPullman(totPullmanPrenotati);
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
+        tabelleGiteController.refreshGiteTables();
 
     }
 
