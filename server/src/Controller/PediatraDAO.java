@@ -162,7 +162,6 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
             pediatraCf.add(cf);
 
         }
-        System.out.println(pediatraCf);
         return pediatraCf;
 
 

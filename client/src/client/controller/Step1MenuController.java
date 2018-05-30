@@ -108,31 +108,31 @@ public class Step1MenuController extends AnchorPane {
 
         alertbox.setText("");
         //int numeroMenu;
-        String numeroMenu;
+        int numeroMenu;
         FXMLLoader loader;
         Pane step2MenuPane;
 
-        //numeroMenu = Integer.parseInt(numeroMenuField.getText());
-        numeroMenu = numeroMenuField.getText();
-        iMenuDAO menuDAO = NamingContextManager.getMenuController();
+        numeroMenu = Integer.parseInt(numeroMenuField.getText());
+        iMenuDAO menuController = NamingContextManager.getMenuController();
+
         Piatto piatto = primiTable.getSelectionModel().getSelectedItem();
 
-        int numMenu;
-        try{
-            numMenu = Integer.parseInt(numeroMenu);
-        } catch (NumberFormatException e){
+        if (menuController.getAllNumMenu().contains(numeroMenu)){
+            alertbox.setText("ATTENZIONE: numero del menù gia' presente!");
+        }
+        else if (piatto == null) {
+            alertbox.setText("ATTENZIONE: Selezionare un piatto!");
+        }
+        else if (numeroMenuField.getText().isEmpty()){
             alertbox.setText("ATTENZIONE: Inserire numero Menù!");
-            return;
         }
 
-        if (piatto == null)
-            alertbox.setText("ATTENZIONE: Selezionare un piatto!");
         else {
-            menuDAO.inserisciPrimo(numMenu,piatto);
+            menuController.inserisciPrimo(numeroMenu,piatto);
             loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
             step2MenuPane = loader.load();
             Step2MenuController controller = loader.getController();
-            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,Integer.parseInt(numeroMenu));
+            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,numeroMenu);
             ((BorderPane)step1MenuPane.getParent()).setCenter(step2MenuPane);
 
 

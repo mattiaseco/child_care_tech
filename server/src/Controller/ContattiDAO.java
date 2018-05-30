@@ -164,7 +164,6 @@ public class ContattiDAO extends UnicastRemoteObject implements iContattiDAO {
             contattiCf.add(cf);
 
         }
-        System.out.println(contattiCf);
         return contattiCf;
 
 

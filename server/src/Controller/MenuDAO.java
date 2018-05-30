@@ -512,5 +512,24 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         return ingredienti;
     }
 
+    public List<Integer> getAllNumMenu()throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Menu ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Integer> numMenuList = new ArrayList<>();
+
+        while (rs.next()) {
+            int numMenu = Integer.parseInt(rs.getString("numero"));
+
+            numMenuList.add(numMenu);
+
+        }
+        return numMenuList;
+
+
+    }
+
 
 }

@@ -166,7 +166,6 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
             genitoreCf.add(cf);
 
         }
-        System.out.println(genitoreCf);
         return genitoreCf;
 
 

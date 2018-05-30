@@ -163,7 +163,6 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
             personaleCf.add(cf);
 
         }
-        System.out.println(personaleCf);
         return personaleCf;
 
 

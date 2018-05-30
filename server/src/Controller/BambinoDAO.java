@@ -255,7 +255,6 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             kidsCf.add(cf);
 
         }
-        System.out.println(kidsCf);
         return kidsCf;
 
 

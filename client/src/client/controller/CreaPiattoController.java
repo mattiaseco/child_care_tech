@@ -146,7 +146,7 @@ public class CreaPiattoController extends AnchorPane {
 
         if(nome_p.isEmpty() )
             alertbox.setText("Attenzione: inserire nome del piatto !");
-        else if( nome_p.length() > 15)
+        else if( nome_p.length() > 30)
             alertbox.setText("Attenzione: nome troppo lungo !");
         else if (piattoDAO.getAllNomiPiatti().contains(nome_p))
             alertbox.setText("Attenzione: piatto già presente !");

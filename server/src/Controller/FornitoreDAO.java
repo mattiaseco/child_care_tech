@@ -165,7 +165,6 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
             providersCf.add(cf);
 
         }
-        System.out.println(providersCf);
         return providersCf;
 
 

@@ -112,7 +112,7 @@ public class AggiungiIngredientiController {
 
             alertbox.setText("Attenzione: inserire ingrediente !");
         }
-        else if( ingrediente.length() > 15) {
+        else if( ingrediente.length() > 30) {
             alertbox.setText("Attenzione: nome troppo lungo !");
         }
         else {
