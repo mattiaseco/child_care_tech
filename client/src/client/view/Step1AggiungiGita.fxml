@@ -26,6 +26,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="50.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -36,47 +37,53 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxWidth="1.7976931348623157E308" minWidth="150.0" text="Destinazione *">
+                  <Label maxWidth="1.7976931348623157E308" minWidth="150.0" text="Destinazione *" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="TOP_LEFT" minWidth="150.0" prefHeight="75.0" prefWidth="150.0" text="Note" GridPane.rowIndex="1">
+                  <Label alignment="TOP_LEFT" minWidth="150.0" prefHeight="75.0" prefWidth="150.0" text="Note" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Prezzo *" GridPane.rowIndex="4">
+                  <Label text="Prezzo *" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Data partenza*" GridPane.rowIndex="2">
+                  <Label text="Data partenza*" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="destinazioneField" GridPane.columnIndex="1" />
-                  <TextArea fx:id="noteField" maxHeight="75.0" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="dataPartenzaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="dataRitornoField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="prezzoField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="destinazioneField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="noteField" maxHeight="75.0" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="dataPartenzaField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="dataRitornoField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="prezzoField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToGitePane" prefWidth="80.0" text=" annulla " />
                         <Button fx:id="proseguibutton" minWidth="80.0" mnemonicParsing="false" onAction="#goToStep2" text="prosegui" />
                      </children>
                   </HBox>
-                  <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                  <Text fx:id="alertbox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Label text="Data ritorno*" GridPane.rowIndex="3">
+                  <Label text="Data ritorno*" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
+                  <Label maxWidth="1.7976931348623157E308" minWidth="150.0" text="Numero gita *">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numeroField" GridPane.columnIndex="1" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
