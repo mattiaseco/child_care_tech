@@ -53,6 +53,7 @@ public class Step3AggiungiGitaController {
     private ObservableList<Pullman> pullmanPrenotati = FXCollections.observableArrayList();
     private iPullmanDAO pullmandispDAO;
     private iPullmanDAO pullmanpreDAO;
+    private int codice_g;
 
     private int totPullmanPrenotati;
 
@@ -136,11 +137,12 @@ public class Step3AggiungiGitaController {
     }*/
 
 
-    public void inizializza(Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane){
+    public void inizializza(Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane,int codice_g){
 
         this.tabelleGitaPene = tabelleGitaPene;
         this.tabelleGiteController = tabelleGitaController;
         this.mainpane = mainpane;
+        this.codice_g = codice_g;
     }
 
 
@@ -189,7 +191,7 @@ public class Step3AggiungiGitaController {
 
         iGitaDAO gitaDAO =NamingContextManager.getTripsController();
 
-        gitaDAO.insertNumPullman(totPullmanPrenotati);
+        gitaDAO.insertNumPullman(codice_g,totPullmanPrenotati);
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
         tabelleGiteController.refreshGiteTables();
 

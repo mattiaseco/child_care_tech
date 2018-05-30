@@ -52,6 +52,7 @@ public class Step2AggiungiGitaController {
     private Pane tabelleGitaPene;
     private TabelleGiteController tabelleGiteController;
     private BorderPane mainpane;
+    private int codice_g;
 
     public void initialize(){
         totaleAderenzeLabel.setText("0");
@@ -156,11 +157,12 @@ public class Step2AggiungiGitaController {
         kids.addAll(kidsList);
     }
 
-    public void inizializza( Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane){
+    public void inizializza( Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane,int codice_g){
 
         this.tabelleGitaPene = tabelleGitaPene;
         this.tabelleGiteController = tabelleGitaController;
         this.mainpane = mainpane;
+        this.codice_g = codice_g;
     }
 
 
@@ -199,11 +201,11 @@ public class Step2AggiungiGitaController {
         Pane gitepane3;
         FXMLLoader loader;
 
-        gitaDAO.insertNumPartecipanti(totPartecipazioni);
+        gitaDAO.insertNumPartecipanti(codice_g,totPartecipazioni);
         loader = new FXMLLoader(getClass().getResource("../view/Step3AggiungiGita.fxml"));
         gitepane3= loader.load();
         Step3AggiungiGitaController controller = loader.getController();
-        controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
+        controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_g);
         mainpane.setCenter(gitepane3);
         tabelleGiteController.refreshGiteTables();
 

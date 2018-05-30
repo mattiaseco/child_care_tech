@@ -19,6 +19,7 @@ import java.time.LocalDate;
 
 public class Step1AggiungiGitaController {
 
+    @FXML private TextField codiceGitaField;
     @FXML private TextField destinazioneField;
     @FXML private TextArea noteField;
     @FXML private DatePicker dataPartenzaField;
@@ -56,17 +57,20 @@ public class Step1AggiungiGitaController {
         iGitaDAO gitaController = NamingContextManager.getTripsController();
         FXMLLoader loader;
         Pane gitepane2;
+        int codice_g;
         String destinazione, note;
         LocalDate data_partenza, data_ritorno;
         String prezzo;
+        double prezzoGita;
 
 
+        codice_g = Integer.parseInt(codiceGitaField.getText());
         destinazione = destinazioneField.getText();
         note = noteField.getText();
         data_partenza = dataPartenzaField.getValue();
         data_ritorno = dataRitornoField.getValue();
         prezzo = prezzoField.getText();
-        double prezzoGita;
+
 
         if(destinazione.isEmpty() || data_partenza == null || data_ritorno == null)
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
@@ -81,23 +85,12 @@ public class Step1AggiungiGitaController {
                 alertbox.setText("Attenzione: inserire un prezzo valido ");
                 return;
             }
-            /*
-            gitaController.inserisciGita(destinazione,data_partenza,data_ritorno,prezzoGita,note);
-            loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
-            gitepane2= loader.load();
-            Step2AggiungiGitaController controller = loader.getController();
-            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
-            //((BorderPane)gitepane.getParent()).setCenter(gitepane2);
-            mainpane.setCenter(gitepane2);
-            tabelleGiteController.refreshGiteTables();
-*/
-            int codice_g=1;
 
             gitaController.inserisciGita(codice_g,destinazione,data_partenza,data_ritorno,prezzoGita,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
             gitepane2= loader.load();
             Step2AggiungiGitaController controller = loader.getController();
-            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
+            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_g);
             mainpane.setCenter(gitepane2);
             tabelleGiteController.refreshGiteTables();
             /*loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
