@@ -17,10 +17,10 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
     public GitaDAO() throws RemoteException {}
 
     @Override
-    public void inserisciGita(String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) throws SQLException {
+    public void inserisciGita(int codice_g ,String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) throws SQLException {
 
         try {
-            createGita(destinazione, data_partenza, data_ritorno,costo,descrizione);
+            createGita(codice_g,destinazione, data_partenza, data_ritorno,costo,descrizione);
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -30,12 +30,12 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    private static void createGita(String destinazione,LocalDate data_partenza, LocalDate data_ritorno,Double costo,String descrizione) throws SQLException {
+    private static void createGita(int codice_g, String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement st = conn.createStatement();
         ResultSet rs;
-        String sql = buildCreateGitaSQL(destinazione, data_partenza, data_ritorno,costo,descrizione);
+        String sql = buildCreateGitaSQL(codice_g, destinazione, data_partenza, data_ritorno,costo,descrizione);
 
         try {
 
@@ -52,10 +52,10 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    private static String buildCreateGitaSQL(String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) {
+    private static String buildCreateGitaSQL(int codice_g, String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) {
 
-        return "INSERT INTO Gita(destinazione,data_partenza,data_ritorno,costo,descrizione)" +
-                " VALUES('"+ destinazione + "','"+data_partenza+"','"+data_ritorno+"','"+costo+"','"+descrizione+"')";
+        return "INSERT INTO Gita(codice_g,destinazione,data_partenza,data_ritorno,costo,descrizione)" +
+                " VALUES('"+codice_g+"','"+ destinazione + "','"+data_partenza+"','"+data_ritorno+"','"+costo+"','"+descrizione+"')";
 
     }
 

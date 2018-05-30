@@ -54,7 +54,10 @@ public class AggiungiPullmanController {
         targa = targaField.getText();
         capienza = Integer.parseInt(capienzaField.getText());
 
-        if (targa.isEmpty() || capienza == null){
+
+        if (pullmanController.getAllTarghe().contains(targa)){
+            alertbox.setText("Attenzione: targa  già presente");
+        }else if (targa.isEmpty() || capienza == null){
 
             alertbox.setText("ATTENZIONE:Inserire i campi obbligatori!");
 

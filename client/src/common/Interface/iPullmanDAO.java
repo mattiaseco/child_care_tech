@@ -15,4 +15,5 @@ public interface iPullmanDAO extends Remote {
     void cancellaPullman(String targa)throws RemoteException,SQLException;
     List<Bambino>getAllBambiniPullman(Pullman pullman)throws RemoteException,SQLException;
     void inserisciBambinoPulman(Bambino bambino,Pullman pullman)throws RemoteException,SQLException;
+    List<String>getAllTarghe()throws RemoteException,SQLException;
 }

@@ -211,4 +211,22 @@ public class PullmanDAO extends UnicastRemoteObject implements iPullmanDAO {
                 " VALUES('"+ cf + "','" + targa + "')";
 
     }
+    public List<String>getAllTarghe()throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Bambino ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> pullmanTarghe = new ArrayList<>();
+
+        while (rs.next()) {
+            String targa = rs.getString("targa");
+
+            pullmanTarghe.add(targa);
+
+        }
+        return pullmanTarghe;
+
+    }
 }
