@@ -123,7 +123,7 @@ public class Database {
 
 
         String sql10 = "CREATE TABLE IF NOT EXISTS Gita " +
-                "(codice_g INT NOT NULL AUTO_INCREMENT," +
+                "(codice_g INT NOT NULL  ," +
                 "num_pullman INT ," +
                 "destinazione VARCHAR(20) NOT NULL ," +
                 "num_partecipanti INT ,"+
