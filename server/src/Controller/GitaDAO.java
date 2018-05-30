@@ -55,7 +55,7 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
     private static String buildCreateGitaSQL(int codice_g, String destinazione, LocalDate data_partenza, LocalDate data_ritorno, Double costo,String descrizione) {
 
         return "INSERT INTO Gita(codice_g,destinazione,data_partenza,data_ritorno,costo,descrizione)" +
-                " VALUES('"+codice_g+"','"+ destinazione + "','"+data_partenza+"','"+data_ritorno+"','"+costo+"','"+descrizione+"')";
+                " VALUES('1','"+ destinazione + "','"+data_partenza+"','"+data_ritorno+"','"+costo+"','"+descrizione+"')";
 
     }
 

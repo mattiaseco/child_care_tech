@@ -91,9 +91,9 @@ public class Step1AggiungiGitaController {
             mainpane.setCenter(gitepane2);
             tabelleGiteController.refreshGiteTables();
 */
+            int codice_g=1;
 
-
-            gitaController.inserisciGita(destinazione,data_partenza,data_ritorno,prezzoGita,note);
+            gitaController.inserisciGita(codice_g,destinazione,data_partenza,data_ritorno,prezzoGita,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
             gitepane2= loader.load();
             Step2AggiungiGitaController controller = loader.getController();

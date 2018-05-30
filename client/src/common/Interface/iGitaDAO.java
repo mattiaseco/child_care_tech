@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface iGitaDAO extends Remote {
 
-        void createGita(int codice_g, String destinazione,LocalDate data_partenza, LocalDate data_ritorno,Double costo,String descrizione) throws RemoteException, SQLException;
+        void inserisciGita(int codice_g, String destinazione,LocalDate data_partenza, LocalDate data_ritorno,Double costo,String descrizione) throws RemoteException, SQLException;
         List<Gita> getAllGite() throws RemoteException,SQLException;
         void insertNumPartecipanti(Integer num_partecipanti) throws RemoteException,SQLException;
         void insertNumPullman(Integer num_pullman) throws RemoteException,SQLException;
