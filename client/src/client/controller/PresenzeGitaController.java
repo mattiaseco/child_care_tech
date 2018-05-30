@@ -37,8 +37,8 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
 
     @FXML public TableView<Bambino> adesioniTable;
     @FXML private TableColumn<Bambino, String> cfColumn;
-    //@FXML private TableColumn<Bambino, String> nomeColumn;
-    //@FXML private TableColumn<Bambino, String> cognomeColumn;
+    @FXML private TableColumn<Bambino, String> nomeColumn;
+    @FXML private TableColumn<Bambino, String> cognomeColumn;
 
 
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
@@ -64,8 +64,8 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
     }
     private void initColumns() {
         cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        //nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        //cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
     }
     private void initTables() {
         adesioniTable.setItems(kids);

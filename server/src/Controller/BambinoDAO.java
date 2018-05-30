@@ -259,5 +259,22 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
 
     }
+    public Bambino getKid(String cod_f)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql="SELECT * FROM Bambino WHERE cf='"+cod_f+"'";
+        ResultSet rs=stmt.executeQuery(sql);
+        String cf=rs.getString("cf");
+        String nome = rs.getString("nome");
+        String cognome=rs.getString("cognome");
+        LocalDate data = LocalDate.parse(rs.getString("data"));
+        String indirizzo=rs.getString("indirizzo");
+        String contatto1=rs.getString("contatto1");
+        String contatto2=rs.getString("contatto2");
+
+        Bambino kid= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+        return kid;
+
+    }
 
 }
