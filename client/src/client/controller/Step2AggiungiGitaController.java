@@ -176,7 +176,7 @@ public class Step2AggiungiGitaController {
     }
 
     @FXML
-    public void addButtonAction(ActionEvent event ) {
+    public void addButtonAction(ActionEvent event ) throws RemoteException, SQLException {
 
         totPartecipazioni = adesioniTable.getItems().size() + 1;
         totaleAderenzeLabel.setText(Integer.toString(totPartecipazioni));
@@ -184,15 +184,17 @@ public class Step2AggiungiGitaController {
         if(selected == null) return;
         adesioni.add(selected);
         kids.remove(selected);
+        gitaDAO.inserisciBambinoGita(codice_g,selected);
     }
     @FXML
-    public void removeButtonAction(ActionEvent event ) {
+    public void removeButtonAction(ActionEvent event ) throws RemoteException, SQLException {
         totPartecipazioni = totPartecipazioni -1;
         totaleAderenzeLabel.setText(Integer.toString(totPartecipazioni));
         Bambino selected = adesioniTable.getSelectionModel().getSelectedItem();
         if(selected == null) return;
         kids.add(selected);
         adesioni.remove(selected);
+        gitaDAO.cancellaBambinoGita(codice_g,selected);
     }
 
 

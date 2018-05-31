@@ -196,11 +196,11 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
     }
 
 
-    public void inserisciBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException{
+    public void inserisciBambinoGita(int codice_g, Bambino bambino)throws RemoteException,SQLException{
 
 
         try {
-            createBambinoGita(gita.getCodice_g(),bambino.getCf());
+            createBambinoGita(codice_g,bambino.getCf());
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
@@ -237,9 +237,9 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
     }
 
-    public void cancellaBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException{
+    public void cancellaBambinoGita(int codice_g, Bambino bambino)throws RemoteException,SQLException{
         try {
-            deleteBambinoGita(gita.getCodice_g(),bambino.getCf());
+            deleteBambinoGita(codice_g,bambino.getCf());
         }catch (SQLException e){
             System.err.println(e.getMessage());
             e.printStackTrace();

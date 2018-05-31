@@ -200,7 +200,7 @@ public class Step3AggiungiGitaController {
         tabelleGiteController.refreshGiteTables();
 
     }
-    public void eliminaPullman() throws IOException {
+    public void deletePullman() throws IOException {
 
 
 

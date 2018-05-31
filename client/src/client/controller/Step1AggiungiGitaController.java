@@ -97,8 +97,6 @@ public class Step1AggiungiGitaController {
                 return;
             }
 
-
-
             gitaController.inserisciGita(codice_gita,destinazione,data_partenza,data_ritorno,prezzoGita,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
             gitepane2= loader.load();
@@ -106,12 +104,7 @@ public class Step1AggiungiGitaController {
             controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_gita);
             mainpane.setCenter(gitepane2);
             tabelleGiteController.refreshGiteTables();
-            /*loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));
-            step2MenuPane = loader.load();
-            Step2MenuController controller = loader.getController();
-            controller.inizializza(tabelleMenuController,tabelleMenuPane,mainpane,Integer.parseInt(numeroMenu));
-            ((BorderPane)step1MenuPane.getParent()).setCenter(step2MenuPane);
-            */
+
         }
 
 

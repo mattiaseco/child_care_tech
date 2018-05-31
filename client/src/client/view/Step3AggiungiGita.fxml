@@ -28,7 +28,7 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label fx:id="totalePullmanPrenotatiLabel" alignment="CENTER" minWidth="140.0" prefWidth="140.0" text="Pullman disponibili">
+                        <Label fx:id="Label1" alignment="CENTER" minWidth="140.0" prefWidth="140.0" text="Pullman disponibili">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -119,7 +119,7 @@
                         <Insets left="10.0" />
                      </padding>
                      <children>
-                        <Button fx:id="cancellapullmanbutton" minWidth="140.0" mnemonicParsing="false" onAction="#eliminaPullman" prefWidth="140.0" text="cancella pullman">
+                        <Button fx:id="cancellapullmanbutton" minWidth="140.0" mnemonicParsing="false" onAction="#deletePullman" prefWidth="140.0" text="cancella pullman">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

@@ -17,8 +17,8 @@ public interface iGitaDAO extends Remote  {
     void insertNumPartecipanti(int codice_g,int num_partecipanti) throws RemoteException,SQLException;
     void insertNumPullman(int codice_g,int num_pullman) throws RemoteException,SQLException;
     void cancellaGita(int codice_g)throws RemoteException,SQLException;
-    void inserisciBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException;
-    void cancellaBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException;
+    void inserisciBambinoGita(int codice_g, Bambino bambino)throws RemoteException,SQLException;
+    void cancellaBambinoGita(int codice_g, Bambino bambino)throws RemoteException,SQLException;
     void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException;
     List<Bambino>getAllBambiniGita(Gita gita)throws RemoteException,SQLException;
     List<Integer> getAllNumGite()throws RemoteException,SQLException;
