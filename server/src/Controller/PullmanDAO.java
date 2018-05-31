@@ -216,7 +216,7 @@ public class PullmanDAO extends UnicastRemoteObject implements iPullmanDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql = "SELECT * FROM Bambino ";
+        String sql = "SELECT * FROM Pullman ";
         ResultSet rs = stmt.executeQuery(sql);
         List<String> pullmanTarghe = new ArrayList<>();
 

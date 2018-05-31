@@ -28,4 +28,13 @@ public class Pullman implements Serializable {
     public void setCapienza(int capienza) {
         this.capienza = capienza;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Pullman))
+            return false;
+        return this.targa.equals(((Pullman) obj).targa);
+    }
 }
