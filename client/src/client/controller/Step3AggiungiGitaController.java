@@ -200,7 +200,11 @@ public class Step3AggiungiGitaController {
         tabelleGiteController.refreshGiteTables();
 
     }
-    public void deletePullman() throws IOException {
+    public void deletePullman() throws IOException,SQLException {
+        Pullman selected = pullmanDispTable.getSelectionModel().getSelectedItem();
+        if(selected == null) return;
+        pullmanDisp.remove(selected);
+        pullmandispDAO.cancellaPullman(selected.getTarga());
 
 
 
