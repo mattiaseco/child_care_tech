@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="adesionipane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.AdesioniController">
+<AnchorPane fx:id="adesionipane" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.AdesioniController">
    <children>
       <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,29 +34,12 @@
             </HBox>
             <HBox prefHeight="250.0" prefWidth="200.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                  <AnchorPane prefHeight="200.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <TableView fx:id="bambiniPTable" maxHeight="300.0" maxWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="bambiniPTable" maxHeight="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumnP" prefWidth="75.0" text="adesioni mensa" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonAction" prefWidth="70.0" text="&lt;" />
-                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeButtonAction" prefWidth="70.0" text="&gt;" />
-                     </children>
-                  </VBox>
-                  <AnchorPane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
-                     <children>
-                        <TableView fx:id="bambiniDTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn fx:id="nameColumnD" prefWidth="75.0" text="codice fiscale bambini" />
+                              <TableColumn fx:id="nameColumnP" prefWidth="-1.0" text="Codice Fiscale" />
+                              <TableColumn fx:id="nameColumnP1" prefWidth="-1.0" text="intolleranza" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
