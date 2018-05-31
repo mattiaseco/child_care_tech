@@ -21,5 +21,6 @@ public interface iBambinoDAO extends Remote {
     void cancellaAllergia(Bambino bambino,Ingredienti ingrediente)throws RemoteException,SQLException;
     List<String>getAllCf()throws RemoteException,SQLException;
     Bambino getKid(String cf) throws RemoteException,SQLException;
+    void inserisciBambinoPresente(String cf)throws RemoteException,SQLException;
 
 }

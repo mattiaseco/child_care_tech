@@ -216,6 +216,11 @@ public class Database {
                 "INDEX(cf),FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(targa , cf))";
         stmt.executeUpdate(sql20);
+        String sql23 = "CREATE TABLE IF NOT EXISTS Presenza"+//PULLMAN TAPPA BAMBINO
+                "(cf VARCHAR(16),"+
+                "INDEX(cf),FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
+                "PRIMARY KEY(cf))";
+        stmt.executeUpdate(sql23);
 
         conn.close();
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface iBambinoDAO extends Remote {
 
+
     void inserisciBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
     void modificaBambino(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws RemoteException, SQLException;
     List<Bambino> getAllBambini() throws RemoteException,SQLException;
@@ -20,7 +21,7 @@ public interface iBambinoDAO extends Remote {
     void cancellaAllergia(Bambino bambino,Ingredienti ingrediente)throws RemoteException,SQLException;
     List<String>getAllCf()throws RemoteException,SQLException;
     Bambino getKid(String cf) throws RemoteException,SQLException;
-
+    void inserisciBambinoPresente(String cf)throws RemoteException,SQLException;
 
 
 }

@@ -129,6 +129,10 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
 
        try{
            kids.remove(kidDAO.getKid(code));
+           //Bambino bimbo=kidDAO.getKid(code);
+           kidDAO.inserisciBambinoPresente(code);
+
+
 
            /* if(kidDAO.getAllCf().contains(code)) {
                 System.out.println("codice fiscal non presente");
