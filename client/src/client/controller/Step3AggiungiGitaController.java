@@ -35,6 +35,8 @@ public class Step3AggiungiGitaController {
     @FXML
     private Button addButton;
     @FXML
+    private Button cancellapullmanbutton;
+    @FXML
     AnchorPane gitepane3;
 
     private Pane tabelleGitaPene;
@@ -196,6 +198,11 @@ public class Step3AggiungiGitaController {
         gitaDAO.insertNumPullman(codice_g,totPullmanPrenotati);
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
         tabelleGiteController.refreshGiteTables();
+
+    }
+    public void eliminaPullman() throws IOException {
+
+
 
     }
 
