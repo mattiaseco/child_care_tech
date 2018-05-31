@@ -94,7 +94,7 @@
                   <Label fx:id="numpullmanLable" prefWidth="34.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
                <padding>
-                  <Insets left="50.0" right="50.0" />
+                  <Insets bottom="20.0" left="50.0" right="50.0" />
                </padding>
             </GridPane>
          </children>

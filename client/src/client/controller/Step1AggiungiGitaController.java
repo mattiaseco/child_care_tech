@@ -19,7 +19,7 @@ import java.time.LocalDate;
 
 public class Step1AggiungiGitaController {
 
-    @FXML private TextField codiceGitaField;
+    @FXML private TextField numeroField;
     @FXML private TextField destinazioneField;
     @FXML private TextArea noteField;
     @FXML private DatePicker dataPartenzaField;
@@ -64,7 +64,7 @@ public class Step1AggiungiGitaController {
         double prezzoGita;
 
 
-        codice_g = Integer.parseInt(codiceGitaField.getText());
+        codice_g = Integer.parseInt(numeroField.getText());
         destinazione = destinazioneField.getText();
         note = noteField.getText();
         data_partenza = dataPartenzaField.getValue();

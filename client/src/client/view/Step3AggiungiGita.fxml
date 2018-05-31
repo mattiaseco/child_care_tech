@@ -11,28 +11,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="gitepane3" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.Step3AggiungiGitaController">
+<AnchorPane fx:id="gitepane3" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.Step3AggiungiGitaController">
    <children>
-      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" minHeight="30.0" minWidth="200.0" prefWidth="30.0" spacing="230.0">
+            <HBox alignment="CENTER" minHeight="30.0" minWidth="200.0" prefWidth="30.0" spacing="120.0">
                <children>
-                  <Label alignment="CENTER" text="Pullman prenotati">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="totalePullmanPrenotatiLabel" alignment="CENTER" minWidth="40.0" text="Pullman disponibili">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets right="30.0" />
-                     </padding>
-                  </Label>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" minWidth="130.0" prefWidth="130.0" text="Pullman prenotati">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label fx:id="totalePullmanPrenotatiLabel" alignment="CENTER" minWidth="140.0" prefWidth="140.0" text="Pullman disponibili">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="300.0" prefWidth="200.0">
@@ -71,14 +76,14 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="100.0" prefWidth="140.0">
                      <padding>
-                        <Insets left="20.0" />
+                        <Insets left="10.0" />
                      </padding>
                      <children>
-                        <Button fx:id="aggiungipullmanbutton" minWidth="150.0" mnemonicParsing="false" onAction="#goToAggiungiPullman" prefWidth="80.0" text="aggiungi pullman">
+                        <Button fx:id="aggiungipullmanbutton" minWidth="140.0" mnemonicParsing="false" onAction="#goToAggiungiPullman" prefWidth="140.0" text="aggiungi pullman">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -88,9 +93,9 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" minWidth="200.0" prefWidth="400.0" spacing="20.0">
+                  <HBox alignment="CENTER_RIGHT" minWidth="-Infinity" prefWidth="310.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="88.0" prefWidth="264.0" text="Totale pullman prenotati:">
+                        <Label minWidth="250.0" prefHeight="80.0" prefWidth="250.0" text="Totale pullman prenotati:">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -99,16 +104,13 @@
                            <font>
                               <Font size="18.0" />
                            </font>
-                           <padding>
-                              <Insets right="30.0" />
-                           </padding>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets right="30.0" />
-                     </padding>
                   </HBox>
                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <padding>
@@ -124,7 +126,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <padding>
-                  <Insets bottom="10.0" right="20.0" top="10.0" />
+                  <Insets bottom="10.0" right="20.0" />
                </padding>
                <children>
                   <Button fx:id="annullabutton" minWidth="80.0" mnemonicParsing="false" onAction="#returnToGitePane" prefWidth="80.0" text=" annulla " />

@@ -127,8 +127,6 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
 
-
-
        try{
            kids.remove(kidDAO.getKid(code));
 
@@ -145,7 +143,7 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
         } catch (Exception e){
             e.printStackTrace();
         }
-        //System.out.println(code);
+        System.out.println(code);
     }
     public void anchorChild(AnchorPane anchorPane, Node node) {
         anchorPane.setBottomAnchor(node, 0.0);
