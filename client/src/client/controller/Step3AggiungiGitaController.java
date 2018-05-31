@@ -147,8 +147,10 @@ public class Step3AggiungiGitaController {
 
 
     @FXML
-    private void returnToGitePane() throws IOException {
+    private void returnToGitePane() throws IOException, SQLException {
 
+        iGitaDAO gitaController = NamingContextManager.getTripsController();
+        gitaController.cancellaGita(codice_g);
         ((BorderPane)gitepane3.getParent()).setCenter(tabelleGitaPene);
         tabelleGiteController.refreshGiteTables();
 
@@ -161,7 +163,7 @@ public class Step3AggiungiGitaController {
         loader = new FXMLLoader(getClass().getResource("../view/AggiungiPullman.fxml"));
         aggiungipullmanpane= loader.load();
         AggiungiPullmanController controller = loader.getController();
-        controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane);
+        controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_g);
         mainpane.setCenter(aggiungipullmanpane);
 
     }

@@ -37,17 +37,19 @@ public class Step1AggiungiGitaController {
 
     public void inizializza( Pane tabelleGitaPene, TabelleGiteController tabelleGitaController, BorderPane mainpane){
 
-       this.tabelleGitaPene = tabelleGitaPene;
-       this.tabelleGiteController = tabelleGitaController;
-       this.mainpane = mainpane;
-   }
+        this.tabelleGitaPene = tabelleGitaPene;
+        this.tabelleGiteController = tabelleGitaController;
+        this.mainpane = mainpane;
+    }
 
 
     @FXML
     private void returnToGitePane() throws IOException{
 
+
         ((BorderPane)gitepane.getParent()).setCenter(tabelleGitaPene);
-         tabelleGiteController.refreshGiteTables();
+        tabelleGiteController.refreshGiteTables();
+
 
     }
 
@@ -57,22 +59,31 @@ public class Step1AggiungiGitaController {
         iGitaDAO gitaController = NamingContextManager.getTripsController();
         FXMLLoader loader;
         Pane gitepane2;
-        int codice_g;
-        String destinazione, note;
+        int codice_gita;
+        String codice_g,destinazione, note;
         LocalDate data_partenza, data_ritorno;
         String prezzo;
         double prezzoGita;
 
 
-        codice_g = Integer.parseInt(numeroField.getText());
+        codice_g = numeroField.getText();
         destinazione = destinazioneField.getText();
         note = noteField.getText();
         data_partenza = dataPartenzaField.getValue();
         data_ritorno = dataRitornoField.getValue();
         prezzo = prezzoField.getText();
 
+        try {
+            codice_gita = Integer.parseInt(codice_g);
+        }catch (NumberFormatException e){
+            alertbox.setText("Attenzione: inserire un numero!");
+            return;
+        }
 
-        if(destinazione.isEmpty() || data_partenza == null || data_ritorno == null)
+        if(gitaController.getAllNumGite().contains(codice_gita)){
+            alertbox.setText("Attenzione: codice gita già presente!");
+        }
+        else if(destinazione.isEmpty() || data_partenza == null || data_ritorno == null || codice_g.isEmpty())
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
         else if (note.length() > 256 )
             alertbox.setText("Attenzione: nota troppo lunga!");
@@ -86,11 +97,13 @@ public class Step1AggiungiGitaController {
                 return;
             }
 
-            gitaController.inserisciGita(codice_g,destinazione,data_partenza,data_ritorno,prezzoGita,note);
+
+
+            gitaController.inserisciGita(codice_gita,destinazione,data_partenza,data_ritorno,prezzoGita,note);
             loader = new FXMLLoader(getClass().getResource("../view/Step2AggiungiGita.fxml"));
             gitepane2= loader.load();
             Step2AggiungiGitaController controller = loader.getController();
-            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_g);
+            controller.inizializza(tabelleGitaPene,tabelleGiteController,mainpane,codice_gita);
             mainpane.setCenter(gitepane2);
             tabelleGiteController.refreshGiteTables();
             /*loader = new FXMLLoader(getClass().getResource("../view/Step2Menu.fxml"));

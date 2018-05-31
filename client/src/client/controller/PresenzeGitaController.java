@@ -5,6 +5,7 @@ import client.CheckPointControllerInterface;
 import client.NamingContextManager;
 import client.NewWebcamQRCodeReader;
 import com.github.sarxos.webcam.WebcamPanel;
+import com.sun.security.ntlm.Client;
 import common.Classes.Bambino;
 import common.Interface.iBambinoDAO;
 import javafx.beans.property.SimpleStringProperty;
@@ -122,19 +123,14 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
 
-        /*try{
-            LocalTime time = LocalTime.now();
-            if(!scannedCodes.contains(code)) {
-                Client.getSessionService().getSession().saveCheckpoint(code, currentEvent, time);
-                scannedCodes.add(code);
-                logArea.appendText(code + " Registrato correttamente alle " + time + "\n");
-                refreshTable();
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            alertWindowService.loadWindow(e.getMessage());
-        }*/
-        System.out.println(code);
+        try{
+            kids.remove(kidDAO.getKid(code));
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        //System.out.println(code);
     }
     public void anchorChild(AnchorPane anchorPane, Node node) {
         anchorPane.setBottomAnchor(node, 0.0);

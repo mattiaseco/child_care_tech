@@ -17,21 +17,24 @@ import java.sql.SQLException;
 
 public class AggiungiPullmanController {
 
-     @FXML private Text alertbox;
-     @FXML private BorderPane mainpane;
-     @FXML private FXMLLoader loader;
-     @FXML private AnchorPane gitepane;
-     @FXML private Pane tabelleGitaPane;
-     @FXML private TabelleGiteController tabelleGiteController;
+    @FXML private Text alertbox;
+    @FXML private BorderPane mainpane;
+    @FXML private FXMLLoader loader;
+    @FXML private AnchorPane gitepane;
+    @FXML private Pane tabelleGitaPane;
+    @FXML private TabelleGiteController tabelleGiteController;
 
-     @FXML private TextField targaField;
-     @FXML private TextField capienzaField;
+    @FXML private TextField targaField;
+    @FXML private TextField capienzaField;
 
-    public void inizializza(Pane tabelleGitaPane, TabelleGiteController tabelleGiteController, BorderPane mainpane){
+    private int codice_g;
+
+    public void inizializza(Pane tabelleGitaPane, TabelleGiteController tabelleGiteController, BorderPane mainpane,int codice_g){
 
         this.mainpane = mainpane;
         this.tabelleGitaPane = tabelleGitaPane;
         this.tabelleGiteController = tabelleGiteController;
+        this.codice_g = codice_g;
     }
 
 
@@ -79,7 +82,10 @@ public class AggiungiPullmanController {
             pullmanController.inserisciPullman(targa,capienza);
             loader = new FXMLLoader(getClass().getResource("../view/Step3AggiungiGita.fxml"));
             gitepane3= loader.load();
+            Step3AggiungiGitaController controller = loader.getController();
+            controller.inizializza(tabelleGitaPane,tabelleGiteController,mainpane,codice_g);
             mainpane.setCenter(gitepane3);
+            tabelleGiteController.refreshPullmanTable();
 
         }
 

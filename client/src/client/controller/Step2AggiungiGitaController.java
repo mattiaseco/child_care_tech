@@ -67,24 +67,24 @@ public class Step2AggiungiGitaController {
     private void initColumns(){
 
 
-            List<Bambino> tempKids = new ArrayList<>();
-            cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-            adesioniColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-            adesioniTable.setItems(adesioni);
-            cfTable.setItems(kids);
+        List<Bambino> tempKids = new ArrayList<>();
+        cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        adesioniColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        adesioniTable.setItems(adesioni);
+        cfTable.setItems(kids);
 
-            try {
-                tempKids = bambinoDAO.getAllBambini();
-            } catch(RemoteException ex) {
-                System.err.println(ex.getMessage());
-                ex.printStackTrace();
-            } catch(SQLException ex) {
-                System.err.println(ex.getMessage());
-                ex.printStackTrace();
-            }
-            kids.clear();
-            adesioni.clear();
-            kids.addAll(tempKids);
+        try {
+            tempKids = bambinoDAO.getAllBambini();
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        kids.clear();
+        adesioni.clear();
+        kids.addAll(tempKids);
 
 
     }
@@ -167,8 +167,9 @@ public class Step2AggiungiGitaController {
 
 
     @FXML
-    private void returnToGitePane() throws IOException{
-
+    private void returnToGitePane() throws IOException, SQLException {
+        iGitaDAO gitaController = NamingContextManager.getTripsController();
+        gitaController.cancellaGita(codice_g);
         ((BorderPane)gitepane2.getParent()).setCenter(tabelleGitaPene);
         tabelleGiteController.refreshGiteTables();
 

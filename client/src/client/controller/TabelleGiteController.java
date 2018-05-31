@@ -76,31 +76,6 @@ public class TabelleGiteController {
         }
         trips.clear();
         trips.addAll(gitaList);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void refreshPullmanTable() {

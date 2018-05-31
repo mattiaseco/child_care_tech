@@ -209,33 +209,33 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
         }
 
     }
-        private static void createBambinoGita(int codice_g,String cf) throws SQLException {
+    private static void createBambinoGita(int codice_g,String cf) throws SQLException {
 
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
-            Statement st = conn.createStatement();
-            ResultSet rs;
-            String sql = buildCreateBambinoGitaSQL(codice_g,cf);
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildCreateBambinoGitaSQL(codice_g,cf);
 
-            try {
+        try {
 
-                rs = st.executeQuery(sql);
-                conn.close();
-                rs.next();
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
 
-            } catch (SQLException ex) {
-                System.err.println("sql exception");
-                ex.printStackTrace();
-                conn.close();
-                return;
-            }
-
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
         }
-        private static String buildCreateBambinoGitaSQL(int codice_g, String cf) {
 
-            return "INSERT INTO Aderisce(cf, codice_g)" +
-                    " VALUES('"+ cf + "','" + codice_g + "')";
+    }
+    private static String buildCreateBambinoGitaSQL(int codice_g, String cf) {
 
-        }
+        return "INSERT INTO Aderisce(cf, codice_g)" +
+                " VALUES('"+ cf + "','" + codice_g + "')";
+
+    }
 
     public void cancellaBambinoGita(Gita gita, Bambino bambino)throws RemoteException,SQLException{
         try {
@@ -272,19 +272,19 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
 
 
-        public void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException{
+    public void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException{
 
 
-            try {
-                createBambinoPullman(pullman.getTarga(),bambino.getCf());
-            } catch (SQLException e) {
+        try {
+            createBambinoPullman(pullman.getTarga(),bambino.getCf());
+        } catch (SQLException e) {
 
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-                return;
-            }
-
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return;
         }
+
+    }
 
     private static void createBambinoPullman(String targa, String cf) throws SQLException {
 
@@ -339,6 +339,25 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
         }
         return bambinoList;
+
+    }
+
+    public List<Integer> getAllNumGite()throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Gita ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Integer> numGiteList = new ArrayList<>();
+
+        while (rs.next()) {
+            int numGite = Integer.parseInt(rs.getString("codice_g"));
+
+            numGiteList.add(numGite);
+
+        }
+        return numGiteList;
+
 
     }
 
