@@ -372,10 +372,10 @@ public class AnagraficaController {
     @FXML
     private void ricercaGlobale() throws IOException {
 
-        /*Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Ricerca.fxml"));
         actual = (Stage) backhome.getScene().getWindow();
         actual.setScene(new Scene(root, backhome.getScene().getWidth(), backhome.getScene().getHeight()));
-        actual.show();*/
+        actual.show();
     }
 
     @FXML
