@@ -126,12 +126,13 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
     public void saveCheckPoint(String code){
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
-        System.out.println(code);
 
 
 
        try{
-           /* if(!kidDAO.getAllCf().contains(code)) {
+           kids.remove(kidDAO.getKid(code));
+
+           /* if(kidDAO.getAllCf().contains(code)) {
                 System.out.println("codice fiscal non presente");
 
                 /*Bambino selected = presenzeTable.getSelectionModel().getSelectedItem();

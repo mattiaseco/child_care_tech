@@ -264,6 +264,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         Statement stmt = conn.createStatement();
         String sql="SELECT * FROM Bambino WHERE cf='"+cod_f+"'";
         ResultSet rs=stmt.executeQuery(sql);
+        rs.next();
         String cf=rs.getString("cf");
         String nome = rs.getString("nome");
         String cognome=rs.getString("cognome");
