@@ -68,7 +68,11 @@ public class AggiungiFornitoreController extends AnchorPane {
 
         if (providersController.getAllCf().contains(cf)) {
             alertbox.setText("Attenzione: codice fiscale già presente");
-        }else if(cf.isEmpty()|| nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() ||  data == null || partitaIVA.isEmpty() || telefono.isEmpty()){
+        }
+        else if (providersController.getAllPartitaIVA().contains(partitaIVA)){
+            alertbox.setText("Attenzione: Partita IVA già presente!");
+        }
+        else if(cf.isEmpty()|| nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() ||  data == null || partitaIVA.isEmpty() || telefono.isEmpty()){
 
             alertbox.setText("Attenzione: inserire campi obbligatori (*)");
 

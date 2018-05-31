@@ -169,4 +169,23 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
 
 
     }
+
+    public List<String>getAllPartitaIVA()throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Fornitore ";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<String> fornitorePartIVA = new ArrayList<>();
+
+        while (rs.next()) {
+            String partitaIVA = rs.getString("partita_iva");
+
+            fornitorePartIVA.add(partitaIVA);
+
+        }
+        return fornitorePartIVA;
+
+
+    }
 }
