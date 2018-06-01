@@ -66,6 +66,19 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         this.gita = gita;
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
+        if(gita == null)
+            return;
+        this.gita = gita;
+        try {
+            kids.addAll(gitaDAO.getAllBambiniGita(gita));
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
 
     }
 
@@ -90,11 +103,11 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
 
     private void initTables() {
         adesioniTable.setItems(kids);
-        refreshKidTable();
+        //refreshKidTable();
 
     }
 
-    public void refreshKidTable() {
+    /*public void refreshKidTable() {
         List<Bambino> bambinoList = new ArrayList<>();
         try {
             bambinoList = gitaDAO.getAllBambiniGita(gita);
@@ -107,7 +120,7 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         }
         kids.clear();
         kids.addAll(bambinoList);
-    }
+    }*/
 
     @FXML
     private void returnToControlloAccessi(ActionEvent event)throws IOException {
@@ -147,14 +160,11 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
 
-        /*try{
-            kids.remove(kidDAO.getKid(code));
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }*/
-        //System.out.println(code);
+        try{
+            kids.remove(gitaDAO.getKidPresente(code));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void anchorChild(AnchorPane anchorPane, Node node) {

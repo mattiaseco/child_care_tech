@@ -18,14 +18,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public class GiteQRController {
 
      @FXML private Text alertboxerror;
 
-     public TabelleGiteController tabelleGitaController;
-     public static Pane tabelleGita;
+
 
      @FXML private ImageView backhome;
 
@@ -40,6 +40,18 @@ public class GiteQRController {
 
      private Stage actual;
 
+    @FXML private TabelleGiteController tabelleGitaController;
+    @FXML private Pane tabelleGita;
+    @FXML private Gita gita;
+
+
+    public void inizializza(TabelleGiteController tabelleGitaController, Pane tabelleGita, Gita gita){
+        this.gita=gita;
+        this.tabelleGita = tabelleGita;
+        this.tabelleGitaController = tabelleGitaController;
+
+    }
+
 
     @FXML
      public void initialize() throws IOException, SQLException {
@@ -49,6 +61,7 @@ public class GiteQRController {
          tabelleGita = loader.load();
          tabelleGitaController = loader.getController();
          mainpane.setCenter(tabelleGita);
+
 
      }
      @FXML
@@ -63,7 +76,7 @@ public class GiteQRController {
      @FXML
      private void goToPresenzeIniziali(ActionEvent event) throws IOException{
 
-         /*alertboxerror.setText("");
+         alertboxerror.setText("");
          FXMLLoader loader;
          Pane QRPane;
          Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
@@ -79,17 +92,12 @@ public class GiteQRController {
              controller.inizializza(tabelleGitaController, tabelleGita, gita);
 
          }
-*/
-
+/*
          Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeGita.fxml"));
          actual =(Stage)partenzaButton.getScene().getWindow();
          actual.setScene(new Scene(root,partenzaButton.getScene().getWidth(),partenzaButton.getScene().getHeight()));
          actual.show();
-
-         //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
-         //giteQrPpane = loader.load();
-         //mainpane.setCenter(giteQrPpane);
-
+*/
          //Step1AggiungiGitaController controller = loader.getController();
          //controller.inizializza(tabelleGita, tabelleGitaController, mainpane);
 
@@ -115,13 +123,6 @@ public class GiteQRController {
 
          }
 
-
-         //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
-         //giteQrPpane = loader.load();
-         //mainpane.setCenter(giteQrPpane);
-
-         //Step1AggiungiGitaController controller = loader.getController();
-         //controller.inizializza(tabelleGita, tabelleGitaController, mainpane);
      }
 
 }

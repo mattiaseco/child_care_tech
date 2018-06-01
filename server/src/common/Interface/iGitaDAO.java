@@ -22,5 +22,6 @@ public interface iGitaDAO extends Remote  {
     void inserisciBambinoPullman(Pullman pullman, Bambino bambino)throws RemoteException,SQLException;
     List<Bambino>getAllBambiniGita(Gita gita)throws RemoteException,SQLException;
     List<Integer> getAllNumGite()throws RemoteException,SQLException;
+    Bambino getKidPresente(String cf)throws RemoteException,SQLException;
 }
 

@@ -126,28 +126,15 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
     public void saveCheckPoint(String code){
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
-
        try{
            kids.remove(kidDAO.getKid(code));
            //Bambino bimbo=kidDAO.getKid(code);
            kidDAO.inserisciBambinoPresente(code);
 
-
-
-           /* if(kidDAO.getAllCf().contains(code)) {
-                System.out.println("codice fiscal non presente");
-
-                /*Bambino selected = presenzeTable.getSelectionModel().getSelectedItem();
-                kids.remove(kidDAO.getKid(code));
-                /*Client.getSessionService().getSession().saveCheckpoint(code, currentEvent, time);
-                scannedCodes.add(code);
-                logArea.appendText(code + " Registrato correttamente alle " + time + "\n");
-                refreshTable();}
-            }*/
         } catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println(code);
+        //System.out.println(code);
     }
     public void anchorChild(AnchorPane anchorPane, Node node) {
         anchorPane.setBottomAnchor(node, 0.0);

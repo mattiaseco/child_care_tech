@@ -77,7 +77,7 @@ public class Database {
                 "PRIMARY KEY(partita_iva,cf))";
         stmt.executeUpdate(sql5);
 
-        String sql6 = "CREATE TABLE IF NOT EXISTS Contatti" +
+        /*String sql6 = "CREATE TABLE IF NOT EXISTS Contatti" +
                 "(cf VARCHAR(16) NOT NULL," +
                 "nome VARCHAR(25) NOT NULL," +
                 "cognome VARCHAR(25) NOT NULL," +
@@ -85,7 +85,7 @@ public class Database {
                 "indirizzo VARCHAR(30) NOT NULL," +
                 "telefono VARCHAR(10)," +
                 "PRIMARY KEY(cf))";
-        stmt.executeUpdate(sql6);
+        stmt.executeUpdate(sql6);*/
 
 
 
@@ -140,33 +140,33 @@ public class Database {
                 "PRIMARY KEY(targa))";
         stmt.executeUpdate(sql11);
 
-        String sql22= "CREATE TABLE IF NOT EXISTS Sale "+//BAMBINO PULLMAN
+        /*String sql22= "CREATE TABLE IF NOT EXISTS Sale "+//BAMBINO PULLMAN
                 "(cf VARCHAR(16),"+
                 "targa VARCHAR(30),"+
                 "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX(targa), FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY( cf, targa))";
-        stmt.executeUpdate(sql22);
+        stmt.executeUpdate(sql22);*/
 
-        String sql12 = "CREATE TABLE IF NOT EXISTS Tappa " +
+        /*String sql12 = "CREATE TABLE IF NOT EXISTS Tappa " +
                 "(codice_t INT NOT NULL AUTO_INCREMENT,"+
                 "PRIMARY KEY(codice_t))";
-        stmt.executeUpdate(sql12);
+        stmt.executeUpdate(sql12);*/
 
-        String sql13 = "CREATE TABLE IF NOT EXISTS Gateway "+
+        /*String sql13 = "CREATE TABLE IF NOT EXISTS Gateway "+
                 "(data_gate DATE NOT NULL ,"+
                 "cod_porta VARCHAR(30) NOT NULL ," +
                 "PRIMARY KEY(cod_porta,data_gate))";
-        stmt.executeUpdate(sql13);
+        stmt.executeUpdate(sql13);*/
 
-        String sql14 = "CREATE TABLE IF NOT EXISTS Attraversa " + //PERSONA GATEWAY
+        /*String sql14 = "CREATE TABLE IF NOT EXISTS Attraversa " + //PERSONA GATEWAY
                 "(data_gate DATE, " +
                 "cod_porta VARCHAR(30), " +
                 "cf VARCHAR(16) , "+
                 "INDEX(cod_porta,data_gate), FOREIGN KEY (cod_porta,data_gate) REFERENCES Gateway(cod_porta,data_gate) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "INDEX (cf), FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(cod_porta ,data_gate, cf))";
-        stmt.executeUpdate(sql14);
+        stmt.executeUpdate(sql14);*/
 
 
         String sql15 = "CREATE TABLE IF NOT EXISTS Intolleranza "+//BAMBINO INGREDIENTE
@@ -201,21 +201,22 @@ public class Database {
                 "PRIMARY KEY(codice_g , targa))";
         stmt.executeUpdate(sql18);
 
-        String sql19 = "CREATE TABLE IF NOT EXISTS Effettua"+//PULLMAN TAPPA
+        /*String sql19 = "CREATE TABLE IF NOT EXISTS Effettua"+//PULLMAN TAPPA
                 "(targa VARCHAR(30),"+
                 "codice_t INT,"+
                 "INDEX(targa),FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
                 "INDEX(codice_t),FOREIGN KEY (codice_t) REFERENCES Tappa(codice_t) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(targa , codice_t))";
-        stmt.executeUpdate(sql19);
+        stmt.executeUpdate(sql19);*/
 
-        String sql20 = "CREATE TABLE IF NOT EXISTS Controllo"+//PULLMAN TAPPA BAMBINO
+        /*String sql20 = "CREATE TABLE IF NOT EXISTS Controllo"+//PULLMAN TAPPA BAMBINO
                 "(targa VARCHAR(16),"+
                 "cf VARCHAR(16),"+
                 "INDEX(targa),FOREIGN KEY (targa) REFERENCES Pullman(targa) ON DELETE CASCADE ON UPDATE CASCADE," +
                 "INDEX(cf),FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
                 "PRIMARY KEY(targa , cf))";
-        stmt.executeUpdate(sql20);
+        stmt.executeUpdate(sql20);*/
+
         String sql23 = "CREATE TABLE IF NOT EXISTS Presenza"+//PULLMAN TAPPA BAMBINO
                 "(cf VARCHAR(16),"+
                 "INDEX(cf),FOREIGN KEY (cf) REFERENCES Bambino(cf) ON DELETE CASCADE ON UPDATE CASCADE,"+
