@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
+
 public class Main extends Application {
     public static Stage primaryStage;
 
@@ -25,6 +27,14 @@ public class Main extends Application {
         stage.setMinHeight(400);
         stage.setMinWidth(600);
         stage.show();
+
+        /*SocketClient client = new SocketClient("127.0.0.1", 1337);
+        try {
+            client.startClient();
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }*/
 
     }
 

@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main {
@@ -7,5 +8,15 @@ public class Main {
 
         RMIServer rmiServer = new RMIServer();
         rmiServer.start();
+
+        /*SocketServer server = new SocketServer(1337);
+        try {
+            server.startServer();
+        }
+        catch (IOException e) {
+            System.err.println(e.getMessage());
+        }*/
+
+
     }
 }
