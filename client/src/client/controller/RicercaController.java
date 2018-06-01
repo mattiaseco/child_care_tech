@@ -3,6 +3,7 @@ package client.controller;
 import client.NamingContextManager;
 import common.Classes.Bambino;
 import common.Interface.iBambinoDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +20,10 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RicercaController {
 
@@ -38,13 +43,18 @@ public class RicercaController {
     private Stage actual;
 
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
-    private iBambinoDAO bambinoDAO = NamingContextManager.getKidController();
+    private iBambinoDAO kidDAO = NamingContextManager.getKidController();
 
 
     @FXML
     private void ricercaGlobale() throws IOException {
 
-        searchKids();
+        String nome, cognome;
+
+        nome = nomeField.getText();
+        cognome = cognomeField.getText();
+
+        resultKids(nome,cognome);
 
 
 
@@ -60,16 +70,38 @@ public class RicercaController {
 
     }
 
-    private void searchKids(){
+    private void resultKids(String nome,String cognome){
 
-        String nome, cognome;
+        initTable();
+        initColumns();
+    }
 
-        nome = nomeField.getText();
-        cognome = cognomeField.getText();
-
-
+    private void initTable(){
+        bambinoTable.setItems(kids);
+        refreshKidTable();
 
     }
 
+    private void initColumns(){
 
+        cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
+        nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+    }
+
+
+    public void refreshKidTable() {
+        List<Bambino> kidsList = new ArrayList<>();
+        try {
+            kidsList = kidDAO.getAllBambini();
+        } catch(RemoteException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        } catch(SQLException ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        kids.clear();
+        kids.addAll(kidsList);
+    }
 }
