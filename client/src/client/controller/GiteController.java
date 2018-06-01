@@ -85,7 +85,7 @@ public class GiteController {
         Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
 
         if(gita == null){
-            alertboxerror.setText("ATTENZIONE:\nSelezionere\nuna riga!");
+            alertboxerror.setText("Attenzione:\nSelezionere\nuna riga!");
         }
         else {
 
@@ -114,7 +114,7 @@ public class GiteController {
 
         if (gita == null){
             alertbox.setText("");
-            alertboxerror.setText("ATTENZIONE:\nSelezionare\nuna riga!");
+            alertboxerror.setText("Attenzione:\nSelezionare\nuna riga!");
         }
         else {
             cod_g = gita.getCodice_g();

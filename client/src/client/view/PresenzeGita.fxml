@@ -15,10 +15,8 @@
             <AnchorPane fx:id="QRPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="120.0" />
             <AnchorPane prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="adesioniTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="adesioniTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="cognomeColumn" prefWidth="75.0" text="Cognome" />
-                        <TableColumn fx:id="nomeColumn" prefWidth="75.0" text="Nome" />
                         <TableColumn fx:id="cfColumn" prefWidth="75.0" text="Codice fiscale" />
                      </columns>
                      <columnResizePolicy>

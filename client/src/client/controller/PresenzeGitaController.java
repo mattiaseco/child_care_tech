@@ -7,7 +7,9 @@ import client.NewWebcamQRCodeReader;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.sun.security.ntlm.Client;
 import common.Classes.Bambino;
+import common.Classes.Gita;
 import common.Interface.iBambinoDAO;
+import common.Interface.iGitaDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,20 +39,35 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
     @FXML private Button fineButton;
     @FXML private AnchorPane QRPane;
 
+    public TabelleGiteController tabellePaneController;
+    public Pane tabellePane;
+    public Gita gita;
+    private PresenzeGitaController presenzeGitaController;
+
+
+
     @FXML public TableView<Bambino> adesioniTable;
     @FXML private TableColumn<Bambino, String> cfColumn;
-    @FXML private TableColumn<Bambino, String> nomeColumn;
-    @FXML private TableColumn<Bambino, String> cognomeColumn;
+    //@FXML private TableColumn<Bambino, String> nomeColumn;
+    //@FXML private TableColumn<Bambino, String> cognomeColumn;
 
 
     private ObservableList<Bambino> kids = FXCollections.observableArrayList();
-    private iBambinoDAO kidDAO;
+    private iGitaDAO gitaDAO;
 
     private Stage actual;
 
     private WebcamPanel webcamPanel;
     private SwingNode node;
     private NewWebcamQRCodeReader newWebcamQRCodeReader;
+
+    public void inizializza(TabelleGiteController tabellePaneController, Pane tabellePane, Gita gita){
+
+        this.gita = gita;
+        this.tabellePane = tabellePane;
+        this.tabellePaneController = tabellePaneController;
+
+    }
 
     public void initialize() {
         try {
@@ -58,25 +76,28 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
             ex.printStackTrace();
         }
 
-        kidDAO = NamingContextManager.getKidController();
+        gitaDAO = NamingContextManager.getTripsController();
 
         initTables();
         initColumns();
     }
+
     private void initColumns() {
         cfColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCf()));
-        nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
-        cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
+        //nomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNome()));
+        //cognomeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCognome()));
     }
+
     private void initTables() {
         adesioniTable.setItems(kids);
         refreshKidTable();
 
     }
+
     public void refreshKidTable() {
-        List<Bambino> kidsList = new ArrayList<>();
+        List<Bambino> bambinoList = new ArrayList<>();
         try {
-            kidsList = kidDAO.getAllBambini();
+            bambinoList = gitaDAO.getAllBambiniGita(gita);
         } catch(RemoteException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
@@ -85,7 +106,7 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
             ex.printStackTrace();
         }
         kids.clear();
-        kids.addAll(kidsList);
+        kids.addAll(bambinoList);
     }
 
     @FXML
@@ -97,6 +118,7 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         actual.setScene(new Scene(root,fineButton.getScene().getWidth(),fineButton.getScene().getHeight()));
         actual.show();
     }
+
     public void setPane(WebcamPanel webcamPanel) {
 
         this.webcamPanel = webcamPanel;
@@ -107,6 +129,7 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
         QRPane.getChildren().add(node);
         anchorChild(QRPane, node);
     }
+
     public void shutDownWebcam() {
         if(newWebcamQRCodeReader != null) {
             Thread thread = new Thread(new Runnable() {
@@ -119,19 +142,21 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
             thread.start();
         }
     }
+
     public void saveCheckPoint(String code) {
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
 
-        try{
+        /*try{
             kids.remove(kidDAO.getKid(code));
         } catch (RemoteException e1) {
             e1.printStackTrace();
         } catch (SQLException e1) {
             e1.printStackTrace();
-        }
+        }*/
         //System.out.println(code);
     }
+
     public void anchorChild(AnchorPane anchorPane, Node node) {
         anchorPane.setBottomAnchor(node, 0.0);
         anchorPane.setLeftAnchor(node, 0.0);

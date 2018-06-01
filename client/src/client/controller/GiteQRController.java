@@ -1,6 +1,7 @@
 package client.controller;
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
 import common.Classes.Gita;
 import common.Interface.iGitaDAO;
 import javafx.event.ActionEvent;
@@ -23,8 +24,8 @@ public class GiteQRController {
 
      @FXML private Text alertboxerror;
 
-     @FXML private TabelleGiteController tabelleGitaController;
-     @FXML public static Pane tabelleGita;
+     public TabelleGiteController tabelleGitaController;
+     public static Pane tabelleGita;
 
      @FXML private ImageView backhome;
 
@@ -33,12 +34,14 @@ public class GiteQRController {
      @FXML private FXMLLoader loader;
 
      @FXML private AnchorPane giteQrPpane;
+
      @FXML private Button partenzaButton;
      @FXML private Button TappeButton;
 
      private Stage actual;
 
-     @FXML
+
+    @FXML
      public void initialize() throws IOException, SQLException {
          alertboxerror.setText("");
 
@@ -60,11 +63,28 @@ public class GiteQRController {
      @FXML
      private void goToPresenzeIniziali(ActionEvent event) throws IOException{
 
+         /*alertboxerror.setText("");
+         FXMLLoader loader;
+         Pane QRPane;
+         Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
+
+         if (gita == null){
+             alertboxerror.setText("Attenzione:\nselezionare\nuna gita !\n");
+         }
+         else {
+             loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
+             QRPane = loader.load();
+             mainpane.setCenter(QRPane);
+             PresenzeGitaController controller = loader.getController();
+             controller.inizializza(tabelleGitaController, tabelleGita, gita);
+
+         }
+*/
+
          Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeGita.fxml"));
          actual =(Stage)partenzaButton.getScene().getWindow();
          actual.setScene(new Scene(root,partenzaButton.getScene().getWidth(),partenzaButton.getScene().getHeight()));
          actual.show();
-
 
          //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
          //giteQrPpane = loader.load();
@@ -78,10 +98,22 @@ public class GiteQRController {
      @FXML
      private void goToPresenzeTappa(ActionEvent event) throws IOException{
 
-         Parent root= FXMLLoader.load(getClass().getResource("../view/PresenzeGita.fxml"));
-         actual =(Stage)TappeButton.getScene().getWindow();
-         actual.setScene(new Scene(root,TappeButton.getScene().getWidth(),TappeButton.getScene().getHeight()));
-         actual.show();
+         alertboxerror.setText("");
+         FXMLLoader loader;
+         Pane QRPane;
+         Gita gita = tabelleGitaController.giteTable.getSelectionModel().getSelectedItem();
+
+         if (gita == null){
+             alertboxerror.setText("Attenzione:\nselezionare\nuna gita !\n");
+         }
+         else {
+             loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
+             QRPane = loader.load();
+             mainpane.setCenter(QRPane);
+             PresenzeGitaController controller = loader.getController();
+             controller.inizializza(tabelleGitaController, tabelleGita, gita);
+
+         }
 
 
          //loader = new FXMLLoader(getClass().getResource("../view/PresenzeGita.fxml"));
