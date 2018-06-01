@@ -1,9 +1,6 @@
 package client.controller;
 
-import client.CameraBusyException;
-import client.CheckPointControllerInterface;
-import client.NamingContextManager;
-import client.NewWebcamQRCodeReader;
+import client.*;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.sun.security.ntlm.Client;
 import common.Classes.Bambino;
@@ -15,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -93,6 +92,12 @@ public class PresenzeGitaController implements CheckPointControllerInterface {
 
         initTables();
         initColumns();
+        Main.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                shutDownWebcam();
+            }
+        });
     }
 
     private void initColumns() {

@@ -65,8 +65,7 @@ public class TabellePaneController {
     private iPersonaleDAO personalDAO;
     private iPediatraDAO pediatraDAO;
     private iFornitoreDAO providersDAO;
-
-
+    
 
     public void initialize() {
         kidDAO = NamingContextManager.getKidController();

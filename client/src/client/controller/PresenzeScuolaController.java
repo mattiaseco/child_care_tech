@@ -1,9 +1,6 @@
 package client.controller;
 
-import client.CameraBusyException;
-import client.CheckPointControllerInterface;
-import client.NamingContextManager;
-import client.NewWebcamQRCodeReader;
+import client.*;
 import com.github.sarxos.webcam.WebcamPanel;
 import common.Classes.Bambino;
 import common.Interface.iBambinoDAO;
@@ -12,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -70,6 +69,12 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
 
         initTables();
         initColumns();
+        Main.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                shutDownWebcam();
+            }
+        });
     }
 
     private void initColumns() {

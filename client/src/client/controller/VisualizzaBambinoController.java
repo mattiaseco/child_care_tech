@@ -29,6 +29,7 @@ public class VisualizzaBambinoController extends AnchorPane {
 
     private Pane tabellePane;
     private TabellePaneController tabellePaneController;
+    //private AnagraficaController anagraficaController;
 
     public void inizializza(Bambino bambino, Pane tabellePane, TabellePaneController tabellePaneController){
         nomeLabel.setText(bambino.getNome());
@@ -41,12 +42,14 @@ public class VisualizzaBambinoController extends AnchorPane {
 
         this.tabellePane = tabellePane;
         this.tabellePaneController = tabellePaneController;
+        //anagraficaController.visualizzabutton.setDisable(true);
     }
 
     @FXML
     public void returntotabellepane()throws IOException {
         ((BorderPane)visualizzapane.getParent()).setCenter(tabellePane);
         tabellePaneController.refreshTabelle();
+
     }
 
 }
