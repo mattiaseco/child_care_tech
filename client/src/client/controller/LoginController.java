@@ -2,15 +2,15 @@ package client.controller;
 
 
 import client.NamingContextManager;
+import common.Classes.Bambino;
+import common.Classes.Genitore;
 import common.Interface.iLoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -32,9 +32,9 @@ public class LoginController {
 
     @FXML private AnchorPane rootpane;
 
-    //@FXML private RadioButton rmibutton;
-
-    //@FXML private RadioButton socketbutton;
+    @FXML private RadioButton rmibutton;
+    @FXML private RadioButton socketbutton;
+    @FXML private ToggleGroup choice;
 
     @FXML private Text alertbox;
 
@@ -63,7 +63,11 @@ public class LoginController {
         if (userName.equals("") || password.equals("")) {
             alertbox.setText("Attenzione: Username o Password vuoti");
         }
-        else{
+        else if(choice.getSelectedToggle() == null) {
+            alertbox.setText("Attenzione: selezionare un tipo di collegamento !");
+            return;
+        }
+        else if (choice.getSelectedToggle().equals(rmibutton)) {
             if (loginController != null && loginController.login(userName, password)) {
                 alertbox.setText("Signin: " + usernamefield.getText() + "!");
 
@@ -74,6 +78,9 @@ public class LoginController {
             }
             else
                 alertbox.setText("Attenzione: Username o Password non validi");
+        }
+        else if (choice.getSelectedToggle().equals(socketbutton)){
+            alertbox.setText("COLLEGAMENTO IN SOCKET NON ATTIVO");
         }
 
     }
