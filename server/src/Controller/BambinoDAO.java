@@ -2,6 +2,7 @@ package Controller;
 
 import common.Classes.Bambino;
 import common.Classes.Ingredienti;
+import common.Classes.Intolleranze;
 import common.Interface.iBambinoDAO;
 
 import java.rmi.RemoteException;
@@ -330,4 +331,91 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
                 "VALUES('" + cf + "')";
 
     }
+
+
+    public List<Bambino> getAllPresenti() throws  RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Bambino WHERE cf IN(SELECT cf FROM Presenza)";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Bambino> kids = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            LocalDate data = LocalDate.parse(rs.getString("data"));
+            String indirizzo = rs.getString("indirizzo");
+            String contatto1 = rs.getString("contatto1");
+            String contatto2 = rs.getString("contatto2");
+
+            Bambino bambino = new Bambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+
+            kids.add(bambino);
+        }
+        return kids;
+
+    }
+
+    public List<Intolleranze> getIntolleranzeBambino(Bambino bambino) throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql ="SELECT * FROM Intolleranza WHERE cf = '" + bambino.getCf() + "')";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Intolleranze> allergieList = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String ingrediente = rs.getString("ingrediente");
+            Intolleranze allergia = new Intolleranze(getKid(cf), getIngrediente(ingrediente));
+
+            allergieList.add(allergia);
+
+        }
+        return allergieList;
+
+
+    }
+    private Ingredienti getIngrediente(String ingrediente) throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM Ingrediente WHERE nome_i='" + ingrediente + "'";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        String nome_i = rs.getString("nome_i");
+        int quantita = rs.getInt("quantita");
+
+        Ingredienti kid = new Ingredienti(nome_i,quantita);
+        return kid;
+
+
+    }
+    public List<Bambino>getAllBambiniNomeCognome(String name,String sourname)throws RemoteException,SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+
+        String sql = "SELECT * FROM Bambino WHERE nome='"+name+"'AND cognome='"+sourname+"'";
+        ResultSet rs = stmt.executeQuery(sql);
+        List<Bambino> kids = new ArrayList<>();
+
+        while (rs.next()) {
+            String cf = rs.getString("cf");
+            String nome = rs.getString("nome");
+            String cognome = rs.getString("cognome");
+            LocalDate data = LocalDate.parse(rs.getString("data"));
+            String indirizzo = rs.getString("indirizzo");
+            String contatto1 = rs.getString("contatto1");
+            String contatto2 = rs.getString("contatto2");
+
+            Bambino bambino = new Bambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+
+            kids.add(bambino);
+        }
+        return kids;
+
+    }
+
 }

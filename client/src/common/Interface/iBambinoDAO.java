@@ -2,6 +2,7 @@ package common.Interface;
 
 import common.Classes.Bambino;
 import common.Classes.Ingredienti;
+import common.Classes.Intolleranze;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -22,6 +23,9 @@ public interface iBambinoDAO extends Remote {
     List<String>getAllCf()throws RemoteException,SQLException;
     Bambino getKid(String cf) throws RemoteException,SQLException;
     void inserisciBambinoPresente(String cf)throws RemoteException,SQLException;
+    List<Bambino> getAllPresenti() throws  RemoteException,SQLException;
+    List<Intolleranze> getIntolleranzeBambino(Bambino bambino) throws RemoteException,SQLException;//dato un kid ti da quello che ha nella tabella intolleranze
+    List<Bambino>getAllBambiniNomeCognome(String nome,String cognome)throws RemoteException,SQLException;
 
 
 }

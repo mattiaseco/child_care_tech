@@ -93,7 +93,7 @@ public class RicercaController {
     public void refreshKidTable() {
         List<Bambino> kidsList = new ArrayList<>();
         try {
-            kidsList = kidDAO.getAllBambini();
+            kidsList = kidDAO.getAllBambiniNomeCognome(nomeField.getText(),cognomeField.getText());
         } catch(RemoteException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
