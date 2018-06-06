@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -33,6 +34,8 @@ public class RicercaController {
 
     @FXML private Button cercaButton;
     @FXML private Button fineButton;
+    @FXML private Text alertbox;
+
 
     @FXML
     public TableView<Bambino> bambinoTable;
@@ -57,11 +60,10 @@ public class RicercaController {
         resultKids(nome,cognome);
 
 
-
     }
 
     @FXML
-    private void returnToTabellePane() throws IOException {
+    public void returnToTabellePane() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Anagrafica.fxml"));
         actual = (Stage) fineButton.getScene().getWindow();
@@ -71,7 +73,6 @@ public class RicercaController {
     }
 
     private void resultKids(String nome,String cognome){
-
         initTable();
         initColumns();
     }

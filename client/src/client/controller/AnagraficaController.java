@@ -376,6 +376,12 @@ public class AnagraficaController {
         actual = (Stage) backhome.getScene().getWindow();
         actual.setScene(new Scene(root, backhome.getScene().getWidth(), backhome.getScene().getHeight()));
         actual.show();
+
+        /*FXMLLoader loader;
+        Pane ricercaPane;
+        loader = new FXMLLoader(getClass().getResource("../view/Ricerca.fxml"));
+        ricercaPane = loader.load();
+        mainpane.setCenter(ricercaPane);*/
     }
 
     @FXML
@@ -395,7 +401,6 @@ public class AnagraficaController {
                 } else {
                     alertbox.setText("");
                     alertboxerror.setText("");
-                    //loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
                     loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
                     allergiepane = loader.load();
                     mainpane.setCenter(allergiepane);
