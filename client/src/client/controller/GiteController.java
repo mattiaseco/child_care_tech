@@ -27,10 +27,8 @@ public class GiteController {
 
     @FXML private Text alertbox;
     @FXML private Text alertboxerror;
-    @FXML
-    private TabelleGiteController tabelleGitaController;
-    @FXML
-    public static Pane tabelleGita;
+    @FXML private TabelleGiteController tabelleGitaController;
+    @FXML public static Pane tabelleGita;
     @FXML
     private ImageView backhome;
     @FXML

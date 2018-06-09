@@ -104,5 +104,11 @@ public class RicercaController {
         }
         kids.clear();
         kids.addAll(kidsList);
+        if(kids.size()==0)
+            alertbox.setText("Attenzione: Bambino non trovato!");
+        else
+            alertbox.setText("");
+
+
     }
 }

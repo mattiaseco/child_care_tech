@@ -59,13 +59,21 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
     }
 
     public void initialize() {
+        kidDAO = NamingContextManager.getKidController();
+
+        try {
+            kidDAO.cancellaPresenti();
+        }catch(RemoteException ex) {
+            ex.printStackTrace();
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
         try {
             newWebcamQRCodeReader = new NewWebcamQRCodeReader(this);
         } catch(CameraBusyException ex) {
             ex.printStackTrace();
         }
 
-        kidDAO = NamingContextManager.getKidController();
 
         initTables();
         initColumns();
@@ -132,9 +140,11 @@ public class PresenzeScuolaController implements CheckPointControllerInterface{
         //argomento codice scannerizzato dal qr
         //devo salvare l'accesso
        try{
+
            kids.remove(kidDAO.getKid(code));
-           //Bambino bimbo=kidDAO.getKid(code);
-           kidDAO.inserisciBambinoPresente(code);
+           if(!(kidDAO.getAllPresenti().contains(kidDAO.getKid(code)))) {
+               kidDAO.inserisciBambinoPresente(code);
+           }
 
         } catch (Exception e){
             e.printStackTrace();

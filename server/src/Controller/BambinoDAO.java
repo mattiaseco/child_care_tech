@@ -417,5 +417,41 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         return kids;
 
     }
+    public void cancellaPresenti()throws RemoteException,SQLException{
+        try {
+            deleteBambiniPresenti();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    private static void deleteBambiniPresenti() throws SQLException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement st = conn.createStatement();
+        ResultSet rs;
+        String sql = buildDeleteBambiniPresentiSQL();
+
+        try {
+            rs = st.executeQuery(sql);
+            conn.close();
+            rs.next();
+
+
+        } catch (SQLException ex) {
+            System.err.println("sql exception");
+            ex.printStackTrace();
+            conn.close();
+            return;
+        }
+
+    }
+
+    private static String buildDeleteBambiniPresentiSQL() {
+        return "DELETE FROM Presenza";
+
+    }
 
 }

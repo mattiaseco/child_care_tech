@@ -25,5 +25,7 @@ public interface iBambinoDAO extends Remote {
     List<Bambino> getAllPresenti() throws  RemoteException,SQLException;
     List<Intolleranze> getIntolleranzeBambino(Bambino bambino) throws RemoteException,SQLException;//dato un kid ti da quello che ha nella tabella intolleranze
     List<Bambino>getAllBambiniNomeCognome(String nome,String cognome)throws RemoteException,SQLException;
+    void cancellaPresenti()throws RemoteException,SQLException;
+
 
 }
