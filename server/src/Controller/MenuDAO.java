@@ -288,7 +288,6 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
 
         int numero=rs.getInt("numero");
-        LocalDate data = LocalDate.parse(rs.getString("data"));
         String piatto1=rs.getString("piatto1");
         String piatto2=rs.getString("piatto2");
         String piatto3=rs.getString("piatto3");
@@ -467,7 +466,7 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql="SELECT * FROM Intolleranza WHERE cf IN (" +
+        String sql="SELECT * FROM Intolleranza WHERE cf NOT IN (" +
                 "SELECT cf FROM Mangia WHERE numero = '" + menu.getNumero()+"')";
         ResultSet rs=stmt.executeQuery(sql);
         List<Intolleranze> bambinoList = new ArrayList<>();
@@ -476,13 +475,13 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
             String cf = rs.getString("cf");
             String ingrediente = rs.getString("ingrediente");
 
-            Intolleranze bambino_allergico= new Intolleranze(getBambinoMngia(cf),getIngrediente(ingrediente));
+            Intolleranze bambino_allergico= new Intolleranze(getBambinoMangia(cf),getIngrediente(ingrediente));
 
             bambinoList.add(bambino_allergico);
         }
         return bambinoList;
     }
-    private Bambino getBambinoMngia(String cod_f)throws RemoteException,SQLException{
+    private Bambino getBambinoMangia(String cod_f)throws RemoteException,SQLException{
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
         String sql="SELECT * FROM Bambino WHERE cf='"+cod_f+"'";
@@ -529,6 +528,10 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         return numMenuList;
 
 
+    }
+    public Menu getMenuNumero(int numero)throws RemoteException,SQLException{
+
+        return getMenu(numero);
     }
 
 

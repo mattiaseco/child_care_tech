@@ -27,5 +27,6 @@ public interface iMenuDAO extends Remote{
     List<Ingredienti>getAllIngredientiMenu(Menu menu)throws RemoteException,SQLException;
     List<Intolleranze> getAllBambiniPresentiSenzaMenu(Menu menu) throws RemoteException, SQLException;
     List<Integer> getAllNumMenu() throws RemoteException, SQLException;
+    Menu getMenuNumero(int numero)throws RemoteException,SQLException;
 
 }
