@@ -397,7 +397,7 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
         Statement stmt = conn.createStatement();
 
-        String sql = "SELECT * FROM Bambino WHERE nome='"+name+"'AND cognome='"+sourname+"'";
+        String sql = "SELECT * FROM Bambino WHERE nome='"+name+"'OR cognome='"+sourname+"'";
         ResultSet rs = stmt.executeQuery(sql);
         List<Bambino> kids = new ArrayList<>();
 
