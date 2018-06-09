@@ -25,7 +25,7 @@ public class SocketServer {
             System.err.println(e.getMessage()); // porta non disponibile
             return;
         }
-        System.out.println("Server ready");
+        System.out.println("[SOCKET]Server ready");
         while (true) {
             try {
                 Socket socket = serverSocket.accept();

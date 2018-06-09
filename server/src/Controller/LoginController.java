@@ -10,7 +10,7 @@ public class LoginController extends UnicastRemoteObject implements iLoginContro
     public LoginController() throws RemoteException {}
 
     @Override
-    public boolean login(String username, String password) {
+    public  boolean login(String username, String password) {
         try {
             return loginAttempt(username, password);
         } catch(SQLException ex) {

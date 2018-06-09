@@ -1,0 +1,76 @@
+package common;
+
+public enum SocketRequestType {
+
+
+    /** START */
+    LOGIN,
+
+    REGISTER,
+
+    /** ANAGRAFICA*/
+    CREATE_KID,
+
+    CREATE_PARENTS,
+
+    CREATE_PROVIDERS,
+
+    CREATE_PEDIATRA,
+
+    CREATE_PERSONAL,
+
+    DELETE_KID,
+
+    DELETE_PARENTS,
+
+    DELETE_PERSONAL,
+
+    DELETE_PEDIATRA,
+
+    DELETE_PROVIDERS,
+
+    UPDATE_KID,
+
+    UPDATE_PARENTS,
+
+    UPDATE_PERSONAL,
+
+    UPDATE_PROVIDERS,
+
+    UPDATE_PEDIATRA,
+
+    ADD_ALLERGY,
+
+    REMOVE_ALLERGY,
+
+    SEARCH_KID,
+
+    /**MENSA*/
+
+    CREATE_INGREDIENTS,
+
+    DELETE_INGREDIENTS,
+
+    CREATE_DISHES,
+
+    DELETE_DISHES,
+
+    CREATE_MENU,
+
+    CREATE_STEP2_MENU,
+
+    CREATE_STEP3_MENU,
+
+    DELETE_MENU,
+
+    /**GITA*/
+
+    CREATE_TRIP,
+
+    CREATE_STEP2_TRIP,
+
+    CREATE_STEP3_TRIP,
+
+    DELETE_TRIP
+
+}

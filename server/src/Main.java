@@ -6,16 +6,16 @@ public class Main {
     public static void main(String [] args) throws SQLException, ClassNotFoundException {
         Database.avviaDatabase();
 
-        RMIServer rmiServer = new RMIServer();
+        RegistryBuilding rmiServer = new RegistryBuilding();
         rmiServer.start();
 
-        /*SocketServer server = new SocketServer(1337);
+        SocketServer server = new SocketServer(1337);
         try {
             server.startServer();
         }
         catch (IOException e) {
             System.err.println(e.getMessage());
-        }*/
+        }
 
 
     }

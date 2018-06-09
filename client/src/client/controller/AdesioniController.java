@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import org.mariadb.jdbc.internal.util.SqlStates;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
