@@ -110,6 +110,9 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
 
             pediatraList.add(pediatra);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return pediatraList;
 
     }
@@ -162,6 +165,9 @@ public class PediatraDAO extends UnicastRemoteObject implements iPediatraDAO {
             pediatraCf.add(cf);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return pediatraCf;
 
 

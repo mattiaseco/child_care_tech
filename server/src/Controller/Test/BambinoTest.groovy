@@ -2,14 +2,25 @@ package Controller.Test
 
 import Controller.BambinoDAO
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
+import sun.net.httpserver.ServerImpl
+
+import java.rmi.RemoteException
 
 
 class BambinoTest {
-    @Test
-     void inserimentoTest(){
+
+    private ServerImpl si;
+    private BambinoTest() throws RemoteException{
+        si= new ServerImpl();
+    }
+
+    @Before
+     void inserimentoBambino() throws RemoteException{
+        ArrayList<String> kids = new ArrayList<>()
         BambinoDAO bam = new BambinoDAO()
-        Assert.assertEquals(4, bam.getAllBambini().size())
+        Assert.assertEquals(6, bam.getAllBambini().size())
     }
 
     @Test
@@ -18,5 +29,5 @@ class BambinoTest {
         Assert.assertNotEquals(5, bam.getAllBambini().size())
     }
 
-
 }
+

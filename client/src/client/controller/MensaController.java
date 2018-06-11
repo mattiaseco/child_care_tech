@@ -137,7 +137,7 @@ public class MensaController {
 
         alertbox.setText("");
         alertboxerror.setText("");
-        int numero;
+        //int numero;
         FXMLLoader loader;
         Pane adesionipane;
         iMenuDAO menuController = NamingContextManager.getMenuController();
@@ -148,8 +148,6 @@ public class MensaController {
 
         }
         else {
-            //tabelleMenuController.refreshMenuTable();
-
 
             alertboxerror.setText("");
             loader = new FXMLLoader(getClass().getResource("../view/Adesioni.fxml"));
@@ -160,26 +158,6 @@ public class MensaController {
             controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
         }
 
-        //mainpane.setCenter(FXMLLoader.load(getClass().getResource("../view/Adesioni.fxml")));
-
-
-/*
-        FXMLLoader loader;
-        Pane adesionipane;
-
-            Menu menu = tabelleMenuController.mensaTable.getSelectionModel().getSelectedItem();
-            if (menu == null) {
-                alertbox.setText("");
-                alertboxerror.setText("Attenzione:\nselezionare\nuna riga !\n");
-
-            } else {
-                loader = new FXMLLoader(getClass().getResource("../view/AggiungiAllergie.fxml"));
-                adesionipane = loader.load();
-                mainpane.setCenter(adesionipane);
-                AggiungiAllergieController controller = loader.getController();
-                //controller.inizializza(menu, tabelleMenuPane, tabelleMenuController);
-            }
-*/
     }
 
 

@@ -191,6 +191,10 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
             menuList.add(menu);
         }
+
+        stmt.close();
+        rs.close();
+        conn.close();
         return menuList;
     }
     private Piatto getPiatto(String piatto)throws SQLException{
@@ -203,6 +207,10 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         String tipo=rs.getString("tipo");
 
         Piatto piatto1= new Piatto(nome_p,tipo);
+
+        stmt.close();
+        rs.close();
+        conn.close();
          return piatto1;
 
     }
@@ -227,8 +235,6 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
             rs = st.executeQuery(sql);
             conn.close();
             rs.next();
-
-
         } catch (SQLException ex) {
             System.err.println("sql exception");
             ex.printStackTrace();
@@ -251,15 +257,15 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         List<Mangia> mangiaList = new ArrayList<>();
 
         while (rs.next()) {
-
             int numero=rs.getInt("numero");
             String cf=rs.getString("cf");
-
-
             Mangia mangia = new Mangia(getBambino(cf),getMenu(numero));
-
             mangiaList.add(mangia);
         }
+
+        rs.close();
+        stmt.close();
+        conn.close();
         return mangiaList;
     }
     private Bambino getBambino(String cod_f)throws SQLException{
@@ -276,6 +282,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         String contatto2=rs.getString("contatto2");
 
         Bambino kid= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+        rs.close();
+        stmt.close();
+        conn.close();
         return kid;
 
     }
@@ -293,6 +302,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         String piatto3=rs.getString("piatto3");
 
         Menu menu1 = new Menu(numero,getPiatto(piatto1),getPiatto(piatto2),getPiatto(piatto3));
+        rs.close();
+        stmt.close();
+        conn.close();
         return menu1;
 
     }
@@ -320,6 +332,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
             bambinoList.add(bambino_menu);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return bambinoList;
 
 
@@ -402,7 +417,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
         String nome_p = rs.getString("piatto1");
 
-
+        rs.close();
+        stmt.close();
+        conn.close();
         return getPiatto(nome_p);
     }
     public Piatto getPiatto2(int numero)throws RemoteException,SQLException{
@@ -413,7 +430,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         rs.next();
 
         String nome_p = rs.getString("piatto2");
-
+        rs.close();
+        stmt.close();
+        conn.close();
 
         return getPiatto(nome_p);
     }
@@ -425,7 +444,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         rs.next();
 
         String nome_p = rs.getString("piatto3");
-
+        rs.close();
+        stmt.close();
+        conn.close();
 
         return getPiatto(nome_p);
     }
@@ -459,6 +480,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
             ingredientiList.add(ing_piatto);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return ingredientiList;
     }
     public List<Intolleranze> getAllBambiniPresentiSenzaMenu(Menu menu) throws RemoteException, SQLException{
@@ -479,6 +503,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
 
             bambinoList.add(bambino_allergico);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return bambinoList;
     }
     private Bambino getBambinoMangia(String cod_f)throws RemoteException,SQLException{
@@ -495,6 +522,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         String contatto2=rs.getString("contatto2");
 
         Bambino kid= new Bambino(cf,nome,cognome,data,indirizzo,contatto1,contatto2);
+        rs.close();
+        stmt.close();
+        conn.close();
         return kid;
     }
     private Ingredienti getIngrediente(String ingrediente)throws RemoteException,SQLException{
@@ -508,6 +538,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
         int quantita=rs.getInt("quantita");
 
         Ingredienti ingredienti= new Ingredienti(nome_i,quantita);
+        rs.close();
+        stmt.close();
+        conn.close();
         return ingredienti;
     }
 
@@ -525,6 +558,9 @@ public class MenuDAO extends UnicastRemoteObject implements iMenuDAO {
             numMenuList.add(numMenu);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return numMenuList;
 
 

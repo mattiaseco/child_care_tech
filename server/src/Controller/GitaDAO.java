@@ -157,6 +157,9 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
 
             gitaList.add(gita);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return gitaList;
     }
 
@@ -338,6 +341,9 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
             bambinoList.add(bambino_menu);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return bambinoList;
 
     }
@@ -356,6 +362,9 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
             numGiteList.add(numGite);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return numGiteList;
 
 
@@ -375,9 +384,10 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
         String contatto2 = rs.getString("contatto2");
 
         Bambino kid = new Bambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+        rs.close();
+        stmt.close();
+        conn.close();
         return kid;
-
-
 
     }
 

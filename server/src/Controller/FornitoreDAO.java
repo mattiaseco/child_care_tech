@@ -113,6 +113,9 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
 
             fornitoreList.add(fornitore);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return fornitoreList;
 
     }
@@ -165,6 +168,9 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
             providersCf.add(cf);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return providersCf;
 
 
@@ -184,6 +190,9 @@ public class FornitoreDAO extends UnicastRemoteObject implements iFornitoreDAO {
             fornitorePartIVA.add(partitaIVA);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return fornitorePartIVA;
 
 

@@ -112,6 +112,9 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
 
             ingredientiList.add(ingrediente);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return ingredientiList;
     }
 

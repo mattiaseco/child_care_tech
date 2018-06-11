@@ -16,13 +16,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdesioniController {
+public class AdesioniController extends AnchorPane{
 
     @FXML
     private TableView<Intolleranze> bambiniPTable;
@@ -44,9 +45,8 @@ public class AdesioniController {
 
     //private Pane tabellePane;
     //private TabelleMenuController tabellePaneController;
-
-    private TabelleMenuController tabelleMenuController;
     public static Pane tabelleMenuPane;
+    private TabelleMenuController tabelleMenuController;
 
 
     private Menu menu;
@@ -55,11 +55,24 @@ public class AdesioniController {
     //int numero=1;
     private ObservableList<Intolleranze> bambiniPresenti = FXCollections.observableArrayList();
 
+    public void inizializza(Menu menu, Pane tabelleMenuPane, TabelleMenuController tabelleMenuController) {
+
+        this.tabelleMenuPane = tabelleMenuPane;
+        this.tabelleMenuController = tabelleMenuController;
+        this.menu=menu;
+        numeroMenuLabel.setText(String.valueOf(menu.getNumero()));
+        try{
+            initTables();
+            initColumns();
+        }catch (RemoteException ex){
+
+        }catch (SQLException ex){}
+    }
+
     public void initialize()throws RemoteException,SQLException {
         bambinoDAO = NamingContextManager.getKidController();
         menuDAO = NamingContextManager.getMenuController();
-        initTables();
-        initColumns();
+
     }
 
     private void initColumns() {
@@ -79,7 +92,6 @@ public class AdesioniController {
 
     public void refreshKidTable()throws RemoteException,SQLException {
         List<Intolleranze> intolleranzeList = new ArrayList<>();
-        //Menu menu4=menuDAO.getMenuNumero(numero);
         try {
 
             for (Bambino newBambino : bambinoDAO.getAllPresenti()) {
@@ -101,13 +113,6 @@ public class AdesioniController {
         bambiniPresenti.addAll(intolleranzeList);
     }
 
-    public void inizializza(Menu menu, Pane tabellePane, TabelleMenuController tabellePaneController) {
-
-        this.tabelleMenuPane = tabellePane;
-        this.tabelleMenuController = tabellePaneController;
-        this.menu=menu;
-        numeroMenuLabel.setText(String.valueOf(menu.getNumero()));
-    }
 
 
     @FXML

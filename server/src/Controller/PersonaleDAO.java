@@ -111,6 +111,9 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
 
             personaleList.add(personale);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return personaleList;
 
     }
@@ -163,6 +166,9 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
             personaleCf.add(cf);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return personaleCf;
 
 

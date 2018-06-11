@@ -114,6 +114,9 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
 
             genitoreList.add(Genitore);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return genitoreList;
 
     }
@@ -166,6 +169,9 @@ public class GenitoreDAO extends UnicastRemoteObject implements iGenitoreDAO {
             genitoreCf.add(cf);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return genitoreCf;
 
 

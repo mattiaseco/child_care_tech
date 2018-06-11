@@ -33,22 +33,24 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
     private static void createKid(String cf, String nome, String cognome, LocalDate data, String indirizzo, String contatto1, String contatto2) throws SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
-        Statement st = conn.createStatement();
-        ResultSet rs;
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
         String sql = buildCreateKidSQL(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
 
         try {
-
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+            st = conn.createStatement();
             rs = st.executeQuery(sql);
-            conn.close();
             rs.next();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
-            conn.close();
-            return;
+        } finally {
+            if(rs != null) rs.close();
+            if(st != null) st.close();
+            if(conn != null) conn.close();
         }
 
     }
@@ -119,6 +121,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
             kids.add(bambino);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return kids;
     }
 
@@ -214,6 +219,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             allergieList.add(allergia);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return allergieList;
     }
 
@@ -266,6 +274,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             kidsCf.add(cf);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return kidsCf;
 
 
@@ -286,6 +297,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         String contatto2 = rs.getString("contatto2");
 
         Bambino kid = new Bambino(cf, nome, cognome, data, indirizzo, contatto1, contatto2);
+        rs.close();
+        stmt.close();
+        conn.close();
         return kid;
 
     }
@@ -354,6 +368,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
             kids.add(bambino);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return kids;
 
     }
@@ -374,6 +391,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
             allergieList.add(allergia);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return allergieList;
 
 
@@ -389,6 +409,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
         int quantita = rs.getInt("quantita");
 
         Ingredienti kid = new Ingredienti(nome_i,quantita);
+        rs.close();
+        stmt.close();
+        conn.close();
         return kid;
 
 
@@ -414,6 +437,9 @@ public class BambinoDAO extends UnicastRemoteObject implements iBambinoDAO {
 
             kids.add(bambino);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return kids;
 
     }

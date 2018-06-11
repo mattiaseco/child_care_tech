@@ -104,6 +104,9 @@ public class PullmanDAO extends UnicastRemoteObject implements iPullmanDAO {
 
             pullmanList.add(pullman);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return pullmanList;
 
     }
@@ -167,6 +170,9 @@ public class PullmanDAO extends UnicastRemoteObject implements iPullmanDAO {
             bambinoList.add(bambino_menu);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return bambinoList;
 
     }
@@ -226,6 +232,9 @@ public class PullmanDAO extends UnicastRemoteObject implements iPullmanDAO {
             pullmanTarghe.add(targa);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return pullmanTarghe;
 
     }

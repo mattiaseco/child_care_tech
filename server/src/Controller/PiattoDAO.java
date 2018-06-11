@@ -107,6 +107,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
 
             piattoList.add(piatto);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return piattoList;
 
     }
@@ -160,6 +163,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
 
             piattoList.add(piatto);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return piattoList;
 
     }
@@ -178,7 +184,11 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
 
             piattoList.add(piatto);
         }
-        return piattoList;}
+        rs.close();
+        stmt.close();
+        conn.close();
+        return piattoList;
+    }
     public List<Piatto>getAllContorni()throws  RemoteException,SQLException{
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
@@ -196,6 +206,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
 
             piattoList.add(piatto);
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return piattoList;
     }
 
@@ -286,6 +299,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
             ingredientiList.add(ing_piatto);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return ingredientiList;
     }
     public List<String>getAllNomiPiatti()throws RemoteException,SQLException{
@@ -303,6 +319,9 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
             nomi_piattoList.add(nome_piatto);
 
         }
+        rs.close();
+        stmt.close();
+        conn.close();
         return nomi_piattoList;
 
 
