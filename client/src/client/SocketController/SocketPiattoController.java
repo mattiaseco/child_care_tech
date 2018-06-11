@@ -1,5 +1,6 @@
 package client.SocketController;
 
+import common.Classes.Fornitore;
 import common.Classes.Ingredienti;
 import common.Classes.Piatto;
 import common.Interface.iPiattoDAO;
@@ -409,5 +410,9 @@ public class SocketPiattoController implements iPiattoDAO {
         }
 
 
+    }
+    @Override
+    public Piatto getPiatto(String nome_p)throws RemoteException,SQLException{
+        return null;
     }
 }

@@ -211,4 +211,8 @@ public class SocketParentsController implements iGenitoreDAO {
 
 
     }
+    @Override
+    public Genitore getGenitore(String cf)throws RemoteException,SQLException{
+        return null;
+    }
 }

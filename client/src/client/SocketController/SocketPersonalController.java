@@ -207,4 +207,8 @@ public class SocketPersonalController implements iPersonaleDAO {
 
 
     }
+    @Override
+    public Personale getPersonale(String cf) throws RemoteException,SQLException{
+        return null;
+    }
 }

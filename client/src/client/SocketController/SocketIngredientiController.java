@@ -133,6 +133,10 @@ public class SocketIngredientiController implements iIngredientiDAO {
 
             }
         }
+    @Override
+    public Ingredienti getIngrediente(String nome_i)throws RemoteException,SQLException{
+        return null;
+    }
 
 
 }

@@ -244,4 +244,8 @@ public class SocketProvidersController implements iFornitoreDAO {
 
 
     }
+    @Override
+    public Fornitore getFornitore(String cf)throws RemoteException,SQLException{
+        return null;
+    }
 }

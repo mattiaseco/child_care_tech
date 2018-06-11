@@ -417,4 +417,8 @@ public class SocketTripController implements iGitaDAO {
 
 
     }
+    @Override
+    public Gita getGita(int codice_g)throws RemoteException,SQLException{
+        return null;
+    }
 }

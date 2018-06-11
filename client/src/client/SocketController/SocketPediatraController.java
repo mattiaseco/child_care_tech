@@ -21,80 +21,79 @@ public class SocketPediatraController implements iPediatraDAO {
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
-    public SocketPediatraController(Socket client, ObjectInputStream in,ObjectOutputStream out){
+    public SocketPediatraController(Socket client, ObjectInputStream in, ObjectOutputStream out) {
         this.client = client;
         this.in = in;
         this.out = out;
     }
+
     @Override
     public void inserisciPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException {
 
 
-            SocketResponse response;
+        SocketResponse response;
 
 
-            try {
+        try {
 
-                SocketRequest r = new SocketRequest(SocketRequestType.CREATE_PEDIATRA, cf,nome,cognome,data,indirizzo,telefono);
-
-
-                out.writeObject(r);
-                response = (SocketResponse) in.readObject();
-                out.flush();
+            SocketRequest r = new SocketRequest(SocketRequestType.CREATE_PEDIATRA, cf, nome, cognome, data, indirizzo, telefono);
 
 
-                if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
-                //return (Boolean)response.returnValue;
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
 
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-                System.exit(1);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.exit(1);
+            if (response.eccezione) throw new RemoteException(((Exception) response.returnValue).getMessage());
+            //return (Boolean)response.returnValue;
 
-            }
-            catch (ClassNotFoundException e){
-                e.printStackTrace();
-                System.exit(1);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+
         }
+    }
 
 
     @Override
     public void modificaPediatra(String cf, String nome, String cognome, LocalDate data, String indirizzo, String telefono) throws RemoteException, SQLException {
 
-            SocketResponse response;
+        SocketResponse response;
 
-            try {
+        try {
 
-                SocketRequest r = new SocketRequest(SocketRequestType.UPDATE_PEDIATRA, cf,nome,cognome,data,indirizzo,telefono);
+            SocketRequest r = new SocketRequest(SocketRequestType.UPDATE_PEDIATRA, cf, nome, cognome, data, indirizzo, telefono);
 
 
-                out.writeObject(r);
-                response = (SocketResponse) in.readObject();
-                out.flush();
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
 
-                if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
-                //return (Boolean)response.returnValue;
+            if (response.eccezione) throw new RemoteException(((Exception) response.returnValue).getMessage());
+            //return (Boolean)response.returnValue;
 
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-                System.exit(1);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            }
-            catch (ClassNotFoundException e){
-                e.printStackTrace();
-                System.exit(1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            }
         }
+    }
 
 
     @Override
@@ -112,7 +111,7 @@ public class SocketPediatraController implements iPediatraDAO {
             out.flush();
 
 
-            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            if (response.eccezione) throw new RemoteException(((Exception) response.returnValue).getMessage());
             return (List<Pediatra>) response.returnValue;
 
         } catch (UnknownHostException e) {
@@ -125,8 +124,7 @@ public class SocketPediatraController implements iPediatraDAO {
             System.exit(1);
             return null;
 
-        }
-        catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -139,35 +137,34 @@ public class SocketPediatraController implements iPediatraDAO {
     @Override
     public void cancellaPediatra(String cf) throws RemoteException, SQLException {
 
-            SocketResponse response;
+        SocketResponse response;
 
 
-            try {
+        try {
 
-                SocketRequest r = new SocketRequest(SocketRequestType.DELETE_PEDIATRA, cf);
+            SocketRequest r = new SocketRequest(SocketRequestType.DELETE_PEDIATRA, cf);
 
-                out.writeObject(r);
-                response = (SocketResponse) in.readObject();
-                out.flush();
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
 
 
-                if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
-                //return (Boolean)response.returnValue;
+            if (response.eccezione) throw new RemoteException(((Exception) response.returnValue).getMessage());
+            //return (Boolean)response.returnValue;
 
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-                System.exit(1);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.exit(1);
-            }
-            catch (ClassNotFoundException e){
-                e.printStackTrace();
-                System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
 
-            }
         }
+    }
 
 
     @Override
@@ -185,7 +182,7 @@ public class SocketPediatraController implements iPediatraDAO {
             out.flush();
 
 
-            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            if (response.eccezione) throw new RemoteException(((Exception) response.returnValue).getMessage());
             return (List<String>) response.returnValue;
 
         } catch (UnknownHostException e) {
@@ -198,8 +195,7 @@ public class SocketPediatraController implements iPediatraDAO {
             System.exit(1);
             return null;
 
-        }
-        catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -207,5 +203,12 @@ public class SocketPediatraController implements iPediatraDAO {
         }
 
 
+
+
     }
+    @Override
+    public Pediatra getPediatra (String cf)throws RemoteException, SQLException {
+        return null;
+    }
+
 }
