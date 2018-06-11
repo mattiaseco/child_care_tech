@@ -95,7 +95,41 @@ public class SocketProvidersController implements iFornitoreDAO {
 
     @Override
     public List<Fornitore> getAllFornitore() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PROVIDERS);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Fornitore>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
@@ -113,7 +147,7 @@ public class SocketProvidersController implements iFornitoreDAO {
                 out.flush();
 
                 if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
-                //return (Boolean)response.returnValue;
+
 
             } catch (UnknownHostException e) {
                 e.printStackTrace();
@@ -135,11 +169,79 @@ public class SocketProvidersController implements iFornitoreDAO {
 
     @Override
     public List<String> getAllCf() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_CF_PROVIDERS);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<String>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<String> getAllPartitaIVA() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PARTITA_IVA);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<String>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 }

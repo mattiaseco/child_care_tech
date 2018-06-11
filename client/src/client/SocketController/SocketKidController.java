@@ -97,7 +97,41 @@ public class SocketKidController implements iBambinoDAO {
 
     @Override
     public List<Bambino> getAllBambini() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_KID);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Bambino>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
@@ -169,7 +203,41 @@ public class SocketKidController implements iBambinoDAO {
 
     @Override
     public List<Ingredienti> getAllAllergie(Bambino bambino) throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_ALLERGIE, bambino);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Ingredienti>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
@@ -210,36 +278,264 @@ public class SocketKidController implements iBambinoDAO {
 
     @Override
     public List<String> getAllCf() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_CF_KID);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<String>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public Bambino getKid(String cf) throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_KID, cf);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (Bambino) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public void inserisciBambinoPresente(String cf) throws RemoteException, SQLException {
 
+
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.ADD_KID_PRESENTE, cf);
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            //return (Boolean)response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+
+        }
     }
 
     @Override
     public List<Bambino> getAllPresenti() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PRESENTI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Bambino>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<Intolleranze> getIntolleranzeBambino(Bambino bambino) throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_INTOLLERANZE_KID, bambino);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Intolleranze>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<Bambino> getAllBambiniNomeCognome(String nome, String cognome) throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_KID_NOME_COGNOME, nome,cognome);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Bambino>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public void cancellaPresenti() throws RemoteException, SQLException {
 
+
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.DELETE_KID_PRESENTE);
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            //return (Boolean)response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+
+        }
     }
 }

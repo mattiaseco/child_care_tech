@@ -64,7 +64,41 @@ public class SocketIngredientiController implements iIngredientiDAO {
 
     @Override
     public List<Ingredienti> getAllIngredienti() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_INGREDIENTI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Ingredienti>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override

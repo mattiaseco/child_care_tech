@@ -4,14 +4,10 @@ import common.Classes.Bambino;
 import common.Classes.Ingredienti;
 import common.Classes.Menu;
 import common.Classes.Piatto;
+import common.Classes.*;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class SocketServerResponse{
@@ -121,7 +117,7 @@ public class SocketServerResponse{
                     return  new SocketResponse(false, null);
 
                 case DELETE_PROVIDERS:
-                    String cfProvidersDelete = (String) r.params[1];
+                    String cfProvidersDelete = (String) r.params[0];
 
                     RegistryBuilding.providersController.cancellaFornitore(cfProvidersDelete);
                     return  new SocketResponse(false, null);
@@ -204,6 +200,96 @@ public class SocketServerResponse{
                     RegistryBuilding.kidController.getAllBambiniNomeCognome(nomeKidSearch,cognomeKidSearch);
                     return  new SocketResponse(false, null);
 
+                case GET_KID:
+                    String cf = (String) r.params[0];
+
+                    RegistryBuilding.kidController.getKid(cf);
+                    return  new SocketResponse(false, null);
+
+                case GET_ALL_KID:
+                    ArrayList<Bambino> kidList = new ArrayList<>(RegistryBuilding.kidController.getAllBambini());
+                    return  new SocketResponse(false, kidList);
+
+                case GET_ALL_ALLERGIE:
+                    Bambino bambino1 = (Bambino) r.params[0];
+
+                    ArrayList<Ingredienti> allergieList = new ArrayList<>(RegistryBuilding.kidController.getAllAllergie(bambino1));
+                    return  new SocketResponse(false, allergieList);
+
+                case GET_ALL_CF_KID:
+
+                    ArrayList<String> cfKidList = new ArrayList<>(RegistryBuilding.kidController.getAllCf());
+                    return  new SocketResponse(false, cfKidList);
+
+                case ADD_KID_PRESENTE:
+
+                    String cfKidPresente = (String) r.params[0];
+
+                    RegistryBuilding.kidController.inserisciBambinoPresente(cfKidPresente);
+                    return  new SocketResponse(false, null);
+
+                case GET_ALL_PRESENTI:
+
+                    ArrayList<Bambino> kidPresentiList  = new ArrayList<>(RegistryBuilding.kidController.getAllPresenti());
+                    return  new SocketResponse(false, kidPresentiList);
+
+                case GET_INTOLLERANZE_KID:
+                    Bambino bambino2 = (Bambino) r.params[0];
+
+                    ArrayList<Intolleranze> intolleranzeKidList = new ArrayList<>(RegistryBuilding.kidController.getIntolleranzeBambino(bambino2));
+                    return  new SocketResponse(false, intolleranzeKidList);
+
+                case GET_ALL_KID_NOME_COGNOME:
+                    String nome = (String) r.params[0];
+                    String cognome = (String) r.params[1];
+
+                    ArrayList<Bambino> kidNomeCognomeList = new ArrayList<>(RegistryBuilding.kidController.getAllBambiniNomeCognome(nome,cognome));
+                    return  new SocketResponse(false, kidNomeCognomeList);
+
+                case DELETE_KID_PRESENTE:
+
+                    RegistryBuilding.kidController.cancellaPresenti();
+                    return  new SocketResponse(false, null);
+
+                case GET_ALL_PARENTS:
+
+                    ArrayList<Genitore> parentsList = new ArrayList<>(RegistryBuilding.parentsController.getAllGenitori());
+                    return  new SocketResponse(false, parentsList);
+
+                case GET_ALL_CF_PARENTS:
+
+                    ArrayList<String> parentsCfList = new ArrayList<>(RegistryBuilding.parentsController.getAllCf());
+                    return  new SocketResponse(false, parentsCfList);
+
+                case GET_ALL_PEDIATRA:
+
+                    ArrayList<Pediatra> pediatraList = new ArrayList<>(RegistryBuilding.pediatraController.getAllPediatra());
+                    return  new SocketResponse(false, pediatraList);
+
+                case GET_ALL_CF_PEDIATRA:
+                    ArrayList<String> pediatraCfList = new ArrayList<>(RegistryBuilding.pediatraController.getAllCf());
+                    return  new SocketResponse(false, pediatraCfList);
+
+                case GET_ALL_PERSONAL:
+                    ArrayList<Personale> personaleList = new ArrayList<>(RegistryBuilding.personalController.getAllPersonale());
+                    return new SocketResponse(false, personaleList);
+
+                case GET_ALL_CF_PERSONAL:
+                    ArrayList<String> personalCfList = new ArrayList<>(RegistryBuilding.personalController.getAllCf());
+                    return new SocketResponse(false, personalCfList);
+
+                case GET_ALL_PROVIDERS:
+                    ArrayList<Fornitore> providersList = new ArrayList<>(RegistryBuilding.providersController.getAllFornitore());
+                    return new SocketResponse(false, providersList);
+
+                case GET_ALL_CF_PROVIDERS:
+                    ArrayList<String> providersCfList = new ArrayList<>(RegistryBuilding.providersController.getAllCf());
+                    return new SocketResponse(false, providersCfList);
+
+                case GET_ALL_PARTITA_IVA :
+                    ArrayList<String> partitaIVAList = new ArrayList<>(RegistryBuilding.providersController.getAllPartitaIVA());
+                    return new SocketResponse(false, partitaIVAList);
+
                     /**MENSA*/
 
                 case CREATE_INGREDIENTS:
@@ -259,11 +345,124 @@ public class SocketServerResponse{
                     return  new SocketResponse(false, null);
 
                 case GET_ALL_MENU:
-                    int numeroMenuGETALL = (int) r.params[0];
-                    Piatto piatto1GETALL = (Piatto) r.params[1];
-                    Piatto piatto2GETALL = (Piatto) r.params[2];
-                    Piatto piatto3GETALL = (Piatto) r.params[3];
-                    RegistryBuilding.menuController.getAllMenu();
+
+                    ArrayList<Menu> menuList= new ArrayList<>(RegistryBuilding.menuController.getAllMenu());
+                    return  new SocketResponse(false, menuList);
+
+                case GET_ALL_INGREDIENTI_MENU:
+                    Menu menu = (Menu) r.params[0];
+
+                    ArrayList<Ingredienti> ingredientiMenuList = new ArrayList<>(RegistryBuilding.menuController.getAllIngredientiMenu(menu));
+                    return new SocketResponse(false, ingredientiMenuList);
+
+                case GET_ALL_KID_PRESENTI_SENZA_MENU:
+                    Menu menu1 = (Menu) r.params[0];
+
+                    ArrayList<Intolleranze> kidSenzaMenuList = new ArrayList<>(RegistryBuilding.menuController.getAllBambiniPresentiSenzaMenu(menu1));
+                    return new SocketResponse(false, kidSenzaMenuList);
+
+                case GET_ALL_NUM_MENU:
+
+                    ArrayList<Integer> numMenuList = new ArrayList<>(RegistryBuilding.menuController.getAllNumMenu());
+                    return new SocketResponse(false, numMenuList);
+
+                case GET_MENU_NUM:
+                    int numero = (int) r.params[0];
+
+                    RegistryBuilding.menuController.getMenuNumero(numero);
+                    return new SocketResponse(false,null);
+
+                case GET_ALL_PIATTI:
+
+                    ArrayList<Piatto> piattiList = new ArrayList<>(RegistryBuilding.piattoController.getAllPiatti());
+                    return new SocketResponse(false, piattiList);
+
+                case GET_ALL_PRIMI:
+                    ArrayList<Piatto> primiList = new ArrayList<>(RegistryBuilding.piattoController.getAllPrimi());
+                    return new SocketResponse(false, primiList);
+
+                case GET_ALL_SECONDI:
+                    ArrayList<Piatto> secondiList = new ArrayList<>(RegistryBuilding.piattoController.getAllSecondi());
+                    return new SocketResponse(false, secondiList);
+
+                case GET_ALL_CONTORNI:
+                    ArrayList<Piatto> contoriniList = new ArrayList<>(RegistryBuilding.piattoController.getAllContorni());
+                    return new SocketResponse(false, contoriniList);
+
+                case ADD_INGREDIENTE_PIATTO:
+                    Piatto piatto = (Piatto) r.params[0];
+                    Ingredienti ingredienti1 = (Ingredienti) r.params[1];
+
+                    RegistryBuilding.piattoController.inserisciIngredientePiatto(piatto,ingredienti1);
+                    return  new SocketResponse(false, null);
+
+                case DELETE_INGREDIENTE_PIATTO:
+                    Piatto piatto4 = (Piatto) r.params[0];
+                    Ingredienti ingredienti2 = (Ingredienti) r.params[1];
+
+                    RegistryBuilding.piattoController.cancellaIngredientePiatto(piatto4,ingredienti2);
+                    return  new SocketResponse(false, null);
+
+                case GET_ALL_INGREDIENTE_PIATTO:
+
+                    Piatto piatto5 = (Piatto) r.params[0];
+
+                    ArrayList<Ingredienti> ingredientiPiattoList = new ArrayList<>(RegistryBuilding.piattoController.getAllIngredientiPiatto(piatto5));
+                    return  new SocketResponse(false, ingredientiPiattoList);
+
+                case GET_ALL_NOME_PIATTI:
+
+                    ArrayList<String> nomePiattiList = new ArrayList<>(RegistryBuilding.piattoController.getAllNomiPiatti());
+                    return new SocketResponse(false, nomePiattiList);
+
+                case GET_ALL_MENU_MANGIA:
+                    Menu menu2 = (Menu) r.params[0];
+
+                    ArrayList<Mangia> menuMangiaList = new ArrayList<>(RegistryBuilding.menuController.GetAllBambiniMenuMangia(menu2));
+                    return new SocketResponse(false, menuMangiaList);
+
+                case GET_ALL_KID_MENU:
+                    Menu menu3 = (Menu) r.params[0];
+
+                    ArrayList<Bambino> kidMenuList = new ArrayList<>(RegistryBuilding.menuController.getAllBambiniMenu(menu3));
+                    return  new SocketResponse(false, kidMenuList);
+
+                case INS_KID_MANGIA:
+                    Menu menu4 = (Menu) r.params[0];
+                    Bambino bambino3 = (Bambino) r.params[1];
+
+                    RegistryBuilding.menuController.inserisciBambinoMangia(menu4,bambino3);
+                    return new SocketResponse(false, null);
+
+                case DELETE_KID_MANGIA:
+                    Menu menu5 = (Menu) r.params[0];
+                    Bambino bambino4 = (Bambino) r.params[1];
+
+                    RegistryBuilding.menuController.cancellaBambinoMangia(menu5,bambino4);
+                    return new SocketResponse(false, null);
+
+                case GET_PIATTO1:
+                    int num = (int) r.params[0];
+
+                    RegistryBuilding.menuController.getPiatto1(num);
+                    return new SocketResponse(false, null);
+
+                case GET_PIATTO2:
+                    int num1 = (int) r.params[0];
+
+                    RegistryBuilding.menuController.getPiatto2(num1);
+                    return new SocketResponse(false, null);
+
+                case GET_PIATTO3:
+                    int num2 = (int) r.params[0];
+
+                    RegistryBuilding.menuController.getPiatto3(num2);
+                    return new SocketResponse(false, null);
+
+                case GET_ALL_INGREDIENTI:
+
+                    ArrayList<Ingredienti> ingredientiList = new ArrayList<>(RegistryBuilding.ingredientiController.getAllIngredienti());
+                    return new SocketResponse(false, ingredientiList);
 
                 /**GITE*/
 
@@ -312,7 +511,64 @@ public class SocketServerResponse{
                     RegistryBuilding.pullmanCotroller.cancellaPullman(targaDelete);
                     return  new SocketResponse(false, null);
 
+                case GET_ALL_PULLMAN:
+                    ArrayList<Pullman> pullmanList = new ArrayList<>(RegistryBuilding.pullmanCotroller.getAllPullman());
+                    return new SocketResponse(false, pullmanList);
 
+                case GET_ALL_KID_PULLMAN:
+                    Pullman pullman = (Pullman) r.params[0];
+                    ArrayList<Bambino> kidPullmanList = new ArrayList<>(RegistryBuilding.pullmanCotroller.getAllBambiniPullman(pullman));
+                    return new SocketResponse(false, kidPullmanList);
+
+                case INS_KID_PULLMAN:
+                    Bambino bambino5 = (Bambino) r.params[0];
+                    Pullman pullman1 = (Pullman) r.params[1];
+
+                    RegistryBuilding.pullmanCotroller.inserisciBambinoPulman(bambino5,pullman1);
+                    return new SocketResponse(false, null);
+
+
+                case GET_ALL_TARGHE:
+
+                    ArrayList<String> targheList = new ArrayList<>(RegistryBuilding.pullmanCotroller.getAllTarghe());
+                    return new SocketResponse(false, targheList);
+
+                case GET_ALL_TRIP:
+
+                    ArrayList<Gita> tripList = new ArrayList<>(RegistryBuilding.tripsController.getAllGite());
+                    return new SocketResponse(false, tripList);
+
+                case ADD_KID_TRIP:
+                    int codice_g = (int) r.params[0];
+                    Bambino bambino6 = (Bambino) r.params[1];
+
+                    RegistryBuilding.tripsController.inserisciBambinoGita(codice_g, bambino6);
+                    return new SocketResponse(false, null);
+
+                case DELETE_KID_TRIP:
+
+                    int codice_g1 = (int) r.params[0];
+                    Bambino bambino7 = (Bambino) r.params[1];
+
+                    RegistryBuilding.tripsController.cancellaBambinoGita(codice_g1, bambino7);
+                    return new SocketResponse(false, null);
+
+                case GET_ALL_KID_TRIP:
+
+                    Gita gita = (Gita) r.params[0];
+
+                    ArrayList<Bambino> kidTripList = new ArrayList<>(RegistryBuilding.tripsController.getAllBambiniGita(gita));
+                    return new SocketResponse(false, kidTripList);
+
+                case GET_ALL_NUM_TRIP:
+                    ArrayList<Integer> numTripList = new ArrayList<>(RegistryBuilding.tripsController.getAllNumGite());
+                    return new SocketResponse(false, numTripList);
+
+                case GET_KID_PRESENTE:
+                    String cf1 = (String) r.params[0];
+
+                    RegistryBuilding.tripsController.getKidPresente(cf1);
+                    return new SocketResponse(false, null);
 
             }
 

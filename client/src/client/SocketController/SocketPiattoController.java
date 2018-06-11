@@ -68,7 +68,41 @@ public class SocketPiattoController implements iPiattoDAO {
 
     @Override
     public List<Piatto> getAllPiatti() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PIATTI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Piatto>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
@@ -106,36 +140,274 @@ public class SocketPiattoController implements iPiattoDAO {
 
     @Override
     public List<Piatto> getAllPrimi() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PRIMI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Piatto>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<Piatto> getAllSecondi() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_SECONDI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Piatto>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<Piatto> getAllContorni() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_CONTORNI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Piatto>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public void inserisciIngredientePiatto(Piatto piatto, Ingredienti ingrediente) throws RemoteException, SQLException {
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.ADD_INGREDIENTE_PIATTO,piatto,ingrediente);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+
+
+        }
+
 
     }
 
     @Override
     public void cancellaIngredientePiatto(Piatto piatto, Ingredienti ingredienti) throws RemoteException, SQLException {
 
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.DELETE_INGREDIENTE_PIATTO,piatto,ingredienti);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+
+
+        }
+
+
     }
 
     @Override
     public List<Ingredienti> getAllIngredientiPiatto(Piatto piatto) throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_INGREDIENTE_PIATTO, piatto);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Ingredienti>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
     public List<String> getAllNomiPiatti() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_NOME_PIATTI);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<String>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 }

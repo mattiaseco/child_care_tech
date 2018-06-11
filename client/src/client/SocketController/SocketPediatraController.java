@@ -99,7 +99,41 @@ public class SocketPediatraController implements iPediatraDAO {
 
     @Override
     public List<Pediatra> getAllPediatra() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_PEDIATRA);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<Pediatra>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 
     @Override
@@ -138,6 +172,40 @@ public class SocketPediatraController implements iPediatraDAO {
 
     @Override
     public List<String> getAllCf() throws RemoteException, SQLException {
-        return null;
+
+        SocketResponse response;
+
+        try {
+
+            SocketRequest r = new SocketRequest(SocketRequestType.GET_ALL_CF_PEDIATRA);
+
+
+            out.writeObject(r);
+            response = (SocketResponse) in.readObject();
+            out.flush();
+
+
+            if(response.eccezione) throw new RemoteException(((Exception)response.returnValue).getMessage());
+            return (List<String>) response.returnValue;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+
+        }
+
+
     }
 }
