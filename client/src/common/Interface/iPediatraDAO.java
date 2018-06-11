@@ -15,4 +15,5 @@ public interface iPediatraDAO extends Remote {
     List<Pediatra> getAllPediatra() throws RemoteException,SQLException;
     void cancellaPediatra(String cf) throws RemoteException,SQLException;
     List<String>getAllCf()throws RemoteException,SQLException;
+    Pediatra getPediatra(String cf)throws RemoteException,SQLException;
 }
