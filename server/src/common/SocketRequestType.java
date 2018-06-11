@@ -62,6 +62,8 @@ public enum SocketRequestType{
 
     DELETE_MENU,
 
+    GET_ALL_MENU,
+
     /**GITA*/
 
     CREATE_TRIP,

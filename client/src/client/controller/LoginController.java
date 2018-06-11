@@ -2,9 +2,13 @@ package client.controller;
 
 
 import client.NamingContextManager;
+import client.SocketClientRequest;
+import client.SocketController.SocketLoginController;
 import common.Classes.Bambino;
 import common.Classes.Genitore;
 import common.Interface.iLoginController;
+import common.SocketRequest;
+import common.SocketRequestType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +18,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,6 +36,7 @@ public class LoginController {
 
     @FXML private Button signupbutton;
 
+
     @FXML private AnchorPane rootpane;
 
     @FXML private RadioButton rmibutton;
@@ -39,6 +46,7 @@ public class LoginController {
     @FXML private Text alertbox;
 
     private Stage actual;
+
 
     @FXML
     public void initialize() {
@@ -52,11 +60,14 @@ public class LoginController {
                 ev.consume();
             }
         });
+
+
     }
+
 
     @FXML
     private void loginaction(ActionEvent event)throws IOException {
-        iLoginController loginController = NamingContextManager.getLoginController();
+
         String userName = usernamefield.getText();
         String password = passwordfield.getText();
         alertbox.setText("");
@@ -67,7 +78,10 @@ public class LoginController {
             alertbox.setText("Attenzione: selezionare un tipo di collegamento !");
             return;
         }
-        else if (choice.getSelectedToggle().equals(rmibutton)) {
+        else {
+            if(choice.getSelectedToggle().equals(rmibutton)) NamingContextManager.setRMI();
+            else NamingContextManager.setSocket();
+            iLoginController loginController = NamingContextManager.getLoginController();
             if (loginController != null && loginController.login(userName, password)) {
                 alertbox.setText("Signin: " + usernamefield.getText() + "!");
 
@@ -79,13 +93,12 @@ public class LoginController {
             else
                 alertbox.setText("Attenzione: Username o Password non validi");
         }
-        else if (choice.getSelectedToggle().equals(socketbutton)){
-            alertbox.setText("COLLEGAMENTO IN SOCKET NON ATTIVO");
-        }
+
 
     }
     @FXML
     private void signupaction(ActionEvent event)throws IOException {
+
 
         Parent root= FXMLLoader.load(getClass().getResource("../view/Signup.fxml"));
         actual =(Stage)signupbutton.getScene().getWindow();

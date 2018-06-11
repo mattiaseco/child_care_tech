@@ -14,7 +14,7 @@ public class SocketClientRequest {
 
     public SocketClientRequest(){}
 
-    public void sendRequest(){
+    public static void sendRequest(){
 
         Socket client = null;
         ObjectOutputStream out = null;

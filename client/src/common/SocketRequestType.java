@@ -2,7 +2,6 @@ package common;
 
 public enum SocketRequestType {
 
-
     /** START */
     LOGIN,
 
@@ -63,6 +62,8 @@ public enum SocketRequestType {
 
     DELETE_MENU,
 
+    GET_ALL_MENU,
+
     /**GITA*/
 
     CREATE_TRIP,
@@ -71,6 +72,10 @@ public enum SocketRequestType {
 
     CREATE_STEP3_TRIP,
 
-    DELETE_TRIP
+    CREATE_PULLMAN,
+
+    DELETE_TRIP,
+
+    DELETE_PULLMAN
 
 }
