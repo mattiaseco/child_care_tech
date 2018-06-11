@@ -64,4 +64,13 @@ public class Gita implements Serializable{
     public String getDescrizione(){return descrizione;}
 
     public void setDescrizione(String descrizione) { this.descrizione = descrizione;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Gita))
+            return false;
+        return this.codice_g == (((Gita) obj).codice_g);
+    }
 }

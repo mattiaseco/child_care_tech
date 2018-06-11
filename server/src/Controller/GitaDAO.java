@@ -390,5 +390,29 @@ public class GitaDAO extends UnicastRemoteObject implements iGitaDAO {
         return kid;
 
     }
+    public Gita getGita(int cod_g)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM Gita WHERE codice_g='" + cod_g + "'";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        int codice_g = rs.getInt("codice_g");
+        String destinazione = rs.getString("destinazione");
+        int num_pullman=rs.getInt("num_pullman");
+        int num_partecipanti=rs.getInt("num_partecipanti");
+        LocalDate data_partenza= LocalDate.parse(rs.getString("data_partenza"));
+        LocalDate data_ritorno=LocalDate.parse(rs.getString("data_ritorno"));
+        Double costo=Double.parseDouble(rs.getString("costo"));
+        String descrizione=rs.getString("descrizione");
+
+
+        Gita gita = new Gita(codice_g,destinazione,num_pullman,num_partecipanti,data_partenza,data_ritorno,costo,descrizione);
+        rs.close();
+        stmt.close();
+        conn.close();
+        return gita;
+    }
+
 
 }

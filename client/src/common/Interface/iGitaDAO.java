@@ -23,5 +23,7 @@ public interface iGitaDAO extends Remote {
     List<Bambino>getAllBambiniGita(Gita gita)throws RemoteException,SQLException;
     List<Integer> getAllNumGite()throws RemoteException,SQLException;
     Bambino getKidPresente(String cf)throws RemoteException,SQLException;
+    Gita getGita(int codice_g)throws RemoteException,SQLException;
+
 }
 
