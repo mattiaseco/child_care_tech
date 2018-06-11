@@ -16,5 +16,6 @@ public interface iFornitoreDAO extends Remote{
     void cancellaFornitore(String cf) throws RemoteException,SQLException;
     List<String>getAllCf()throws RemoteException,SQLException;
     List<String>getAllPartitaIVA()throws RemoteException,SQLException;
+    Fornitore getFornitore(String cf)throws RemoteException,SQLException;
 
 }
