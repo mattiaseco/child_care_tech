@@ -12,4 +12,5 @@ public interface iIngredientiDAO extends Remote {
     void modificaIngrediente(String nome_i) throws RemoteException, SQLException;
     List<Ingredienti> getAllIngredienti() throws RemoteException,SQLException;
     void cancellaIngredienti(String nome_i)throws RemoteException,SQLException;
+    Ingredienti getIngrediente(String nome_i)throws RemoteException,SQLException;
 }

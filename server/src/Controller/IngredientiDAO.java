@@ -152,6 +152,24 @@ public class IngredientiDAO extends UnicastRemoteObject implements iIngredientiD
         return "DELETE FROM Ingrediente WHERE nome_i='"+nome_i+"'";
 
     }
+    public Ingredienti getIngrediente(String nome_ingrediente)throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM Ingrediente WHERE nome_i='" + nome_ingrediente + "'";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+
+        String nome_i = rs.getString("nome_i");
+        int quantita=rs.getInt("quantita");
+
+
+        Ingredienti ingr = new Ingredienti(nome_i,quantita);
+        rs.close();
+        stmt.close();
+        conn.close();
+        return ingr;
+    }
 
 
 }
