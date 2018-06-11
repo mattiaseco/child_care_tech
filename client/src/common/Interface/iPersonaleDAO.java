@@ -15,5 +15,6 @@ public interface iPersonaleDAO extends Remote {
     List<Personale> getAllPersonale() throws RemoteException,SQLException;
     void cancellaPersonale(String cf) throws RemoteException,SQLException;
     List<String>getAllCf() throws RemoteException,SQLException;
+    Personale getPersonale(String cf) throws RemoteException,SQLException;
 
 }

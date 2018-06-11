@@ -173,4 +173,25 @@ public class PersonaleDAO extends UnicastRemoteObject implements iPersonaleDAO {
 
 
     }
+    public Personale getPersonale(String cod_f) throws RemoteException,SQLException{
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM Personale WHERE cf='" + cod_f + "'";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        String cf = rs.getString("cf");
+        String nome = rs.getString("nome");
+        String cognome = rs.getString("cognome");
+        LocalDate data = LocalDate.parse(rs.getString("data"));
+        String indirizzo = rs.getString("indirizzo");
+        String telefono = rs.getString("telefono");
+
+
+        Personale pers = new Personale(cf, nome, cognome, data, indirizzo, telefono);
+        rs.close();
+        stmt.close();
+        conn.close();
+        return pers;
+    }
 }
