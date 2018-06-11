@@ -66,4 +66,13 @@ public class Genitore implements Serializable{
         this.telefono = telefono;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Genitore))
+            return false;
+        return this.cf.equals(((Genitore) obj).cf);
+    }
+
 }

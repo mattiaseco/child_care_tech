@@ -65,5 +65,13 @@ public class Personale implements Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Personale))
+            return false;
+        return this.cf.equals(((Personale) obj).cf);
+    }
 
 }

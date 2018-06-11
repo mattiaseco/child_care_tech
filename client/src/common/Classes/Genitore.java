@@ -56,6 +56,14 @@ public class Genitore implements Serializable {
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==this)
+            return true;
+        if(!(obj instanceof Genitore))
+            return false;
+        return this.cf.equals(((Genitore) obj).cf);
+    }
 
 
     public String getTelefono() {
