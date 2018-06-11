@@ -326,6 +326,22 @@ public class PiattoDAO extends UnicastRemoteObject implements iPiattoDAO {
 
 
     }
+    public Piatto getPiatto(String nome_piatto)throws RemoteException,SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/progetto?user=root&password=root");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM Piatto WHERE nome_p='" + nome_piatto + "'";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        String nome_p = rs.getString("nome_p");
+        String tipo = rs.getString("tipo");
+
+        Piatto piatto1 = new Piatto(nome_p, tipo);
+
+        stmt.close();
+        rs.close();
+        conn.close();
+        return piatto1;
+    }
 
 
 }

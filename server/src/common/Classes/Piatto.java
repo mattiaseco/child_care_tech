@@ -31,4 +31,14 @@ public class Piatto implements Serializable{
     }
 
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof Piatto))
+            return false;
+        return this.nome_p.equals(((Piatto) obj).nome_p);
+    }
+
+
 }
